@@ -1,0 +1,20 @@
+{% extends 'users/base.html' %} {% load socialaccount %} {% block content %}
+<div class="background">
+  <div class="login--main">
+    <span class="title">LOGIN</span>
+
+    <form method="POST" action="" class="form--content">
+      {% csrf_token %}
+      <!-- 어떤 것을 받아올지는 view에 있는 context를 확인하면 됨(이름을 받아와야함) -->
+      <div class="username"><span>Username: </span> {{form.username}}</div>
+      <div class="password"><span>Password: </span> {{form.password}}</div>
+      <div class="btn">
+        <input type="submit" value="login" class="submit--button" />
+      </div>
+    </form>
+    <a href="{% provider_login_url 'google' %}">구글 로그인</a><br />
+    <a href="{% provider_login_url 'naver' %}">네이버 로그인</a><br />
+    <a href="{% provider_login_url 'kakao' %}">카카오 로그인</a><br />
+  </div>
+</div>
+{% endblock content %}

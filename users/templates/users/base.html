@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"
+    />
+
+    <script
+      src="https://kit.fontawesome.com/40607578ab.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <body>
+    <nav id="nav">
+      <div class="nav--right">
+        {% if user.is_authenticated %}
+
+        <a href="{% url 'users:log_out' %}">로그아웃</a>
+        {% else %}
+        <a href="{% url 'users:log_in' %}">로그인</a>
+        <a href="{% url 'users:sign_up' %}">회원가입</a>
+        {% endif %}
+      </div>
+    </nav>
+
+    {% block content %} {% endblock content %}
+  </body>
+</html>
