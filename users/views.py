@@ -6,7 +6,6 @@ from . import forms
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-# Create your views here.
 def main(request):
     return render(request, "./users/main.html")
 
@@ -46,3 +45,5 @@ def sign_up(request):
     else:
         form = forms.SignupForm()
         return render(request, "./users/signup.html", {"form": form})
+    
+    
