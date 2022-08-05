@@ -5,5 +5,5 @@ from . import views
 app_name = "posts"
 
 urlpatterns = [
-
+    path('write', views.msgWrite, name="write"),
 ]
