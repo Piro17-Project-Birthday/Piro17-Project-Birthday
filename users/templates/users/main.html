@@ -1,0 +1,8 @@
+{% extends 'users/base.html' %} {% block content %}
+<section class="container">
+  {% if user.is_authenticated %}
+  <p class="main__login">{{user.username}}님이 로그인 중</p>
+
+  {% endif %}
+</section>
+{% endblock content %}
