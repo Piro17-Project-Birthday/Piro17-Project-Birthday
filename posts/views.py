@@ -11,3 +11,10 @@ def msgWrite(request):
         
         return redirect('/')
     return render(request, template_name='posts/write.html')
+
+def testHome(request):
+    posts = Post.objects.all()
+    context = {
+        "posts" : posts
+    }
+    return render(request, template_name='posts/testHome.html', context = context)

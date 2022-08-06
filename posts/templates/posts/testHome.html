@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script type="”text/javascript”" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  </head>
+
+  <body>
+    <div class="capture">
+      {% for post in posts %}
+        <div>
+          작성자 :
+          {{ post.nickname }}
+        </div>
+
+        <div>
+          {% if post.is_private == False %}
+            속닥속닥
+          {% else %}
+            {{ post.message }}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <div>
+      <button type="button" class="submit_capture">Save Screenshot</button>
+    </div>
+
+    <script>
+      $(function() {
+                $(".submit_capture").click(function() {
+                    html2canvas($(".capture"), {
+                        onrendered: function(canvas) {
+                            function b64toBlob(b64Data, contentType, sliceSize) {
+                                contentType = contentType || '';
+                                sliceSize = sliceSize || 512
+                            }
+                        }
+                    })
+                })
+            }) <
+            /scirpt> <
+            /body>
+
+            <
+            /html>
