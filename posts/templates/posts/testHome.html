@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script type="”text/javascript”" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
   </head>
 
   <body>
-    <div class="capture">
+    <div id="screenshot">
       {% for post in posts %}
         <div>
           작성자 :
@@ -24,28 +25,44 @@
             {{ post.message }}
           {% endif %}
         </div>
+        <hr/>
       {% endfor %}
     </div>
 
     <div>
-      <button type="button" class="submit_capture">Save Screenshot</button>
+      <button type="button" id="save">Save Screenshot</button>
+    </div>
+
+    <div>
+      <div id="img"></div>
     </div>
 
     <script>
-      $(function() {
-                $(".submit_capture").click(function() {
-                    html2canvas($(".capture"), {
-                        onrendered: function(canvas) {
-                            function b64toBlob(b64Data, contentType, sliceSize) {
-                                contentType = contentType || '';
-                                sliceSize = sliceSize || 512
-                            }
-                        }
-                    })
-                })
-            }) <
-            /scirpt> <
-            /body>
+      $(function () {
+        $("#save").click(function () {
+          html2canvas($('#screenshot').get(0)).then(function (canvas) {
+            saveAs(canvas.toDataURL('image/jpg'), "screenshotTest.jpg");
+          })
+        })
 
-            <
-            /html>
+        function saveAs(uri, filename) {
+          var link = document.createElement('a');
+          if (typeof link.download === 'string') {
+            link.href = uri;
+            link.download = filename;
+            document
+              .body
+              .appendChild(link);
+            link.click();
+            document
+              .body
+              .removeChild(link);
+          } else {
+            window.open(uri);
+          }
+        }
+      })
+    </script>
+  </body>
+
+</html>
