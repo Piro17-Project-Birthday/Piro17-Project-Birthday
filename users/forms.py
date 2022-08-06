@@ -28,5 +28,7 @@ class SignupForm(UserCreationForm):
     
     class Meta:
         model = User
-        fields = ['username', 'birthday', 'password1', 'password2']
+        fields = ['username',  'password1', 'password2','birthday']
+    def save(self, user):
+        user.save()
         

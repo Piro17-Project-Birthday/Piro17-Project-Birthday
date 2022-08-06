@@ -1,4 +1,9 @@
 {% extends 'users/base.html' %} {% block content %}
+<script>
+  $.ajaxSetup({
+    headers: { "X-CSRFToken": "{{csrf_token}}" },
+  });
+</script>
 <div class="background">
   <div class="signup--main">
     <span class="title">Sign Up</span>
