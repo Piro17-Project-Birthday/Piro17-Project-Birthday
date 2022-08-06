@@ -15,5 +15,8 @@
     <div>
         {{ birthdayPage.owner }}님의 생일을 축하하는 메시지가 도착했어요!
     </div>
+    {% for post in birthdayPage.post_set.all %}
+        <p> {{ post.message }} </p>
+    {% endfor %}
   </body>
 </html>
