@@ -13,10 +13,21 @@
   </head>
   <body>
     <div>
-        {{ birthdayPage.owner }}님의 생일을 축하하는 메시지가 도착했어요!
+      {{ birthday }}</br>
+      {{ date_diff }}</br>
+      {{ birthday_state }}
+      {% if birthday_state == "waiting" %}
+        <p>{{ name }}님의 생일이 {{date_diff}}일 남았네요!</p>
+        <p>페이지는 생일 7일 전 부터 개설되어요. 조금만 기다려 주세요.</p>
+      {% elif birthday_state == "passed" %}
+        <p>{{ name }}님의 생일이 이미 지났군요!</p>
+        <p>우리 내년에 다시 봐요!</p>
+      {% elif birthday_state == "upcoming" or birthday_state == "today" %}
+        {% if birthday_state == "today" %}
+          <p>생일 축하드려요!</p>
+        {% endif %}
+        {{ name }}님의 생일을 축하하는 메시지가 도착했어요!
+      {% endif %}
     </div>
-    {% for post in birthdayPage.post_set.all %}
-        <p> {{ post.message }} </p>
-    {% endfor %}
   </body>
 </html>
