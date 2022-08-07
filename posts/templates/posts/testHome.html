@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+    {% comment %} <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script> {% endcomment %}
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
   </head>
 
@@ -30,7 +30,7 @@
     </div>
 
     <div>
-      <button type="button" id="save">Save Screenshot</button>
+      <button onclick=screenshot() type="button" id="save">Save Screenshot</button>
     </div>
 
     <div>
@@ -38,6 +38,28 @@
     </div>
 
     <script>
+      function screenshot() {
+        html2canvas(document.getElementById("screenshot")).then(function (canvas){
+          saveAs(canvas.toDataURL('image/jpeg'), 'screenshotTest.jpg');
+        })
+      }
+
+      function saveAs(uri, filename){
+        var link = document.createElement('a');
+        if (typeof link.download === 'string') {
+          link.href = uri;
+          link.download = filename;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+        } else {
+          window.open(uir);
+        }
+      }
+    </script>
+
+        {% comment %} jquery 사용
+     <script>
       $(function () {
         $("#save").click(function () {
           html2canvas($('#screenshot').get(0)).then(function (canvas) {
@@ -62,7 +84,7 @@
           }
         }
       })
-    </script>
+    </script> {% endcomment %}
   </body>
 
 </html>
