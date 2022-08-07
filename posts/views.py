@@ -2,18 +2,29 @@ from django.shortcuts import render, redirect, get_object_or_404
 from datetime import datetime
 from .models import BirthdayPage
 from .models import Post
-from .forms import PostForm
+from .forms import PostForm, BirthdayPageForm
 
 def createBirthdayPage(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            birthday_page = BirthdayPage.objects.create(owner=request.user)
-            return redirect(f"/{birthday_page.id}")
-    
-        context={
-            "request_user" : request.user
-        }
-        return render(request, template_name ="posts/create_birthday_page.html", context=context)
+            form = BirthdayPageForm(request.POST)
+            if form.is_valid():
+                #현재 로그인 한 유저를 owner로 하는 birthday page 생성
+                birthday_page = BirthdayPage.objects.create(owner=request.user)
+                #form에 입력한 정보대로 owner의 full name과 birthday 수정 후 저장
+                birthday_page.owner.full_name = form.cleaned_data['full_name']
+                birthday_page.owner.birthday = form.cleaned_data['birthday']
+                birthday_page.owner.save()
+                #만들어진 페이지로 redirect
+                return redirect(f"/{birthday_page.id}")
+            else :
+                return redirect('/')
+        else :
+            form = BirthdayPageForm(request.POST)
+            context={
+                'form':form,
+            }
+            return render(request, 'posts/create_birthday_page.html', context=context)
     else :
         return redirect("/login")
     

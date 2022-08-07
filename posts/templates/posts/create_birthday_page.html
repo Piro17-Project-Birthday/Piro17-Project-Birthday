@@ -12,9 +12,12 @@
     <title></title>
   </head>
   <body>
-    <form action="/create" method="post">
-        {% csrf_token %}
-        <input class="btn" type="submit" value="생성하기" />
+    <form action="/create" method="POST">
+      {% csrf_token %}
+      <table>
+        {{form.as_table}}
+      </table>
+      <input type="submit" value="생성하기" />
     </form>
   </body>
 </html>
