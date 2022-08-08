@@ -1,0 +1,56 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/f578b19b63.js"
+      crossorigin="anonymous"
+    ></script>
+    <title></title>
+  </head>
+  <body>
+    <div>
+      <span>확인용 정보</br></span>
+      <span>이름 : {{name}}</br>생일 : {{birthday}}</br>상태 : {{birthday_state}}</br></br></span>
+    </div>
+    <div>
+      {% if birthday_state == "waiting" %}
+        <p>{{ name }}님의 생일이 {{date_diff}}일 남았네요!</p>
+        <p>페이지는 생일 7일 전 부터 개설되어요. 조금만 기다려 주세요.</p>
+      {% elif birthday_state == "passed" %}
+        <p>{{ name }}님의 생일이 이미 지났군요!</p>
+        <p>우리 내년에 다시 봐요!</p>
+      {% elif birthday_state == "upcoming" or birthday_state == "today" %}
+        {% if birthday_state == "today" %}
+          <p>생일 축하드려요!</p>
+        {% endif %}
+        <span>D-{{ date_diff }}일</span>
+        <div>
+          <a href="{% url 'posts:create_message' pk %}">축하 메시지 남기기</a>
+        </div>
+        <div>
+          {% if messages %}
+            <span>{{ name }}님의 생일을 축하하는 메시지가 도착했어요!</span>
+            {% for message in messages %}
+            {% comment %} owner일 경우 모든 메시지를 보여준다 {% endcomment %}
+              {% if is_owner %}
+                <li>{{ message.nickname }} : {{ message.message }}
+                  <a href="{% url 'posts:delete_message' message.id %}">X</a>
+                </li>
+              {% comment %} owner가 아닐 경우 {% endcomment %}
+              {% comment %} private이 아닌 메시지만 보여준다 {% endcomment %}
+              {% elif not message.is_private %}
+              <li>{{ message.nickname }} : {{ message.message }}</li>
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            <p>아직 메시지가 없습니다.</p>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
