@@ -35,11 +35,16 @@
           {% if messages %}
             <span>{{ name }}님의 생일을 축하하는 메시지가 도착했어요!</span>
             {% for message in messages %}
-              <li>{{ message.nickname }} : {{ message.message }}
-                {% if is_owner %}
+            {% comment %} owner일 경우 모든 메시지를 보여준다 {% endcomment %}
+              {% if is_owner %}
+                <li>{{ message.nickname }} : {{ message.message }}
                   <a href="{% url 'posts:delete_message' message.id %}">X</a>
-                {% endif %}
-              </li>
+                </li>
+              {% comment %} owner가 아닐 경우 {% endcomment %}
+              {% comment %} private이 아닌 메시지만 보여준다 {% endcomment %}
+              {% elif not message.is_private %}
+              <li>{{ message.nickname }} : {{ message.message }}</li>
+              {% endif %}
             {% endfor %}
           {% else %}
             <p>아직 메시지가 없습니다.</p>
