@@ -1,8 +1,14 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from datetime import datetime
 from .models import BirthdayPage
-from .models import Post
-from .forms import PostForm, BirthdayPageForm
+from .models import Message
+from .forms import MessageForm, BirthdayPageForm
+
+def main(request):
+    if request.user.is_authenticated: #로그인 한 사용자라면
+        if BirthdayPage.objects.filter(owner=request.user).exists() : #birthday page가 이미 만들어졌다면
+            return redirect(f"/{BirthdayPage.objects.get(owner=request.user).id}") #해당 페이지로 이동한다
+    return render(request, "posts/main.html")
 
 def createBirthdayPage(request):
     if request.user.is_authenticated:
@@ -29,7 +35,8 @@ def createBirthdayPage(request):
         return redirect("/login")
     
 def detailBirthdayPage(request,pk):
-    birthday_page = BirthdayPage.objects.get(pk=pk)
+    birthday_page = get_object_or_404(BirthdayPage, pk=pk)
+    messages = birthday_page.message_set.all()
     name = birthday_page.owner.full_name
 
     birthday_month = birthday_page.owner.birthday.month #생일자의 생일 월
@@ -42,8 +49,11 @@ def detailBirthdayPage(request,pk):
     date_diff = abs((today-birthday).days) 
     if birthday_thisyear < today : #올해 생일이 이미 지났다면
         birthday = datetime.strptime(str(today_year+1)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #생일을 내년 생일로 한다
-        birthday_state = "passed"
-        date_diff = abs((today-birthday).days) 
+        date_diff = abs((today-birthday).days)
+        if date_diff <= 7: #생일이 7일 이내로 남았다면
+            birthday_state = "upcoming"
+        else :
+            birthday_state = "passed"  
     else : #올해 생일이 아직 오지 않았다면
         if date_diff == 0 : #생일이 오늘이라면
             birthday_state = "today"
@@ -53,36 +63,28 @@ def detailBirthdayPage(request,pk):
             birthday_state = "waiting"
         
     context = {
+        "messages" : messages,
         "name" : name,
         "birthday" : birthday,
         "date_diff" : date_diff,
-        "birthday_state" : birthday_state
+        "birthday_state" : birthday_state,
+        "pk" : pk
     }
     return render(request, template_name="posts/detail_birthday_page.html", context=context)
     
-# def msgWrite(request):
-#     if request.method == 'POST':
-#         nickname = request.POST['nickname']
-#         message = request.POST['message']
-#         is_private = request.POST.get('is_private', False)
-        
-#         Post.objects.create(nickname=nickname, message=message, is_private=is_private)
-        
-#         return redirect('/')
-#     return render(request, template_name='posts/write.html')
-
-def msgWrite(request, pk):
-    birthdayPage = get_object_or_404(BirthdayPage, pk=pk)
-    form = PostForm(request.POST)
+def createMessage(request, pk):
+    birthday_page = get_object_or_404(BirthdayPage, pk=pk)
+    form = MessageForm(request.POST)
     if request.method == 'POST':
         if form.is_valid():
             post = form.save(commit=False)
-            post.receiver = birthdayPage
+            post.receiver = birthday_page
             if request.user.is_authenticated :
                 post.sender = request.user
             post.save()
+            return redirect(f"/{birthday_page.id}")
     context = {
-        'birthdayPage' : birthdayPage,
+        'birthday_page' : birthday_page,
         'form' : form
     }
-    return render(request, template_name='posts/write.html', context=context)
+    return render(request, template_name='posts/create_message.html', context=context)

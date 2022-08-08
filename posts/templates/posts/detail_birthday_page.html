@@ -13,9 +13,10 @@
   </head>
   <body>
     <div>
-      {{ birthday }}</br>
-      {{ date_diff }}</br>
-      {{ birthday_state }}
+      <span>확인용 정보</br></span>
+      <span>이름 : {{name}}</br>생일 : {{birthday}}</br>상태 : {{birthday_state}}</br></br></span>
+    </div>
+    <div>
       {% if birthday_state == "waiting" %}
         <p>{{ name }}님의 생일이 {{date_diff}}일 남았네요!</p>
         <p>페이지는 생일 7일 전 부터 개설되어요. 조금만 기다려 주세요.</p>
@@ -26,7 +27,20 @@
         {% if birthday_state == "today" %}
           <p>생일 축하드려요!</p>
         {% endif %}
-        {{ name }}님의 생일을 축하하는 메시지가 도착했어요!
+        <span>D-{{ date_diff }}일</span>
+        <div>
+          <a href="{% url 'posts:create_message' pk %}">축하 메시지 남기기</a>
+        </div>
+        <div>
+          {% if messages %}
+            <span>{{ name }}님의 생일을 축하하는 메시지가 도착했어요!</span>
+            {% for message in messages %}
+              <li>{{ message.nickname }} : {{ message.message }}</li>
+            {% endfor %}
+          {% else %}
+            <p>아직 메시지가 없습니다.</p>
+          {% endif %}
+        </div>
       {% endif %}
     </div>
   </body>

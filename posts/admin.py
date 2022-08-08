@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import Post, BirthdayPage
+from .models import Message, BirthdayPage
 
-@admin.register(Post)
-class PostAdmin(admin.ModelAdmin):
+@admin.register(Message)
+class MessageAdmin(admin.ModelAdmin):
     pass
 
 @admin.register(BirthdayPage)

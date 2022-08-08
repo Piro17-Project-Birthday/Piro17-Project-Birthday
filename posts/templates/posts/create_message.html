@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <form action="{% url 'posts:write' birthdayPage.owner.id %}" method="POST">
+    <form action="{% url 'posts:create_message' birthday_page.id %}" method="POST">
       {% csrf_token %}
       <table>
         {{form.as_p}}

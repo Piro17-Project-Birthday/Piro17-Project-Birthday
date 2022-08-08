@@ -53,6 +53,10 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.naver',
     'allauth.socialaccount.providers.kakao',
     
+    # 3rd party Apps
+    'django_extensions',
+
+    
 ]
 
 MIDDLEWARE = [
