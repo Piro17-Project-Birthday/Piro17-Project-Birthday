@@ -35,7 +35,11 @@
           {% if messages %}
             <span>{{ name }}님의 생일을 축하하는 메시지가 도착했어요!</span>
             {% for message in messages %}
-              <li>{{ message.nickname }} : {{ message.message }}</li>
+              <li>{{ message.nickname }} : {{ message.message }}
+                {% if is_owner %}
+                  <a href="{% url 'posts:delete_message' message.id %}">X</a>
+                {% endif %}
+              </li>
             {% endfor %}
           {% else %}
             <p>아직 메시지가 없습니다.</p>

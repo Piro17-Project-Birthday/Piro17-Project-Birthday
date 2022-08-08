@@ -61,6 +61,11 @@ def detailBirthdayPage(request,pk):
             birthday_state = "upcoming"
         else : #생일이 7일 넘게 남았다면
             birthday_state = "waiting"
+    
+    if request.user == birthday_page.owner :
+        is_owner = 1 #현재 접속자가 이 생일 페이지의 주인인지 알려주는 플래그
+    else :
+        is_owner = 0
         
     context = {
         "messages" : messages,
@@ -68,7 +73,8 @@ def detailBirthdayPage(request,pk):
         "birthday" : birthday,
         "date_diff" : date_diff,
         "birthday_state" : birthday_state,
-        "pk" : pk
+        "pk" : pk,
+        "is_owner" : is_owner
     }
     return render(request, template_name="posts/detail_birthday_page.html", context=context)
     
@@ -88,3 +94,9 @@ def createMessage(request, pk):
         'form' : form
     }
     return render(request, template_name='posts/create_message.html', context=context)
+
+def deleteMessage(request, pk):
+    message = Message.objects.get(pk=pk)
+    birthday_page = message.receiver
+    message.delete()
+    return redirect(f"/{birthday_page.id}")
