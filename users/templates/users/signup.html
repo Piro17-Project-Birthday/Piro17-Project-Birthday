@@ -1,0 +1,41 @@
+{% extends 'users/base.html' %} {% block content %}
+<script>
+  $.ajaxSetup({
+    headers: { "X-CSRFToken": "{{csrf_token}}" },
+  });
+</script>
+<div class="background">
+  <div class="signup--main">
+    <span class="title">Sign Up</span>
+    <form method="POST" action="" class="form--content">
+      {% csrf_token %}
+      <div class="username">
+        <span>Username: </span>
+        {{form.username}}
+      </div>
+      <div class="password1">
+        <span>Password: </span>
+        {{form.password1}}
+        <p class="text">
+          - 알파벳/숫자 포함 최소 8자 이상의 비밀번호를 입력해주세요.
+        </p>
+      </div>
+      <div class="password2">
+        <span>Password 확인: </span>
+        {{form.password2}}
+        <p class="text">
+          - 확인을 위해 이전과 동일한 비밀번호와 동일한 비밀번호를 입력해주세요.
+        </p>
+      </div>
+      <div>
+        <span>생일 입력(ex. 2020-01-01): </span>
+        {{form.birthday}}
+      </div>
+      <div class="btn">
+        <input type="submit" value="SignUp" class="submit--btn" />
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock content %}
