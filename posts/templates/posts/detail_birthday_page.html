@@ -9,9 +9,11 @@
       src="https://kit.fontawesome.com/f578b19b63.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <title></title>
   </head>
   <body>
+    <div id ="screenshot">
     <div>
       <span>확인용 정보</br></span>
       <span>이름 : {{name}}</br>생일 : {{birthday}}</br>상태 : {{birthday_state}}</br></br></span>
@@ -52,5 +54,32 @@
         </div>
       {% endif %}
     </div>
+  </div>
+  
+  <div>
+    <button onclick=screenshot() type="button" id="save">Save Screenshot</button>
+  </div>
+
+  <script>
+    //screenshot 기능
+    function screenshot() {
+      html2canvas(document.getElementById("screenshot")).then(function (canvas){
+        saveAs(canvas.toDataURL('image/jpg'), 'screenshotTest.jpg');
+      })
+    }
+
+    function saveAs(uri, filename){
+      var link = document.createElement('a');
+      if (typeof link.download === 'string') {
+        link.href = uri;
+        link.download = filename;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      } else {
+        window.open(uir);
+      }
+    }
+  </script>
   </body>
 </html>
