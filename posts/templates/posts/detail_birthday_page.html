@@ -21,32 +21,51 @@
           <span>D-{{ date_diff }}일</span>
   
           {% comment %} 생일 케이크 test {% endcomment %}
-          <form method="post">
-            {% csrf_token %}
-            <input type="radio" name="cakeoptions" value="choco">
-            초코 케이크
-            <input type="radio" name="cakeoptions" value="strawb">
-            딸기 케이크
-            <input type="radio" name="cakeoptions" value="cheese">
-            치즈 케이크
-            <input type="submit" value="submit">
-          </form>
+        </div>
           <hr>
           {% if messages.count >= 0 %}
+          <div>
+            {% comment %} 확인용 {% endcomment %}
             <div>
-              메시지 개수 : {{ messages.count }}
+            메시지 개수 : {{ messages.count }}
             </div>
             <div>
+            선택한 케이크 종류 : {{ selected_cake }} = {{ target }}
+            </div>
+          </div>
+          <div>
+            {% if target == "초코" %}
               {% if messages.count <= 5 %}
-                <img src="{% static 'img/choco1.png' %}">
+              <img src="{% static 'img/초코1.png' %}">
               {% elif messages.count <= 10 %}
-                <img src="{% static 'img/choco2.png' %}">
+              <img src="{% static 'img/초코2.png' %}">
               {% elif messages.count <= 15 %}
-                <img src="{% static 'img/choco3.png' %}">
+              <img src="{% static 'img/초코3.png' %}">
               {% elif messages.count <= 20 %}
-                <img src="{% static 'img/choco4.png' %}">
+              <img src="{% static 'img/초코4.png' %}">
               {% endif %}
-            </div>
+            {% elif target == "딸기"%}
+              {% if messages.count <= 5 %}
+              <img src="{% static 'img/딸기1.png' %}">
+              {% elif messages.count <= 10 %}
+              <img src="{% static 'img/딸기2.png' %}">
+              {% elif messages.count <= 15 %}
+              <img src="{% static 'img/딸기3.png' %}">
+              {% elif messages.count <= 20 %}
+              <img src="{% static 'img/딸기4.png' %}">
+              {% endif %}
+            {% elif target == "치즈"%}
+              {% if messages.count <= 5 %}
+              <img src="{% static 'img/치즈1.png' %}">
+              {% elif messages.count <= 10 %}
+              <img src="{% static 'img/치즈2.png' %}">
+              {% elif messages.count <= 15 %}
+              <img src="{% static 'img/치즈3.png' %}">
+              {% elif messages.count <= 20 %}
+              <img src="{% static 'img/치즈4.png' %}">
+              {% endif %}
+            {% endif %}
+          </div>
           {% endif %}
           <hr>
           {% if not is_owner %}
