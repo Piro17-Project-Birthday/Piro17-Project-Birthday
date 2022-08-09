@@ -1,5 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from datetime import datetime
+
+from users.models import User
 from .models import BirthdayPage
 from .models import Message
 from .forms import MessageForm, BirthdayPageForm
@@ -53,7 +55,7 @@ def detailBirthdayPage(request,pk):
         if date_diff <= 7: #생일이 7일 이내로 남았다면
             birthday_state = "upcoming"
         else :
-            birthday_state = "passed"  
+            birthday_state = "waiting"  
     else : #올해 생일이 아직 오지 않았다면
         if date_diff == 0 : #생일이 오늘이라면
             birthday_state = "today"
@@ -100,3 +102,27 @@ def deleteMessage(request, pk):
     birthday_page = message.receiver
     message.delete()
     return redirect(f"/{birthday_page.id}")
+
+def mypage(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            
+            form = BirthdayPageForm(request.POST)
+            if form.is_valid():
+                birthday_page = BirthdayPage.objects.get(owner=request.user)
+
+                birthday_page.owner.full_name = form.cleaned_data['full_name']
+                birthday_page.owner.birthday = form.cleaned_data['birthday']
+                birthday_page.owner.save()
+                
+                return redirect(f"/{birthday_page.id}")
+            else :
+                return redirect('/')
+        else:
+            form = BirthdayPageForm(instance=request.user)
+            context={
+                'form':form,
+            }
+            return render(request, 'posts/mypage.html', context=context)
+    else :
+        return redirect("/login")
