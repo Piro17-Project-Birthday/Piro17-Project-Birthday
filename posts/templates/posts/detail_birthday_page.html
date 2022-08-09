@@ -1,16 +1,7 @@
+{% extends 'posts/base.html' %} {% block content %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ko">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script
-      src="https://kit.fontawesome.com/f578b19b63.js"
-      crossorigin="anonymous"
-    ></script>
     <link rel="stylesheet" href="{% static 'css/detail_birthday_page.css' %}" />
-    <title></title>
   </head>
   <body>
     <div>
@@ -21,17 +12,16 @@
       {% if birthday_state == "waiting" %}
         <p>{{ name }}님의 생일이 {{date_diff}}일 남았네요!</p>
         <p>페이지는 생일 7일 전 부터 개설되어요. 조금만 기다려 주세요.</p>
-      {% elif birthday_state == "passed" %}
-        <p>{{ name }}님의 생일이 이미 지났군요!</p>
-        <p>우리 내년에 다시 봐요!</p>
       {% elif birthday_state == "upcoming" or birthday_state == "today" %}
         {% if birthday_state == "today" %}
           <p>생일 축하드려요!</p>
         {% endif %}
         <span>D-{{ date_diff }}일</span>
-        <div>
-          <a href="{% url 'posts:create_message' pk %}">축하 메시지 남기기</a>
-        </div>
+        {% if not is_owner %}
+          <div>
+            <a href="{% url 'posts:create_message' pk %}">축하 메시지 남기기</a>
+          </div>
+        {% endif %}
         <div>
           {% if messages %}
             <span>{{ name }}님의 생일을 축하하는 메시지가 도착했어요!</span>
@@ -54,4 +44,4 @@
       {% endif %}
     </div>
   </body>
-</html>
+{% endblock content %}

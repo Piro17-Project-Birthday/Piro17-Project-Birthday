@@ -5,6 +5,7 @@ from . import forms
 # from django.http import HttpResponse
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from posts.views import BirthdayPage
 
 class LoginView(View):
     forms 
@@ -21,6 +22,9 @@ class LoginView(View):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
+                if request.user.is_authenticated: #로그인 한 사용자라면
+                    if BirthdayPage.objects.filter(owner=request.user).exists() : #birthday page가 이미 만들어졌다면
+                        return redirect(f"/{BirthdayPage.objects.get(owner=request.user).id}") #해당 페이지로 이동한다
                 return render(request, "./posts/main.html")
 
         return render(request, "./users/login.html", {"form": form})

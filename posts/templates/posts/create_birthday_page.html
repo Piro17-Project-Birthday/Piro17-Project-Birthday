@@ -1,4 +1,8 @@
-{% extends 'users/base.html' %} {% block content %}
+{% extends 'posts/base.html' %} {% block content %}
+{% load static %}
+  <head>
+    <link rel="stylesheet" href="{% static 'css/create_birthday_page.css' %}" />
+  </head>
 <body>
   <form action="/create" method="POST">
     {% csrf_token %}

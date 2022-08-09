@@ -53,7 +53,7 @@ def detailBirthdayPage(request,pk):
         if date_diff <= 7: #생일이 7일 이내로 남았다면
             birthday_state = "upcoming"
         else :
-            birthday_state = "passed"  
+            birthday_state = "waiting"  
     else : #올해 생일이 아직 오지 않았다면
         if date_diff == 0 : #생일이 오늘이라면
             birthday_state = "today"

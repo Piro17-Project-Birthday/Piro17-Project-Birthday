@@ -21,7 +21,7 @@
           <a href="#">내 페이지 가기</a>
           <!-- 내페이지 링크 연결 -->
           <a href="#">고객센터</a>
-          <a href="#">로그아웃</a>
+          <a href="{% url 'users:log_out'%}">로그아웃</a>
           <!-- 로그아웃 연결 -->
         </div>
       </div>
@@ -35,7 +35,7 @@
       <div class="navbar_dropdown">
         <button onclick="dropdown_menu()" class="dropdown_btn">menu</button>
         <div style="display: none" id="dropdown_content">
-          <a href="#">로그인 하러 가기</a>
+          <a href="{% url 'users:log_in'%}">로그인 하러 가기</a>
           <!-- 로그인 페이지로 링크 연결 -->
           <a href="#">고객센터</a>
         </div>
