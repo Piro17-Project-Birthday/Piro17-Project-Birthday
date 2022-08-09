@@ -8,9 +8,11 @@
   <body>
     <div id="screenshot">
       <div>
+      <div>
         <span>확인용 정보</br></span>
         <span>이름 : {{name}}</br>생일 : {{birthday}}</br>상태 : {{birthday_state}}</br></br></span>
       </div>
+      <div>
         {% if birthday_state == "waiting" %}
           <p>{{ name }}님의 생일이 {{date_diff}}일 남았네요!</p>
           <p>페이지는 생일 7일 전 부터 개설되어요. 조금만 기다려 주세요.</p>
@@ -19,9 +21,9 @@
             <p>생일 축하드려요!</p>
           {% endif %}
           <span>D-{{ date_diff }}일</span>
+      </div>
   
           {% comment %} 생일 케이크 test {% endcomment %}
-        </div>
           <hr>
           {% if messages.count >= 0 %}
           <div>
