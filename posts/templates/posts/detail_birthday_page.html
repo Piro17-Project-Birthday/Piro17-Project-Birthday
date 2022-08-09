@@ -88,6 +88,8 @@
                 {% comment %} private이 아닌 메시지만 보여준다 {% endcomment %}
                 {% elif not message.is_private %}
                 <li>{{ message.nickname }} : {{ message.message }}</li>
+                {% elif message.is_private %}
+                <li>비공개 : 속닥속닥</li>
                 {% endif %}
               {% endfor %}
             {% else %}
