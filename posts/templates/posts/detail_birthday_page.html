@@ -1,45 +1,25 @@
-{% extends 'posts/base.html' %} {% block content %}
+{% extends 'posts/base.html' %} 
+{% block title %} 축마땅 {% endblock %} 
+{% block content %}
 {% load static %}
   <head>
-    <link rel="stylesheet" href="{% static 'css/detail_birthday_page.css' %}" />
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
   </head>
-
   <body>
-    <div>
-      <span>확인용 정보</br></span>
-      <span>이름 : {{name}}</br>생일 : {{birthday}}</br>상태 : {{birthday_state}}</br></br></span>
-    </div>
-    <div>
-      {% if birthday_state == "waiting" %}
-        <p>{{ name }}님의 생일이 {{date_diff}}일 남았네요!</p>
-        <p>페이지는 생일 7일 전 부터 개설되어요. 조금만 기다려 주세요.</p>
-      {% elif birthday_state == "upcoming" or birthday_state == "today" %}
-        {% if birthday_state == "today" %}
-          <p>생일 축하드려요!</p>
-        {% endif %}
-        <span>D-{{ date_diff }}일</span>
-        {% if not is_owner %}
-          <div>
-            <a href="{% url 'posts:create_message' pk %}">축하 메시지 남기기</a>
-          </div>
-        {% endif %}
-        <div>
-          {% if messages %}
-            <span>{{ name }}님의 생일을 축하하는 메시지가 도착했어요!</span>
-            {% for message in messages %}
-            {% comment %} owner일 경우 모든 메시지를 보여준다 {% endcomment %}
-              {% if is_owner %}
-                <li>{{ message.nickname }} : {{ message.message }}
-                  <a href="{% url 'posts:delete_message' message.id %}">X</a>
-                </li>
-              {% comment %} owner가 아닐 경우 {% endcomment %}
-              {% comment %} private이 아닌 메시지만 보여준다 {% endcomment %}
-              {% elif not message.is_private %}
-              <li>{{ message.nickname }} : {{ message.message }}</li>
-              {% endif %}
-            {% endfor %}
-          {% else %}
-            <p>아직 메시지가 없습니다.</p>
+    <div id="screenshot">
+      <div>
+        <span>확인용 정보</br></span>
+        <span>이름 : {{name}}</br>생일 : {{birthday}}</br>상태 : {{birthday_state}}</br></br></span>
+      </div>
+        {% if birthday_state == "waiting" %}
+          <p>{{ name }}님의 생일이 {{date_diff}}일 남았네요!</p>
+          <p>페이지는 생일 7일 전 부터 개설되어요. 조금만 기다려 주세요.</p>
+        {% elif birthday_state == "upcoming" or birthday_state == "today" %}
+          {% if birthday_state == "today" %}
+            <p>생일 축하드려요!</p>
+          {% endif %}
+          <span>D-{{ date_diff }}일</span>
+  
           {% comment %} 생일 케이크 test {% endcomment %}
           <form method="post">
             {% csrf_token %}
@@ -49,29 +29,26 @@
             딸기 케이크
             <input type="radio" name="cakeoptions" value="cheese">
             치즈 케이크
-    
             <input type="submit" value="submit">
           </form>
-        </div>
           <hr>
-          {% if messages.count > 0 %}
-          <div>
-            메시지 개수 : {{ messages.count }}
-          </div>
-          <div>
-            {% if messages.count <= 5 %}
-            <img src="{% static 'img/choco1.png' %}">
-            {% elif messages.count <= 10 %}
-            <img src="{% static 'img/choco2.png' %}">
-            {% elif messages.count <= 15 %}
-            <img src="{% static 'img/choco3.png' %}">
-            {% elif messages.count <= 20 %}
-            {% endif %}
-            <img src="{% static 'img/choco4.png' %}">
-          </div>
+          {% if messages.count >= 0 %}
+            <div>
+              메시지 개수 : {{ messages.count }}
+            </div>
+            <div>
+              {% if messages.count <= 5 %}
+                <img src="{% static 'img/choco1.png' %}">
+              {% elif messages.count <= 10 %}
+                <img src="{% static 'img/choco2.png' %}">
+              {% elif messages.count <= 15 %}
+                <img src="{% static 'img/choco3.png' %}">
+              {% elif messages.count <= 20 %}
+                <img src="{% static 'img/choco4.png' %}">
+              {% endif %}
+            </div>
           {% endif %}
           <hr>
-  
   
           <div>
             <a href="{% url 'posts:create_message' pk %}">축하 메시지 남기기</a>
@@ -130,4 +107,4 @@
     </script>
 
   </body>
-{% endblock content %}
+{% endblock %}
