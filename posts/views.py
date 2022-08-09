@@ -126,6 +126,8 @@ def mypage(request):
 
                 birthday_page.owner.full_name = form.cleaned_data['full_name']
                 birthday_page.owner.birthday = form.cleaned_data['birthday']
+                birthday_page.owner.selected_cake = form.cleaned_data['selected_cake']
+                
                 birthday_page.owner.save()
                 
                 return redirect(f"/{birthday_page.id}")
