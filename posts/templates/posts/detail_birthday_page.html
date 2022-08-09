@@ -82,7 +82,7 @@
               {% comment %} owner일 경우 모든 메시지를 보여준다 {% endcomment %}
                 {% if is_owner %}
                   <li>{{ message.nickname }} : {{ message.message }}
-                    <a href="{% url 'posts:delete_message' message.id %}">X</a>
+                    <a href="{% url 'posts:delete_message' message.id %}" data-html2canvas-ignore="true">X</a>
                   </li>
                 {% comment %} owner가 아닐 경우 {% endcomment %}
                 {% comment %} private이 아닌 메시지만 보여준다 {% endcomment %}
