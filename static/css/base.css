@@ -28,3 +28,9 @@ nav {
   padding: 10px 36px;
   margin: 2px 0px 0px 0px;
 }
+
+body {
+  width: 375px;
+  height: 812px;
+  margin: auto;
+}
