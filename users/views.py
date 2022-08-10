@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 from posts.views import BirthdayPage
 
 class LoginView(View):
-    forms 
+    forms
     def get(self, request):
         form = forms.LoginForm()
         ctx = {"form": form}
@@ -46,5 +46,3 @@ def sign_up(request):
     else:
         form = forms.SignupForm()
         return render(request, "./users/signup.html", {"form": form})
-    
-    
