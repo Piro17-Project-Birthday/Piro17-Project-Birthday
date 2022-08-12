@@ -1,5 +1,5 @@
-{% extends 'posts/base.html' %} {% block title %} 마이페이지 {% endblock %} {%
-block content %}
+{% extends 'posts/base.html' %} {% block title %} 마이페이지 {% endblock %}
+{%block content %}
 <script
   src="https://kit.fontawesome.com/f578b19b63.js"
   crossorigin="anonymous"
@@ -9,7 +9,18 @@ block content %}
   <form action="/mypage/" method="POST">
     {% csrf_token %}
     <table>
-      {{form.as_table}}
+      <div>
+        <span>이름:</span>
+        {{form.full_name}}
+      </div>
+      <div>
+        <span>생일:</span>
+        {{form.birthday}}
+      </div>
+      <div>
+        <span>케이크 종류:</span>
+        {{form.selected_cake}}
+      </div>
     </table>
     <input type="submit" value="수정하기" />
   </form>
