@@ -85,11 +85,25 @@
                     <a href="{% url 'posts:delete_message' message.id %}" data-html2canvas-ignore="true">X</a>
                   </li>
                 {% comment %} owner가 아닐 경우 {% endcomment %}
+                {% elif is_user %}
+                  <li>{{ message.nickname }} : {{ message.message }}
+                    <a href="{% url 'posts:delete_message' message.id %}" data-html2canvas-ignore="true">X</a>
+                  </li>
+
+                {% comment %}내가 이페이지 에서 작성한 메세지가 아니라면 삭제 못함{% endcomment %}
+                {% elif not is_user %}
+                <li>{{ message.nickname }} : {{ message.message }}
+                </li>
+                {% comment %}내가 이페이지 에서 작성한 메세지라면 삭제가능{% endcomment %}
+                  
                 {% comment %} private이 아닌 메시지만 보여준다 {% endcomment %}
                 {% elif not message.is_private %}
                 <li>{{ message.nickname }} : {{ message.message }}</li>
                 {% elif message.is_private %}
                 <li>비공개 : 속닥속닥</li>
+
+                
+                
                 {% endif %}
               {% endfor %}
             {% else %}

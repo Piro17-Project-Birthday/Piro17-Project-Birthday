@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from datetime import datetime
 
+from datetime import date, datetime, timedelta
 from users.models import User
 from .models import BirthdayPage
 from .models import Message
@@ -79,7 +79,14 @@ def detailBirthdayPage(request,pk):
         target = "딸기"
     elif selected_cake == "치즈 케이크":
         target = "치즈"
-        
+    ##############################################################
+    #birthday_page_message = Message.objects.get(pk=pk)
+    
+    #if  birthday_page_message.sender == request.user :
+    #    is_user = 1 #현재 접속자가 이 메세지의 주인인지 알려주는 플래그
+    #else :
+    #    is_user = 0
+            
     context = {
         "messages" : messages,
         "name" : name,
@@ -90,6 +97,7 @@ def detailBirthdayPage(request,pk):
         "is_owner" : is_owner,
         "selected_cake" : selected_cake,
         "target" : target,
+        #"is_user":is_user,
     }
     return render(request, template_name="posts/detail_birthday_page.html", context=context)
     
@@ -141,3 +149,39 @@ def mypage(request):
             return render(request, 'posts/mypage.html', context=context)
     else :
         return redirect("/login")
+
+
+# 아래코드 필요없으면 나중에 지울예정 
+
+    
+class OriginalInformation():
+    
+    def remember(self, request, command):
+        if 'signup' in command:
+            self.email = request.POST['email']
+        elif 'password_forgotten' not in command:
+            self.current_password = request.POST['current_password']
+        self.new_password1 = request.POST['new_password1']
+        self.new_password2 = request.POST['new_password2']
+        if 'password_forgotten' not in command:
+            self.nickname = request.POST['nickname']
+            self.birth_y = request.POST['birth-y']
+            self.birth_m = request.POST['birth-m']
+            self.birth_d = request.POST['birth-d']
+            self.img = request.FILES.get('img')
+            self.img_setting = request.POST.get('img_setting')
+            self.introduction = request.POST['introduction']
+            self.job = request.POST.get('job')
+
+# Birth Format (YYYY-MM-DD)
+
+
+def birth_format(year, month, day):
+    today = date.today()
+    try:
+        if int(year) > today.year:
+            return ''
+        birth = datetime(int(year), int(month), int(day)).strftime("%Y-%m-%d")
+        return birth
+    except:  # 잘못된 날짜
+        return ''
