@@ -1,0 +1,69 @@
+{% extends 'posts/base.html' %}
+{% block title %}
+  tmi 쌓기
+{% endblock %}
+{% block content %}
+  {% load static%}
+
+  <body>
+    <div>
+      {{ name }}님에 대한 TMI는 무엇이 있나요?
+    </div>
+    {% if tmi_messages %}
+      {% for tmi_message in tmi_messages%}
+        <div class="message-id-{{ tmi_message.id }}">
+          {{ tmi_message.content }}
+          <button onclick="onClickLike({{ tmi_message.id }})">👍 추천
+          </button>
+          <span class="message__like">
+            {{ tmi_message.like }}
+          </span>
+
+          {% if is_owner %}
+            <span>
+              <a href="{% url 'tmies:delete_tmi_message' tmi_message.id %}">삭제</a>
+            </span>
+          {% endif %}
+        </div>
+      {% endfor %}
+    {% else %}
+      <div>
+        아직 작성 된 Tmi가 없어요 😢
+      </div>
+    {% endif %}
+    <div>
+      <button>
+        <a href="{% url 'tmies:create_tmi_message' pk %}">
+          Tmi 남기러 가기</a>
+      </button>
+    </div>
+
+    <script>
+      const strip = (string) => {
+        return string.replace(/^\s+|\s+$/g, '');
+      };
+
+      const onClickLike = async (id) => {
+
+        const url = "/like_ajax/"
+        const res = await fetch(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: JSON.stringify({id: id})
+        });
+        const {id: msgId} = await res.json();
+        likeHandleResponse(msgId)
+      }
+
+      const likeHandleResponse = (id) => {
+        const element = document.querySelector(`.message-id-${id} .message__like`);
+        const num = element.innerHTML;
+        const count = Number(num) + 1;
+
+        element.innerHTML = `${count}`;
+      }
+    </script>
+  </body>
+{% endblock %}
