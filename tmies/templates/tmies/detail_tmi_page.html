@@ -9,6 +9,15 @@
     <div>
       {{ name }}님에 대한 TMI는 무엇이 있나요?
     </div>
+
+    {% if not is_owner %}
+      <div>
+        <button>
+          <a href="{% url 'tmies:create_tmi_message' pk %}">
+            Tmi 남기러 가기</a>
+        </button>
+      </div>
+    {% endif %}
     {% if tmi_messages %}
       {% for tmi_message in tmi_messages%}
         <div class="message-id-{{ tmi_message.id }}">
@@ -31,12 +40,6 @@
         아직 작성 된 Tmi가 없어요 😢
       </div>
     {% endif %}
-    <div>
-      <button>
-        <a href="{% url 'tmies:create_tmi_message' pk %}">
-          Tmi 남기러 가기</a>
-      </button>
-    </div>
 
     <script>
       const strip = (string) => {
