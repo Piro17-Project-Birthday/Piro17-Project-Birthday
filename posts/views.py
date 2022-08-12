@@ -4,6 +4,7 @@ from datetime import date, datetime, timedelta
 from users.models import User
 from .models import BirthdayPage
 from .models import Message
+from photos.models import PhotoPage
 from .forms import MessageForm, BirthdayPageForm
 
 def main(request):
@@ -25,6 +26,7 @@ def createBirthdayPage(request):
                 birthday_page.owner.selected_cake = form.cleaned_data['selected_cake']
                 
                 birthday_page.owner.save()
+                
                 #만들어진 페이지로 redirect
                 return redirect(f"/{birthday_page.id}")
             else :
