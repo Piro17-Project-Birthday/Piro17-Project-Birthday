@@ -13,11 +13,8 @@
       {% for tmi_message in tmi_messages%}
         <div class="message-id-{{ tmi_message.id }}">
           {{ tmi_message.content }}
-          {% if tmi_message.like_state == False %}
-            <button class="like__state" onclick="onClickLike({{ tmi_message.id }})">🤍</button>
-          {% else %}
-            <button class="like__state" onclick="onClickLike({{ tmi_message.id }})">❤️</button>
-          {% endif %}
+          <button onclick="onClickLike({{ tmi_message.id }})">👍 추천
+          </button>
           <span class="message__like">
             {{ tmi_message.like }}
           </span>
@@ -47,6 +44,7 @@
       };
 
       const onClickLike = async (id) => {
+
         const url = "/like_ajax/"
         const res = await fetch(url, {
           method: 'POST',
@@ -55,25 +53,16 @@
           },
           body: JSON.stringify({id: id})
         });
-        const {id: msgId, type: msgType} = await res.json();
-        likeHandleResponse(msgId, msgType)
+        const {id: msgId} = await res.json();
+        likeHandleResponse(msgId)
       }
 
-      const likeHandleResponse = (id, type) => {
+      const likeHandleResponse = (id) => {
         const element = document.querySelector(`.message-id-${id} .message__like`);
         const num = element.innerHTML;
-        const pluscount = Number(num) + 1;
-        const minuscount = Number(num) - 1;
+        const count = Number(num) + 1;
 
-        const like__state = document.querySelector(`.message-id-${id} .like__state`);
-
-        if (type == false) {
-          like__state.innerHTML = "🤍"
-          element.innerHTML = `${minuscount}`;
-        } else {
-          like__state.innerHTML = "❤️"
-          element.innerHTML = `${pluscount}`;
-        }
+        element.innerHTML = `${count}`;
       }
     </script>
   </body>
