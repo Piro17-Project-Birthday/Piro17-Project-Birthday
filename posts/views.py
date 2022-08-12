@@ -22,6 +22,8 @@ def createBirthdayPage(request):
                 #form에 입력한 정보대로 owner의 full name과 birthday 수정 후 저장
                 birthday_page.owner.full_name = form.cleaned_data['full_name']
                 birthday_page.owner.birthday = form.cleaned_data['birthday']
+                birthday_page.owner.selected_cake = form.cleaned_data['selected_cake']
+                
                 birthday_page.owner.save()
                 #만들어진 페이지로 redirect
                 return redirect(f"/{birthday_page.id}")
@@ -69,6 +71,17 @@ def detailBirthdayPage(request,pk):
     else :
         is_owner = 0
         
+    selected_cake = birthday_page.owner.selected_cake
+    
+    if selected_cake == "초코 케이크":
+        target = "초코"
+    elif selected_cake == "딸기 케이크":
+        target = "딸기"
+    elif selected_cake == "치즈 케이크":
+        target = "치즈"
+    
+    print(Message.objects.filter(sender=request.user))
+    
     context = {
         "messages" : messages,
         "name" : name,
@@ -76,7 +89,9 @@ def detailBirthdayPage(request,pk):
         "date_diff" : date_diff,
         "birthday_state" : birthday_state,
         "pk" : pk,
-        "is_owner" : is_owner
+        "is_owner" : is_owner,
+        "selected_cake" : selected_cake,
+        "target" : target,
     }
     return render(request, template_name="posts/detail_birthday_page.html", context=context)
     
@@ -113,6 +128,8 @@ def mypage(request):
 
                 birthday_page.owner.full_name = form.cleaned_data['full_name']
                 birthday_page.owner.birthday = form.cleaned_data['birthday']
+                birthday_page.owner.selected_cake = form.cleaned_data['selected_cake']
+                
                 birthday_page.owner.save()
                 
                 return redirect(f"/{birthday_page.id}")
