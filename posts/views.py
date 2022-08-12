@@ -80,12 +80,10 @@ def detailBirthdayPage(request,pk):
     elif selected_cake == "치즈 케이크":
         target = "치즈"
     ##############################################################
-    #birthday_page_message = Message.objects.get(pk=pk)
-    
-    #if  birthday_page_message.sender == request.user :
-    #    is_user = 1 #현재 접속자가 이 메세지의 주인인지 알려주는 플래그
-    #else :
-    #    is_user = 0
+    my_messages = Message.objects.filter(sender=request.user)
+    print(my_messages)
+   
+     
             
     context = {
         "messages" : messages,
@@ -97,7 +95,8 @@ def detailBirthdayPage(request,pk):
         "is_owner" : is_owner,
         "selected_cake" : selected_cake,
         "target" : target,
-        #"is_user":is_user,
+        "my_messages":my_messages,
+        
     }
     return render(request, template_name="posts/detail_birthday_page.html", context=context)
     

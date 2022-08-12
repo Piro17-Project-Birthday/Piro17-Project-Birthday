@@ -20,9 +20,13 @@ class BirthdayPageForm(forms.ModelForm):
         ("딸기 케이크", "딸기"),
         ("치즈 케이크", "치즈"),
     ]
+    from datetime import datetime
+    
+    date_range = 100    
+    this_year = datetime.now().year
     selected_cake = forms.ChoiceField(choices=CAKE_CHOICES, widget=forms.RadioSelect)
     birthday = forms.DateField(
-        widget=forms.SelectDateWidget(empty_label=('Year', 'Month', 'Day'))
+        widget=forms.SelectDateWidget(years=range(this_year - date_range, this_year + date_range))
         )
     class Meta:
         model = User
