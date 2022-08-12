@@ -1,14 +1,22 @@
-{% extends 'posts/base.html' %} {% block content %}
-{% load static %}
-  <head>
-    <link rel="stylesheet" href="{% static 'css/create_birthday_page.css' %}" />
-  </head>
+{% extends 'posts/base.html' %} {% block content %} {% load static %}
+<head>
+  <link rel="stylesheet" href="{% static 'css/create_birthday_page.css' %}" />
+</head>
 <body>
   <form action="/create" method="POST">
     {% csrf_token %}
-    <table>
-      {{form.as_table}}
-    </table>
+    <div>
+      <span>이름:</span>
+      {{form.full_name}}
+    </div>
+    <div>
+      <span>생일:</span>
+      {{form.birthday}}
+    </div>
+    <div>
+      <span>케이크 종류:</span>
+      {{form.selected_cake}}
+    </div>
     <input type="submit" value="생성하기" />
   </form>
 </body>

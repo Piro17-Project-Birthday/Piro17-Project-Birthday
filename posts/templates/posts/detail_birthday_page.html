@@ -78,20 +78,33 @@
           <div>
             {% if messages %}
               <span>{{ name }}님의 생일을 축하하는 메시지가 도착했어요!</span>
-              {% for message in messages %}
+              
+              {% for message in messages  %}
               {% comment %} owner일 경우 모든 메시지를 보여준다 {% endcomment %}
-                {% if is_owner %}
+              
+                {% if is_owner or request.user == message.sender %}
                   <li>{{ message.nickname }} : {{ message.message }}
                     <a href="{% url 'posts:delete_message' message.id %}" data-html2canvas-ignore="true">X</a>
                   </li>
                 {% comment %} owner가 아닐 경우 {% endcomment %}
-                {% comment %} private이 아닌 메시지만 보여준다 {% endcomment %}
+                
+
                 {% elif not message.is_private %}
-                <li>{{ message.nickname }} : {{ message.message }}</li>
+                <li>{{ message.nickname }} : {{ message.message }}
+                  
+                </li>
+                
+                
+                
                 {% elif message.is_private %}
                 <li>비공개 : 속닥속닥</li>
+                
                 {% endif %}
               {% endfor %}
+     
+
+
+             
             {% else %}
               <p>아직 메시지가 없습니다.</p>
             {% endif %}
