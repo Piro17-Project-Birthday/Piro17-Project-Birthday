@@ -13,7 +13,11 @@
       {% for tmi_message in tmi_messages%}
         <div class="message-id-{{ tmi_message.id }}">
           {{ tmi_message.content }}
-          <button onclick="onClickLike({{ tmi_message.id }})">❤️</button>
+          {% if tmi_message.like_state == False %}
+            <button class="like__state" onclick="onClickLike({{ tmi_message.id }})">🤍</button>
+          {% else %}
+            <button class="like__state" onclick="onClickLike({{ tmi_message.id }})">❤️</button>
+          {% endif %}
           <span class="message__like">
             {{ tmi_message.like }}
           </span>
@@ -51,16 +55,25 @@
           },
           body: JSON.stringify({id: id})
         });
-        const {id: msgId} = await res.json();
-        likeHandleResponse(msgId)
+        const {id: msgId, type: msgType} = await res.json();
+        likeHandleResponse(msgId, msgType)
       }
 
-      const likeHandleResponse = (id) => {
+      const likeHandleResponse = (id, type) => {
         const element = document.querySelector(`.message-id-${id} .message__like`);
         const num = element.innerHTML;
-        const count = Number(num) + 1;
+        const pluscount = Number(num) + 1;
+        const minuscount = Number(num) - 1;
 
-        element.innerHTML = `${count}`;
+        const like__state = document.querySelector(`.message-id-${id} .like__state`);
+
+        if (type == false) {
+          like__state.innerHTML = "🤍"
+          element.innerHTML = `${minuscount}`;
+        } else {
+          like__state.innerHTML = "❤️"
+          element.innerHTML = `${pluscount}`;
+        }
       }
     </script>
   </body>

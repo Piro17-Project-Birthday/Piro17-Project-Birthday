@@ -51,19 +51,21 @@ def deleteTmiMessage(reqeust, pk):
     tmi_message.delete()
     return redirect(f"/tmi/{tmi_page.id}")
 
-
-
-
+# 좋아요 ajax view
 @csrf_exempt
 def like_ajax(request):
     req = json.loads(request.body)     
     tmi_message_id = req['id']
 
-    message = TmiMessage.objects.get(id=tmi_message_id)
+    tmi_message = TmiMessage.objects.get(id=tmi_message_id)
     
-    message.like += 1
+    if tmi_message.like_state == False:
+        tmi_message.like_state = True
+        tmi_message.like += 1
+    else: #message.like_stat == True:
+        tmi_message.like_state = False
+        tmi_message.like -=1
+    tmi_message.save()
 
-    message.save()
-
-    return JsonResponse({'id': tmi_message_id})
+    return JsonResponse({'id': tmi_message_id, 'type': tmi_message.like_state})
     

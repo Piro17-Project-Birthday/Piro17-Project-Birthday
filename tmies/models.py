@@ -10,3 +10,5 @@ class TmiMessage(models.Model):
     receiver = models.ForeignKey(TmiPage, on_delete=models.CASCADE)
     content = models.TextField()
     like = models.IntegerField(default=0)
+    like_state = models.BooleanField(default=False, verbose_name="게시글좋아요")
+    
