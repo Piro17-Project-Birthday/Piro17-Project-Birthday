@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'posts',
     'users',
+    'tmies',
     'photos',
     
     #'django.contrib.sites',
