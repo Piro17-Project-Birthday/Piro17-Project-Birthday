@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>포토 방명록</title>
+</head>
+<body>
+    {% if photos %}
+        {% for photo in photos %}
+            <article>
+                <h1>
+                    {{photo.title}}
+                </h1>
+                <p>
+                <img src=" {{photo.req_photo.url}}" alt="">
+                </p>
+            </article>
+            {% if is_owner %}
+                <span>
+                <a href="{% url 'photos:photo_delete' photo.id %}">삭제</a>
+                </span>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <div>
+          아직 작성 된 Tmi가 없어요 😢
+        </div>
+    {% endif %}
+    <div>
+    <a href="{% url 'photos:photo_create' pk %}">사진 올리기</a>
+    </div>
+</body>
+</html>
