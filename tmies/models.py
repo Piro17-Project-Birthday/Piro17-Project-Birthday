@@ -1,0 +1,12 @@
+from django.db import models
+from posts.models import BirthdayPage
+from users.models import User
+
+class TmiPage(models.Model):
+    birthday_page = models.OneToOneField(BirthdayPage, on_delete=models.CASCADE)
+    
+class TmiMessage(models.Model):
+    writer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="writer", null=True)
+    receiver = models.ForeignKey(TmiPage, on_delete=models.CASCADE)
+    content = models.TextField()
+    like = models.IntegerField(default=0)
