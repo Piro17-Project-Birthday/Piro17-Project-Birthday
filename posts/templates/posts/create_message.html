@@ -1,0 +1,18 @@
+{% extends 'posts/base.html' %} {% block content %}
+{% load static %}
+  <head>
+    <link rel="stylesheet" href="{% static 'css/create_message.css' %}" />
+  </head>
+<body>
+  <form
+    action="{% url 'posts:create_message' birthday_page.id %}"
+    method="POST"
+  >
+    {% csrf_token %}
+    <table>
+      {{form.as_p}}
+    </table>
+    <input type="submit" value="메시지 남기기" />
+  </form>
+</body>
+{% endblock content %}
