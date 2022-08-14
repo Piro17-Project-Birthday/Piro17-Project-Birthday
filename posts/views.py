@@ -68,6 +68,11 @@ def detailBirthdayPage(request,year,pk):
     birthday_page = get_object_or_404(BirthdayPage, year=year, pk=pk)
     messages = birthday_page.message_set.all()
     name = birthday_page.owner.full_name
+    
+    if request.user == birthday_page.owner :
+        is_owner = 1 #현재 접속자가 이 생일 페이지의 주인인지 알려주는 플래그
+    else :
+        is_owner = 0
 
     birthday_month = birthday_page.owner.birthday.month #생일자의 생일 월
     birthday_day = birthday_page.owner.birthday.day #생일자의 생일 일
@@ -78,33 +83,61 @@ def detailBirthdayPage(request,year,pk):
     birthday = birthday_thisyear #생일은 올해 생일로 초기화한다
     date_diff = abs((today-birthday).days) 
     
-    if birthday_thisyear < today : #올해 생일이 이미 지났다면
+    # if birthday_thisyear < today : #올해 생일이 이미 지났다면
+    #     birthday = datetime.strptime(str(today_year+1)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #생일을 내년 생일로 한다
+    #     date_diff = abs((today-birthday).days)
+    #     if date_diff <= 7: #생일이 7일 이내로 남았다면
+    #         birthday_state = "upcoming"
+    #     else :
+    #         birthday_state = "waiting" 
+    # else : #올해 생일이 아직 오지 않았다면
+    #     if date_diff == 0 : #생일이 오늘이라면
+    #         birthday_state = "today"
+    #     elif date_diff <= 7: #생일이 7일 이내로 남았다면
+    #         birthday_state = "upcoming"
+    #     else : #생일이 7일 넘게 남았다면
+    #         birthday_state = "waiting"
+        
+    #생일이 자정이 지나 끝나면 비활성화
+    
+    if birthday_thisyear >= today :
+        curr_page = birthday_page
+        if date_diff == 0:
+            curr_page.state = 'today'
+        elif date_diff <=7:
+            curr_page.state = "upcoming"
+        else:
+            curr_page.state = "waiting"
+        birthday_page = curr_page
+    else:    
         birthday = datetime.strptime(str(today_year+1)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #생일을 내년 생일로 한다
         date_diff = abs((today-birthday).days)
-        if date_diff <= 7: #생일이 7일 이내로 남았다면
-            birthday_state = "upcoming"
-        else :
-            birthday_state = "waiting"  
-    else : #올해 생일이 아직 오지 않았다면
-        if date_diff == 0 : #생일이 오늘이라면
-            birthday_state = "today"
-        elif date_diff <= 7: #생일이 7일 이내로 남았다면
-            birthday_state = "upcoming"
-        else : #생일이 7일 넘게 남았다면
-            birthday_state = "waiting"
-    
-    if request.user == birthday_page.owner :
-        is_owner = 1 #현재 접속자가 이 생일 페이지의 주인인지 알려주는 플래그
-    else :
-        is_owner = 0
-        
-    #생일이 자정이 지나 끝나면 비활성화     
-    if birthday_page.year == today_year:
-        if birthday_thisyear < today:
-            if is_owner == 1:             # 유저인 경우 내년 생일 페이지를 만들 수 있도록 createbirthday page redirect
-                return redirect("/create")
-            else:                        # 유저가 아닌 다른 접속자가 비활성화된 페이지를 접속했을 시 메인으로 돌아가도록
-                return redirect("/")
+        if not BirthdayPage.objects.filter(owner=request.user, year=next_year).exists():
+            curr_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
+                        
+            next_page = BirthdayPage.objects.create(owner=request.user, year=next_year)
+            next_name = curr_page.owner.full_name
+            next_birth = curr_page.owner.birthday
+            next_cake = curr_page.owner.selected_cake
+                        
+            next_page.owner.full_name= next_name
+            next_page.owner.birthday = next_birth
+            next_page.owner.selected_cake = next_cake
+                
+            if date_diff <=7:
+                next_page.state = "upcoming"
+            else:
+                next_page.state = "waiting"
+                
+            next_page.save()
+            birthday_page = next_page
+        else:
+            curr_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
+            curr_page.state = "archive"
+            curr_page.save()
+            birthday_page = curr_page
+            
+# context 전달 다시
         
     selected_cake = birthday_page.owner.selected_cake
     
@@ -121,12 +154,13 @@ def detailBirthdayPage(request,year,pk):
         "name" : name,
         "birthday" : birthday,
         "date_diff" : date_diff,
-        "birthday_state" : birthday_state,
+        # "birthday_state" : birthday_state,
         "pk" : pk,
         "is_owner" : is_owner,
         "selected_cake" : selected_cake,
         "target" : target,
         "year": year,
+        "birthday_page": birthday_page,
         
     }
     return render(request, template_name="posts/detail_birthday_page.html", context=context)
