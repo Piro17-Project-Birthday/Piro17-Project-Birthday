@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- css 참조 안쓰고 그냥 style로 함. -->
+    <title>{% block title %} {% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+  </head>
+  <body>
+    {% if user.is_authenticated %}
+    <nav>
+      <div class="nav_left">
+        <a href="/">축마땅</a>
+      </div>
+      <div class="navbar_dropdown">
+        <button onclick="dropdown_menu()" class="dropdown_btn">menu</button>
+        <div style="display: none" id="dropdown_content">
+          <a href="{% url 'posts:mypage'%}">내 페이지 가기</a>
+          <!-- 내페이지 링크 연결 -->
+          <a href="#">고객센터</a>
+          <a href="{% url 'users:log_out'%}">로그아웃</a>
+          <!-- 로그아웃 연결 -->
+        </div>
+      </div>
+    </nav>
+
+    {% else %}
+    <nav>
+      <div class="nav_left">
+        <a href="/">축마땅</a>
+      </div>
+      <div class="navbar_dropdown">
+        <button onclick="dropdown_menu()" class="dropdown_btn">menu</button>
+        <div style="display: none" id="dropdown_content">
+          <a href="{% url 'users:log_in'%}">로그인 하러 가기</a>
+          <!-- 로그인 페이지로 링크 연결 -->
+          <a href="#">고객센터</a>
+        </div>
+      </div>
+    </nav>
+    {% endif %}
+  {% block content %}
+  {% endblock %}
+    <script type="text/javascript" src="/static/js/dropdown_menu.js"></script>
+    </script>
+  </body>
+</html>
