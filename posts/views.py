@@ -1,3 +1,4 @@
+from concurrent.futures.process import _threads_wakeups
 from django.shortcuts import render, redirect, get_object_or_404
 
 from datetime import date, datetime, timedelta
@@ -7,10 +8,20 @@ from .models import Message
 from photos.models import PhotoPage
 from .forms import MessageForm, BirthdayPageForm
 
+#도메인 년도 비교용 전역변수
+today = datetime.now().date() #현재 날짜
+today_year = today.year #현재 년도
+next_year = today_year + 1
+
 def main(request):
-    if request.user.is_authenticated: #로그인 한 사용자라면
-        if BirthdayPage.objects.filter(owner=request.user).exists() : #birthday page가 이미 만들어졌다면
-            return redirect(f"/{BirthdayPage.objects.get(owner=request.user).id}") #해당 페이지로 이동한다
+    if request.user.is_authenticated: #로그인 한 사용자라면 
+        #birthday page가 이미 만들어졌다면
+        if BirthdayPage.objects.filter(owner=request.user, year=next_year).exists() : #birthday page가 올해 page라면
+            current_birthday_page = BirthdayPage.objects.get(owner=request.user, year=next_year)
+            return redirect(f"{current_birthday_page.year}/{current_birthday_page.id}") #해당 페이지로 이동한다
+        elif BirthdayPage.objects.filter(owner=request.user, year=today_year).exists():       #birthday page가 내년 page라면 (올해 생일이 이미 지났다면)
+            current_birthday_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
+            return redirect(f"{current_birthday_page.year}/{current_birthday_page.id}")
     return render(request, "posts/main.html")
 
 def createBirthdayPage(request):
@@ -27,8 +38,21 @@ def createBirthdayPage(request):
                 
                 birthday_page.owner.save()
                 
+                #페이지에 입력된 생일을 받아서 올해 생일이 지났는지 판별
+                birthday_month = birthday_page.owner.birthday.month
+                birthday_day = birthday_page.owner.birthday.day
+                birthday_thisyear = datetime.strptime(str(today_year)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #올해 생일
+                
+                if birthday_thisyear < today: #올해 생일이 이미 지났다면 내년 생일 페이지를 미리 생성해 줌
+                    page_year = today_year + 1
+                else:                         #올해 생일이 아직 지나지 않았다면 올해 생일 페이지가 생성됨
+                    page_year = today_year
+                
+                birthday_page.year = page_year
+                birthday_page.save()
+                
                 #만들어진 페이지로 redirect
-                return redirect(f"/{birthday_page.id}")
+                return redirect(f"{birthday_page.year}/{birthday_page.id}")
             else :
                 return redirect('/')
         else :
@@ -40,19 +64,20 @@ def createBirthdayPage(request):
     else :
         return redirect("/login")
     
-def detailBirthdayPage(request,pk):
-    birthday_page = get_object_or_404(BirthdayPage, pk=pk)
+def detailBirthdayPage(request,year,pk):
+    birthday_page = get_object_or_404(BirthdayPage, year=year, pk=pk)
     messages = birthday_page.message_set.all()
     name = birthday_page.owner.full_name
 
     birthday_month = birthday_page.owner.birthday.month #생일자의 생일 월
     birthday_day = birthday_page.owner.birthday.day #생일자의 생일 일
-    today = datetime.now().date() #현재 날짜
-    today_year = today.year #현재 년도
+    # today = datetime.now().date() #현재 날짜
+    # today_year = today.year #현재 년도
 
     birthday_thisyear = datetime.strptime(str(today_year)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #올해 생일
     birthday = birthday_thisyear #생일은 올해 생일로 초기화한다
     date_diff = abs((today-birthday).days) 
+    
     if birthday_thisyear < today : #올해 생일이 이미 지났다면
         birthday = datetime.strptime(str(today_year+1)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #생일을 내년 생일로 한다
         date_diff = abs((today-birthday).days)
@@ -73,6 +98,14 @@ def detailBirthdayPage(request,pk):
     else :
         is_owner = 0
         
+    #생일이 자정이 지나 끝나면 비활성화     
+    if birthday_page.year == today_year:
+        if birthday_thisyear < today:
+            if is_owner == 1:             # 유저인 경우 내년 생일 페이지를 만들 수 있도록 createbirthday page redirect
+                return redirect("/create")
+            else:                        # 유저가 아닌 다른 접속자가 비활성화된 페이지를 접속했을 시 메인으로 돌아가도록
+                return redirect("/")
+        
     selected_cake = birthday_page.owner.selected_cake
     
     if selected_cake == "초코 케이크":
@@ -81,11 +114,7 @@ def detailBirthdayPage(request,pk):
         target = "딸기"
     elif selected_cake == "치즈 케이크":
         target = "치즈"
-    ##############################################################
-    my_messages = Message.objects.filter(sender=request.user)
-    print(my_messages)
-   
-     
+    
             
     context = {
         "messages" : messages,
@@ -97,13 +126,13 @@ def detailBirthdayPage(request,pk):
         "is_owner" : is_owner,
         "selected_cake" : selected_cake,
         "target" : target,
-        "my_messages":my_messages,
+        "year": year,
         
     }
     return render(request, template_name="posts/detail_birthday_page.html", context=context)
     
-def createMessage(request, pk):
-    birthday_page = get_object_or_404(BirthdayPage, pk=pk)
+def createMessage(request,year,pk):
+    birthday_page = get_object_or_404(BirthdayPage, year=year, pk=pk)
     form = MessageForm(request.POST)
     if request.method == 'POST':
         if form.is_valid():
@@ -112,7 +141,7 @@ def createMessage(request, pk):
             if request.user.is_authenticated :
                 post.sender = request.user
             post.save()
-            return redirect(f"/{birthday_page.id}")
+            return redirect(f"/{birthday_page.year}/{birthday_page.id}")
     context = {
         'birthday_page' : birthday_page,
         'form' : form
@@ -123,7 +152,7 @@ def deleteMessage(request, pk):
     message = Message.objects.get(pk=pk)
     birthday_page = message.receiver
     message.delete()
-    return redirect(f"/{birthday_page.id}")
+    return redirect(f"/{birthday_page.year}/{birthday_page.id}")
 
 def mypage(request):
     if request.user.is_authenticated:
@@ -131,7 +160,7 @@ def mypage(request):
             
             form = BirthdayPageForm(request.POST)
             if form.is_valid():
-                birthday_page = BirthdayPage.objects.get(owner=request.user)
+                birthday_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
 
                 birthday_page.owner.full_name = form.cleaned_data['full_name']
                 birthday_page.owner.birthday = form.cleaned_data['birthday']
@@ -139,7 +168,7 @@ def mypage(request):
                 
                 birthday_page.owner.save()
                 
-                return redirect(f"/{birthday_page.id}")
+                return redirect(f"/{birthday_page.year}/{birthday_page.id}")
             else :
                 return redirect('/')
         else:
