@@ -6,6 +6,8 @@ from .models import BirthdayPage
 from .models import Message
 from photos.models import PhotoPage
 from .forms import MessageForm, LoginedMessageForm, BirthdayPageForm
+from PIL import Image
+import random
 
 def main(request):
     if request.user.is_authenticated: #로그인 한 사용자라면
@@ -103,12 +105,18 @@ def detailBirthdayPage(request,pk):
     return render(request, template_name="posts/detail_birthday_page.html", context=context)
     
 def createMessage(request, pk):
+    profile_img_1 = "static/icon/gift-solid.svg"
+    profile_img_2 = "static/icon/envelope-solid.svg"
+    profile_img_3 = "static/icon/cake-candles-solid.svg"
+    profile_img_set = [profile_img_1, profile_img_2, profile_img_3]
+    profile_img = random.choice(profile_img_set)
     birthday_page = get_object_or_404(BirthdayPage, pk=pk)
     if request.user.is_authenticated:
         form = LoginedMessageForm(request.POST)
         if request.method == 'POST':
             if form.is_valid():
                 post = form.save(commit=False)
+                post.profile_img = profile_img
                 post.receiver = birthday_page
                 if request.user.is_authenticated :
                     post.sender = request.user
@@ -116,7 +124,8 @@ def createMessage(request, pk):
                 return redirect(f"/{birthday_page.id}")
         context = {
             'birthday_page' : birthday_page,
-            'form' : form
+            'form' : form,
+            'profile_img' : profile_img
         }
         return render(request, template_name='posts/create_message.html', context=context)
     else :
@@ -124,6 +133,7 @@ def createMessage(request, pk):
         if request.method == 'POST':
             if form.is_valid():
                 post = form.save(commit=False)
+                post.profile_img = random.choice(profile_img_set)
                 post.receiver = birthday_page
                 if request.user.is_authenticated :
                     post.sender = request.user
@@ -131,7 +141,8 @@ def createMessage(request, pk):
                 return redirect(f"/{birthday_page.id}")
         context = {
             'birthday_page' : birthday_page,
-            'form' : form
+            'form' : form,
+            'profile_img' : profile_img
         }
         return render(request, template_name='posts/create_message.html', context=context)
 

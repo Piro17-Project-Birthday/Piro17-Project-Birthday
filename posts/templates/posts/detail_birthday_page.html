@@ -83,28 +83,22 @@
               {% comment %} owner일 경우 모든 메시지를 보여준다 {% endcomment %}
               
                 {% if is_owner or request.user == message.sender %}
-                  <li>{{ message.nickname }} : {{ message.message }}
+                  <li><img src="{{ message.profile_img }}" alt=""> {{ message.nickname }} : {{ message.message }}
                     <a href="{% url 'posts:delete_message' message.id %}" data-html2canvas-ignore="true">X</a>
                   </li>
                 {% comment %} owner가 아닐 경우 {% endcomment %}
                 
 
                 {% elif not message.is_private %}
-                <li>{{ message.nickname }} : {{ message.message }}
-                  
+                <li><img src="{{ message.profile_img }}" alt=""> {{ message.nickname }} : {{ message.message }}
                 </li>
-                
-                
-                
+
                 {% elif message.is_private %}
-                <li>비공개 : 속닥속닥</li>
+                <li><img src="{{ message.profile_img }}" alt=""> 비공개 : 속닥속닥</li>
                 
                 {% endif %}
               {% endfor %}
      
-
-
-             
             {% else %}
               <p>아직 메시지가 없습니다.</p>
             {% endif %}
