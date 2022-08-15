@@ -3,7 +3,7 @@
   {% load static %}
 
   <body>
-    <form action="{% url 'tmies:create_tmi_message' tmi_page.id %}" method="POST">
+    <form action="{% url 'tmies:create_tmi_message' tmi_page.year tmi_page.tmi_origin.id %}" method="POST">
       {% csrf_token %}
       <table>
         {{form.as_p}}

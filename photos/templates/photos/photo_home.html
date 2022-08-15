@@ -1,32 +1,54 @@
-{% extends 'posts/base.html' %} {% block content %} {% load static %}
-<head>
-  <link rel="stylesheet" href="{% static 'css/create_birthday_page.css' %}" />
-</head>
-<body>
-    {% if photos %}
-        {% for photo in photos %}
+{% extends 'posts/base.html' %}
+{% block title %}
+  포토 방명록
+{% endblock %}
+{% block content %}
+  {% load static%}
+
+  <body>
+    {% if photo_page.state == "deactivate" %}
+      <div>
+        아직
+        {{name}}님의
+        {{year}}년 생일 페이지가 활성화되지 않았어요!</div>
+    {% elif photo_page.state == "activate" or photo_page.state == "archive" %}
+      {% if photo_page.state == "archive" %}
+        <div>
+          {{ name }}님의
+          {{year}}년 포토 방명록 페이지입니다
+        </div>
+        {%endif%}
+        {% if photos %}
+          {% for photo in photos %}
             <article>
-                <h1>
-                    {{photo.title}}
-                </h1>
-                <p>
+              <h1>
+                {{photo.title}}
+              </h1>
+              <p>
                 <img src=" {{photo.req_photo.url}}" alt="">
-                </p>
+              </p>
             </article>
             {% if is_owner %}
+              {% if not photo_page.state == "archive" %}
                 <span>
-                <a href="{% url 'photos:photo_delete' photo.id %}">삭제</a>
+                  <a href="{% url 'photos:photo_delete' photo.id %}">삭제</a>
                 </span>
+              {% endif %}
             {% endif %}
-        {% endfor %}
-    {% else %}
-        <div>
-          아직 올라온 사진이 없어요 😢
-        </div>
-    {% endif %}
-    <div>
-    <a href="{% url 'photos:photo_create' pk %}">사진 올리기</a>
-    </div>
-</body>
-</html>
-{% endblock %}
+          {% endfor %}
+        {% else %}
+          <div>
+            아직 올라온 사진이 없어요 😢
+          </div>
+        {% endif %}
+        {% if not is_owner%}
+          {% if not photo_page.state == "archive"%}
+            <div>
+              <a href="{% url 'photos:photo_create' year pk %}">사진 올리기</a>
+            </div>
+          {% endif %}
+        {% endif %}
+      </body>
+
+    {%endif %}
+  {% endblock %}
