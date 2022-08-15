@@ -1,0 +1,51 @@
+@font-face {
+    font-family: 'SpoqaHanSansNeo-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --div-main-color: #FDF8EF; /*아이보리*/
+    --div-sub-color: #8EBD5E; /*연두*/
+    --div-point-color: #FF574C; /*다홍*/
+}
+
+html {
+    height: -webkit-fill-available;
+}
+
+body {
+    -ms-overflow-style: none;
+    font-family: 'SpoqaHanSansNeo-Regular';
+    background-color: rgb(246, 246, 246);
+}
+
+::-webkit-scrollbar {
+    display: none;
+  }
+
+.wrap{
+    display: flex;
+    -webkit-box-pack: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.wrap > *{
+    max-width: 414px;
+}
+
+.screen{
+    background-color:var(--div-main-color);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: scroll;
+    overscroll-behavior-y: none;
+}
+
+.content{
+    padding:2rem 2rem;
+}

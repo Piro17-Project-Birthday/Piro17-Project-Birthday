@@ -7,8 +7,8 @@ import json
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
-def detailTmiPage(request,pk):
-    tmi_page = get_object_or_404(TmiPage, pk=pk)
+def detailTmiPage(request,year, pk):
+    tmi_page = get_object_or_404(TmiPage, year=year, pk=pk)
     tmi_messages = tmi_page.tmimessage_set.all()
     
     birthday_page = get_object_or_404(BirthdayPage, pk=pk)
@@ -23,22 +23,24 @@ def detailTmiPage(request,pk):
         "tmi_messages": tmi_messages,
         "pk": pk,
         "name": name,
-        "is_owner": is_owner
+        "is_owner": is_owner,
+        "year": year,
+        "tmi_page": tmi_page,
     }
     
     return render(request, template_name="tmies/detail_tmi_page.html", context=context)
 
-def createTmiMessage(request, pk):
-    tmi_page = get_object_or_404(TmiPage, pk=pk)
+def createTmiMessage(request, year, pk):
+    tmi_page = get_object_or_404(TmiPage, year=year, pk=pk)
     form = TmiMessageForm(request.POST)
     if request.method == 'POST':
         if form.is_valid():
             tmi = form.save(commit=False)
             tmi.receiver = tmi_page
             if request.user.is_authenticated :
-                tmi.sender = request.user
+                tmi.writer = request.user
             tmi.save()
-            return redirect(f"/tmi/{tmi_page.id}")
+            return redirect(f"/{tmi_page.year}/{tmi_page.tmi_origin.id}/tmi")
     context = {
         'tmi_page': tmi_page,
         'form':form,
@@ -49,7 +51,7 @@ def deleteTmiMessage(reqeust, pk):
     tmi_message = TmiMessage.objects.get(pk=pk)
     tmi_page = tmi_message.receiver
     tmi_message.delete()
-    return redirect(f"/tmi/{tmi_page.id}")
+    return redirect(f"/{tmi_page.year}/{tmi_page.tmi_origin.id}/tmi")
 
 
 

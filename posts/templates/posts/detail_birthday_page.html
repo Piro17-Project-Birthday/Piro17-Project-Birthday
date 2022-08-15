@@ -4,24 +4,32 @@
 {% load static %}
   <head>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/detail_birthday_page.css' %}" />
   </head>
   <body>
-    <div id="screenshot">
-      <div>
-      <div>
+    <div class="content" id="screenshot">
+      {% comment %} <div>
         <span>확인용 정보</br></span>
-        <span>이름 : {{name}}</br>생일 : {{birthday}}</br>상태 : {{birthday_state}}</br></br></span>
-      </div>
-      <div>
-        {% if birthday_state == "waiting" %}
+        <span>이름 : {{name}}</br>생일 : {{birthday}}</br>상태 : {{birthday_page.state}}</br></br></span>
+      <div> {% endcomment %}
+        {% if birthday_page.state == "waiting"%}
           <p>{{ name }}님의 생일이 {{date_diff}}일 남았네요!</p>
           <p>페이지는 생일 7일 전 부터 개설되어요. 조금만 기다려 주세요.</p>
-        {% elif birthday_state == "upcoming" or birthday_state == "today" %}
-          {% if birthday_state == "today" %}
+        {% elif birthday_page.state == "upcoming" or birthday_page.state == "today" or birthday_page.state == "archive"%}
+          {% if birthday_page.state == "today" %}
             <p>생일 축하드려요!</p>
           {% endif %}
-          <span>D-{{ date_diff }}일</span>
+            {% if birthday_page.state == "archive"%}
+              {% if is_owner %}
+                <p>{{ name }}님의 생일이 {{date_diff}}일 남았네요!</p>
+                <p>내년 생일 페이지는 생일 7일 전 부터 개설되어요. 조금만 기다려 주세요.</p>
+                {% endif %}
+            {% else %}
+              <span>D-{{ date_diff }}일</span>
+            {% endif %}
       </div>
+
   
           {% comment %} 생일 케이크 test {% endcomment %}
           <hr>
@@ -71,20 +79,28 @@
           {% endif %}
           <hr>
           {% if not is_owner %}
+            {% if not birthday_page.state == "archive" %}
             <div>
-              <a href="{% url 'posts:create_message' pk %}">축하 메시지 남기기</a>
+              <a href="{% url 'posts:create_message' year pk %}">축하 메시지 남기기</a>
             </div>
+            {% endif %}
           {% endif %}
           <div>
             {% if messages %}
-              <span>{{ name }}님의 생일을 축하하는 메시지가 도착했어요!</span>
+              {% if birthday_page.state == "archive"%}
+                <span> {{name}} 님의 지난 생일을 축하해줬던 메시지들이에요!<span>
+              {% else %}
+                <span>{{ name }}님의 생일을 축하하는 메시지가 도착했어요!</span>
+              {% endif %}
               
               {% for message in messages  %}
               {% comment %} owner일 경우 모든 메시지를 보여준다 {% endcomment %}
               
                 {% if is_owner or request.user == message.sender %}
                   <li>{{ message.nickname }} : {{ message.message }}
-                    <a href="{% url 'posts:delete_message' message.id %}" data-html2canvas-ignore="true">X</a>
+                    {% if not birthday_page.state == "archive"%}
+                      <a href="{% url 'posts:delete_message' message.id %}" data-html2canvas-ignore="true">X</a>
+                    {% endif %}
                   </li>
                 {% comment %} owner가 아닐 경우 {% endcomment %}
                 
@@ -101,10 +117,7 @@
                 
                 {% endif %}
               {% endfor %}
-     
 
-
-             
             {% else %}
               <p>아직 메시지가 없습니다.</p>
             {% endif %}

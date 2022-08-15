@@ -5,11 +5,11 @@ from .models import Photo
 from .models import PhotoPage
 from posts.models import BirthdayPage
 
-def photoHome(request, pk):
-    photo_page = get_object_or_404(PhotoPage, pk=pk)
+def photoHome(request, year, pk):
+    photo_page = get_object_or_404(PhotoPage, year=year, pk=pk)
     photos = photo_page.photo_set.all()
 
-    bp_owner = get_object_or_404(BirthdayPage, pk=pk)
+    bp_owner = get_object_or_404(BirthdayPage, year=year ,pk=pk)
     name = bp_owner.owner.full_name
     
     if request.user == bp_owner.owner :
@@ -22,22 +22,25 @@ def photoHome(request, pk):
         "pk" : pk,
         "name": name,
         "is_owner": is_owner,
+        "year": year,
+        "photo_page": photo_page,
     }
 
     return render(request, "photos/photo_home.html", context=context)
 
 
-def photoCreate(request, pk):
-    photo_page = get_object_or_404(PhotoPage, pk=pk)
+def photoCreate(request, year, pk):
+    photo_page = get_object_or_404(PhotoPage, year=year, pk=pk)
     form = PhotoCreateForm(request.POST, request.FILES)
     if request.method == "POST":
-        
+
         if form.is_valid():
-            print('form valid')
             photo = form.save(commit=False)
             photo.receiver = photo_page
+            if request.user.is_authenticated :
+                photo.photo_uploader = request.user
             photo.save()
-            return redirect(f"/photo/{photo_page.id}")
+            return redirect(f"/{photo_page.year}/{photo_page.photo_origin.id}/photo")
     context = {
         'photo_page' : photo_page,
         'form' : form,
@@ -48,4 +51,4 @@ def photoDelete(reqeust, pk):
     photo = Photo.objects.get(pk=pk)
     photo_page = photo.receiver
     photo.delete()
-    return redirect(f"/photo/{photo_page.id}")
+    return redirect(f"/{photo_page.year}/{photo_page.photo_origin.id}/photo")
