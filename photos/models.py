@@ -4,6 +4,7 @@ from users.models import User
 
 class PhotoPage(models.Model):
     bp_owner = models.OneToOneField(BirthdayPage, on_delete=models.CASCADE)
+    state = models.CharField(null=True, max_length=20)
 
 class Photo(models.Model):
     photo_uploader = models.ForeignKey(User, on_delete=models.CASCADE, related_name="photo_uploader", null=True)

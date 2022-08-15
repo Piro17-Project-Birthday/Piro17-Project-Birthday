@@ -9,26 +9,25 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('posts', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='TmiPage',
+            name='BirthdayPage',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('year', models.IntegerField(null=True)),
                 ('state', models.CharField(max_length=20, null=True)),
-                ('birthday_page', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, to='posts.birthdaypage')),
             ],
         ),
         migrations.CreateModel(
-            name='TmiMessage',
+            name='Message',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('content', models.TextField()),
-                ('like', models.IntegerField(default=0)),
-                ('like_state', models.BooleanField(default=False, verbose_name='게시글좋아요')),
-                ('receiver', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='tmies.tmipage')),
+                ('nickname', models.CharField(max_length=20)),
+                ('message', models.TextField()),
+                ('is_private', models.BooleanField(default=False)),
+                ('receiver', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='posts.birthdaypage')),
             ],
         ),
     ]
