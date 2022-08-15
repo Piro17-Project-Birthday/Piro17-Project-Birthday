@@ -14,15 +14,23 @@
     <nav>
       <div class="nav_left">
         <a href="/">축마땅</a>
+        
       </div>
       <div class="navbar_dropdown">
-        <button onclick="dropdown_menu()" class="dropdown_btn">menu</button>
+        <button onclick="dropdown_menu()" class="dropdown_btn"><i class="fa-solid fa-bars"></i></button>
         <div style="display: none" id="dropdown_content">
-          <a href="{% url 'posts:mypage'%}">내 페이지 가기</a>
+          <div class="dropdown_opacity">
+          </div>
+          <button onclick="dropdown_menu()" class="dropdown_btn-x">X</button>
+          <a href="{% url 'posts:mypage'%}"style="font-color:white;">내 페이지 가기</a>
           <!-- 내페이지 링크 연결 -->
-          <a href="#">고객센터</a>
+          <div class="dropdown-circles"><span class="circle">●●●●●●●</span></div>
+          <div id="dropdown_background">
+            <a href="#"id="dropdown_btn-service">1:1 문의하기</a>
+           
           <a href="{% url 'users:log_out'%}">로그아웃</a>
           <!-- 로그아웃 연결 -->
+        </div>
         </div>
       </div>
     </nav>
@@ -31,19 +39,31 @@
     <nav>
       <div class="nav_left">
         <a href="/">축마땅</a>
+        
       </div>
+      
       <div class="navbar_dropdown">
-        <button onclick="dropdown_menu()" class="dropdown_btn">menu</button>
+        
+        <button onclick="dropdown_menu()" class="dropdown_btn"><i class="fa-solid fa-bars"></i></button>
         <div style="display: none" id="dropdown_content">
-          <a href="{% url 'users:log_in'%}">로그인 하러 가기</a>
+          <div class="dropdown_opacity">
+          </div> 
+          <button onclick="dropdown_menu()" class="dropdown_btn-x">X</button>
+          
+          <a href="{% url 'users:log_in'%}" class="dropdown_btn-login"><i class="fa-regular fa-user"></i>  로그인 하기 ></a>
           <!-- 로그인 페이지로 링크 연결 -->
-          <a href="#">고객센터</a>
+          <div class="dropdown-circles"><span class="circle">●●●●●●●</span></div>
+          <div id="dropdown_background">
+            
+          <a href="#"id="dropdown_btn-service">1:1 문의하기</a>
+          </div>
         </div>
       </div>
     </nav>
     {% endif %}
   {% block content %}
   {% endblock %}
+  <script src="https://kit.fontawesome.com/a8a24f1fa9.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/static/js/dropdown_menu.js"></script>
     </script>
   </body>

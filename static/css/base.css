@@ -1,36 +1,97 @@
 @import url("./reset.css");
-
+:root {
+  --div-main-color: #fdf8ef; /*아이보리*/
+  --div-sub-color: #8ebd5e; /*연두*/
+  --div-point-color: #ff574c; /*다홍*/
+}
+html {
+  background-color: lightgrey;
+}
 nav {
   display: flex;
   justify-content: space-between;
-  background-color: grey;
+  background-color: white;
 }
 .navbar_dropdown {
   position: relative;
   display: inline-block;
 }
 .dropdown_btn {
-  padding: 10px 40px;
+  padding: 10px 10px;
   font-size: 20px;
-  background-color: green;
-  color: white;
+  border: none;
+  color: black;
+  background-color: white;
 }
+.dropdown_btn-x {
+  padding: 10px 10px;
+  font-size: 20px;
+  background-color: var(--div-sub-color);
+  color: white;
+  border: none;
+  margin: 0 0 0 185px;
+}
+
 #dropdown_content {
   position: absolute;
-  z-index: 1;
+  width: 225px;
+  height: 811px;
+  left: -188px;
+  top: 0px;
+
+  background: var(--div-sub-color);
 }
 #dropdown_content a {
   display: block;
-  font-size: 10px;
-  background-color: #dfdfdf;
+  font-size: 16px;
+  background-color: var(--div-sub-color);
+
+  text-decoration: none;
+  padding: 10px 36px;
+  margin: 2px 0px 0px 0px;
+}
+
+#dropdown_background a {
+  display: block;
+  font-size: 16px;
+  background-color: var(--div-main-color);
   color: black;
   text-decoration: none;
   padding: 10px 36px;
   margin: 2px 0px 0px 0px;
 }
 
+#dropdown_background {
+  position: absolute;
+  width: 225px;
+  height: 555px;
+
+  left: 0px;
+  top: 256px;
+
+  background: #fdf8ef;
+}
+.dropdown-circles {
+  margin: 140px 0px 0px 0px;
+}
+.dropdown_opacity {
+  position: absolute;
+  background-color: lightgrey;
+  opacity: 0.7;
+  width: 67%;
+  height: 100%;
+  margin: 0px 0px 0px -150px;
+}
+.circle {
+  color: var(--div-main-color);
+  font-size: 39px;
+  margin: 0px 0px 0px -3px;
+  letter-spacing: -7px;
+}
+
 body {
   width: 375px;
   height: 812px;
   margin: auto;
+  background-color: white;
 }
