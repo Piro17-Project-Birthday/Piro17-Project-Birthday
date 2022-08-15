@@ -6,9 +6,53 @@
   --div-dark-font-color: #2d3142;
   --div-light-font-color: #ffffff;
 }
-html {
-  background-color: darkgrey;
+
+@font-face {
+  font-family: 'SpoqaHanSansNeo-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
 }
+
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  -ms-overflow-style: none;
+  font-family: 'SpoqaHanSansNeo-Regular';
+  background-color: rgb(246, 246, 246);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.wrap{
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.wrap > *{
+  max-width: 414px;
+}
+
+.screen{
+  background-color:var(--div-main-color);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  overscroll-behavior-y: none;
+}
+
+.content{
+  padding:2rem 2rem;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
@@ -35,6 +79,7 @@ nav {
 }
 
 #dropdown_content {
+  z-index: 1;
   position: absolute;
   width: 226px;
   height: 811px;
@@ -109,16 +154,17 @@ nav {
   background: #fdf8ef;
 }
 .dropdown-circles {
-  margin: 2px 0px 0px 0px;
+  margin: 13px 0px 0px 0px;
 }
 .dropdown__opacity {
   position: absolute;
-  background-color: lightgrey;
-  opacity: 0.7;
-  width: 9.4rem;
+  background-color: black;
+  opacity: 50%;
+  width: 84%;
   height: 100%;
-  margin: 0px 0px 0px -150px;
-}
+  margin: 0px 0px 0px -190px;
+} 
+
 .circle {
   color: var(--div-main-color);
   font-size: 40px;
@@ -126,9 +172,3 @@ nav {
   letter-spacing: -8px;
 }
 
-body {
-  width: 375px;
-  height: 812px;
-  margin: auto;
-  background-color: white;
-}
