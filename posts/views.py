@@ -5,6 +5,7 @@ from users.models import User
 from .models import BirthdayPage
 from .models import Message
 from photos.models import PhotoPage
+from tmies.models import TmiPage
 from .forms import MessageForm, BirthdayPageForm
 
 #도메인 년도 비교용 전역변수
@@ -34,21 +35,42 @@ def createBirthdayPage(request):
                 birthday_page.owner.full_name = form.cleaned_data['full_name']
                 birthday_page.owner.birthday = form.cleaned_data['birthday']
                 birthday_page.owner.selected_cake = form.cleaned_data['selected_cake']
-                
                 birthday_page.owner.save()
+                
+                tmi_page = TmiPage.objects.create(tmi_origin=birthday_page)
+                photo_page = PhotoPage.objects.create(photo_origin=birthday_page)
                 
                 #페이지에 입력된 생일을 받아서 올해 생일이 지났는지 판별
                 birthday_month = birthday_page.owner.birthday.month
                 birthday_day = birthday_page.owner.birthday.day
                 birthday_thisyear = datetime.strptime(str(today_year)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #올해 생일
                 
+                birthday = birthday_thisyear #생일은 올해 생일로 초기화한다
+                date_diff = abs((today-birthday).days)
+                
                 if birthday_thisyear < today: #올해 생일이 이미 지났다면 내년 생일 페이지를 미리 생성해 줌
                     page_year = today_year + 1
+                    birthday = datetime.strptime(str(today_year+1)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #생일을 내년 생일로 한다
+                    date_diff = abs((today-birthday).days)
+                    
+                    if date_diff <=7:
+                        tmi_page.state = "activate"
+                        photo_page.state = "activate"
+                    else:
+                        tmi_page.state = "deactivate"
+                        photo_page.state = "deactivate"
                 else:                         #올해 생일이 아직 지나지 않았다면 올해 생일 페이지가 생성됨
                     page_year = today_year
-                
+                    tmi_page.state = "activate"
+                    photo_page.state = "activate"
+                    
                 birthday_page.year = page_year
                 birthday_page.save()
+                
+                tmi_page.year = page_year
+                photo_page.year = page_year
+                tmi_page.save()
+                photo_page.save()
                 
                 #만들어진 페이지로 redirect
                 return redirect(f"{birthday_page.year}/{birthday_page.id}")
@@ -68,6 +90,7 @@ def detailBirthdayPage(request,year,pk):
     messages = birthday_page.message_set.all()
     name = birthday_page.owner.full_name
     
+    print(datetime.now())
     if request.user == birthday_page.owner :
         is_owner = 1 #현재 접속자가 이 생일 페이지의 주인인지 알려주는 플래그
     else :
@@ -108,34 +131,77 @@ def detailBirthdayPage(request,year,pk):
         else:
             curr_page.state = "waiting"
     else:
-        if is_owner == 1:    
-            birthday = datetime.strptime(str(today_year+1)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #생일을 내년 생일로 한다
-            date_diff = abs((today-birthday).days)
-            if not BirthdayPage.objects.filter(owner=request.user, year=next_year).exists():
-                curr_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
-                            
-                next_page = BirthdayPage.objects.create(owner=request.user, year=next_year)
-                next_name = curr_page.owner.full_name
-                next_birth = curr_page.owner.birthday
-                next_cake = curr_page.owner.selected_cake
-                            
-                next_page.owner.full_name= next_name
-                next_page.owner.birthday = next_birth
-                next_page.owner.selected_cake = next_cake
+        if is_owner == 1:
+            if BirthdayPage.objects.filter(owner=request.user, year=today_year).exists():    
+                birthday = datetime.strptime(str(today_year+1)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #생일을 내년 생일로 한다
+                date_diff = abs((today-birthday).days)
+                if not BirthdayPage.objects.filter(owner=request.user, year=next_year).exists():
+                    curr_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
+                                
+                    next_page = BirthdayPage.objects.create(owner=request.user, year=next_year)
+                    next_name = curr_page.owner.full_name
+                    next_birth = curr_page.owner.birthday
+                    next_cake = curr_page.owner.selected_cake
+                                
+                    next_page.owner.full_name= next_name
+                    next_page.owner.birthday = next_birth
+                    next_page.owner.selected_cake = next_cake
+                    next_page.owner.save()
                     
-                if date_diff <=7:
-                    next_page.state = "upcoming"
+                    tmi_page = TmiPage.objects.create(tmi_origin = next_page, year= next_page.year)
+                    photo_page = PhotoPage.objects.create(photo_origin = next_page, year= next_page.year)
+                        
+                    if date_diff <=7:
+                        next_page.state = "upcoming"
+                        tmi_page.state = "activate"
+                        photo_page.state = "activate"
+                        print(next_page.state,1)
+                        print(tmi_page.state,1)
+                        print(photo_page.state,1)
+                    else:
+                        next_page.state = "waiting"
+                        tmi_page.state = "deactivate"
+                        photo_page.state = "deactivate"
+                        print(next_page.state,2)
+                        print(tmi_page.state,2)
+                        print(photo_page.state,2)
+                        
+                    next_page.save()
+                    tmi_page.save()
+                    photo_page.save()
+                    
+                    print(3)
+                    print(3)
+                    print(3)
+                        
+                    
+                    curr_page.state = "archive"
+                    curr_page.save()
                 else:
-                    next_page.state = "waiting"
+                    curr_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
+                    curr_page.state = "archive"
+                    curr_page.save()
                     
-                next_page.save()
-                
-                curr_page.state = "archive"
-                curr_page.save()
+                    tmi_page = TmiPage.objects.get(tmi_origin=curr_page)
+                    photo_page = PhotoPage.objects.get(photo_origin=curr_page)
+                    
+                    tmi_page.state = "archive"
+                    photo_page.state = "archive"
+                    
+                    tmi_page.save()
+                    photo_page.save()
+                    
             else:
-                curr_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
-                curr_page.state = "archive"
-                curr_page.save()
+                birthday = datetime.strptime(str(today_year+1)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #생일을 내년 생일로 한다
+                date_diff = abs((today-birthday).days)
+                curr_page = birthday_page
+                if date_diff == 0:
+                    curr_page.state = 'today'
+                elif date_diff <=7:
+                    curr_page.state = "upcoming"
+                else:
+                    curr_page.state = "waiting"
+                    curr_page.save()
         # print(birthday_page.year)
         # print(birthday_page.id)
         # print(birthday_page.state)
