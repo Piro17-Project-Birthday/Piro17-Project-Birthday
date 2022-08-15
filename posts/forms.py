@@ -12,6 +12,11 @@ from users.models import User
 class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
+        exclude = ('sender', 'receiver','is_private')
+
+class LoginedMessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
         exclude = ('sender', 'receiver')
         
 class BirthdayPageForm(forms.ModelForm):

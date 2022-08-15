@@ -5,7 +5,7 @@ from users.models import User
 from .models import BirthdayPage
 from .models import Message
 from photos.models import PhotoPage
-from .forms import MessageForm, BirthdayPageForm
+from .forms import MessageForm, LoginedMessageForm, BirthdayPageForm
 
 def main(request):
     if request.user.is_authenticated: #로그인 한 사용자라면
@@ -104,20 +104,36 @@ def detailBirthdayPage(request,pk):
     
 def createMessage(request, pk):
     birthday_page = get_object_or_404(BirthdayPage, pk=pk)
-    form = MessageForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.receiver = birthday_page
-            if request.user.is_authenticated :
-                post.sender = request.user
-            post.save()
-            return redirect(f"/{birthday_page.id}")
-    context = {
-        'birthday_page' : birthday_page,
-        'form' : form
-    }
-    return render(request, template_name='posts/create_message.html', context=context)
+    if request.user.is_authenticated:
+        form = LoginedMessageForm(request.POST)
+        if request.method == 'POST':
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.receiver = birthday_page
+                if request.user.is_authenticated :
+                    post.sender = request.user
+                post.save()
+                return redirect(f"/{birthday_page.id}")
+        context = {
+            'birthday_page' : birthday_page,
+            'form' : form
+        }
+        return render(request, template_name='posts/create_message.html', context=context)
+    else :
+        form = MessageForm(request.POST)
+        if request.method == 'POST':
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.receiver = birthday_page
+                if request.user.is_authenticated :
+                    post.sender = request.user
+                post.save()
+                return redirect(f"/{birthday_page.id}")
+        context = {
+            'birthday_page' : birthday_page,
+            'form' : form
+        }
+        return render(request, template_name='posts/create_message.html', context=context)
 
 def deleteMessage(request, pk):
     message = Message.objects.get(pk=pk)
