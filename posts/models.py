@@ -4,7 +4,7 @@ from users.models import User
 class BirthdayPage(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="owner")
     year = models.IntegerField(null=True)
-    state = models.CharField(null=True, max_length=10)
+    state = models.CharField(null=True, max_length=20)
     
     
 class Message(models.Model):

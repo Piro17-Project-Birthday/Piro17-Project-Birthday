@@ -1,4 +1,3 @@
-from concurrent.futures.process import _threads_wakeups
 from django.shortcuts import render, redirect, get_object_or_404
 
 from datetime import date, datetime, timedelta
@@ -108,34 +107,38 @@ def detailBirthdayPage(request,year,pk):
             curr_page.state = "upcoming"
         else:
             curr_page.state = "waiting"
-        birthday_page = curr_page
-    else:    
-        birthday = datetime.strptime(str(today_year+1)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #생일을 내년 생일로 한다
-        date_diff = abs((today-birthday).days)
-        if not BirthdayPage.objects.filter(owner=request.user, year=next_year).exists():
-            curr_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
-                        
-            next_page = BirthdayPage.objects.create(owner=request.user, year=next_year)
-            next_name = curr_page.owner.full_name
-            next_birth = curr_page.owner.birthday
-            next_cake = curr_page.owner.selected_cake
-                        
-            next_page.owner.full_name= next_name
-            next_page.owner.birthday = next_birth
-            next_page.owner.selected_cake = next_cake
+    else:
+        if is_owner == 1:    
+            birthday = datetime.strptime(str(today_year+1)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #생일을 내년 생일로 한다
+            date_diff = abs((today-birthday).days)
+            if not BirthdayPage.objects.filter(owner=request.user, year=next_year).exists():
+                curr_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
+                            
+                next_page = BirthdayPage.objects.create(owner=request.user, year=next_year)
+                next_name = curr_page.owner.full_name
+                next_birth = curr_page.owner.birthday
+                next_cake = curr_page.owner.selected_cake
+                            
+                next_page.owner.full_name= next_name
+                next_page.owner.birthday = next_birth
+                next_page.owner.selected_cake = next_cake
+                    
+                if date_diff <=7:
+                    next_page.state = "upcoming"
+                else:
+                    next_page.state = "waiting"
+                    
+                next_page.save()
                 
-            if date_diff <=7:
-                next_page.state = "upcoming"
+                curr_page.state = "archive"
+                curr_page.save()
             else:
-                next_page.state = "waiting"
-                
-            next_page.save()
-            birthday_page = next_page
-        else:
-            curr_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
-            curr_page.state = "archive"
-            curr_page.save()
-            birthday_page = curr_page
+                curr_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
+                curr_page.state = "archive"
+                curr_page.save()
+        # print(birthday_page.year)
+        # print(birthday_page.id)
+        # print(birthday_page.state)
             
 # context 전달 다시
         
@@ -202,7 +205,12 @@ def mypage(request):
                 
                 birthday_page.owner.save()
                 
-                return redirect(f"/{birthday_page.year}/{birthday_page.id}")
+                if BirthdayPage.objects.filter(owner=request.user, year=next_year).exists() :
+                    current_birthday_page = BirthdayPage.objects.get(owner=request.user, year=next_year)
+                    return redirect(f"/{current_birthday_page.year}/{current_birthday_page.id}") 
+                elif BirthdayPage.objects.filter(owner=request.user, year=today_year).exists():       
+                    current_birthday_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
+                    return redirect(f"/{current_birthday_page.year}/{current_birthday_page.id}")
             else :
                 return redirect('/')
         else:
