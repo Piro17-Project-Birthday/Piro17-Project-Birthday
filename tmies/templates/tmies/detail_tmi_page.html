@@ -27,10 +27,9 @@
           <span class="message__like">
             {{ tmi_message.like }}
           </span>
-
-          {% if is_owner %}
+          {% if is_owner or request.user == tmi_message.writer %}
             <span>
-              <a href="{% url 'tmies:delete_tmi_message' tmi_message.id %}">삭제</a>
+            <a href="{% url 'tmies:delete_tmi_message' tmi_message.id %}">삭제</a>
             </span>
           {% endif %}
         </div>

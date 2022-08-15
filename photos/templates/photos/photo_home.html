@@ -17,7 +17,7 @@
                 <img src=" {{photo.req_photo.url}}" alt="">
                 </p>
             </article>
-            {% if is_owner %}
+            {% if is_owner or request.user == photo.photo_uploader %}
                 <span>
                 <a href="{% url 'photos:photo_delete' photo.id %}">삭제</a>
                 </span>

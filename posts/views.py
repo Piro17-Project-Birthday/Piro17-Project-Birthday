@@ -81,9 +81,9 @@ def detailBirthdayPage(request,pk):
         target = "딸기"
     elif selected_cake == "치즈 케이크":
         target = "치즈"
-    ##############################################################
-    my_messages = Message.objects.filter(sender=request.user)
-    print(my_messages)
+    # ##############################################################
+    # my_messages = Message.objects.filter(sender=request.user)
+    # print(my_messages)
    
      
             
@@ -97,7 +97,7 @@ def detailBirthdayPage(request,pk):
         "is_owner" : is_owner,
         "selected_cake" : selected_cake,
         "target" : target,
-        "my_messages":my_messages,
+        # "my_messages":my_messages,
         
     }
     return render(request, template_name="posts/detail_birthday_page.html", context=context)

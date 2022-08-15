@@ -36,7 +36,7 @@ def createTmiMessage(request, pk):
             tmi = form.save(commit=False)
             tmi.receiver = tmi_page
             if request.user.is_authenticated :
-                tmi.sender = request.user
+                tmi.writer = request.user
             tmi.save()
             return redirect(f"/tmi/{tmi_page.id}")
     context = {

@@ -12,7 +12,7 @@ from users.models import User
 class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
-        exclude = ('sender', 'receiver',)
+        exclude = ('sender', 'receiver')
         
 class BirthdayPageForm(forms.ModelForm):
     CAKE_CHOICES = [
