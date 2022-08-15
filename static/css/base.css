@@ -1,30 +1,174 @@
 @import url("./reset.css");
+:root {
+  --div-main-color: #fdf8ef; /*아이보리*/
+  --div-sub-color: #8ebd5e; /*연두*/
+  --div-point-color: #ff574c; /*다홍*/
+  --div-dark-font-color: #2d3142;
+  --div-light-font-color: #ffffff;
+}
+
+@font-face {
+  font-family: 'SpoqaHanSansNeo-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  -ms-overflow-style: none;
+  font-family: 'SpoqaHanSansNeo-Regular';
+  background-color: rgb(246, 246, 246);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.wrap{
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.wrap > *{
+  max-width: 414px;
+}
+
+.screen{
+  background-color:var(--div-main-color);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  overscroll-behavior-y: none;
+}
+
+.content{
+  padding:2rem 2rem;
+}
 
 nav {
   display: flex;
   justify-content: space-between;
-  background-color: grey;
+  background-color: white;
 }
 .navbar_dropdown {
   position: relative;
   display: inline-block;
 }
-.dropdown_btn {
-  padding: 10px 40px;
+.dropdown__btn {
+  padding: 10px 10px;
   font-size: 20px;
-  background-color: green;
-  color: white;
+  border: none;
+  color: black;
+  background-color: white;
 }
+.dropdown__btn--x {
+  padding: 10px 10px;
+  font-size: 20px;
+  background-color: var(--div-sub-color);
+  color: var(--div-light-font-color);
+  border: none;
+  margin: 0 0 0 185px;
+}
+
 #dropdown_content {
-  position: absolute;
   z-index: 1;
+  position: absolute;
+  width: 226px;
+  height: 811px;
+  left: -188px;
+  top: 0px;
+
+  background: var(--div-sub-color);
 }
 #dropdown_content a {
   display: block;
-  font-size: 10px;
-  background-color: #dfdfdf;
+  font-size: 16px;
+
+  background-color: var(--div-sub-color);
+  color: var(--div-light-font-color);
+  text-decoration: none;
+  padding: 10px 36px;
+  margin: 96px 0px 0px 0px;
+}
+#dropdown_content a img {
+  height: 20%;
+  width: 20%;
+  background-color: var(--div-sub-color);
+  margin: -11px 7px -8px 0px;
+}
+
+.dropdown__btn--login {
+  color: var(--div-light-font-color);
+  font-weight: normal;
+}
+
+#user__outcircle {
+  display: flex;
+  background-color: red;
+  width: 100px;
+  height: 100px;
+  border-radius: 50px;
+}
+
+#dropdown__btn--service {
+  font-weight: bold;
+}
+
+#dropdown__mypage {
+  font-weight: bold;
+}
+#dropdown__btn--logout {
+  font-weight: bold;
+}
+
+#dropdown__btn--birthdaypage {
+  font-weight: bold;
+}
+
+#dropdown__background a {
+  display: block;
+  font-size: 16px;
+  background-color: var(--div-main-color);
   color: black;
   text-decoration: none;
   padding: 10px 36px;
-  margin: 2px 0px 0px 0px;
+  margin: 14px 0px 0px 0px;
 }
+
+#dropdown__background {
+  position: absolute;
+  width: 226px;
+  height: 596px;
+
+  left: 0px;
+  top: 215px;
+
+  background: #fdf8ef;
+}
+.dropdown-circles {
+  margin: 13px 0px 0px 0px;
+}
+.dropdown__opacity {
+  position: absolute;
+  background-color: black;
+  opacity: 50%;
+  width: 84%;
+  height: 100%;
+  margin: 0px 0px 0px -190px;
+} 
+
+.circle {
+  color: var(--div-main-color);
+  font-size: 40px;
+  margin: 0px 0px 0px -3px;
+  letter-spacing: -8px;
+}
+
