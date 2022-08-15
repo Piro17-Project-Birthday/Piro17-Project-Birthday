@@ -1,5 +1,82 @@
-body {
-  width: 375px;
-  height: 812px;
-  margin: auto;
+:root {
+  --div-main-color: #fdf8ef; /*아이보리*/
+  --div-sub-color: #8ebd5e; /*연두*/
+  --div-point-color: #ff574c; /*다홍*/
+  --div-dark-font-color: #2d3142;
+  --div-light-font-color: #ffffff;
+  --div-input-shadow-color: #d0ccc4;
+}
+
+.create_birthday_page__form {
+  margin: 0 0 0 0px;
+}
+
+.create__name {
+  margin: 0 0 1rem 0;
+}
+.create__birthday {
+  margin: 0 0 1rem 0;
+}
+.create__cake {
+  margin: 0 0 1rem 0;
+}
+
+.create__name__text {
+  margin: 0 0 0.5rem 0;
+  font-weight: bold;
+}
+.create__birthday__text {
+  margin: 1rem 0 0.5rem 0;
+  font-weight: bold;
+}
+.create__cake__text {
+  margin: 0 0 0.5rem 0;
+  font-weight: bold;
+}
+#id_full_name {
+  width: 100%;
+  height: auto;
+  line-height: normal;
+  padding: 0.8em 0.5em;
+  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+  border: 0px;
+  border-radius: 5px;
+  outline-style: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 12px;
+}
+.create__birthday select {
+  width: 103px;
+  padding: 0.8em 0.5em;
+  border: 0px;
+  font-size: 12px;
+  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+  border-radius: 5px;
+}
+
+#id_birthday_year {
+  margin: 0px 0.1rem 0 0.4rem;
+}
+#id_birthday_month {
+  margin: 0px 0.1rem 0 0.4rem;
+}
+#id_birthday_day {
+  margin: 0px 0.1rem 0 0.4rem;
+}
+#select__year {
+  color: lightgrey;
+}
+#birthday_create_page--submit {
+  background-color: var(--div-point-color);
+  color: var(--div-light-font-color);
+  border-radius: 5px;
+  border: 0px;
+  height: 2rem;
+  text-align: center;
+  width: 100%;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
 }
