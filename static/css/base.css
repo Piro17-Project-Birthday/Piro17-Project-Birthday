@@ -84,6 +84,10 @@ nav {
   font-weight: bold;
 }
 
+#dropdown__btn--birthdaypage {
+  font-weight: bold;
+}
+
 #dropdown__background a {
   display: block;
   font-size: 16px;
