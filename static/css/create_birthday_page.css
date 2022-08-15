@@ -48,7 +48,7 @@
   font-size: 12px;
 }
 .create__birthday select {
-  width: 103px;
+  width: 30%;
   padding: 0.8em 0.5em;
   border: 0px;
   font-size: 12px;
@@ -79,4 +79,25 @@
   font-size: 1rem;
   cursor: pointer;
   box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+}
+
+@media (max-width: 400px) {
+  .create__birthday select {
+    width: 29%;
+    padding: 0.8em 0.5em;
+    border: 0px;
+    font-size: 12px;
+    box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+    border-radius: 5px;
+  }
+}
+@media (max-width: 281px) {
+  .create__birthday select {
+    width: 28%;
+    padding: 0.8em 0.5em;
+    border: 0px;
+    font-size: 12px;
+    box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+    border-radius: 5px;
+  }
 }
