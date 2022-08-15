@@ -4,15 +4,15 @@
 {% load static %}
   <head>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/detail_birthday_page.css' %}" />
   </head>
   <body>
-    <div id="screenshot">
-      <div>
-      <div>
+    <div class="content" id="screenshot">
+      {% comment %} <div>
         <span>확인용 정보</br></span>
         <span>이름 : {{name}}</br>생일 : {{birthday}}</br>상태 : {{birthday_page.state}}</br></br></span>
-      </div>
-      <div>
+      <div> {% endcomment %}
         {% if birthday_page.state == "waiting"%}
           <p>{{ name }}님의 생일이 {{date_diff}}일 남았네요!</p>
           <p>페이지는 생일 7일 전 부터 개설되어요. 조금만 기다려 주세요.</p>

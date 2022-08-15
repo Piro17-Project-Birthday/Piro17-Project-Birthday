@@ -98,7 +98,9 @@ def detailBirthdayPage(request,year,pk):
     #         birthday_state = "waiting"
         
     #생일이 자정이 지나 끝나면 비활성화
-    
+    print(birthday_thisyear)
+    print(today)
+    print(birthday_thisyear >= today)
     if birthday_thisyear >= today :
         curr_page = birthday_page
         if date_diff == 0:
