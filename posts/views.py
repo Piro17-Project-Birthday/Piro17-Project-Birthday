@@ -5,6 +5,7 @@ from users.models import User
 from .models import BirthdayPage
 from .models import Message
 from photos.models import PhotoPage
+from .forms import MessageForm, LoginedMessageForm, BirthdayPageForm
 from tmies.models import TmiPage
 from .forms import MessageForm, BirthdayPageForm
 

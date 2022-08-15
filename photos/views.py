@@ -33,11 +33,12 @@ def photoCreate(request, year, pk):
     photo_page = get_object_or_404(PhotoPage, year=year, pk=pk)
     form = PhotoCreateForm(request.POST, request.FILES)
     if request.method == "POST":
-        
+
         if form.is_valid():
-            print('form valid')
             photo = form.save(commit=False)
             photo.receiver = photo_page
+            if request.user.is_authenticated :
+                photo.photo_uploader = request.user
             photo.save()
             return redirect(f"/{photo_page.year}/{photo_page.photo_origin.id}/photo")
     context = {
