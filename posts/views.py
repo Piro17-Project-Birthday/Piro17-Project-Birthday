@@ -53,16 +53,32 @@ def createBirthdayPage(request):
                     birthday = datetime.strptime(str(today_year+1)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #생일을 내년 생일로 한다
                     date_diff = abs((today-birthday).days)
                     
-                    if date_diff <=7:
+                    if date_diff < 7:
                         tmi_page.state = "activate"
                         photo_page.state = "activate"
+                        birthday_page.state = "upcoming"
+                    elif date_diff == 7:
+                        tmi_page.state = "activate"
+                        photo_page.state = "activate"
+                        birthday_page.state = "today"
                     else:
                         tmi_page.state = "deactivate"
                         photo_page.state = "deactivate"
+                        birthday_page.state = "waiting"
                 else:                         #올해 생일이 아직 지나지 않았다면 올해 생일 페이지가 생성됨
                     page_year = today_year
-                    tmi_page.state = "activate"
-                    photo_page.state = "activate"
+                    if date_diff < 7:
+                        tmi_page.state = "activate"
+                        photo_page.state = "activate"
+                        birthday_page.state = "upcoming"
+                    elif date_diff ==7:
+                        tmi_page.state = "activate"
+                        photo_page.state = "activate"
+                        birthday_page.state = "today"
+                    else:
+                        tmi_page.state = "deactivate"
+                        photo_page.state = "deactivate"
+                        birthday_page.state = "waiting"
                     
                 birthday_page.year = page_year
                 birthday_page.save()
@@ -257,7 +273,27 @@ def deleteMessage(request, pk):
     message.delete()
     return redirect(f"/{birthday_page.year}/{birthday_page.id}")
 
-def mypage(request):
+def mainMypage(request):
+    if request.user.is_authenticated:
+        curr_user = request.user
+        
+        target_pages = BirthdayPage.objects.filter(owner=curr_user).order_by('-id')
+        
+        if BirthdayPage.objects.filter(owner=curr_user, state = "archive").exists:
+            archived_flag = True
+        else:
+            archived_flag = False
+            
+        context = {
+            "curr_user": curr_user,
+            "target_pages": target_pages,
+            "archived_flag": archived_flag,
+        }
+        return render(request, 'posts/main_mypage.html', context=context)
+    else:
+        return redirect("/login")
+        
+def editMypage(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
             
@@ -284,7 +320,7 @@ def mypage(request):
             context={
                 'form':form,
             }
-            return render(request, 'posts/mypage.html', context=context)
+            return render(request, 'posts/edit_mypage.html', context=context)
     else :
         return redirect("/login")
 

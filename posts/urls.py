@@ -12,5 +12,7 @@ urlpatterns = [
     path('<int:year>/<int:pk>', views.detailBirthdayPage, name="detail_birthday_page"),
     path('<int:year>/<int:pk>/write/', views.createMessage, name='create_message'),
     path('<int:pk>/delete/', views.deleteMessage, name='delete_message'),
-    path('mypage/',views.mypage, name='mypage'),
+    path('mypage/',views.mainMypage, name='main_mypage'),
+    # path('mypage/archive',views.archiveMypage, name='mypage'),
+    path('mypage/edit', views.editMypage, name= "edit_mypage"),
 ]
