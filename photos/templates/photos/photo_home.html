@@ -1,10 +1,10 @@
 {% extends 'posts/base.html' %}
-{% block title %}
-  포토 방명록
-{% endblock %}
 {% block content %}
   {% load static%}
-
+  <head>
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/detail_birthday_page.css' %}" />
+  </head>
   <body>
     {% if photo_page.state == "deactivate" %}
       <div>
