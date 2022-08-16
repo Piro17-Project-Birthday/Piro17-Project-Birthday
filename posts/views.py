@@ -6,9 +6,9 @@ from .models import BirthdayPage
 from .models import Message
 from photos.models import PhotoPage
 from .forms import MessageForm, LoginedMessageForm, BirthdayPageForm
-import random
-from tmies.models import TmiPage
 from .forms import MessageForm, BirthdayPageForm, EditMyPageForm
+from tmies.models import TmiPage
+import random
 
 #도메인 년도 비교용 전역변수
 today = datetime.now().date() #현재 날짜
@@ -265,13 +265,13 @@ def detailBirthdayPage(request,year,pk):
     }
     return render(request, template_name="posts/detail_birthday_page.html", context=context)
     
-def createMessage(request, pk):
-    profile_img_1 = "static/img/icon/gift-solid.svg"
+def createMessage(request,year,pk):
+    profile_img_1 = "static/img/icon/cake-candles-solid.svg"
     profile_img_2 = "static/img/icon/envelope-solid.svg"
-    profile_img_3 = "static/img/icon/cake-candles-solid.svg"
+    profile_img_3 = "static/img/icon/gift-solid.svg"
     profile_img_set = [profile_img_1, profile_img_2, profile_img_3]
     profile_img = random.choice(profile_img_set)
-    birthday_page = get_object_or_404(BirthdayPage, pk=pk)
+    birthday_page = get_object_or_404(BirthdayPage, year=year, pk=pk)
     if request.user.is_authenticated:
         form = LoginedMessageForm(request.POST)
         if request.method == 'POST':
