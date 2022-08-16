@@ -1,0 +1,77 @@
+.text__title {
+    font-size:1.5rem;
+    font-weight:700;
+}
+
+.text > * {
+    padding-bottom: 1rem;
+}
+
+.text__description {
+    font-size:1rem;
+    font-weight:500;
+    line-height: 1.5rem;
+}
+
+.images {
+    padding-top:1rem;
+}
+
+.images__container{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap : 1rem;
+    row-gap:3rem;
+}
+
+.images__item p {
+    text-align: end;
+}
+
+.images__item__polaroid {
+    background-color: white;
+    padding:1rem;
+    box-shadow: 0px 2px 10px -1px rgba(0, 0, 0, 0.1);
+}
+
+.images__item__polaroid p {
+    text-align: center;
+}
+
+.images__item__delete-btn {
+    margin: 0.5rem 0.3rem;
+}
+
+.images__item__polaroid p img {
+    width: 100%;
+    height: 10rem;
+    object-fit: cover;
+}
+
+@font-face {
+font-family: 'UhBeeyoongdi';
+src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeyoongdi.woff') format('woff');
+font-weight: normal;
+font-style: normal;
+}
+
+.images__item__polaroid h3 {
+    font-family: 'UhBeeyoongdi';
+    padding: 1rem 0.2rem;
+    padding-bottom: 0;
+}
+
+.images__item {
+    position:relative;
+}
+
+.images__item__pin { 
+    position: absolute;
+    left: 46%;
+    bottom: 80%;
+    width: 8%;
+}
+
+.images__padding {
+    height:2rem;
+}
