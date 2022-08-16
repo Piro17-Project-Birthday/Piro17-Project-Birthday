@@ -35,7 +35,11 @@
                     <img class="images__item__pin rotate" src="{% static 'img/pin.png' %}" alt="">
                     {% if is_owner or request.user == photo.photo_uploader %}
                         {% if not photo_page.state == "archive" %}
-                            <p class="images__item__delete-btn"><a href="{% url 'photos:photo_delete' photo.id %}">x</a></p>
+                            <p class="images__item__delete-btn">
+                                <a href="{% url 'photos:photo_delete' photo.id %}">
+                                    삭제
+                                </a>
+                            </p>
                         {% endif %}
                     {% else %}
                         <p class="images__item__delete-btn">　</p>
@@ -55,9 +59,13 @@
             {% endif %}
       {% if not is_owner%}
         {% if not photo_page.state == "archive"%}
-            <div class="floating-btn">
-            <a class="" href="{% url 'photos:photo_create' year pk %}">포토 방명록 남기기</a>
+            
+            <a class="" href="{% url 'photos:photo_create' year pk %}">
+                <div class="floating-btn">
+                포토 방명록 남기기
             </div>
+            </a>
+            
         {% endif %}
       {% endif %}   
     </div>

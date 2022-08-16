@@ -38,8 +38,14 @@
 }
 
 .images__item__delete-btn {
-    margin: 0.5rem 0.3rem;
+    margin: 0.3rem 0.3rem;
 }
+
+.images__item__delete-btn a {
+    font-size:0.875rem;
+    color:var(--div-dark-opacity-font-color)
+}
+
 
 .images__item__polaroid p img {
     width: 100%;
@@ -153,3 +159,4 @@ font-style: normal;
 .modal-content {
     width: 100%;
   }
+
