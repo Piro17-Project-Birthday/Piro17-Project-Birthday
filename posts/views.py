@@ -6,7 +6,7 @@ from .models import BirthdayPage
 from .models import Message
 from photos.models import PhotoPage
 from tmies.models import TmiPage
-from .forms import MessageForm, BirthdayPageForm
+from .forms import MessageForm, BirthdayPageForm, EditMyPageForm
 
 #도메인 년도 비교용 전역변수
 today = datetime.now().date() #현재 날짜
@@ -140,12 +140,23 @@ def detailBirthdayPage(request,year,pk):
     
     if birthday_thisyear >= today :
         curr_page = birthday_page
+        tmi_page = TmiPage.objects.get(tmi_origin=curr_page)
+        photo_page = PhotoPage.objects.get(photo_origin=curr_page)
         if date_diff == 0:
             curr_page.state = 'today'
+            tmi_page.state = 'activate'
+            photo_page.state = 'activate'
         elif date_diff <=7:
             curr_page.state = "upcoming"
+            tmi_page.state = 'activate'
+            photo_page.state = 'activate'
         else:
             curr_page.state = "waiting"
+            tmi_page.state = 'deactivate'
+            photo_page.state = 'deactivate'
+        curr_page.save()
+        tmi_page.save()
+        photo_page.save()
     else:
         if is_owner == 1:
             if BirthdayPage.objects.filter(owner=request.user, year=today_year).exists():    
@@ -276,18 +287,13 @@ def deleteMessage(request, pk):
 def mainMypage(request):
     if request.user.is_authenticated:
         curr_user = request.user
-        
         target_pages = BirthdayPage.objects.filter(owner=curr_user).order_by('-id')
-        
-        if BirthdayPage.objects.filter(owner=curr_user, state = "archive").exists:
-            archived_flag = True
-        else:
-            archived_flag = False
+        archived_pages = BirthdayPage.objects.filter(owner=request.user,state="archive")
             
         context = {
             "curr_user": curr_user,
             "target_pages": target_pages,
-            "archived_flag": archived_flag,
+            "archived_pages": archived_pages,
         }
         return render(request, 'posts/main_mypage.html', context=context)
     else:
@@ -296,27 +302,19 @@ def mainMypage(request):
 def editMypage(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
-            
-            form = BirthdayPageForm(request.POST)
+            form = EditMyPageForm(request.POST)
             if form.is_valid():
                 birthday_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
 
                 birthday_page.owner.full_name = form.cleaned_data['full_name']
-                birthday_page.owner.birthday = form.cleaned_data['birthday']
                 birthday_page.owner.selected_cake = form.cleaned_data['selected_cake']
-                
                 birthday_page.owner.save()
                 
-                if BirthdayPage.objects.filter(owner=request.user, year=next_year).exists() :
-                    current_birthday_page = BirthdayPage.objects.get(owner=request.user, year=next_year)
-                    return redirect(f"/{current_birthday_page.year}/{current_birthday_page.id}") 
-                elif BirthdayPage.objects.filter(owner=request.user, year=today_year).exists():       
-                    current_birthday_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
-                    return redirect(f"/{current_birthday_page.year}/{current_birthday_page.id}")
+                return redirect ('/mypage/main')
             else :
                 return redirect('/')
         else:
-            form = BirthdayPageForm(instance=request.user)
+            form = EditMyPageForm(instance=request.user)
             context={
                 'form':form,
             }
