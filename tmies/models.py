@@ -3,7 +3,9 @@ from posts.models import BirthdayPage
 from users.models import User
 
 class TmiPage(models.Model):
-    birthday_page = models.OneToOneField(BirthdayPage, on_delete=models.CASCADE)
+    tmi_origin = models.OneToOneField(BirthdayPage, on_delete=models.CASCADE, primary_key=True)
+    year = models.IntegerField(null=True)
+    state = models.CharField(null=True, max_length=20)
     
 class TmiMessage(models.Model):
     writer = models.ForeignKey(User, on_delete=models.CASCADE, related_name="writer", null=True)

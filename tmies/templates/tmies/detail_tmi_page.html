@@ -6,39 +6,68 @@
   {% load static%}
 
   <body>
-    <div>
-      {{ name }}님에 대한 TMI는 무엇이 있나요?
-    </div>
-
-    {% if not is_owner %}
+    {% if tmi_page.state == "deactivate" %}
       <div>
-        <button>
-          <a href="{% url 'tmies:create_tmi_message' pk %}">
-            Tmi 남기러 가기</a>
-        </button>
+        아직
+        {{name}}
+        님의
+        {{year}}년 생일 페이지가 활성화되지 않았어요!
       </div>
-    {% endif %}
-    {% if tmi_messages %}
-      {% for tmi_message in tmi_messages%}
-        <div class="message-id-{{ tmi_message.id }}">
-          {{ tmi_message.content }}
-          <button onclick="onClickLike({{ tmi_message.id }})">👍 추천
-          </button>
-          <span class="message__like">
-            {{ tmi_message.like }}
-          </span>
-
-          {% if is_owner %}
-            <span>
-              <a href="{% url 'tmies:delete_tmi_message' tmi_message.id %}">삭제</a>
-            </span>
-          {% endif %}
+    {% elif tmi_page.state == "activate" or tmi_page.state == "archive" %}
+      {% if tmi_page.state == "archive" %}
+        <div>
+          {{ name }}님의
+          {{ year }}년 TMI 쌓기 페이지입니다
         </div>
-      {% endfor %}
-    {% else %}
-      <div>
-        아직 작성 된 Tmi가 없어요 😢
-      </div>
+      {% else %}
+        <div>
+          {{ name }}님에 대한 TMI는 무엇이 있나요?
+        </div>
+      {% endif %}
+
+      {% if not is_owner %}
+        {% if not tmi_page.state == "archive"%}
+          <div>
+            <button>
+              <a href="{% url 'tmies:create_tmi_message' year pk %}">
+                Tmi 남기러 가기</a>
+            </button>
+          </div>
+        {% endif %}
+      {% endif %}
+      {% if tmi_messages %}
+        {% for tmi_message in tmi_messages%}
+          <div class="message-id-{{ tmi_message.id }}">
+            {{ tmi_message.content }}
+            {% if not tmi_page.state == "archive"%}
+              <button onclick="onClickLike({{ tmi_message.id }})">👍 추천
+              </button>
+            {% endif %}
+            {% if tmi_page.state == "archive"%}
+              <span class="message__like">
+                👍:
+                {{ tmi_message.like }}
+              </span>
+            {% else %}
+              <span class="message__like">
+                {{ tmi_message.like }}
+              </span>
+            {% endif %}
+
+            {% if is_owner %}
+              {% if not tmi_page.state == "archive"%}
+                <span>
+                  <a href="{% url 'tmies:delete_tmi_message' tmi_message.id %}">삭제</a>
+                </span>
+              {% endif %}
+            {% endif %}
+          </div>
+        {% endfor %}
+      {% else %}
+        <div>
+          아직 작성 된 Tmi가 없어요 😢
+        </div>
+      {% endif %}
     {% endif %}
 
     <script>

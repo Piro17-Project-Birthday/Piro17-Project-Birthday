@@ -3,7 +3,10 @@ from posts.models import BirthdayPage
 from users.models import User
 
 class PhotoPage(models.Model):
-    bp_owner = models.OneToOneField(BirthdayPage, on_delete=models.CASCADE)
+    photo_origin = models.OneToOneField(BirthdayPage, on_delete=models.CASCADE, primary_key=True)
+    year = models.IntegerField(null=True)
+    state = models.CharField(null=True, max_length=20)
+    
 
 class Photo(models.Model):
     photo_uploader = models.ForeignKey(User, on_delete=models.CASCADE, related_name="photo_uploader", null=True)
