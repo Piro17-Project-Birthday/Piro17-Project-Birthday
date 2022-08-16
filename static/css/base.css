@@ -4,6 +4,7 @@
   --div-sub-color: #8ebd5e; /*연두*/
   --div-point-color: #ff574c; /*다홍*/
   --div-dark-font-color: #2d3142;
+  --div-dark-opacity-font-color: rgba(45, 49, 66, 0.5);
   --div-light-font-color: #ffffff;
   --div-input-shadow-color: rgba(0, 0, 0, 0.1);
 }
@@ -24,6 +25,7 @@ body {
   -ms-overflow-style: none;
   font-family: 'Spoqa Han Sans Neo';
   background-color: rgb(246, 246, 246);
+  line-height: 1.5rem;
 }
 
 ::-webkit-scrollbar {

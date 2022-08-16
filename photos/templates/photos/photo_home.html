@@ -13,9 +13,12 @@
         </script>
       {% elif photo_page.state == "activate" or photo_page.state == "archive" %}
         {% if photo_page.state == "archive" %}
-          <div>
-            {{name}}님의
-            {{year}}년 포토 방명록 페이지입니다
+          <div class="archive">
+            <p>
+                {{name}}님의
+                {{year}}년 포토 방명록 페이지입니다.
+            </p>
+            
           </div>
         {%endif%}
         <div class="text">
@@ -38,7 +41,7 @@
                         <p class="images__item__delete-btn">　</p>
                     {% endif %}
                     <div class="images__item__polaroid">
-                        <p><img src=" {{photo.req_photo.url}}" alt=""></p>
+                        <p><img class="images__item__image" src=" {{photo.req_photo.url}}" alt=""></p>
                         <h3>{{photo.title}}</h3>
                     </div>
                 </div>
@@ -60,7 +63,13 @@
     </div>
   </body>
     {%endif %}
+    <!-- The Modal -->
+    <div id="modal__images" class="modal">
+        <span class="close"><img src="{% static 'img/icon/close.svg' %}" alt=""></span>
+        <img class="modal-content" id="image-original">
+    </div>
     <script>
+        //나무집게 랜덤 회전
         var randomList = ['-10', '-7', '-5', '5', '7', '10']
         const getRandom = (min, max) => Math.random() * (max - min) + min;
         var rand;
@@ -70,5 +79,34 @@
             console.log(rand)
             pin[i].style.transform = 'rotate('+rand+'deg)';
         }
+
+        //모달
+        var modal = document.getElementById("modal__images");
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementsByClassName("images__item__image");
+        var modalImg = document.getElementById("image-original");
+        for (i=0; i<img.length; i++) {
+            img[i].onclick = function(){
+                modal.style.display = "block";
+                modalImg.src = this.src;
+            }
+        }
+        
+
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+
+        var background = document.getElementsByClassName("modal")[0];
+        
+        background.onclick = function() {
+            modal.style.display = "none";
+        }
+
     </script>
   {% endblock %}

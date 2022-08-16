@@ -10,7 +10,6 @@
 .text__description {
     font-size: 1.25rem;
     font-weight:500;
-    line-height: 1.5rem;
 }
 
 .images {
@@ -77,7 +76,80 @@ font-style: normal;
 }
 
 .images--empty {
-    color:var(--div-dark-font-color);
-    opacity:50%;
+    color:var(--div-dark-opacity-font-color);
     font-weight: 700;
 }
+
+.archive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 700;
+    background-color: white;
+    color: var(--div-dark-opacity-font-color);
+    border-radius: 10px;
+    border: 0px;
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom:3rem;
+}
+
+.archive p{
+    padding:1rem;
+}
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: var(--div-dark-font-color)
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+}
+
+#caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+.modal-content, #caption {
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+.close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 40px;
+    transition: 0.3s;
+}
+
+.modal-content {
+    width: 100%;
+  }
