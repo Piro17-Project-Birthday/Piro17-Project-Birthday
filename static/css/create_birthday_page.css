@@ -1,5 +1,82 @@
-body {
-  width: 375px;
-  height: 812px;
-  margin: auto;
+.create_birthday_page__form {
+  margin: 0 0 0 0px;
+}
+
+.create__name {
+  margin: 0 0 1rem 0;
+}
+.create__birthday {
+  margin: 0 0 1rem 0;
+}
+.create__cake {
+  margin: 0 0 1rem 0;
+}
+
+.create__name__text {
+  margin: 0 0 0.5rem 0;
+  font-weight: bold;
+}
+.create__birthday__text {
+  margin: 1rem 0 0.5rem 0;
+  font-weight: bold;
+}
+.create__cake__text {
+  margin: 0 0 0.5rem 0;
+  font-weight: bold;
+}
+#id_full_name {
+  width: 100%;
+  height: auto;
+  line-height: normal;
+  padding: 0.8em 0.5em;
+  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+  border: 0px;
+  border-radius: 5px;
+  outline-style: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 12px;
+}
+.create__birthday select {
+  width: 30%;
+  padding: 0.8em 0.5em;
+  border: 0px;
+  font-size: 12px;
+  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+  border-radius: 5px;
+}
+
+#id_birthday_year {
+  margin: 0px 0.1rem 0 0.4rem;
+}
+#id_birthday_month {
+  margin: 0px 0.1rem 0 0.4rem;
+}
+#id_birthday_day {
+  margin: 0px 0.1rem 0 0.4rem;
+}
+#select__year {
+  color: lightgrey;
+}
+
+@media (max-width: 400px) {
+  .create__birthday select {
+    width: 29%;
+    padding: 0.8em 0.5em;
+    border: 0px;
+    font-size: 12px;
+    box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+    border-radius: 5px;
+  }
+}
+@media (max-width: 281px) {
+  .create__birthday select {
+    width: 28%;
+    padding: 0.8em 0.5em;
+    border: 0px;
+    font-size: 12px;
+    box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+    border-radius: 5px;
+  }
 }
