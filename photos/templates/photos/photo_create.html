@@ -1,24 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+  <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>포토 업로드</title>
-</head>
-<body>
-    <form
-    action="{% url 'photos:photo_create' photo_page.id %}"
-    method="post"
-    enctype="multipart/form-data"
-    >
-    {% csrf_token %}
-    <table>
+  </head>
+
+  <body>
+    <form action="{% url 'photos:photo_create' photo_page.year photo_page.photo_origin.id %}" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <table>
         {{ form.as_p }}
       </table>
-    <div>
-    <input type="submit" value="제출" />
-    </div>
+      <div>
+        <input type="submit" value="제출"/>
+      </div>
     </form>
-</body>
+  </body>
+
 </html>
