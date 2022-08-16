@@ -13,4 +13,5 @@ class Message(models.Model):
     nickname = models.CharField(max_length=20)
     message = models.TextField()
     is_private = models.BooleanField(default=False)
+    profile_img = models.TextField()
     

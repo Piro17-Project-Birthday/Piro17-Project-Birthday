@@ -5,8 +5,10 @@ from users.models import User
 from .models import BirthdayPage
 from .models import Message
 from photos.models import PhotoPage
-from tmies.models import TmiPage
+from .forms import MessageForm, LoginedMessageForm, BirthdayPageForm
 from .forms import MessageForm, BirthdayPageForm, EditMyPageForm
+from tmies.models import TmiPage
+import random
 
 #도메인 년도 비교용 전역변수
 today = datetime.now().date() #현재 날짜
@@ -262,21 +264,46 @@ def detailBirthdayPage(request,year,pk):
     return render(request, template_name="posts/detail_birthday_page.html", context=context)
     
 def createMessage(request,year,pk):
+    profile_img_1 = "static/icon/gift-solid.svg"
+    profile_img_2 = "static/icon/envelope-solid.svg"
+    profile_img_3 = "static/icon/cake-candles-solid.svg"
+    profile_img_set = [profile_img_1, profile_img_2, profile_img_3]
+    profile_img = random.choice(profile_img_set)
     birthday_page = get_object_or_404(BirthdayPage, year=year, pk=pk)
-    form = MessageForm(request.POST)
-    if request.method == 'POST':
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.receiver = birthday_page
-            if request.user.is_authenticated :
-                post.sender = request.user
-            post.save()
-            return redirect(f"/{birthday_page.year}/{birthday_page.id}")
-    context = {
-        'birthday_page' : birthday_page,
-        'form' : form
-    }
-    return render(request, template_name='posts/create_message.html', context=context)
+    if request.user.is_authenticated:
+        form = LoginedMessageForm(request.POST)
+        if request.method == 'POST':
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.profile_img = profile_img
+                post.receiver = birthday_page
+                if request.user.is_authenticated :
+                    post.sender = request.user
+                post.save()
+                return redirect(f"/{birthday_page.year}/{birthday_page.id}")
+        context = {
+            'birthday_page' : birthday_page,
+            'form' : form,
+            'profile_img' : profile_img
+        }
+        return render(request, template_name='posts/create_message.html', context=context)
+    else :
+        form = MessageForm(request.POST)
+        if request.method == 'POST':
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.profile_img = random.choice(profile_img_set)
+                post.receiver = birthday_page
+                if request.user.is_authenticated :
+                    post.sender = request.user
+                post.save()
+                return redirect(f"/{birthday_page.year}/{birthday_page.id}")
+        context = {
+            'birthday_page' : birthday_page,
+            'form' : form,
+            'profile_img' : profile_img
+        }
+        return render(request, template_name='posts/create_message.html', context=context)
 
 def deleteMessage(request, pk):
     message = Message.objects.get(pk=pk)

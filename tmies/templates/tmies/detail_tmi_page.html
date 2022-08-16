@@ -35,25 +35,20 @@
           </div>
         {% endif %}
       {% endif %}
-      {% if tmi_messages %}
-        {% for tmi_message in tmi_messages%}
-          <div class="message-id-{{ tmi_message.id }}">
-            {{ tmi_message.content }}
-            {% if not tmi_page.state == "archive"%}
-              <button onclick="onClickLike({{ tmi_message.id }})">👍 추천
-              </button>
-            {% endif %}
-            {% if tmi_page.state == "archive"%}
-              <span class="message__like">
-                👍:
-                {{ tmi_message.like }}
-              </span>
-            {% else %}
-              <span class="message__like">
-                {{ tmi_message.like }}
-              </span>
-            {% endif %}
-
+    {% if tmi_messages %}
+      {% for tmi_message in tmi_messages%}
+        <div class="message-id-{{ tmi_message.id }}">
+          {{ tmi_message.content }}
+          <button onclick="onClickLike({{ tmi_message.id }})">👍 추천
+          </button>
+          <span class="message__like">
+            {{ tmi_message.like }}
+          </span>
+          {% if is_owner or request.user == tmi_message.writer %}
+            <span>
+            <a href="{% url 'tmies:delete_tmi_message' tmi_message.id %}">삭제</a>
+            </span>
+          {% endif %}
             {% if is_owner %}
               {% if not tmi_page.state == "archive"%}
                 <span>
