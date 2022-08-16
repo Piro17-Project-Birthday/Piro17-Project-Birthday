@@ -117,10 +117,17 @@
                     <li>비공개 : 속닥속닥</li>
                     
                     {% endif %}
-                  {% endfor %}
-    
-                {% else %}
-                  <p>아직 메시지가 없습니다.</p>
+                  </li>
+                {% comment %} owner가 아닐 경우 {% endcomment %}
+                
+
+                {% elif not message.is_private %}
+                <li><img src="{{ message.profile_img }}" alt=""> {{ message.nickname }} : {{ message.message }}
+                </li>
+
+                {% elif message.is_private %}
+                <li><img src="{{ message.profile_img }}" alt=""> 비공개 : 속닥속닥</li>
+                
                 {% endif %}
               </div>
             {% endif %}
