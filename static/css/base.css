@@ -5,6 +5,7 @@
   --div-point-color: #ff574c; /*다홍*/
   --div-dark-font-color: #2d3142;
   --div-light-font-color: #ffffff;
+  --div-input-shadow-color: rgba(0, 0, 0, 0.1);
 }
 
 @font-face {
@@ -171,4 +172,19 @@ nav {
   font-size: 40px;
   margin: 0px 0px 0px -3px;
   letter-spacing: -8px;
+}
+
+.primary-btn{
+  font-family: 'Spoqa Han Sans Neo';
+  font-weight: 700;
+  background-color: var(--div-point-color);
+  color: var(--div-light-font-color);
+  border-radius: 10px;
+  border: 0px;
+  height: 2.3rem;
+  text-align: center;
+  width: 100%;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
 }

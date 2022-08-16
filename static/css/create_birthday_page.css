@@ -1,12 +1,3 @@
-:root {
-  --div-main-color: #fdf8ef; /*아이보리*/
-  --div-sub-color: #8ebd5e; /*연두*/
-  --div-point-color: #ff574c; /*다홍*/
-  --div-dark-font-color: #2d3142;
-  --div-light-font-color: #ffffff;
-  --div-input-shadow-color: #d0ccc4;
-}
-
 .create_birthday_page__form {
   margin: 0 0 0 0px;
 }
@@ -67,18 +58,6 @@
 }
 #select__year {
   color: lightgrey;
-}
-#birthday_create_page--submit {
-  background-color: var(--div-point-color);
-  color: var(--div-light-font-color);
-  border-radius: 5px;
-  border: 0px;
-  height: 2rem;
-  text-align: center;
-  width: 100%;
-  font-size: 1rem;
-  cursor: pointer;
-  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
 }
 
 @media (max-width: 400px) {
