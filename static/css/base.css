@@ -22,7 +22,7 @@ html {
 
 body {
   -ms-overflow-style: none;
-  font-family: "SpoqaHanSansNeo-Regular";
+  font-family: 'Spoqa Han Sans Neo';
   background-color: rgb(246, 246, 246);
 }
 
@@ -174,7 +174,31 @@ nav {
   letter-spacing: -8px;
 }
 
+.floating-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Spoqa Han Sans Neo';
+  font-weight: 700;
+  background-color: var(--div-point-color);
+  color: var(--div-light-font-color);
+  border-radius: 10px;
+  border: 0px;
+  height: 2.3rem;
+  text-align: center;
+  width: 80vw;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+  position: fixed;
+  top: 84vh;
+  justify-self: center;
+}
+
 .primary-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   font-family: 'Spoqa Han Sans Neo';
   font-weight: 700;
   background-color: var(--div-point-color);

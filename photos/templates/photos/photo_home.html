@@ -25,8 +25,8 @@
             </p>
         </div>
         <div class="images">
-          <div class="images__container">
             {% if photos %}
+            <div class="images__container">
               {% for photo in photos %}
                 <div class="images__item">
                     <img class="images__item__pin rotate" src="{% static 'img/pin.png' %}" alt="">
@@ -45,18 +45,18 @@
               {% endfor %}
           </div>
         </div>
-      {% else %}
-          <div>
-          아직 올라온 사진이 없어요 😢
-          </div>
-      {% endif %}
-          {% if not is_owner%}
-            {% if not photo_page.state == "archive"%}
-              <div>
-                <a href="{% url 'photos:photo_create' year pk %}">사진 올리기</a>
-              </div>
+            {% else %}
+                <div class="images--empty">
+                    아직 남겨진 포토 방명록이 없어요.
+                </div>
             {% endif %}
-          {% endif %}
+      {% if not is_owner%}
+        {% if not photo_page.state == "archive"%}
+            <div class="floating-btn">
+            <a class="" href="{% url 'photos:photo_create' year pk %}">포토 방명록 남기기</a>
+            </div>
+        {% endif %}
+      {% endif %}   
     </div>
   </body>
     {%endif %}
