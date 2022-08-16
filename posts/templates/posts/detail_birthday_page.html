@@ -4,65 +4,87 @@
 {% load static %}
   <head>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
+    <link rel="stylesheet" href="{% static 'css/detail_birthday_page.css' %}" />
   </head>
   <body>
-    <div id="screenshot">
-      <div>
-      <div>
-        <span>확인용 정보</br></span>
-        <span>이름 : {{name}}</br>생일 : {{birthday}}</br>상태 : {{birthday_page.state}}</br></br></span>
-      </div>
-      <div>
-        {% if birthday_page.state == "waiting"%}
-          <p>{{ name }}님의 생일이 {{date_diff}}일 남았네요!</p>
-          <p>페이지는 생일 7일 전 부터 개설되어요. 조금만 기다려 주세요.</p>
-        {% elif birthday_page.state == "upcoming" or birthday_page.state == "today" or birthday_page.state == "archive"%}
-          {% if birthday_page.state == "today" %}
-            <p>생일 축하드려요!</p>
-          {% endif %}
-            {% if birthday_page.state == "archive"%}
-              {% if is_owner %}
-                <p>{{ name }}님의 생일이 {{date_diff}}일 남았네요!</p>
-                <p>내년 생일 페이지는 생일 7일 전 부터 개설되어요. 조금만 기다려 주세요.</p>
-                {% endif %}
-            {% else %}
-              <span>D-{{ date_diff }}일</span>
-            {% endif %}
-      </div>
-
-  
-          {% comment %} 생일 케이크 test {% endcomment %}
-          <hr>
-          {% if messages.count >= 0 %}
-          <div>
-            {% comment %} 확인용 {% endcomment %}
-            <div>
-            메시지 개수 : {{ messages.count }}
-            </div>
-            <div>
-            선택한 케이크 종류 : {{ selected_cake }} = {{ target }}
-            </div>
-          </div>
-          <div>
-            {% if target == "초코" %}
-              {% if messages.count <= 5 %}
-              <img src="{% static 'img/초코1.png' %}">
-              {% elif messages.count <= 10 %}
-              <img src="{% static 'img/초코2.png' %}">
-              {% elif messages.count <= 15 %}
-              <img src="{% static 'img/초코3.png' %}">
-              {% elif messages.count <= 20 %}
-              <img src="{% static 'img/초코4.png' %}">
+    <div class="wrap">
+      <div class="screen">
+        <div class="content" id="screenshot">
+          {% comment %} <div>
+            <span>확인용 정보</br></span>
+            <span>이름 : {{name}}</br>생일 : {{birthday}}</br>상태 : {{birthday_page.state}}</br></br></span>
+          <div> {% endcomment %}
+            {% if birthday_page.state == "waiting"%}
+              <p>{{ name }}님의 생일이 {{date_diff}}일 남았네요!</p>
+              <p>페이지는 생일 7일 전 부터 개설되어요. 조금만 기다려 주세요.</p>
+            {% elif birthday_page.state == "upcoming" or birthday_page.state == "today" or birthday_page.state == "archive"%}
+              {% if birthday_page.state == "today" %}
+                <p>생일 축하드려요!</p>
               {% endif %}
-            {% elif target == "딸기"%}
-              {% if messages.count <= 5 %}
-              <img src="{% static 'img/딸기1.png' %}">
-              {% elif messages.count <= 10 %}
-              <img src="{% static 'img/딸기2.png' %}">
-              {% elif messages.count <= 15 %}
-              <img src="{% static 'img/딸기3.png' %}">
-              {% elif messages.count <= 20 %}
-              <img src="{% static 'img/딸기4.png' %}">
+                {% if birthday_page.state == "archive"%}
+                  {% if is_owner %}
+                    <p>{{ name }}님의 생일이 {{date_diff}}일 남았네요!</p>
+                    <p>내년 생일 페이지는 생일 7일 전 부터 개설되어요. 조금만 기다려 주세요.</p>
+                    {% endif %}
+                {% else %}
+                  <span>D-{{ date_diff }}일</span>
+                {% endif %}
+          </div>
+    
+      
+              {% comment %} 생일 케이크 test {% endcomment %}
+              <hr>
+              {% if messages.count >= 0 %}
+              <div>
+                {% comment %} 확인용 {% endcomment %}
+                <div>
+                메시지 개수 : {{ messages.count }}
+                </div>
+                <div>
+                선택한 케이크 종류 : {{ selected_cake }} = {{ target }}
+                </div>
+              </div>
+              <div>
+                {% if target == "초코" %}
+                  {% if messages.count <= 5 %}
+                  <img src="{% static 'img/초코1.png' %}">
+                  {% elif messages.count <= 10 %}
+                  <img src="{% static 'img/초코2.png' %}">
+                  {% elif messages.count <= 15 %}
+                  <img src="{% static 'img/초코3.png' %}">
+                  {% elif messages.count <= 20 %}
+                  <img src="{% static 'img/초코4.png' %}">
+                  {% endif %}
+                {% elif target == "딸기"%}
+                  {% if messages.count <= 5 %}
+                  <img src="{% static 'img/딸기1.png' %}">
+                  {% elif messages.count <= 10 %}
+                  <img src="{% static 'img/딸기2.png' %}">
+                  {% elif messages.count <= 15 %}
+                  <img src="{% static 'img/딸기3.png' %}">
+                  {% elif messages.count <= 20 %}
+                  <img src="{% static 'img/딸기4.png' %}">
+                  {% endif %}
+                {% elif target == "치즈"%}
+                  {% if messages.count <= 5 %}
+                  <img src="{% static 'img/치즈1.png' %}">
+                  {% elif messages.count <= 10 %}
+                  <img src="{% static 'img/치즈2.png' %}">
+                  {% elif messages.count <= 15 %}
+                  <img src="{% static 'img/치즈3.png' %}">
+                  {% elif messages.count <= 20 %}
+                  <img src="{% static 'img/치즈4.png' %}">
+                  {% endif %}
+                {% endif %}
+              </div>
+              {% endif %}
+              <hr>
+              {% if not is_owner %}
+                {% if not birthday_page.state == "archive" %}
+                <div>
+                  <a href="{% url 'posts:create_message' year pk %}">축하 메시지 남기기</a>
+                </div>
+                {% endif %}
               {% endif %}
             {% elif target == "치즈"%}
               {% if messages.count <= 5 %}
@@ -119,13 +141,14 @@
               <p>아직 메시지가 없습니다.</p>
             {% endif %}
           </div>
-        {% endif %}
+        </div>
+    
+        <div>
+          <button onclick="screenshot()" type="button" id="save">Save Screenshot</button>
+        </div>
       </div>
     </div>
-
-    <div>
-      <button onclick="screenshot()" type="button" id="save">Save Screenshot</button>
-    </div>
+    
 
     <script>
       //screenshot 기능
