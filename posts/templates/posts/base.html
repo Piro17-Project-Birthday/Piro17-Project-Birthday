@@ -44,6 +44,14 @@
     {% endif %}
   {% block content %}
   {% endblock %}
+
+  {% if birthday_state == "upcoming" or birthday_state == "today" %}
+    <footer>
+      <!-- 하단 메뉴 링크 들어갈 부분. -->
+      축하메세지 포토방명록 TMI 쌓기
+    </footer>
+  {% endif %}
+
     <script type="text/javascript" src="/static/js/dropdown_menu.js"></script>
     </script>
   </body>
