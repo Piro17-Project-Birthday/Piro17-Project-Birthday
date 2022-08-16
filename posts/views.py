@@ -5,6 +5,7 @@ from users.models import User
 from .models import BirthdayPage
 from .models import Message
 from photos.models import PhotoPage
+from .forms import MessageForm, LoginedMessageForm, BirthdayPageForm
 from tmies.models import TmiPage
 from .forms import MessageForm, BirthdayPageForm, EditMyPageForm
 
@@ -137,7 +138,9 @@ def detailBirthdayPage(request,year,pk):
     #         birthday_state = "waiting"
         
     #생일이 자정이 지나 끝나면 비활성화
-    
+    print(birthday_thisyear)
+    print(today)
+    print(birthday_thisyear >= today)
     if birthday_thisyear >= today :
         curr_page = birthday_page
         tmi_page = TmiPage.objects.get(tmi_origin=curr_page)

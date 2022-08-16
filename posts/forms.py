@@ -12,7 +12,12 @@ from users.models import User
 class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
-        exclude = ('sender', 'receiver',)
+        exclude = ('sender', 'receiver','is_private')
+
+class LoginedMessageForm(forms.ModelForm):
+    class Meta:
+        model = Message
+        exclude = ('sender', 'receiver')
         
 class BirthdayPageForm(forms.ModelForm):
     CAKE_CHOICES = [
@@ -22,11 +27,11 @@ class BirthdayPageForm(forms.ModelForm):
     ]
     from datetime import datetime
     
-    date_range = 100    
-    this_year = datetime.now().year
+    
     selected_cake = forms.ChoiceField(choices=CAKE_CHOICES, widget=forms.RadioSelect)
+    
     birthday = forms.DateField(
-        widget=forms.SelectDateWidget(years=range(this_year - date_range, this_year + date_range))
+        widget=forms.widgets.DateInput(attrs={'type': 'date'})
         )
     class Meta:
         model = User
