@@ -8,74 +8,81 @@
   <body>
     <div class="content">
       <div class="mypage__profile--image">
-      (사진)
+        (사진)
       </div>
-    
+
       <div class="mypage__profile--name">
         <div>
-        {{curr_user.username}}님
+          {{curr_user.username}}님
         </div>
       </div>
       <hr class="mypage__line">
       <div class="mypage__content">
-      <span class="mypage__birthdaypage__text">
-        내 생일 페이지
-      </span>
-      {% if target_pages %}
-        {% for target_page in target_pages %}
-          {% if target_page.state == "today" or target_page.state == "upcoming" %}
-            <a href="{% url 'posts:edit_mypage' %}" class="mypage__edit_mypage">
-              정보 수정
-            </a>
-            <div>
-              <form action="{% url 'posts:detail_birthday_page' target_page.year target_page.id %}" method="post" >
-                {% csrf_token %}
-                <button class="mypage__go-to-my-birthday-page">
-                  {{ target_page.year }}년
-                  {{ target_page.owner.birthday.month }}월
-                  {{ target_page.owner.birthday.day }}일
-                </button>
-              </form>
-            </div>
-          {% elif target_page.state == "waiting" %}
-            <div class="mypage__info-text" >
-              아직 생일 페이지가 활성화되지 않았어요!
-            </div>
-            <div class="mypage__info__sub-text"><i class="fa-solid fa-circle-exclamation"></i>
-              <span>생일페이지는 생일 7일전 부터 생일 다음날까지 활성화 돼요.</span></div>
-          {% endif %}
-        {% endfor %}
-      {% else %}
-        <div class="mypage__info-text">
-          아직 생일 페이지가 만들어지지 않았어요!
-        </div>
-        <div class="mypage__info__sub-text"><i class="fa-solid fa-circle-exclamation"></i>
-          <span>생일페이지를 만들 수 있어요. 생일 페이지를 만들어주세요.</span></div>
-      {% endif %}
-      <p class="mypage__birthdaypage__text">
-        지난 생일 페이지
-      </p>
-      {% if archived_pages %}
-        {% for archived_page in archived_pages %}
-          <div>
-            <form action="{% url 'posts:detail_birthday_page' archived_page.year archived_page.id %}" method="post">
-              {% csrf_token %}
-              <button class="mypage__go-to-past-birthday-page">
-                {{ archived_page.year }}년
-                {{ archived_page.owner.birthday.month }}월
-                {{ archived_page.owner.birthday.day }}일
-              </button>
-            </div>
+        <span class="mypage__birthdaypage__text">
+          내 생일 페이지
+        </span>
+        {% if target_pages %}
+          {% for target_page in target_pages %}
+            {% if target_page.state == "today" or target_page.state == "upcoming" %}
+              <a href="{% url 'posts:edit_mypage' %}" class="mypage__edit_mypage">
+                정보 수정
+              </a>
+              <div>
+                <form action="{% url 'posts:detail_birthday_page' target_page.year target_page.id %}" method="post">
+                  {% csrf_token %}
+                  <button class="mypage__go-to-my-birthday-page">
+                    {{ target_page.year }}년
+                    {{ target_page.owner.birthday.month }}월
+                    {{ target_page.owner.birthday.day }}일
+                  </button>
+                </form>
+              </div>
+            {% elif target_page.state == "waiting" %}
+              <div class="mypage__info-text">
+                아직 생일 페이지가 활성화되지 않았어요!
+              </div>
+              <div class="mypage__info__sub-text">
+                <i class="fa-solid fa-circle-exclamation"></i>
+                <span>생일페이지는 생일 7일전 부터 생일 다음날까지 활성화 돼요.</span></div>
+            {% endif %}
           {% endfor %}
         {% else %}
           <div class="mypage__info-text">
-            아직 저장된 지난 생일 페이지가 없어요!
+            아직 생일 페이지가 만들어지지 않았어요!
+          </div>
+          <div class="mypage__info__sub-text">
+            <i class="fa-solid fa-circle-exclamation"></i>
+            <span>생일페이지를 만들 수 있어요. 생일 페이지를 만들어주세요.</span></div>
+          <div>
+            <a href="{% url 'posts:create_birthday_page'%}">
+              생일 페이지 만들러 가기
+            </a>
           </div>
         {% endif %}
+        <p class="mypage__birthdaypage__text">
+          지난 생일 페이지
+        </p>
+        {% if archived_pages %}
+          {% for archived_page in archived_pages %}
+            <div>
+              <form action="{% url 'posts:detail_birthday_page' archived_page.year archived_page.id %}" method="post">
+                {% csrf_token %}
+                <button class="mypage__go-to-past-birthday-page">
+                  {{ archived_page.year }}년
+                  {{ archived_page.owner.birthday.month }}월
+                  {{ archived_page.owner.birthday.day }}일
+                </button>
+              </div>
+            {% endfor %}
+          {% else %}
+            <div class="mypage__info-text">
+              아직 저장된 지난 생일 페이지가 없어요!
+            </div>
+          {% endif %}
 
+        </div>
       </div>
     </div>
-  </div>
-    </body>
-    <script src="https://kit.fontawesome.com/a8a24f1fa9.js" crossorigin="anonymous"></script>
-  {% endblock %}
+  </body>
+  <script src="https://kit.fontawesome.com/a8a24f1fa9.js" crossorigin="anonymous"></script>
+{% endblock %}
