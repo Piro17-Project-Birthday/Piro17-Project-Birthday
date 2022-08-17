@@ -11,7 +11,7 @@ def photoHome(request, year, pk):
     photos = photo_page.photo_set.all()
 
     bp_owner = get_object_or_404(BirthdayPage, year=year ,pk=pk)
-    name = bp_owner.owner.username
+    name = bp_owner.owner.nickname
     
     if request.user == bp_owner.owner :
         is_owner = 1 #현재 접속자가 이 생일 페이지의 주인인지 알려주는 플래그

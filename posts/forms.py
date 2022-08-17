@@ -34,7 +34,7 @@ class BirthdayPageForm(forms.ModelForm):
     )
     class Meta:
         model = User
-        fields = ('username', 'birthday', 'selected_cake')
+        fields = ('nickname', 'birthday', 'selected_cake')
 
 class EditMyPageForm(forms.ModelForm):
     CAKE_CHOICES = [
@@ -45,4 +45,4 @@ class EditMyPageForm(forms.ModelForm):
     selected_cake = forms.ChoiceField(choices=CAKE_CHOICES, widget=forms.RadioSelect)
     class Meta:
         model = User
-        fields = ('username','selected_cake')
+        fields = ('nickname','selected_cake')
