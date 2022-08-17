@@ -13,7 +13,7 @@ def detailTmiPage(request,year, pk):
     tmi_messages = tmi_page.tmimessage_set.all()
     
     birthday_page = get_object_or_404(BirthdayPage, pk=pk)
-    name = birthday_page.owner.username
+    name = birthday_page.owner.nickname
     
     if request.user == birthday_page.owner :
         is_owner = 1 #현재 접속자가 이 생일 페이지의 주인인지 알려주는 플래그

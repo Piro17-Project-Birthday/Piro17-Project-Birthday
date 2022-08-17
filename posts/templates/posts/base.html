@@ -8,12 +8,12 @@
     <!-- css 참조 안쓰고 그냥 style로 함. -->
     <title>축마땅</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/settings.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/create_birthday_page.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/main_mypage.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/edit_mypage.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/create_message.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/create_birthday_page.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/main_mypage.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/edit_mypage.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/create_message.css' %}"/>
   </head>
 
   <body>
@@ -31,8 +31,13 @@
               <div style="display: none" id="dropdown_content">
                 <div class="dropdown__opacity"></div>
                 <button onclick="dropdown_menu()" class="dropdown__btn--x">X</button>
-                <a href="{% url 'posts:main_mypage'%}"><img src="{% static 'img/profile-icon.jpg' %}">
-                  {{user.username}}</a>
+                {% if user.nickname %}
+                  <a href="{% url 'posts:main_mypage'%}"><img src="{% static 'img/profile-icon.jpg' %}">
+                    {{user.nickname}}</a>
+                {% else %}
+                  <a href="{% url 'posts:main_mypage'%}"><img src="{% static 'img/profile-icon.jpg' %}">
+                    {{user.username}}</a>
+                {% endif %}
                 <!-- 내페이지 링크 연결 -->
                 <div class="dropdown-circles">
                   <span class="circle">●●●●●●●</span></div>

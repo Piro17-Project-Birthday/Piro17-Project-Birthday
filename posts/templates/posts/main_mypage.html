@@ -12,9 +12,15 @@
       </div>
 
       <div class="mypage__profile--name">
-        <div>
-          {{curr_user.username}}님
-        </div>
+        {% if curr_user.nickname %}
+          <div>
+            {{curr_user.nickname}}님
+          </div>
+        {% else %}
+          <div>
+            {{curr_user.username}}님
+          </div>
+        {% endif %}
       </div>
       <hr class="mypage__line">
       <div class="mypage__content">

@@ -1,18 +1,23 @@
-{% extends 'posts/base.html' %} {% block content %}
-<script>
-  $.ajaxSetup({
-    headers: { "X-CSRFToken": "{{csrf_token}}" },
-  });
-</script>
-<section class="container">
-  {% if user.is_authenticated %}
-  <p class="main__login">{{user.username}}님이 로그인 중</p>
-
-  {% endif %}
-  <!--<a href="{% url 'account_signup' %}" class="nav-link">Signup</a>
-  <a href="{% url 'account_login' %}" class="nav-link">Login</a>-->
-</section>
-<div>
-  <a href="{% url 'posts:create_birthday_page'%}">생일 페이지 만들기</a>
-</div>
+{% extends 'posts/base.html' %}
+{% block content %}
+  <script>
+    $.ajaxSetup({
+      headers: {
+        "X-CSRFToken": "{{csrf_token}}"
+      }
+    });
+  </script>
+  <section class="container">
+    {% if user.is_authenticated %}
+      {% if user.nickname %}
+        <p class="main__login">{{user.nickname}}님이 로그인 중</p>
+      {% else %}
+        <p class="main__login">{{user.username}}님이 로그인 중</p>
+      {% endif %}
+    {% endif %}
+    <!--<a href="{% url 'account_signup' %}" class="nav-link">Signup</a> <a href="{% url 'account_login' %}" class="nav-link">Login</a>-->
+  </section>
+  <div>
+    <a href="{% url 'posts:create_birthday_page'%}">생일 페이지 만들기</a>
+  </div>
 {% endblock content %}
