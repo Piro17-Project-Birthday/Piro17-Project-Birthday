@@ -1,24 +1,30 @@
-{% extends 'posts/base.html' %}
-{% block title %}
-  마이페이지
-{% endblock %}
+{% extends 'posts/base.html' %} {% block title %} 마이페이지 {% endblock %}
 {%block content %}
-  <script src="https://kit.fontawesome.com/f578b19b63.js" crossorigin="anonymous"></script>
+<script
+  src="https://kit.fontawesome.com/f578b19b63.js"
+  crossorigin="anonymous"
+></script>
 
-  <body>
-    <form action="/mypage/edit" method="POST">
-      {% csrf_token %}
+<body>
+  <form action="/mypage/edit" method="POST">
+    {% csrf_token %}
+    <div class="content">
       <table>
-        <div>
-          <span>이름:</span>
+        <div class="editmypage_name">
+          <span class="edit_mypage--name">이름을 알려주세요.</span>
           {{form.full_name}}
         </div>
         <div>
-          <span>케이크 종류:</span>
+          <div class="edit_mypage--theme">
+            <span class="edit_mypage--theme--text"
+              >변경할 생일페이지 테마를 선택해주세요.</span
+            >
+          </div>
           {{form.selected_cake}}
         </div>
       </table>
-      <input type="submit" value="수정하기"/>
-    </form>
-  </body>
+      <input type="submit" class="editmypage--submit" value="수정하기" />
+    </div>
+  </form>
+</body>
 {% endblock %}
