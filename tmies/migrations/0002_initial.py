@@ -14,19 +14,19 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('posts', '0001_initial'),
+<<<<<<< Updated upstream
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('tmies', '0001_initial'),
+=======
+        ('tmies', '0001_initial'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+>>>>>>> Stashed changes
     ]
 
     operations = [
         migrations.AddField(
-            model_name='message',
-            name='sender',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='sender', to=settings.AUTH_USER_MODEL),
-        ),
-        migrations.AddField(
-            model_name='birthdaypage',
-            name='owner',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='owner', to=settings.AUTH_USER_MODEL),
+            model_name='tmimessage',
+            name='writer',
+            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, related_name='writer', to=settings.AUTH_USER_MODEL),
         ),
     ]

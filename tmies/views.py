@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import TmiPage, TmiMessage
 from .forms import TmiMessageForm
 from posts.models import BirthdayPage
+from photos.models import PhotoPage
 
 import json
 from django.http import JsonResponse
@@ -12,12 +13,16 @@ def detailTmiPage(request,year, pk):
     tmi_messages = tmi_page.tmimessage_set.all()
     
     birthday_page = get_object_or_404(BirthdayPage, pk=pk)
-    name = birthday_page.owner.full_name
+    name = birthday_page.owner.username
     
     if request.user == birthday_page.owner :
         is_owner = 1 #현재 접속자가 이 생일 페이지의 주인인지 알려주는 플래그
     else :
         is_owner = 0
+    
+    target_birth = get_object_or_404(BirthdayPage, year=year, pk=pk)
+    target_photo = get_object_or_404(PhotoPage, year=year, pk=pk)
+    target_tmi = get_object_or_404(TmiPage, year=year, pk=pk) #하단 메뉴용 타겟들
     
     context = {
         "tmi_messages": tmi_messages,
@@ -26,6 +31,9 @@ def detailTmiPage(request,year, pk):
         "is_owner": is_owner,
         "year": year,
         "tmi_page": tmi_page,
+        "target_birth" : target_birth,
+        "target_photo" : target_photo,
+        "target_tmi" : target_tmi,
     }
     
     return render(request, template_name="tmies/detail_tmi_page.html", context=context)

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ko">
+
   <head>
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -10,61 +11,68 @@
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
     <link rel="stylesheet" href="{% static 'css/settings.css' %}" />
     <link rel="stylesheet" href="{% static 'css/create_birthday_page.css' %}" />
-    
+    <link rel="stylesheet" href="{% static 'css/main_mypage.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/edit_mypage.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/create_message.css' %}" />
   </head>
 
   <body>
     <div class="wrap">
       <div class="screen">
         {% if user.is_authenticated %}
-        <nav>
-          <div class="nav__left">
-            <a href="/">축마땅</a>
-          </div>
-          <div class="navbar_dropdown">
-            <button onclick="dropdown_menu()" class="dropdown__btn"><i class="fa-solid fa-bars"></i></button>
-            <div style="display: none" id="dropdown_content">
-              <div class="dropdown__opacity">
-              </div> 
-              <button onclick="dropdown_menu()" class="dropdown__btn--x">X</button>
-              <a href="{% url 'posts:main_mypage'%}"><img src="{% static 'img/profile-icon.jpg' %}">   사용자</a>
-              <!-- 내페이지 링크 연결 -->
-              <div class="dropdown-circles"><span class="circle">●●●●●●●</span></div>
-              <div id="dropdown__background">
-                <a href="{% url 'posts:main_mypage'%} " id="dropdown__mypage">마이페이지</a>
-                <a href="#"id="dropdown__btn--service">1:1 문의하기</a>
-                <a href="{% url 'users:log_out'%}" id="dropdown__btn--logout">로그아웃</a>
+          <nav>
+            <div class="nav__left">
+              <a href="/">축마땅</a>
+            </div>
+            <div class="navbar_dropdown">
+              <button onclick="dropdown_menu()" class="dropdown__btn">
+                <i class="fa-solid fa-bars"></i>
+              </button>
+              <div style="display: none" id="dropdown_content">
+                <div class="dropdown__opacity"></div>
+                <button onclick="dropdown_menu()" class="dropdown__btn--x">X</button>
+                <a href="{% url 'posts:main_mypage'%}"><img src="{% static 'img/profile-icon.jpg' %}">
+                  {{user.username}}</a>
+                <!-- 내페이지 링크 연결 -->
+                <div class="dropdown-circles">
+                  <span class="circle">●●●●●●●</span></div>
+                <div id="dropdown__background">
+                  <a href="{% url 'posts:main_mypage'%} " id="dropdown__mypage">마이페이지</a>
+                  <a href="#" id="dropdown__btn--service">1:1 문의하기</a>
+                  <a href="{% url 'users:log_out'%}" id="dropdown__btn--logout">로그아웃</a>
+                </div>
               </div>
             </div>
-          </div>
-        </nav>
+          </nav>
         {% else %}
-        <nav>
-          <div class="nav__left">
-            <a href="/">축마땅</a>
-          </div>
-          <div class="navbar_dropdown">
-            <button onclick="dropdown_menu()" class="dropdown__btn"><i class="fa-solid fa-bars"></i></button>
-            <div style="display: none" id="dropdown_content">
-              <div class="dropdown__opacity">
-              </div> 
-              <button onclick="dropdown_menu()" class="dropdown__btn--x">X</button>
-              
-              <a href="{% url 'users:log_in'%}" class="dropdown__btn--login"><img src="{% static 'img/profile-icon.jpg' %}">  로그인 하기 ></a>
-              <div class="dropdown-circles"><span class="circle">●●●●●●●</span></div>
-              <div id="dropdown__background">
-                <a href="{% url 'posts:create_birthday_page'%}" id="dropdown__btn--birthdaypage">생일 페이지 만들기</a> 
-                <a href="#"id="dropdown__btn--service">1:1 문의하기</a>
+          <nav>
+            <div class="nav__left">
+              <a href="/">축마땅</a>
+            </div>
+            <div class="navbar_dropdown">
+              <button onclick="dropdown_menu()" class="dropdown__btn">
+                <i class="fa-solid fa-bars"></i>
+              </button>
+              <div style="display: none" id="dropdown_content">
+                <div class="dropdown__opacity"></div>
+                <button onclick="dropdown_menu()" class="dropdown__btn--x">X</button>
+
+                <a href="{% url 'users:log_in'%}" class="dropdown__btn--login"><img src="{% static 'img/profile-icon.jpg' %}">
+                  로그인 하기 ></a>
+                <div class="dropdown-circles">
+                  <span class="circle">●●●●●●●</span></div>
+                <div id="dropdown__background">
+                  <a href="{% url 'posts:create_birthday_page'%}" id="dropdown__btn--birthdaypage">생일 페이지 만들기</a>
+                  <a href="#" id="dropdown__btn--service">1:1 문의하기</a>
+                </div>
               </div>
             </div>
-          </div>
-        </nav>
+          </nav>
         {% endif %}
-        {% block content %}
-        {% endblock %}
+        {% block content %}{% endblock %}
       </div>
     </div>
-  <script src="https://kit.fontawesome.com/a8a24f1fa9.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a8a24f1fa9.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/static/js/dropdown_menu.js"></script>
   </script>
 </body>

@@ -34,7 +34,7 @@ def createBirthdayPage(request):
                 #현재 로그인 한 유저를 owner로 하는 birthday page 생성
                 birthday_page = BirthdayPage.objects.create(owner=request.user)
                 #form에 입력한 정보대로 owner의 full name과 birthday 수정 후 저장
-                birthday_page.owner.full_name = form.cleaned_data['full_name']
+                birthday_page.owner.username = form.cleaned_data['username']
                 birthday_page.owner.birthday = form.cleaned_data['birthday']
                 birthday_page.owner.selected_cake = form.cleaned_data['selected_cake']
                 birthday_page.owner.save()
@@ -106,7 +106,7 @@ def createBirthdayPage(request):
 def detailBirthdayPage(request,year,pk):
     birthday_page = get_object_or_404(BirthdayPage, year=year, pk=pk)
     messages = birthday_page.message_set.all()
-    name = birthday_page.owner.full_name
+    name = birthday_page.owner.username
     
     print(datetime.now())
     if request.user == birthday_page.owner :
@@ -170,11 +170,11 @@ def detailBirthdayPage(request,year,pk):
                     curr_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
                                 
                     next_page = BirthdayPage.objects.create(owner=request.user, year=next_year)
-                    next_name = curr_page.owner.full_name
+                    next_name = curr_page.owner.username
                     next_birth = curr_page.owner.birthday
                     next_cake = curr_page.owner.selected_cake
                                 
-                    next_page.owner.full_name= next_name
+                    next_page.owner.username= next_name
                     next_page.owner.birthday = next_birth
                     next_page.owner.selected_cake = next_cake
                     next_page.owner.save()
@@ -248,7 +248,10 @@ def detailBirthdayPage(request,year,pk):
     elif selected_cake == "치즈 케이크":
         target = "치즈"
     
-            
+    target_birth = get_object_or_404(BirthdayPage, year=year, pk=pk)
+    target_photo = get_object_or_404(PhotoPage, year=year, pk=pk)
+    target_tmi = get_object_or_404(TmiPage, year=year, pk=pk) #하단 메뉴용 타겟들
+           
     context = {
         "messages" : messages,
         "name" : name,
@@ -261,14 +264,16 @@ def detailBirthdayPage(request,year,pk):
         "target" : target,
         "year": year,
         "birthday_page": birthday_page,
-        
+        "target_birth" : target_birth,
+        "target_photo" : target_photo,
+        "target_tmi" : target_tmi,
     }
     return render(request, template_name="posts/detail_birthday_page.html", context=context)
     
 def createMessage(request,year,pk):
-    profile_img_1 = "static/img/icon/cake-candles-solid.svg"
-    profile_img_2 = "static/img/icon/envelope-solid.svg"
-    profile_img_3 = "static/img/icon/gift-solid.svg"
+    profile_img_1 = "/static/img/icon/cake-candles-solid.svg"
+    profile_img_2 = "/static/img/icon/envelope-solid.svg"
+    profile_img_3 = "/static/img/icon/gift-solid.svg"
     profile_img_set = [profile_img_1, profile_img_2, profile_img_3]
     profile_img = random.choice(profile_img_set)
     birthday_page = get_object_or_404(BirthdayPage, year=year, pk=pk)
@@ -286,7 +291,6 @@ def createMessage(request,year,pk):
         context = {
             'birthday_page' : birthday_page,
             'form' : form,
-            'profile_img' : profile_img
         }
         return render(request, template_name='posts/create_message.html', context=context)
     else :
@@ -303,7 +307,6 @@ def createMessage(request,year,pk):
         context = {
             'birthday_page' : birthday_page,
             'form' : form,
-            'profile_img' : profile_img
         }
         return render(request, template_name='posts/create_message.html', context=context)
 
@@ -335,7 +338,7 @@ def editMypage(request):
             if form.is_valid():
                 birthday_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
 
-                birthday_page.owner.full_name = form.cleaned_data['full_name']
+                birthday_page.owner.username = form.cleaned_data['username']
                 birthday_page.owner.selected_cake = form.cleaned_data['selected_cake']
                 birthday_page.owner.save()
                 
