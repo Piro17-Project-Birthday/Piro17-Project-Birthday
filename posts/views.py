@@ -34,7 +34,7 @@ def createBirthdayPage(request):
                 #현재 로그인 한 유저를 owner로 하는 birthday page 생성
                 birthday_page = BirthdayPage.objects.create(owner=request.user)
                 #form에 입력한 정보대로 owner의 full name과 birthday 수정 후 저장
-                birthday_page.owner.full_name = form.cleaned_data['full_name']
+                birthday_page.owner.username = form.cleaned_data['username']
                 birthday_page.owner.birthday = form.cleaned_data['birthday']
                 birthday_page.owner.selected_cake = form.cleaned_data['selected_cake']
                 birthday_page.owner.save()
@@ -106,7 +106,7 @@ def createBirthdayPage(request):
 def detailBirthdayPage(request,year,pk):
     birthday_page = get_object_or_404(BirthdayPage, year=year, pk=pk)
     messages = birthday_page.message_set.all()
-    name = birthday_page.owner.full_name
+    name = birthday_page.owner.username
     
     print(datetime.now())
     if request.user == birthday_page.owner :
@@ -170,11 +170,11 @@ def detailBirthdayPage(request,year,pk):
                     curr_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
                                 
                     next_page = BirthdayPage.objects.create(owner=request.user, year=next_year)
-                    next_name = curr_page.owner.full_name
+                    next_name = curr_page.owner.username
                     next_birth = curr_page.owner.birthday
                     next_cake = curr_page.owner.selected_cake
                                 
-                    next_page.owner.full_name= next_name
+                    next_page.owner.username= next_name
                     next_page.owner.birthday = next_birth
                     next_page.owner.selected_cake = next_cake
                     next_page.owner.save()
@@ -338,7 +338,7 @@ def editMypage(request):
             if form.is_valid():
                 birthday_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
 
-                birthday_page.owner.full_name = form.cleaned_data['full_name']
+                birthday_page.owner.username = form.cleaned_data['username']
                 birthday_page.owner.selected_cake = form.cleaned_data['selected_cake']
                 birthday_page.owner.save()
                 
