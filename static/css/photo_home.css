@@ -41,11 +41,11 @@
     margin: 0.3rem 0.3rem;
 }
 
-.images__item__delete-btn a {
+.images__item__delete-btn button {
+    font:inherit;
     font-size:0.875rem;
     color:var(--div-dark-opacity-font-color)
 }
-
 
 .images__item__polaroid p img {
     width: 100%;
@@ -107,7 +107,7 @@ font-style: normal;
     padding:1rem;
 }
 
-.modal {
+#modal__images {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
@@ -120,7 +120,7 @@ font-style: normal;
     background-color: var(--div-dark-font-color)
 }
 
-.modal-content {
+.modal__images__content {
     margin: auto;
     display: block;
     width: 80%;
@@ -138,7 +138,7 @@ font-style: normal;
     height: 150px;
 }
 
-.modal-content, #caption {
+.modal__images__content, #caption {
     animation-name: zoom;
     animation-duration: 0.6s;
 }
@@ -148,7 +148,7 @@ font-style: normal;
     to {transform:scale(1)}
 }
 
-.close {
+.modal__images--close {
     position: absolute;
     top: 1rem;
     right: 1.5rem;
@@ -156,7 +156,61 @@ font-style: normal;
     transition: 0.3s;
 }
 
-.modal-content {
+.modal__images__content {
     width: 100%;
   }
+
+  
+.modal__delete{
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items : center;
+}
+.modal__delete__overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%; height: 100%;
+    position: absolute;
+}
+.modal__delete__content {
+    position: relative;
+    background-color: white;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+    padding-bottom: 0;
+    padding-top: 2rem;
+}
+
+.hidden {
+    display: none;
+}
+
+.modal__delete__content__title {
+    color : var(--div-point-color);
+    font-weight: 700;
+    font-size:1rem;
+}
+
+.modal__delete__content__description {
+    font-size:0.875rem;
+    padding: 2rem;
+    padding-top: 1.2rem;
+}
+
+.modal__delete__content__btns {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 1.2rem;
+    border-top: 1px solid var(--div-input-shadow-color);
+}
+.modal__delete__content__btns > *{
+    font-size:1rem;
+    font-weight:700;
+    font-family:inherit;
+}
 
