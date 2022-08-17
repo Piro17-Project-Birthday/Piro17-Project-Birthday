@@ -248,7 +248,10 @@ def detailBirthdayPage(request,year,pk):
     elif selected_cake == "치즈 케이크":
         target = "치즈"
     
-            
+    target_birth = get_object_or_404(BirthdayPage, year=year, pk=pk)
+    target_photo = get_object_or_404(PhotoPage, year=year, pk=pk)
+    target_tmi = get_object_or_404(TmiPage, year=year, pk=pk) #하단 메뉴용 타겟들
+           
     context = {
         "messages" : messages,
         "name" : name,
@@ -261,14 +264,16 @@ def detailBirthdayPage(request,year,pk):
         "target" : target,
         "year": year,
         "birthday_page": birthday_page,
-        
+        "target_birth" : target_birth,
+        "target_photo" : target_photo,
+        "target_tmi" : target_tmi,
     }
     return render(request, template_name="posts/detail_birthday_page.html", context=context)
     
 def createMessage(request,year,pk):
-    profile_img_1 = "static/img/icon/cake-candles-solid.svg"
-    profile_img_2 = "static/img/icon/envelope-solid.svg"
-    profile_img_3 = "static/img/icon/gift-solid.svg"
+    profile_img_1 = "/static/img/icon/cake-candles-solid.svg"
+    profile_img_2 = "/static/img/icon/envelope-solid.svg"
+    profile_img_3 = "/static/img/icon/gift-solid.svg"
     profile_img_set = [profile_img_1, profile_img_2, profile_img_3]
     profile_img = random.choice(profile_img_set)
     birthday_page = get_object_or_404(BirthdayPage, year=year, pk=pk)
@@ -286,7 +291,6 @@ def createMessage(request,year,pk):
         context = {
             'birthday_page' : birthday_page,
             'form' : form,
-            'profile_img' : profile_img
         }
         return render(request, template_name='posts/create_message.html', context=context)
     else :
@@ -303,7 +307,6 @@ def createMessage(request,year,pk):
         context = {
             'birthday_page' : birthday_page,
             'form' : form,
-            'profile_img' : profile_img
         }
         return render(request, template_name='posts/create_message.html', context=context)
 
