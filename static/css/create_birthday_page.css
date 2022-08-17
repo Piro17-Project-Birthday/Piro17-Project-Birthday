@@ -66,5 +66,5 @@
   font-size: 12px;
   box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
   border-radius: 5px;
-  font-family: ;
+  font-family: inherit;
 }
