@@ -1,6 +1,10 @@
 from django import forms 
 from django.contrib.auth.forms import UserCreationForm
+import os
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "config.settings")
 
+import django
+django.setup()
 from users.models import User
 
 class LoginForm(forms.Form):
@@ -28,7 +32,8 @@ class SignupForm(UserCreationForm):
     
     class Meta:
         model = User
-        fields = ['username',  'password1', 'password2','birthday']
+        fields = ['username',  'password1', 'password2', 'birthday']
+    
     def save(self, user):
         user.save()
         

@@ -1,25 +1,69 @@
-{% extends 'posts/base.html' %} {% load socialaccount %} {% block content %}
+{% load socialaccount %} {% block content %}
 <script>
   $.ajaxSetup({
     headers: { "X-CSRFToken": "{{csrf_token}}" },
   });
 </script>
-<div class="background">
-  <div class="login--main">
-    <span class="title">LOGIN</span>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- css 참조 안쓰고 그냥 style로 함. -->
+    <title>축마땅</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/settings.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/login.css' %}" />
+  </head>
 
-    <form method="POST" action="" class="form--content">
-      {% csrf_token %}
-      <!-- 어떤 것을 받아올지는 view에 있는 context를 확인하면 됨(이름을 받아와야함) -->
-      <div class="username"><span>Username: </span> {{form.username}}</div>
-      <div class="password"><span>Password: </span> {{form.password}}</div>
-      <div class="btn">
-        <input type="submit" value="login" class="submit--button" />
+
+  <body>
+    <div class="wrap">
+      <div class="screen">
+        
+        <div class="background">
+          <div class="login--main">
+            <span class="title">LOGIN</span>
+      
+            <form method="POST" action="" class="form--content">
+              {% csrf_token %}
+              <!-- 어떤 것을 받아올지는 view에 있는 context를 확인하면 됨(이름을 받아와야함) -->
+              <div class="username"><span>Username: </span> {{form.username}}</div>
+              <div class="password"><span>Password: </span> {{form.password}}</div>
+              <div class="btn">
+                <input type="submit" value="login" class="submit--button" />
+              </div>
+            </form>
+
+            <div class="login__social_login">
+              <form action="{% provider_login_url 'kakao' %}" method="post">
+                {% csrf_token %}
+                <button type="submit"id="login__kakao"><img src="{% static 'img/kakao-logo.png' %}"><span class="kakao__text"> 카카오로 로그인</span></button>
+              </form>
+            <form action="{% provider_login_url 'naver' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" id="login__naver"><img src="{% static 'img/naver-logo.png' %}"><span class="naver__text"> 네이버로 로그인</span></button>
+            </form>
+            
+            <form action="{% provider_login_url 'google' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" id="login__google"><img src="{% static 'img/google-logo.png' %}"><span class="google__text"> 구글로 로그인</span></button>
+            </form>
+          </div>
+          </div>
+        </div>
+
+
       </div>
-    </form>
-    <a href="{% provider_login_url 'google' %}">구글 로그인</a><br />
-    <a href="{% provider_login_url 'naver' %}">네이버 로그인</a><br />
-    <a href="{% provider_login_url 'kakao' %}">카카오 로그인</a><br />
-  </div>
-</div>
+    </div>
+    
+  <script src="https://kit.fontawesome.com/a8a24f1fa9.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="/static/js/dropdown_menu.js"></script>
+    </script>
+  </body>
+
+
+  
+</html>
 {% endblock content %}

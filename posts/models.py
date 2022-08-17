@@ -2,7 +2,10 @@ from django.db import models
 from users.models import User
 
 class BirthdayPage(models.Model):
-    owner = models.OneToOneField(User, on_delete=models.CASCADE)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="owner")
+    year = models.IntegerField(null=True)
+    state = models.CharField(null=True, max_length=20)
+    
     
 class Message(models.Model):
     sender = models.ForeignKey(User, on_delete=models.CASCADE, related_name="sender", null=True)
@@ -10,4 +13,5 @@ class Message(models.Model):
     nickname = models.CharField(max_length=20)
     message = models.TextField()
     is_private = models.BooleanField(default=False)
+    profile_img = models.TextField()
     

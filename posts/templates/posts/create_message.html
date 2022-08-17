@@ -1,18 +1,107 @@
-{% extends 'posts/base.html' %} {% block content %}
-{% load static %}
-  <head>
-    <link rel="stylesheet" href="{% static 'css/create_message.css' %}" />
-  </head>
+{% extends 'posts/base.html' %} {% block content %} {% load static %}
+<script>
+  $.ajaxSetup({
+    headers: { "X-CSRFToken": "{{csrf_token}}" },
+  });
+</script>
 <body>
-  <form
-    action="{% url 'posts:create_message' birthday_page.id %}"
-    method="POST"
-  >
-    {% csrf_token %}
-    <table>
-      {{form.as_p}}
-    </table>
-    <input type="submit" value="메시지 남기기" />
-  </form>
+  <div class="content">
+    <form
+      action="{% url 'posts:create_message' birthday_page.year birthday_page.id %}"
+      method="POST"
+    >
+      {% csrf_token %}
+      <table>
+        <form action="" method="POST">
+          <input
+            type="hidden"
+            name="csrfmiddlewaretoken"
+            value="N3mQsgeKPQEhYgexGgQPRxHe4SCZI8wLwCVWM8UqPOvAAl2ggeIRaQJLN3jFLjdg"
+          />
+          {% csrf_token %}
+          <p>
+            <label for="id_nickname" class="create_message--name"
+              >이름을 알려주세요.</label
+            >
+            <input
+              type="text"
+              name="nickname"
+              maxlength="10"
+              required=""
+              id="id_nickname"
+              placeholder="이름도, 닉네임도 좋아요.   "
+            />
+          </p>
+          {% csrf_token %}
+          <p>
+            <label for="id_message" class="create_message--send"
+              >메세지를 남겨주세요.</label
+            >
+
+            <textarea
+              name="message"
+              cols="40"
+              rows="10"
+              required=""
+              id="id_message"
+              placeholder="따뜻한 축하의 마음을 전해주세요."
+            ></textarea>
+          </p>
+          <label for="id_is_private" class="create_message--private"
+            >비밀 메세지</label
+          >
+          <input type="checkbox" name="is_private" id="id_is_private" />
+        </form>
+      </table>
+      {% csrf_token %}
+      <input
+        type="submit"
+        class="create_message--submit"
+        value="메시지 남기기"
+      />
+    </form>
+  </div>
 </body>
-{% endblock content %}
+{% endblock content %} {% comment %}
+<div clss="content">
+  <form action="/2022/1/write/" method="POST">
+    <input
+      type="hidden"
+      name="csrfmiddlewaretoken"
+      value="6LDmWB92aaj4XxVbpZ5nPtuJZP6SC8OOPkcsgtPIa8anzCJUZXXp8MwgI0NyFjvj"
+    />
+    <ul class="errorlist">
+      <li>필수 항목입니다.</li>
+    </ul>
+    <p>
+      <label for="id_nickname">Nickname:</label>
+      <input
+        type="text"
+        name="nickname"
+        maxlength="20"
+        required=""
+        id="id_nickname"
+      />
+    </p>
+    <ul class="errorlist">
+      <li>필수 항목입니다.</li>
+    </ul>
+    <p>
+      <label for="id_message">Message:</label>
+      <textarea
+        name="message"
+        cols="40"
+        rows="10"
+        required=""
+        id="id_message"
+      ></textarea>
+    </p>
+    <p>
+      <label for="id_is_private">Is private:</label>
+      <input type="checkbox" name="is_private" id="id_is_private" />
+    </p>
+    <table></table>
+    <input type="submit" class="create_message--submit" value="메시지 남기기" />
+  </form>
+</div>
+{% endcomment %}

@@ -1,0 +1,80 @@
+@import url("./reset.css");
+:root {
+  --div-main-color: #fdf8ef; /*아이보리*/
+  --div-sub-color: #8ebd5e; /*연두*/
+  --div-point-color: #ff574c; /*다홍*/
+  --div-dark-font-color: #2d3142;
+  --div-light-font-color: #ffffff;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  -ms-overflow-style: none;
+  font-family: "SpoqaHanSansNeo-Regular";
+  background-color: rgb(246, 246, 246);
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+#login__google img {
+  width: 1.3rem;
+  height: 1.3rem;
+  margin: -9px 14px -6px 0px;
+}
+#login__naver img {
+  width: 2rem;
+  height: 2rem;
+  margin: -9px 0px -10.5px 0px;
+}
+#login__kakao img {
+  width: 2rem;
+  height: 2rem;
+  margin: -9px 0px -11px 0px;
+}
+#login__google {
+  color: var(--div-dark-font-color);
+  border-radius: 5px;
+  background-color: var(--div-light-font-color);
+  margin: 0 0 0.5rem 0;
+  width: 15rem;
+  height: 2rem;
+}
+#login__naver {
+  border-radius: 5px;
+  background-color: #00c73c;
+  margin: 0 0 0.5rem 0;
+  width: 15rem;
+  height: 2rem;
+  color: var(--div-light-font-color);
+}
+#login__kakao {
+  border-radius: 5px;
+  background-color: #f9e000;
+  color: #3a1d1d;
+  margin: 0 0 0.5rem 0;
+  width: 15rem;
+  height: 2rem;
+}
+.login--main {
+  text-align: center;
+}
+.login__social_login {
+  margin: 20rem 0 0 0;
+}
+.google__text {
+  margin: 0 0 0 0;
+  font-weight: bold;
+}
+.naver__text {
+  margin: 0 0 0 0;
+  font-weight: bold;
+}
+.kakao__text {
+  margin: 0 0 0 0;
+  font-weight: bold;
+}

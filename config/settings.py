@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-4%8ds1r@4$r!zodn319$pe-!%n!1td&%s(sr6aeib3zdr=7rfm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [ 'f8df-116-33-136-109.jp.ngrok.io', '127.0.0.1' ]
+CSRF_TRUSTED_ORIGINS = [ 'https://f8df-116-33-136-109.jp.ngrok.io' ]
 
 # Application definition
 
@@ -40,8 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'posts',
     'users',
+    'tmies',
+    'photos',
     
- 
     #'django.contrib.sites',
     #allauth
     'allauth',
@@ -74,7 +75,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates', 'accounts')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -159,3 +160,7 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
+
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
