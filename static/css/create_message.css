@@ -1,6 +1,92 @@
-body {
-  line-height: 1;
-  width: 375px;
-  height: 812px;
-  margin: auto;
+:root {
+  --div-main-color: #fdf8ef; /*아이보리*/
+  --div-sub-color: #8ebd5e; /*연두*/
+  --div-point-color: #ff574c; /*다홍*/
+  --div-dark-font-color: #2d3142;
+  --div-dark-opacity-font-color: rgba(45, 49, 66, 0.5);
+  --div-light-font-color: #ffffff;
+  --div-input-shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  padding: 3rem 2rem;
+}
+.create_message--submit {
+  text-align: center;
+  border: 0px;
+  border-radius: 5px;
+  width: 100%;
+  color: var(--div-light-font-color);
+  background-color: var(--div-point-color);
+  font-weight: bold;
+  padding: 4px 0 4px 0px;
+  margin: 10% 0 0 0;
+}
+
+.errorlist {
+  color: var(--div-main-color);
+}
+
+#id_nickname {
+  border-radius: 5px;
+  border: 0px;
+  width: 100%;
+  margin: 0.5rem 0px 1rem 0px;
+  padding: 8px 0px 8px 5px;
+  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+}
+.create_message--name {
+  font-weight: bold;
+}
+
+.create_message--send {
+  font-weight: bold;
+  margin: 0px 30% 0px 0px;
+}
+
+#id_message {
+  resize: none;
+  border-radius: 5px;
+  border: 0px;
+  width: 100%;
+  margin: 0.5rem 0px 1rem 0px;
+  padding: 8px 0px 8px 5px;
+  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+  font-family: inherit;
+}
+input[type="checkbox"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 16px;
+  outline: 0;
+  width: 16px;
+  margin: 0px 0px -2px 5px;
+  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+}
+input[type="checkbox"]::after {
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  content: "";
+  display: none;
+  height: 40%;
+  left: 40%;
+  position: relative;
+  top: 20%;
+  transform: rotate(45deg);
+  width: 15%;
+  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+}
+input[type="checkbox"]:checked {
+  background: var(--div-point-color);
+}
+input[type="checkbox"]:checked::after {
+  display: block;
+}
+
+.create_message--private {
+  font-weight: bold;
 }

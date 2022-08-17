@@ -4,6 +4,7 @@ from .forms import PhotoCreateForm
 from .models import Photo
 from .models import PhotoPage
 from posts.models import BirthdayPage
+from tmies.models import TmiPage
 
 def photoHome(request, year, pk):
     photo_page = get_object_or_404(PhotoPage, year=year, pk=pk)
@@ -16,6 +17,10 @@ def photoHome(request, year, pk):
         is_owner = 1 #현재 접속자가 이 생일 페이지의 주인인지 알려주는 플래그
     else :
         is_owner = 0
+    
+    target_birth = get_object_or_404(BirthdayPage, year=year, pk=pk)
+    target_photo = get_object_or_404(PhotoPage, year=year, pk=pk)
+    target_tmi = get_object_or_404(TmiPage, year=year, pk=pk) #하단 메뉴용 타겟들
 
     context = {
         "photos" : photos,
@@ -24,6 +29,9 @@ def photoHome(request, year, pk):
         "is_owner": is_owner,
         "year": year,
         "photo_page": photo_page,
+        "target_birth" : target_birth,
+        "target_photo" : target_photo,
+        "target_tmi" : target_tmi,
     }
 
     return render(request, "photos/photo_home.html", context=context)

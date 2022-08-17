@@ -1,0 +1,51 @@
+:root {
+  --div-main-color: #fdf8ef; /*아이보리*/
+  --div-sub-color: #8ebd5e; /*연두*/
+  --div-point-color: #ff574c; /*다홍*/
+  --div-dark-font-color: #2d3142;
+  --div-dark-opacity-font-color: rgba(45, 49, 66, 0.5);
+  --div-light-font-color: #ffffff;
+  --div-input-shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+#id_full_name {
+  width: 100%;
+  height: auto;
+  line-height: normal;
+  padding: 0.8em 0.5em;
+  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+  border: 0px;
+  border-radius: 5px;
+  outline-style: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 12px;
+  margin: 8px 0 8% 0px;
+}
+.content {
+  padding: 3rem 2rem;
+}
+.edit_mypage--name {
+  margin: 1rem 0 0.5rem 0;
+  font-weight: bold;
+}
+.edit_mypage--theme {
+  margin: 0px 0px 1rem 0;
+}
+
+.edit_mypage--theme--text {
+  margin: 1rem 0 0.5rem 0;
+  font-weight: bold;
+}
+.editmypage--submit {
+  text-align: center;
+  border: 0px;
+  border-radius: 5px;
+  width: 100%;
+  color: var(--div-light-font-color);
+  background-color: var(--div-point-color);
+  font-weight: bold;
+  padding: 4px 0 4px 0px;
+  margin: 10% 0 0 0;
+}
