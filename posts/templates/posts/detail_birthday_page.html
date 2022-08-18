@@ -149,8 +149,10 @@
                             <div class="messages__delete-btn">
                               {% if is_owner or request.user == message.sender %}
                                 {% if birthday_page.state != "archive" %}
-                                  <a href="{% url 'posts:delete_message' message.id %}" data-html2canvas-ignore="true">삭제</a>
-                                {% endif %}
+                                  <button id={% url 'posts:delete_message' message.id %} class="delete-btn" data-html2canvas-ignore="true">
+                                    삭제
+                                  </button>
+                                  {% endif %}
                               {% endif %}
                             </div>
                           </div>
@@ -173,7 +175,9 @@
                               <div class="messages__delete-btn">
                                 {% if is_owner or request.user == message.sender %}
                                   {% if birthday_page.state != "archive" %}
-                                    <a href="{% url 'posts:delete_message' message.id %}" data-html2canvas-ignore="true">삭제</a>
+                                  <button id={% url 'posts:delete_message' message.id %} class="delete-btn" data-html2canvas-ignore="true">
+                                    삭제
+                                  </button>
                                   {% endif %}
                                 {% endif %}
                               </div>
@@ -252,6 +256,23 @@
       <div><a href="{% url 'tmies:detail_tmi_page' target_tmi.year target_tmi.tmi_origin.pk%}">내 친구의 TMI</a></div>
     </div>
     {% endif %}
+    
+  </body>
+  
+    <!--삭제 모달-->
+    <div class="modal__delete hidden">
+      <div class="modal__delete__overlay"></div>
+      <div class="modal__delete__content">
+        <span class="modal__delete__content__title">정말 삭제하시겠어요?</span>
+        <div class="modal__delete__content__description">
+          삭제한 메시지는 되돌릴 수 없어요.
+        </div>
+        <div class="modal__delete__content__btns">
+          <button class="modal__delete__cancel">취소</button>
+          <a href="" class="modal__delete__confirm">삭제</a>
+        </div>
+      </div>
+    </div>
 
 
     <script>
@@ -282,7 +303,26 @@
       const clip = () => {
         navigator.clipboard.writeText(window.location.href);
       }
+
+      //삭제 모달
+      const openButton = document.getElementsByClassName("delete-btn");
+      const modalDelete = document.querySelector(".modal__delete");
+      const cancelButton = modalDelete.querySelector(".modal__delete__cancel");
+      const deleteButton = modalDelete.querySelector(".modal__delete__confirm");
+
+      const openModalDelete = (e) => {
+        deleteButton.href = e.target.id;
+        modalDelete.classList.remove("hidden");
+      }
+      const cancelModalDelete = () => {
+        modalDelete.classList.add("hidden");
+      }
+
+      for (i=0; i<openButton.length; i++) {
+        openButton[i].addEventListener("click", openModalDelete);
+      }
+      cancelButton.addEventListener("click", cancelModalDelete);
     </script>
 
-  </body>
+
 {% endblock %}
