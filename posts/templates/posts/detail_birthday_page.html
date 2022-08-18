@@ -26,69 +26,76 @@
           {%endif%}
 
           {% if birthday_page.state == "waiting"%}
-            <div class="text">
-              <div class="text__title">
-                <div class="text__title__line">
-                  <h1 class="text__title--highlight">{{name}}</h1>
+            <div class="text--waiting">
+              <div class="text--waiting__title">
+                <div class="text--waiting__title__line">
+                  <h1 class="text--waiting__title--highlight">{{name}}</h1>
                   <h1>님의 생일까지</br></h1>
                 </div>
-                <div class="text__title__line">
-                  <h1 class="text__title--highlight">{{date_diff}}</h1>
+                <div class="text--waiting__title__line">
+                  <h1 class="highlight">{{date_diff}}</h1>
                   <h1>일 남았어요!</h1>
                 </div>
               </div>
               
-              <p class="text__description">
+              <p class="text--waiting__description">
                 생일 페이지는</br>생일 7일 전 부터 개설돼요.</br>조금만 기다려 주세요!
               </p>
             </div>
           {% else %}
             <!-- 디데이 -->
-            {% if birthday_page.state == "today" %}
-              <span>오늘 생일</span>
-            {% else %}
-              <span>D-{{ date_diff }}일</span>
-            {% endif %}
-            <!-- 케이크 -->
-            {% if messages.count >= 0 %}
-              <div>
-                {% if target == "초코" %}
-                  {% if messages.count <= 5 %}
-                  <img src="{% static 'img/초코1.png' %}">
-                  {% elif messages.count <= 10 %}
-                  <img src="{% static 'img/초코2.png' %}">
-                  {% elif messages.count <= 15 %}
-                  <img src="{% static 'img/초코3.png' %}">
-                  {% elif messages.count <= 20 %}
-                  <img src="{% static 'img/초코4.png' %}">
+            <div class="text--activate">
+              <span class="text--activate__date-diff">
+              {% if birthday_page.state == "today" %}
+                <h6 class="highlight">오늘 생일</h6>
+              {% else %}
+                <h6>생일까지</h6>
+                <div class="text--activate__date-diff__line">
+                  <h6 class="highlight">D-{{ date_diff }}</h6>
+                  <h6>일</h6>
+                </div>
+              {% endif %}
+              </span>
+              <!-- 케이크 -->
+              {% if messages.count >= 0 %}
+                <div>
+                  {% if target == "초코" %}
+                    {% if messages.count <= 5 %}
+                    <img src="{% static 'img\cake\cake-choco-01.png' %}">
+                    {% elif messages.count <= 10 %}
+                    <img src="{% static 'img\cake\cake-choco-02.png' %}">
+                    {% elif messages.count <= 15 %}
+                    <img src="{% static 'img\cake\cake-choco-03.png' %}">
+                    {% elif messages.count <= 20 %}
+                    <img src="{% static 'img\cake\cake-choco-04.png' %}">
+                    {% endif %}
+                  {% elif target == "딸기"%}
+                    {% if messages.count <= 5 %}
+                    <img src="{% static 'img\cake\cake-strawberry-01.png' %}">
+                    {% elif messages.count <= 10 %}
+                    <img src="{% static 'img\cake\cake-strawberry-02.png' %}">
+                    {% elif messages.count <= 15 %}
+                    <img src="{% static 'img\cake\cake-strawberry-03.png' %}">
+                    {% elif messages.count <= 20 %}
+                    <img src="{% static 'img\cake\cake-strawberry-04.png' %}">
+                    {% endif %}
+                  {% elif target == "치즈"%}
+                    {% if messages.count <= 5 %}
+                    <img src="{% static 'img\cake\cake-carrot-01.png' %}">
+                    {% elif messages.count <= 10 %}
+                    <img src="{% static 'img\cake\cake-carrot-02.png' %}">
+                    {% elif messages.count <= 15 %}
+                    <img src="{% static 'img\cake\cake-carrot-03.png' %}">
+                    {% elif messages.count <= 20 %}
+                    <img src="{% static 'img\cake\cake-carrot-04.png' %}">
+                    {% endif %}
                   {% endif %}
-                {% elif target == "딸기"%}
-                  {% if messages.count <= 5 %}
-                  <img src="{% static 'img/딸기1.png' %}">
-                  {% elif messages.count <= 10 %}
-                  <img src="{% static 'img/딸기2.png' %}">
-                  {% elif messages.count <= 15 %}
-                  <img src="{% static 'img/딸기3.png' %}">
-                  {% elif messages.count <= 20 %}
-                  <img src="{% static 'img/딸기4.png' %}">
-                  {% endif %}
-                {% elif target == "치즈"%}
-                  {% if messages.count <= 5 %}
-                  <img src="{% static 'img/치즈1.png' %}">
-                  {% elif messages.count <= 10 %}
-                  <img src="{% static 'img/치즈2.png' %}">
-                  {% elif messages.count <= 15 %}
-                  <img src="{% static 'img/치즈3.png' %}">
-                  {% elif messages.count <= 20 %}
-                  <img src="{% static 'img/치즈4.png' %}">
-                  {% endif %}
-                {% endif %}
-              </div>
-            {% endif %}
-            <p>{{ name }}님, 생일 축하드려요!</p>
-          {% endif %}
-              
-          <!-- 메시지 -->
+                </div>
+              {% endif %}
+              <p>{{ name }}님, 생일 축하드려요!</p>
+            </div>
+            
+            <!-- 메시지 -->
             <div>
               {% if messages %}
                 {% if birthday_page.state == "archive"%}
@@ -129,6 +136,9 @@
                 {% endif %}
               {% endif %}
             </div>
+          {% endif %}
+              
+
 
         </div>
       </div>
