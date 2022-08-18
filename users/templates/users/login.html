@@ -13,7 +13,6 @@
     <title>축마땅</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/settings.css' %}" />
     <link rel="stylesheet" href="{% static 'css/login.css' %}" />
   </head>
 
@@ -39,7 +38,10 @@
             <div class="login__social_login">
               <form action="{% provider_login_url 'kakao' %}" method="post">
                 {% csrf_token %}
-                <button type="submit"id="login__kakao"><img src="{% static 'img/kakao-logo.png' %}"><span class="kakao__text"> 카카오로 로그인</span></button>
+                  <button type="submit" id="login__kakao">
+                    <img src="{% static 'img/kakao-logo.png' %}">
+                    <span class="kakao__text"> 카카오로 로그인</span>
+                  </button>
               </form>
             <form action="{% provider_login_url 'naver' %}" method="post">
               {% csrf_token %}
