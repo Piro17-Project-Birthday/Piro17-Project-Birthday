@@ -7,7 +7,7 @@
 <body>
   <div class="content">
     <form
-      action="{% url 'posts:create_message' birthday_page.year birthday_page.id %}"
+      action="{% url 'posts:create_message' birthday_page.year birthday_page.pk %}"
       method="POST"
     >
       {% csrf_token %}

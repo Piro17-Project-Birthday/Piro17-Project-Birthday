@@ -1,0 +1,66 @@
+:root {
+  --div-main-color: #fdf8ef; /*아이보리*/
+  --div-sub-color: #8ebd5e; /*연두*/
+  --div-point-color: #ff574c; /*다홍*/
+  --div-dark-font-color: #2d3142;
+  --div-dark-opacity-font-color: rgba(45, 49, 66, 0.5);
+  --div-light-font-color: #ffffff;
+  --div-input-shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.content {
+  padding: 3rem 2rem;
+}
+
+#id_title--text {
+  font-weight: bold;
+  font-size: 1rem;
+}
+#id_req_photo--text {
+  font-weight: bold;
+  font-size: 1rem;
+}
+.photo_create--submit {
+  text-align: center;
+  border: 0px;
+  border-radius: 5px;
+  width: 100%;
+  color: var(--div-light-font-color);
+  background-color: var(--div-point-color);
+  font-weight: bold;
+  padding: 4px 0 4px 0px;
+  margin: 10% 0 0 0;
+  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+}
+
+#id_title {
+  border-radius: 5px;
+  border: 0px;
+  width: 100%;
+  margin: 0.5rem 0px 1rem 0px;
+  padding: 8px 0px 8px 5px;
+  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+}
+#id_req_photo {
+  border: 0px solid #ccc;
+  border-radius: 5px;
+  padding: 5px 10px;
+  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+  background-color: var(--div-light-font-color);
+  width: 70%;
+  margin: 0.5rem 0 1rem 0;
+}
+input::file-selector-button {
+  display: none;
+}
+
+#id_req_photo--button {
+  border: 1px solid;
+  background-color: var(--div-dark-opacity-font-color);
+  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+  cursor: pointer;
+  border-radius: 5px;
+  color: var(--div-light-font-color);
+  font-size: 12px;
+  padding: 5px 10px 5px 10px;
+}
