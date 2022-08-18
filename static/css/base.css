@@ -7,6 +7,8 @@
   --div-dark-opacity-font-color: rgba(45, 49, 66, 0.5);
   --div-light-font-color: #ffffff;
   --div-input-shadow-color: rgba(0, 0, 0, 0.1);
+  --div-strawberry-color:#FF7BA2;
+  --div-choco-color:#A57358;
 }
 
 @font-face {
@@ -185,9 +187,9 @@ nav {
   font-weight: 700;
   background-color: var(--div-point-color);
   color: var(--div-light-font-color);
-  border-radius: 10px;
+  border-radius: 1rem;
   border: 0px;
-  height: 2.3rem;
+  height: 3rem;
   text-align: center;
   font-size: 1rem;
   cursor: pointer;
@@ -215,9 +217,9 @@ nav {
   font-weight: 700;
   background-color: var(--div-point-color);
   color: var(--div-light-font-color);
-  border-radius: 10px;
+  border-radius: 1rem;
   border: 0px;
-  height: 2.3rem;
+  height: 3rem;
   text-align: center;
   width: 100%;
   font-size: 1rem;

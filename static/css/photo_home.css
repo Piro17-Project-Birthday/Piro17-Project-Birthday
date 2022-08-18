@@ -8,8 +8,9 @@
 }
 
 .text__description {
-    font-size: 1.25rem;
-    font-weight:500;
+    font-size: 0.875rem;
+    padding: 1.8rem;
+    padding-top: 0.5rem;
 }
 
 .images {
