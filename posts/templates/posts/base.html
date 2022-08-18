@@ -62,7 +62,7 @@
                 <div class="dropdown__opacity"></div>
                 <button onclick="dropdown_menu()" class="dropdown__btn--x">X</button>
 
-                <a href="{% url 'users:log_in'%}" class="dropdown__btn--login"><img src="{% static 'img/profile-icon.jpg' %}">
+                <a href="/login/?next={{ request.path }}" class="dropdown__btn--login"><img src="{% static 'img/profile-icon.jpg' %}">
                   로그인 하기 ></a>
                 <div class="dropdown-circles">
                   <span class="circle">●●●●●●●</span></div>
