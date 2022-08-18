@@ -1,6 +1,7 @@
 {% extends 'posts/base.html' %}
 {% block content %}
   {% load static%}
+  {% load socialaccount %}
   <head>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
@@ -243,9 +244,9 @@
     <!-- 축하 메시지 남기기 버튼-->
     {% if not is_owner %}
       {% if not birthday_page.state == "archive" %}
-      <a class="floating-btn" href="{% url 'posts:create_message' year pk %}">
-        <p class="floating-btn__text">축하 메시지 남기기</p>
-      </a>
+        <div class="floating-btn" id="login-btn">
+          <p class="floating-btn__text">축하 메시지 남기기</p>
+        </div>
       {% endif %}
     {% endif %}
 
@@ -270,6 +271,40 @@
         <div class="modal__delete__content__btns">
           <button class="modal__delete__cancel">취소</button>
           <a href="" class="modal__delete__confirm">삭제</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 로그인 모달-->
+    <div class="modal__login hidden">
+      <div class="modal__login__overlay"></div>
+      <div class="modal__login__content">
+        <span class="modal__login__content__title">로그인 하지 않고<br/>메시지를 남기시겠어요?</span>
+        <div class="modal__login__content__description">
+          로그인을 하면 비밀 메시지를<br/>남길 수 있고, 내가 남긴 메시지를<br/>수정하거나 삭제할 수 있어요.
+        </div>
+        <div class="modal__login__content__btns">
+          <div class="login__social_login">
+            <form action="{% provider_login_url 'kakao' %}" method="post">
+              {% csrf_token %}
+                <button type="submit" id="login__kakao">
+                  <img src="{% static 'img/kakao-logo.png' %}">
+                  <span class="kakao__text"> 카카오로 로그인</span>
+                </button>
+            </form>
+            <form action="{% provider_login_url 'naver' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" id="login__naver"><img src="{% static 'img/naver-logo.png' %}"><span class="naver__text"> 네이버로 로그인</span></button>
+            </form>
+            <form action="{% provider_login_url 'google' %}" method="post">
+              {% csrf_token %}
+              <button type="submit" id="login__google"><img src="{% static 'img/google-logo.png' %}"><span class="google__text"> 구글로 로그인</span></button>
+            </form>
+            <div class="login__no" id="login__no">
+              <a href="{% url 'posts:create_message' year pk %}" class="login__no__text">로그인 하지 않을래요</a>
+            </div>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -305,23 +340,40 @@
       }
 
       //삭제 모달
-      const openButton = document.getElementsByClassName("delete-btn");
+      const openButtonDelete = document.getElementsByClassName("delete-btn");
       const modalDelete = document.querySelector(".modal__delete");
-      const cancelButton = modalDelete.querySelector(".modal__delete__cancel");
-      const deleteButton = modalDelete.querySelector(".modal__delete__confirm");
+      const cancelButtonDelete = modalDelete.querySelector(".modal__delete__cancel");
+      const deleteButtonDelete = modalDelete.querySelector(".modal__delete__confirm");
 
       const openModalDelete = (e) => {
-        deleteButton.href = e.target.id;
+        deleteButtonDelete.href = e.target.id;
         modalDelete.classList.remove("hidden");
       }
       const cancelModalDelete = () => {
         modalDelete.classList.add("hidden");
       }
 
-      for (i=0; i<openButton.length; i++) {
-        openButton[i].addEventListener("click", openModalDelete);
+      for (i=0; i<openButtonDelete.length; i++) {
+        openButtonDelete[i].addEventListener("click", openModalDelete);
       }
-      cancelButton.addEventListener("click", cancelModalDelete);
+      cancelButtonDelete.addEventListener("click", cancelModalDelete);
+
+
+      //로그인 모달
+      const openButtonLogin = document.getElementById("login-btn");
+      const modalLogin = document.querySelector(".modal__login");
+      const closeButtonLogin = document.getElementById("login__no");
+
+      const openModalLogin = () => {
+        modalLogin.classList.remove("hidden");
+      }
+      const closeModalLogin = () => {
+        modalLogin.classList.add("hidden");
+      }
+      
+      openButtonLogin.addEventListener("click", openModalLogin);
+      closeButtonLogin.addEventListener("click", closeModalLogin);
+
     </script>
 
 

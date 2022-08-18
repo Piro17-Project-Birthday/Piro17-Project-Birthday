@@ -14,7 +14,7 @@
   margin: -9px 0px -11px 0px;
 }
 #login__google {
-  border-radius: 10px;
+  border-radius: 1rem;
   background-color: white;
   color: var(--div-dark-font-color);
   margin: 1rem 2rem;
@@ -28,7 +28,7 @@
   align-items: center;
 }
 #login__naver {
-  border-radius: 10px;
+  border-radius: 1rem;
   background-color: #03C75A;
   color: white;
   margin: 1rem 2rem;
@@ -42,7 +42,7 @@
   align-items: center;
 }
 #login__kakao {
-  border-radius: 10px;
+  border-radius: 1rem;
   background-color: #FDDC3F;
   color: #3a1d1d;
   margin: 1rem 2rem;
