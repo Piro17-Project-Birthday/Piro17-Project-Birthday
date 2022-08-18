@@ -20,10 +20,10 @@ def main(request):
         #birthday page가 이미 만들어졌다면
         if BirthdayPage.objects.filter(owner=request.user, year=next_year).exists() : #birthday page가 올해 page라면
             current_birthday_page = BirthdayPage.objects.get(owner=request.user, year=next_year)
-            return redirect(f"{current_birthday_page.year}/{current_birthday_page.id}") #해당 페이지로 이동한다
+            return redirect(f"{current_birthday_page.year}/{current_birthday_page.uuid}") #해당 페이지로 이동한다
         elif BirthdayPage.objects.filter(owner=request.user, year=today_year).exists():       #birthday page가 내년 page라면 (올해 생일이 이미 지났다면)
             current_birthday_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
-            return redirect(f"{current_birthday_page.year}/{current_birthday_page.id}")
+            return redirect(f"{current_birthday_page.year}/{current_birthday_page.uuid}")
     return render(request, "posts/main.html")
 
 def createBirthdayPage(request):
@@ -91,7 +91,7 @@ def createBirthdayPage(request):
                 photo_page.save()
                 
                 #만들어진 페이지로 redirect
-                return redirect(f"{birthday_page.year}/{birthday_page.id}")
+                return redirect(f"{birthday_page.year}/{birthday_page.uuid}")
             else :
                 return redirect('/')
         else :
@@ -200,10 +200,6 @@ def detailBirthdayPage(request,year,pk):
                     next_page.save()
                     tmi_page.save()
                     photo_page.save()
-                    
-                    print(3)
-                    print(3)
-                    print(3)
                         
                     
                     curr_page.state = "archive"
@@ -233,11 +229,6 @@ def detailBirthdayPage(request,year,pk):
                 else:
                     curr_page.state = "waiting"
                     curr_page.save()
-        # print(birthday_page.year)
-        # print(birthday_page.id)
-        # print(birthday_page.state)
-            
-# context 전달 다시
         
     selected_cake = birthday_page.owner.selected_cake
     
@@ -251,7 +242,7 @@ def detailBirthdayPage(request,year,pk):
     target_birth = get_object_or_404(BirthdayPage, year=year, pk=pk)
     target_photo = get_object_or_404(PhotoPage, year=year, pk=pk)
     target_tmi = get_object_or_404(TmiPage, year=year, pk=pk) #하단 메뉴용 타겟들
-           
+    
     context = {
         "messages" : messages,
         "name" : name,
@@ -303,7 +294,7 @@ def createMessage(request,year,pk):
                 if request.user.is_authenticated :
                     post.sender = request.user
                 post.save()
-                return redirect(f"/{birthday_page.year}/{birthday_page.id}")
+                return redirect(f"/{birthday_page.year}/{birthday_page.uuid}")
         context = {
             'birthday_page' : birthday_page,
             'form' : form,
@@ -314,12 +305,12 @@ def deleteMessage(request, pk):
     message = Message.objects.get(pk=pk)
     birthday_page = message.receiver
     message.delete()
-    return redirect(f"/{birthday_page.year}/{birthday_page.id}")
+    return redirect(f"/{birthday_page.year}/{birthday_page.uuid}")
 
 def mainMypage(request):
     if request.user.is_authenticated:
         curr_user = request.user
-        target_pages = BirthdayPage.objects.filter(owner=curr_user).order_by('-id')
+        target_pages = BirthdayPage.objects.filter(owner=curr_user).order_by('-uuid')
         archived_pages = BirthdayPage.objects.filter(owner=request.user,state="archive")
             
         context = {

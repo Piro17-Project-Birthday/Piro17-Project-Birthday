@@ -9,7 +9,7 @@
   </head>
 
   <body>
-    <form action="{% url 'photos:photo_create' photo_page.year photo_page.photo_origin.id %}" method="post" enctype="multipart/form-data">
+    <form action="{% url 'photos:photo_create' photo_page.year photo_page.photo_origin.pk %}" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <table>
         {{ form.as_p }}
