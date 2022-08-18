@@ -96,20 +96,18 @@ nav {
   background: var(--div-sub-color);
 }
 #dropdown_content a {
-  display: block;
+  display: flex;
+  align-items: flex-end;
   font-size: 16px;
-
   background-color: var(--div-sub-color);
   color: var(--div-light-font-color);
   text-decoration: none;
-  padding: 10px 36px;
-  margin: 96px 0px 0px 0px;
+  padding: 0rem 1.7rem;
+  margin: 6rem 0 2rem 0;
 }
 #dropdown_content a img {
-  height: 20%;
   width: 20%;
-  background-color: var(--div-sub-color);
-  margin: -11px 7px -8px 0px;
+  margin-right: 0.5rem;
 }
 
 .dropdown__btn--login {
@@ -151,31 +149,35 @@ nav {
 }
 
 #dropdown__background {
-  width: 100vh;
-  height: 76vh;
-  position: absolute;
+  width: 100%;
+  height: 100vh;
   left: 0px;
-  margin: 7px 0 0 0px;
   background: var(--div-main-color);
+  overflow: hidden;
 }
 .dropdown-circles {
   margin: 13px 0px -27px 0px;
 }
 .dropdown__opacity {
-  z-index: 1;
-  position: absolute;
-  background-color: black;
-  opacity: 50%;
-  width: 86%;
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%;
   height: 100%;
-  margin: 0px 0px 0px -194px;
+  position: fixed;
+  left: 0;
+  top: 0;
 }
 
-.circle {
-  color: var(--div-main-color);
-  font-size: 40px;
-  margin: 0px 0px 0px -3px;
-  letter-spacing: -8px;
+.dropdown__box {
+  position: relative;
+  background: var(--div-sub-color);
+}
+
+
+
+.dropdown__wave-pattern {
+  display:block;
+  width: 100%;
+  overflow: hidden;
 }
 
 .floating-btn {

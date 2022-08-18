@@ -25,28 +25,30 @@
               <a href="/">축마땅</a>
             </div>
             <div class="navbar_dropdown">
-              <div class="dropdown__opacity"></div>
               <button onclick="dropdown_menu()" class="dropdown__btn">
                 <i class="fa-solid fa-bars"></i>
               </button>
               <div style="display: none" id="dropdown_content">
-                <button onclick="dropdown_menu()" class="dropdown__btn--x">X</button>
-                {% if user.nickname %}
-                  <a href="{% url 'posts:main_mypage'%}"><img src="{% static 'img/profile-icon.jpg' %}">
-                    {{user.nickname}}</a>
-                {% else %}
-                  <a href="{% url 'posts:main_mypage'%}"><img src="{% static 'img/profile-icon.jpg' %}">
-                    {{user.username}}</a>
-                {% endif %}
-                <!-- 내페이지 링크 연결 -->
-                <div class="dropdown-circles">
-                  <span class="circle">●●●●●●●</span></div>
-                <div id="dropdown__background">
-                  <a href="{% url 'posts:main_mypage'%} " id="dropdown__mypage">마이페이지</a>
-                  <a href="#" id="dropdown__btn--service">1:1 문의하기</a>
-                  <a href="{% url 'users:log_out'%}" id="dropdown__btn--logout">로그아웃</a>
+                <div class="dropdown__opacity"></div>
+                <div class="dropdown__box">
+                  <button onclick="dropdown_menu()" class="dropdown__btn--x">X</button>
+                  {% if user.nickname %}
+                    <a href="{% url 'posts:main_mypage'%}"><img src="{% static 'img/icon/user.svg' %}">
+                      {{user.nickname}} 님</a>
+                  {% else %}
+                    <a href="{% url 'posts:main_mypage'%}"><img src="{% static 'img/icon/user.svg' %}">
+                      {{user.username}} 님</a>
+                  {% endif %}
+                  <!-- 내페이지 링크 연결 -->
+                  <img class="dropdown__wave-pattern" src="{% static 'img\wave-pattern-nav-bar.svg' %}">
+                  <div id="dropdown__background">
+                    <a href="{% url 'posts:main_mypage'%} " id="dropdown__mypage">마이페이지</a>
+                    <a href="#" id="dropdown__btn--service">1:1 문의하기</a>
+                    <a href="{% url 'users:log_out'%}" id="dropdown__btn--logout">로그아웃</a>
+                  </div>
                 </div>
               </div>
+              
             </div>
           </nav>
         {% else %}
@@ -60,12 +62,11 @@
               </button>
               <div style="display: none" id="dropdown_content">
                 <div class="dropdown__opacity"></div>
-                <button onclick="dropdown_menu()" class="dropdown__btn--x">X</button>
-
-                <a href="{% url 'users:log_in'%}" class="dropdown__btn--login"><img src="{% static 'img/profile-icon.jpg' %}">
+                <div class="dropdown__box">
+                  <button onclick="dropdown_menu()" class="dropdown__btn--x">X</button>
+                <a href="{% url 'users:log_in'%}" class="dropdown__btn--login"><img src="{% static 'img/icon/user.svg' %}">
                   로그인 하기 ></a>
-                <div class="dropdown-circles">
-                  <span class="circle">●●●●●●●</span></div>
+                  <img class="dropdown__wave-pattern" src="{% static 'img\wave-pattern-nav-bar.svg' %}">
                 <div id="dropdown__background">
                   {% comment %} <a href="{% url 'posts:create_birthday_page'%}" id="dropdown__btn--birthdaypage">생일 페이지 만들기</a> {% endcomment %}
                   <a href="#" id="dropdown__btn--service">1:1 문의하기</a>
