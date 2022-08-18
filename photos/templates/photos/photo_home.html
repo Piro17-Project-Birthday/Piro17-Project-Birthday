@@ -36,9 +36,9 @@
                     {% if is_owner or request.user == photo.photo_uploader %}
                         {% if not photo_page.state == "archive" %}
                             <p class="images__item__delete-btn">
-                                <a href="{% url 'photos:photo_delete' photo.id %}">
-                                    삭제
-                                </a>
+                                <button id={% url 'photos:photo_delete' photo.id %} class="delete-btn">
+                                  삭제
+                                </button>
                             </p>
                         {% endif %}
                     {% else %}
@@ -56,26 +56,50 @@
                 <div class="images--empty">
                     아직 남겨진 포토 방명록이 없어요.
                 </div>
-            {% endif %}
-      {% if not is_owner%}
+            {% endif %}  
+    </div>
+    {% if not is_owner%}
         {% if not photo_page.state == "archive"%}
-            
-            <a class="" href="{% url 'photos:photo_create' year pk %}">
-                <div class="floating-btn">
-                포토 방명록 남기기
-            </div>
-            </a>
-            
+              <a class="floating-btn" href="{% url 'photos:photo_create' year pk %}">
+                <div class="floating-btn__text">포토 방명록 남기기</div>
+              </a>          
         {% endif %}
       {% endif %}   
     </div>
+
+    {% if birthday_page.state == "upcoming" or birthday_page.state == "today" or birthday_page.state == "archive" or photo_page.state == "activate" or tmi_page.state == "activate"%}
+    <footer>
+      <div class="footer__style">
+      <a class"footer__message" href="{% url 'posts:detail_birthday_page' target_birth.year target_birth.owner.pk %}">축하메세지</a>
+      <a class"footer__photo" href="{% url 'photos:photo_home' target_photo.year target_photo.photo_origin.pk %}">포토방명록</a>
+      <a class"footer__tmi" href="{% url 'tmies:detail_tmi_page' target_tmi.year target_tmi.tmi_origin.pk%}">내 친구의 TMI</a>
+      </div>
+    </footer>
+    {% endif %}
+
   </body>
     {%endif %}
-    <!-- The Modal -->
-    <div id="modal__images" class="modal">
-        <span class="close"><img src="{% static 'img/icon/close.svg' %}" alt=""></span>
-        <img class="modal-content" id="image-original">
+    <!-- 이미지 크게 보기 모달 -->
+    <div id="modal__images">
+        <span class="modal__images--close"><img src="{% static 'img/icon/close.svg' %}" alt=""></span>
+        <img class="modal__images__content" id="image-original">
     </div>
+    
+    <!--삭제 모달-->
+    <div class="modal__delete hidden">
+      <div class="modal__delete__overlay"></div>
+      <div class="modal__delete__content">
+        <span class="modal__delete__content__title">정말 삭제하시겠어요?</span>
+        <div class="modal__delete__content__description">
+          삭제한 포토 방명록은 되돌릴 수 없어요.
+        </div>
+        <div class="modal__delete__content__btns">
+          <button class="modal__delete__cancel">취소</button>
+          <a href="" class="modal__delete__confirm">삭제</a>
+        </div>
+      </div>
+    </div>
+
     <script>
         //나무집게 랜덤 회전
         var randomList = ['-10', '-7', '-5', '5', '7', '10']
@@ -88,33 +112,46 @@
             pin[i].style.transform = 'rotate('+rand+'deg)';
         }
 
-        //모달
-        var modal = document.getElementById("modal__images");
+        //사진 클릭 시 크게 보기
+        var modalImages = document.getElementById("modal__images");
 
         // Get the image and insert it inside the modal - use its "alt" text as a caption
         var img = document.getElementsByClassName("images__item__image");
-        var modalImg = document.getElementById("image-original");
+        var imgOriginal = document.getElementById("image-original");
         for (i=0; i<img.length; i++) {
             img[i].onclick = function(){
-                modal.style.display = "block";
-                modalImg.src = this.src;
+                modalImages.style.display = "block";
+                imgOriginal.src = this.src;
             }
         }
         
-
-        // Get the <span> element that closes the modal
-        var span = document.getElementsByClassName("close")[0];
-
-        // When the user clicks on <span> (x), close the modal
+        var span = document.getElementsByClassName("modal__images--close")[0];
         span.onclick = function() {
-            modal.style.display = "none";
+            modalImages.style.display = "none";
+        }
+        var background = document.getElementById("modal__images");
+        background.onclick = function() {
+            modalImages.style.display = "none";
         }
 
-        var background = document.getElementsByClassName("modal")[0];
-        
-        background.onclick = function() {
-            modal.style.display = "none";
+        //삭제 모달
+        const openButton = document.getElementsByClassName("delete-btn");
+        const modalDelete = document.querySelector(".modal__delete");
+        const cancelButton = modalDelete.querySelector(".modal__delete__cancel");
+        const deleteButton = modalDelete.querySelector(".modal__delete__confirm");
+
+        const openModalDelete = (e) => {
+          deleteButton.href = e.target.id;
+          modalDelete.classList.remove("hidden");
         }
+        const cancelModalDelete = () => {
+          modalDelete.classList.add("hidden");
+        }
+
+        for (i=0; i<openButton.length; i++) {
+          openButton[i].addEventListener("click", openModalDelete);
+        }
+        cancelButton.addEventListener("click", cancelModalDelete);
 
     </script>
   {% endblock %}
