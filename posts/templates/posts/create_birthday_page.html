@@ -1,4 +1,9 @@
 {% extends 'posts/base.html' %} {% block content %} {% load static %}
+<script>
+  $.ajaxSetup({
+    headers: { "X-CSRFToken": "{{csrf_token}}" },
+  });
+</script>
 <head>
   <link rel="stylesheet" href="{% static 'css/create_birthday_page.css' %}" />
 </head>

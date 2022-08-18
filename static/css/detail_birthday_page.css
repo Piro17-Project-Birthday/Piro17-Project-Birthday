@@ -1,0 +1,38 @@
+.footer__style {
+  background-color: var(--div-light-font-color);
+  text-align: center;
+  margin: 0 0 0 0;
+}
+
+.footer__birthdaypage {
+  width: 30%;
+  padding: 0 5% 0 3%;
+  color: var(--div-point-color);
+  font-size: 14px;
+}
+
+.footer__photo {
+  width: 30%;
+  padding: 0 5% 0 5%;
+  font-size: 14px;
+}
+.footer__tmi {
+  width: 30%;
+  padding: 0 3% 0 5%;
+  font-size: 14px;
+}
+/* span:nth-child(n + 2) {
+  position: relative;
+  margin-left: 5px;
+  padding-left: 10px;
+}
+
+span:nth-child(n + 2)::after {
+  position: absolute;
+  left: 0;
+  top: 3px;
+  content: "";
+  width: 1px;
+  height: 15px;
+  background-color: var(--div-dark-opacity-font-color);
+} */
