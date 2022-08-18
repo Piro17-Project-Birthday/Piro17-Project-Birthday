@@ -313,7 +313,7 @@ def editMypage(request):
                 birthday_page.owner.selected_cake = form.cleaned_data['selected_cake']
                 birthday_page.owner.save()
                 
-                return redirect ('/mypage/main')
+                return redirect ('/')
             else :
                 return redirect('/')
         else:
