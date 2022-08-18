@@ -48,7 +48,7 @@ def photoCreate(request, year, pk):
             if request.user.is_authenticated :
                 photo.photo_uploader = request.user
             photo.save()
-            return redirect(f"/{photo_page.year}/{photo_page.photo_origin.id}/photo")
+            return redirect(f"/{photo_page.year}/{photo_page.photo_origin.uuid}/photo")
     context = {
         'photo_page' : photo_page,
         'form' : form,
@@ -59,4 +59,4 @@ def photoDelete(reqeust, pk):
     photo = Photo.objects.get(pk=pk)
     photo_page = photo.receiver
     photo.delete()
-    return redirect(f"/{photo_page.year}/{photo_page.photo_origin.id}/photo")
+    return redirect(f"/{photo_page.year}/{photo_page.photo_origin.uuid}/photo")

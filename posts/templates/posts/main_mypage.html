@@ -34,7 +34,7 @@
                 정보 수정
               </a>
               <div>
-                <form action="{% url 'posts:detail_birthday_page' target_page.year target_page.id %}" method="post">
+                <form action="{% url 'posts:detail_birthday_page' target_page.year target_page.pk %}" method="post">
                   {% csrf_token %}
                   <button class="mypage__go-to-my-birthday-page">
                     {{ target_page.year }}년
@@ -71,7 +71,7 @@
         {% if archived_pages %}
           {% for archived_page in archived_pages %}
             <div>
-              <form action="{% url 'posts:detail_birthday_page' archived_page.year archived_page.id %}" method="post">
+              <form action="{% url 'posts:detail_birthday_page' archived_page.year archived_page.pk %}" method="post">
                 {% csrf_token %}
                 <button class="mypage__go-to-past-birthday-page">
                   {{ archived_page.year }}년
