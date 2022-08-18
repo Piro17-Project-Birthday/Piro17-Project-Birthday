@@ -7,8 +7,7 @@
     <link rel="stylesheet" href="{% static 'css/detail_birthday_page.css' %}" />
   </head>
   <body>
-    <div class="content">
-      <div id="screenshot">
+    <div class="content" id="screenshot">
         <div>
           <!--아카이브 상태 표시-->
           {% if photo_page.state == "archive" %}
@@ -56,9 +55,17 @@
                 </div>
               {% endif %}
               </span>
+              <!-- 스크린샷 버튼 -->
+              {% if birthday_page.state != "waiting" and is_owner %}
+                <div>
+                  <button onclick="screenshot()" type="button" id="save">페이지 저장하기</button>
+                </div>
+              {% endif %}
+              
+            </div>
+            <div class="image--activate">
               <!-- 케이크 -->
               {% if messages.count >= 0 %}
-                <div>
                   {% if target == "초코" %}
                     {% if messages.count <= 5 %}
                     <img src="{% static 'img\cake\cake-choco-01.png' %}">
@@ -90,18 +97,22 @@
                     <img src="{% static 'img\cake\cake-carrot-04.png' %}">
                     {% endif %}
                   {% endif %}
-                </div>
               {% endif %}
+            </div>
+
+            <div class="text-main--activate">
               <p>{{ name }}님, 생일 축하드려요!</p>
             </div>
-            
+
             <!-- 메시지 -->
-            <div>
-              {% if messages %}
+            <div class="messages">
+              <img class="messages__wave-pattern" src="{% static 'img\wave-pattern.svg' %}">
+              <div class="messages__content">
+                {% if messages %}
                 {% if birthday_page.state == "archive"%}
                   <span> {{name}} 님의 지난 생일을 축하했던 메시지들이에요!<span>
                 {% else %}
-                  <span>{{ name }}님의 생일을 축하하는 메시지가 도착했어요!</span>
+                  <span>{{name}}님의 생일을 축하하는 메시지가 도착했어요!</span>
                 {% endif %}
                 
                 <ul>
@@ -135,7 +146,7 @@
                   <p>아직 메시지가 없습니다.</p>
                 {% endif %}
               {% endif %}
-            </div>
+              </div>
           {% endif %}
               
 
@@ -144,12 +155,7 @@
       </div>
     </div>
 
-    <!-- 스크린샷 버튼 -->
-    {% if birthday_page.state != "waiting" and is_owner %}
-      <div>
-        <button onclick="screenshot()" type="button" id="save">Save Screenshot</button>
-      </div>
-    {% endif %}
+    
     <!-- 페이지 링크 복사하기 버튼 -->
     {% if birthday_page.state != "archive" and birthday_page.state != "waiting" and is_owner %}
       <button class="floating-btn" onclick="clip();">

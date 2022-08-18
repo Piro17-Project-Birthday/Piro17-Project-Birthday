@@ -1,3 +1,8 @@
+.content{
+    padding: 3rem 0;
+    background: var(--div-main-color);
+}
+
 .archive {
     display: flex;
     justify-content: center;
@@ -38,10 +43,51 @@
     color:var(--div-point-color);
 }
 
+.text--activate{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+    padding-bottom: 4rem;
+}
+
+.text--activate button {
+    font-family:inherit;
+    font-weight:700;
+    color:var(--div-sub-color);
+    font-size:0.875rem;
+}
+
 .text--activate__date-diff {
     font-weight:700;
 }
 
 .text--activate__date-diff__line, .text--waiting__title__line{
     display:flex;
+}
+
+.image--activate{
+    text-align: center;
+    padding-bottom : 2rem;
+}
+
+.text-main--activate {
+    text-align:center;
+    font-size:1.5rem;
+    font-weight:700;
+    padding-bottom : 4rem;
+}
+
+.messages {
+
+}
+
+.messages__wave-pattern{
+    display:block;
+    width: 100%;
+    overflow: hidden;
+}
+
+.messages__content{
+    background-color:var(--div-strawberry-color);
+    padding:0 2rem;
 }
