@@ -25,11 +25,11 @@
               <a href="/">축마땅</a>
             </div>
             <div class="navbar_dropdown">
+              <div class="dropdown__opacity"></div>
               <button onclick="dropdown_menu()" class="dropdown__btn">
                 <i class="fa-solid fa-bars"></i>
               </button>
               <div style="display: none" id="dropdown_content">
-                <div class="dropdown__opacity"></div>
                 <button onclick="dropdown_menu()" class="dropdown__btn--x">X</button>
                 {% if user.nickname %}
                   <a href="{% url 'posts:main_mypage'%}"><img src="{% static 'img/profile-icon.jpg' %}">
@@ -78,8 +78,16 @@
       </div>
     </div>
     <script src="https://kit.fontawesome.com/a8a24f1fa9.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/static/js/dropdown_menu.js"></script>
-  </script>
+    <script>
+      function dropdown_menu() {
+        let click = document.getElementById("dropdown_content");
+        if (click.style.display === "none") {
+          click.style.display = "block";
+        } else {
+          click.style.display = "none";
+        }
+      }
+    </script>
 </body>
 
 </html>
