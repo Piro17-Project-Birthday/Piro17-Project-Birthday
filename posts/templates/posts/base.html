@@ -31,7 +31,9 @@
               <div style="display: none" id="dropdown_content">
                 <div class="dropdown__opacity"></div>
                 <div class="dropdown__box">
-                  <button onclick="dropdown_menu()" class="dropdown__btn--x">X</button>
+                  <button onclick="dropdown_menu()" class="dropdown__btn--x">
+                    <img src="{% static 'img/icon/close.svg' %}">
+                  </button>
                   {% if user.nickname %}
                     <a href="{% url 'posts:main_mypage'%}"><img src="{% static 'img/icon/user.svg' %}">
                       {{user.nickname}} 님</a>
@@ -63,7 +65,9 @@
               <div style="display: none" id="dropdown_content">
                 <div class="dropdown__opacity"></div>
                 <div class="dropdown__box">
-                  <button onclick="dropdown_menu()" class="dropdown__btn--x">X</button>
+                  <button onclick="dropdown_menu()" class="dropdown__btn--x">
+                    <img src="{% static 'img/icon/close.svg' %}">
+                  </button>
                 <a href="{% url 'users:log_in'%}" class="dropdown__btn--login"><img src="{% static 'img/icon/user.svg' %}">
                   로그인 하기 ></a>
                   <img class="dropdown__wave-pattern" src="{% static 'img\wave-pattern-nav-bar.svg' %}">

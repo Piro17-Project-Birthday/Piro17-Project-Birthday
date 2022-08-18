@@ -82,7 +82,7 @@ nav {
   background-color: var(--div-sub-color);
   color: var(--div-light-font-color);
   border: none;
-  margin: 0 0 0 185px;
+  margin: 0.5rem 0px 0px 11.5rem;
 }
 
 #dropdown_content {
