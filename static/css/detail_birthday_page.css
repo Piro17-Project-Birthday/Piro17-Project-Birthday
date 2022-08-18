@@ -4,7 +4,11 @@
     padding-bottom: 0;
 }
 
-.archive {
+.archive{
+    padding:0 2rem;
+}
+
+.archive__text {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,6 +52,10 @@
     color:var(--div-point-color);
 }
 
+.bold{
+    font-weight:700;
+}
+
 .text--activate{
     display: flex;
     justify-content: space-between;
@@ -57,9 +65,10 @@
 
 .text--activate button {
     font-family:inherit;
-    font-weight:700;
+    font-weight:400;
     color:var(--div-sub-color);
-    font-size:0.875rem;
+    font-size:0.75rem;
+    text-align: right;
 }
 
 .text--activate__date-diff {
@@ -82,10 +91,6 @@
     padding-bottom : 4rem;
 }
 
-.messages {
-
-}
-
 .messages__wave-pattern{
     display:block;
     width: 100%;
@@ -104,19 +109,47 @@
     padding-bottom:2rem;
 }
 
-
-.messages__content__message{
-    display:flex;
-}
-
 .message__nickname{
     font-weight:700;
+    display: flex;
+    align-items: center;
+}
+
+.message__nickname img{
+    padding-right:0.3rem;
 }
 
 .message__message{
-    font-weight:400;
+    font-weight:300;
+    margin-left: 4rem;
+}
+
+.message__nickname-delete-btn {
+    display:flex;   
+    justify-content: space-between;
+    padding: 0.7rem 0;
+    width: 100%;
 }
 
 .message__profile {
     margin-right: 1rem;
+    width: 3rem;
+    height: 3rem;
 }
+
+.messages__content hr {
+    border: 0px;
+    height: 0.05rem;
+    background-color: rgb(225,225,225,0.5);
+    margin-bottom: 2rem;
+}
+
+.message__content__top{
+    display:flex;
+    padding-bottom:1rem;
+}
+
+.messages__content__message{
+    width: 100%;
+}
+

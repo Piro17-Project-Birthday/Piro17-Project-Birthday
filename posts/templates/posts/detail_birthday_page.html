@@ -10,9 +10,10 @@
     <div class="content" id="screenshot">
         <div>
           <!--아카이브 상태 표시-->
-          {% if photo_page.state == "archive" %}
+          {% if birthday_page.state == "archive" %}
             <div class="archive">
-              {% if is_owner %}
+              <div class="archive__text">
+                {% if is_owner %}
                 <p>
                   {{name}}님의 {{year}}년 생일 페이지입니다.
                 </p>
@@ -21,6 +22,7 @@
                   {{name}}님의 생일이 지나서 메시지를 남길 수 없어요. 내년에도 축하해주실거죠?
                 </p>
               {%endif%}
+              </div>
             </div>
           {%endif%}
 
@@ -29,7 +31,11 @@
               <div class="text--waiting__title">
                 <div class="text--waiting__title__line">
                   <h1 class="text--waiting__title--highlight">{{name}}</h1>
-                  <h1>님의 생일까지</br></h1>
+                  <h1>님의 생일</br></h1>
+                </div>
+                <div class="text--waiting__title__line">
+                  <h1 class="highlight">{{birthday}}</h1>
+                  <h1>까지</h1>
                 </div>
                 <div class="text--waiting__title__line">
                   <h1 class="highlight">{{date_diff}}</h1>
@@ -45,20 +51,23 @@
             <!-- 디데이 -->
             <div class="text--activate">
               <span class="text--activate__date-diff">
+                <h6 class="highlight">{{birthday}}</h6>
               {% if birthday_page.state == "today" %}
                 <h6 class="highlight">오늘 생일</h6>
               {% else %}
-                <h6>생일까지</h6>
                 <div class="text--activate__date-diff__line">
-                  <h6 class="highlight">D-{{ date_diff }}</h6>
-                  <h6>일</h6>
+                  <h6>생일까지&nbsp</h6>
+                  <h6 class="bold">D-{{ date_diff }}</h6>
                 </div>
               {% endif %}
               </span>
               <!-- 스크린샷 버튼 -->
               {% if birthday_page.state != "waiting" and is_owner %}
                 <div>
-                  <button onclick="screenshot()" type="button" id="save">페이지 저장하기</button>
+                  <button onclick="screenshot()" type="button" id="save">
+                    <img src="{% static 'img\icon\capture.svg' %}" alt="">
+                    <h6>전체 캡쳐</h6>
+                  </button>
                 </div>
               {% endif %}
               
@@ -122,30 +131,71 @@
                       <!-- 메시지가 공개일 경우 모두에게 보여준다. -->
                       {% if not message.is_private %}
                       <div class="messages__content__message">
-                        <img class="message__profile" src="{{ message.profile_img }}" alt="">
-                        <div class="message__message">
-                          <h6 class="message__nickname">{{ message.nickname }}</h6>
-                          <h6 class="message__message">{{ message.message }}</h6>
+                        <div class="message__content__top">
+                          <img class="message__profile" src="{{ message.profile_img }}" alt="">
+                          <div class="message__nickname-delete-btn">
+                            <h6 class="message__nickname">{{ message.nickname }}</h6>
+                            <!-- 삭제 버튼 -->
+                            <div class="messages__delete-btn">
+                              {% if is_owner or request.user == message.sender %}
+                                {% if birthday_page.state != "archive" %}
+                                  <a href="{% url 'posts:delete_message' message.id %}" data-html2canvas-ignore="true">삭제</a>
+                                {% endif %}
+                              {% endif %}
+                            </div>
+                          </div>
                         </div>
+                          <h6 class="message__message">{{ message.message }}</h6>
                       </div>
-                        <!-- 삭제 버튼 -->
-                      <div class="messages__delete-btn">
-                        {% if is_owner or request.user == message.sender %}
-                        <a href="{% url 'posts:delete_message' message.id %}" data-html2canvas-ignore="true">삭제</a>
-                        {% endif %}
-                      </div>
+                      
                       <!-- 메시지가 비공개일 경우 메시지를 쓴 사람과 owner에게만 보여준다. -->
                         {% else %}
                         {% if is_owner or request.user == message.sender %}
-                          <img src="{{ message.profile_img }}" alt="">
-                          {{ message.nickname }} : {{ message.message }}
-                          <a href="{% url 'posts:delete_message' message.id %}" data-html2canvas-ignore="true">삭제</a>
+                        <div class="messages__content__message">
+                          <div class="message__content__top">
+                            <img class="message__profile" src="{{ message.profile_img }}" alt="">
+                            <div class="message__nickname-delete-btn">
+                              <h6 class="message__nickname">
+                                <img src="{% static 'img\icon\lock.svg' %}" alt="">
+                                {{ message.nickname }}
+                              </h6>
+                              <!-- 삭제 버튼 -->
+                              <div class="messages__delete-btn">
+                                {% if is_owner or request.user == message.sender %}
+                                  {% if birthday_page.state != "archive" %}
+                                    <a href="{% url 'posts:delete_message' message.id %}" data-html2canvas-ignore="true">삭제</a>
+                                  {% endif %}
+                                {% endif %}
+                              </div>
+                            </div>
+                          </div>
+                          <h6 class="message__message">{{ message.message }}</h6>
+                      </div>
                         {% else %}
-                          <img src="{{ message.profile_img }}" alt="">
-                          비공개 : 비밀 메시지입니다.
+                        <div class="messages__content__message">
+                          <div class="message__content__top">
+                            <img class="message__profile" src="{{ message.profile_img }}" alt="">
+                            <div class="message__nickname-delete-btn">
+                              <h6 class="message__nickname">
+                                <img src="{% static 'img\icon\lock.svg' %}" alt="">
+                                비공개
+                              </h6>
+                              <!-- 삭제 버튼 -->
+                              <div class="messages__delete-btn">
+                                {% if is_owner or request.user == message.sender %}
+                                  {% if birthday_page.state != "archive" %}
+                                    <a href="{% url 'posts:delete_message' message.id %}" data-html2canvas-ignore="true">삭제</a>
+                                  {% endif %}
+                                {% endif %}
+                              </div>
+                            </div>
+                          </div>
+                          <h6 class="message__message">속닥속닥... 비밀 메시지입니다.</h6>
+                      </div>
                         {% endif %}
                       {% endif %}
-                    </li>                                 
+                    </li> 
+                    <hr/>                                
                   {% endfor %}
                 </ul>
 
