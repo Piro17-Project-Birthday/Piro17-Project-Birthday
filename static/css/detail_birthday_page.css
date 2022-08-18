@@ -1,7 +1,7 @@
 .content{
     padding: 3rem 0;
     background: var(--div-main-color);
-    padding-bottom: 0;
+    padding-bottom: 5rem;
 }
 
 .archive{
@@ -227,4 +227,11 @@
 
 .choco-text{
     color:var(--div-choco-color);
+}
+
+.messages--empty{
+    text-align:center;
+    font-size:1rem;
+    font-weight:700;
+    color:rgba(255, 255, 255, 0.5);
 }

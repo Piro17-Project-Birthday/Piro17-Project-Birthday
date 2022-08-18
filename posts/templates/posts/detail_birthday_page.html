@@ -211,7 +211,12 @@
 
               {% else %}
                 {% if not birthday_page.state == "waiting"%}
-                  <p>아직 메시지가 없습니다.</p>
+                  <p class="messages--empty">아직 메시지가 없어요.</p>
+                  {% if is_onwer %}
+                    <p class="messages--empty">페이지 링크 복사하기를 눌러 친구들에게 공유해보세요.</p>
+                  {% else %}
+                    <p class="messages--empty">가장 먼저 축하 메시지를 남겨보세요.</p>
+                  {% endif %}
                 {% endif %}
               {% endif %}
               </div>
