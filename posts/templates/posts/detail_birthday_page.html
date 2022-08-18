@@ -26,8 +26,22 @@
           {%endif%}
 
           {% if birthday_page.state == "waiting"%}
-            <p>{{ name }}님의 생일이 {{date_diff}}일 남았네요!</p>
-            <p>페이지는 생일 7일 전 부터 개설되어요. 조금만 기다려 주세요.</p>
+            <div class="text">
+              <div class="text__title">
+                <div class="text__title__line">
+                  <h1 class="text__title--highlight">{{name}}</h1>
+                  <h1>님의 생일까지</br></h1>
+                </div>
+                <div class="text__title__line">
+                  <h1 class="text__title--highlight">{{date_diff}}</h1>
+                  <h1>일 남았어요!</h1>
+                </div>
+              </div>
+              
+              <p class="text__description">
+                생일 페이지는</br>생일 7일 전 부터 개설돼요.</br>조금만 기다려 주세요!
+              </p>
+            </div>
           {% else %}
             <!-- 디데이 -->
             {% if birthday_page.state == "today" %}
@@ -110,7 +124,9 @@
                 </ul>
 
               {% else %}
-                <p>아직 메시지가 없습니다.</p>
+                {% if not birthday_page.state == "waiting"%}
+                  <p>아직 메시지가 없습니다.</p>
+                {% endif %}
               {% endif %}
             </div>
 
@@ -118,22 +134,25 @@
       </div>
     </div>
 
-
-    <div>
-      <button onclick="screenshot()" type="button" id="save">Save Screenshot</button>
-    </div>
-
-    <div>
-      <button onclick="clip();">링크복사</button>
-    </div>
+    <!-- 스크린샷 버튼 -->
+    {% if birthday_page.state != "waiting" and is_owner %}
+      <div>
+        <button onclick="screenshot()" type="button" id="save">Save Screenshot</button>
+      </div>
+    {% endif %}
+    <!-- 페이지 링크 복사하기 버튼 -->
+    {% if birthday_page.state != "archive" and birthday_page.state != "waiting" and is_owner %}
+      <button class="floating-btn" onclick="clip();">
+        <p class="floating-btn__text">페이지 링크 복사하기</p>
+      </button>
+    {% endif %}
 
     <!-- 축하 메시지 남기기 버튼-->
-    <hr>
     {% if not is_owner %}
       {% if not birthday_page.state == "archive" %}
-      <div>
-        <a href="{% url 'posts:create_message' year pk %}">축하 메시지 남기기</a>
-      </div>
+      <a class="floating-btn" href="{% url 'posts:create_message' year pk %}">
+        <p class="floating-btn__text">축하 메시지 남기기</p>
+      </a>
       {% endif %}
     {% endif %}
 

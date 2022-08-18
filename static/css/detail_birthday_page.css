@@ -1,0 +1,43 @@
+.archive {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Spoqa Han Sans Neo';
+    font-weight: 700;
+    background-color: white;
+    color: var(--div-dark-opacity-font-color);
+    border-radius: 10px;
+    border: 0px;
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom:3rem;
+}
+
+.archive p{
+    padding:1rem;
+}
+
+.text__title  {
+    font-size:1.5rem;
+    font-weight:700;
+    line-height: 2rem;
+}
+
+.text > * {
+    padding-bottom: 1rem;
+}
+
+.text__description {
+    font-size: 1.25rem;
+    font-weight:500;
+}
+
+.text__title--highlight{
+    color:var(--div-point-color);
+}
+
+.text__title__line{
+    display:flex;
+}
