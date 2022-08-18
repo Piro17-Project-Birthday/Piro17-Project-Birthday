@@ -47,10 +47,11 @@
               placeholder="따뜻한 축하의 마음을 전해주세요."
             ></textarea>
           </p>
+          {% if request.user.is_authenticated%}
           <label for="id_is_private" class="create_message--private"
-            >비밀 메세지</label
-          >
+            >비밀 메세지</label>
           <input type="checkbox" name="is_private" id="id_is_private" />
+          {% endif %}
         </form>
       </table>
       {% csrf_token %}
