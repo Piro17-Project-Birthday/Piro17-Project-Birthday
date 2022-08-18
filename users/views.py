@@ -32,10 +32,10 @@ class LoginView(View):
                 login(request, user)
                 if BirthdayPage.objects.filter(owner=request.user, year=next_year).exists() : #birthday page가 이미 만들어졌다면
                     current_birthday_page = BirthdayPage.objects.get(owner=request.user, year=next_year)
-                    return redirect(f"/{current_birthday_page.year}/{current_birthday_page.id}") #해당 페이지로 이동한다
+                    return redirect(f"/{current_birthday_page.year}/{current_birthday_page.uuid}") #해당 페이지로 이동한다
                 elif BirthdayPage.objects.filter(owner=request.user, year=today_year).exists():
                     current_birthday_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
-                    return redirect(f"/{current_birthday_page.year}/{current_birthday_page.id}")
+                    return redirect(f"/{current_birthday_page.year}/{current_birthday_page.uuid}")
             return render(request, "./posts/main.html")
 
         return render(request, "./users/login.html", {"form": form})

@@ -1,7 +1,9 @@
 from django.db import models
 from users.models import User
+import uuid
 
 class BirthdayPage(models.Model):
+    uuid = models.UUIDField(default = uuid.uuid4, primary_key=True, editable=False)
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="owner")
     year = models.IntegerField(null=True)
     state = models.CharField(null=True, max_length=20)
