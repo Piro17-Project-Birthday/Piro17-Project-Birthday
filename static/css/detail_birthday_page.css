@@ -92,7 +92,6 @@
 }
 
 .text-main--activate h1 {
-    color: var(--div-strawberry-color);
     animation: bounce-top 1s both;
 }
 
@@ -160,8 +159,15 @@
 }
 
 .messages__content{
-    background-color:var(--div-strawberry-color);
     padding:3rem 2rem;
+}
+
+.strawberry{
+    background-color:var(--div-strawberry-color);
+}
+
+.choco{
+    background-color:var(--div-choco-color);
 }
 
 .messages__content li {
@@ -215,3 +221,10 @@
     width: 100%;
 }
 
+.strawberry-text {
+    color:var(--div-strawberry-color);
+}
+
+.choco-text{
+    color:var(--div-choco-color);
+}

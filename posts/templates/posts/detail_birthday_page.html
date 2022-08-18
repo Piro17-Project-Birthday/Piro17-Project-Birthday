@@ -110,14 +110,23 @@
             </div>
 
             <div class="text-main--activate">
-              <h1>{{ name }}님, 생일 축하드려요!</h1>
+              {% if target == "딸기" %}
+              <h1 class="strawberry-text">{{ name }}님, 생일 축하드려요!</h1>
+              {% elif target == "초코" %}
+              <h1 class="choco-text">{{ name }}님, 생일 축하드려요!</h1>
+              {% endif %}
               <h6>소중한 생일을 맞이한 {{name}}님에게<br/>따뜻한 축하의 메시지를 남겨주세요.</h6>
             </div>
 
             <!-- 메시지 -->
             <div class="messages">
-              <img class="messages__wave-pattern" src="{% static 'img\wave-pattern.svg' %}">
-              <div class="messages__content">
+              {% if target == "딸기" %}
+                <img class="messages__wave-pattern" src="{% static 'img\wave-pattern-strawberry.svg' %}">
+                <div class="messages__content strawberry">
+              {% elif target == "초코"%}
+                <img class="messages__wave-pattern" src="{% static 'img\wave-pattern-choco.svg' %}">
+                <div class="messages__content choco">
+              {% endif %}
                 {% if messages %}
                 <!--
                 {% if birthday_page.state == "archive"%}
