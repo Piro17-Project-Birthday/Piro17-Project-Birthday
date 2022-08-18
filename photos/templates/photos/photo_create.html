@@ -1,23 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+{% extends 'posts/base.html' %} {% block content %}
 
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/photo_create.css' %}" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>포토 업로드</title>
   </head>
 
   <body>
-    <form action="{% url 'photos:photo_create' photo_page.year photo_page.photo_origin.pk %}" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      <table>
-        {{ form.as_p }}
-      </table>
-      <div>
-        <input type="submit" value="제출"/>
-      </div>
-    </form>
+    <div class="content">
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input
+          type="hidden"
+          name="csrfmiddlewaretoken"
+          value="fEvBAjDqYTbT0g2TO8Qa36V8uOODaegknvhClSlrEcFobmhnqrFseu2keYaVllMC"
+        />
+        {% csrf_token %}
+        <p>
+          <div class="filebox">
+          <span id="id_req_photo--text"
+            >업로드할 사진을 골라주세요.<span>
+              
+              
+          <div>
+          <label for="id_req_photo" id="id_req_photo--button">파일 업로드</label>
+              
+          <input
+            type="file"
+            name="req_photo"
+            accept="image/*"
+            required=""
+            id="id_req_photo"
+          />
+          </div>
+          </div>
+        </p>
+        {% csrf_token %}
+        <p>
+          <label for="id_title" id="id_title--text"
+            >한줄 소개를 작성해 주세요.</label
+          >
+          <input
+            type="text"
+            name="title"
+            maxlength="50"
+            required=""
+            id="id_title"
+          />
+        </p>
+        
+        <div>
+          <input type="submit" class="photo_create--submit" value="제출" />
+        </div>
+      </form>
+    </div>
   </body>
-
 </html>
+{% endblock %}
