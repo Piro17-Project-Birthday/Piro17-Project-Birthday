@@ -1,6 +1,7 @@
 .content{
     padding: 3rem 0;
     background: var(--div-main-color);
+    padding-bottom: 0;
 }
 
 .archive {
@@ -28,6 +29,10 @@
     font-size:1.5rem;
     font-weight:700;
     line-height: 2rem;
+}
+
+.text--waiting {
+    padding:0 2rem;
 }
 
 .text--waiting > * {
@@ -89,5 +94,29 @@
 
 .messages__content{
     background-color:var(--div-strawberry-color);
-    padding:0 2rem;
+    padding:3rem 2rem;
+}
+
+.messages__content li {
+    display: flex;
+    justify-content: space-between;
+    color:var(--div-light-font-color);
+    padding-bottom:2rem;
+}
+
+
+.messages__content__message{
+    display:flex;
+}
+
+.message__nickname{
+    font-weight:700;
+}
+
+.message__message{
+    font-weight:400;
+}
+
+.message__profile {
+    margin-right: 1rem;
 }
