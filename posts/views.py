@@ -116,32 +116,12 @@ def detailBirthdayPage(request,year,pk):
 
     birthday_month = birthday_page.owner.birthday.month #생일자의 생일 월
     birthday_day = birthday_page.owner.birthday.day #생일자의 생일 일
-    # today = datetime.now().date() #현재 날짜
-    # today_year = today.year #현재 년도
 
     birthday_thisyear = datetime.strptime(str(today_year)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #올해 생일
     birthday = birthday_thisyear #생일은 올해 생일로 초기화한다
     date_diff = abs((today-birthday).days) 
-    
-    # if birthday_thisyear < today : #올해 생일이 이미 지났다면
-    #     birthday = datetime.strptime(str(today_year+1)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #생일을 내년 생일로 한다
-    #     date_diff = abs((today-birthday).days)
-    #     if date_diff <= 7: #생일이 7일 이내로 남았다면
-    #         birthday_state = "upcoming"
-    #     else :
-    #         birthday_state = "waiting" 
-    # else : #올해 생일이 아직 오지 않았다면
-    #     if date_diff == 0 : #생일이 오늘이라면
-    #         birthday_state = "today"
-    #     elif date_diff <= 7: #생일이 7일 이내로 남았다면
-    #         birthday_state = "upcoming"
-    #     else : #생일이 7일 넘게 남았다면
-    #         birthday_state = "waiting"
         
     #생일이 자정이 지나 끝나면 비활성화
-    print(birthday_thisyear)
-    print(today)
-    print(birthday_thisyear >= today)
     if birthday_thisyear >= today :
         curr_page = birthday_page
         tmi_page = TmiPage.objects.get(tmi_origin=curr_page)
