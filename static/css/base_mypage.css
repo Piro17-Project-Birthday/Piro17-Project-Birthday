@@ -64,6 +64,15 @@ nav {
   display: flex;
   justify-content: space-between;
   background-color: white;
+  align-items: center;
+}
+
+.nav__left{
+  padding: 1.5rem 2rem;
+}
+
+.nav__right{
+  padding-right:4rem;
 }
 
 .nav__left a {
