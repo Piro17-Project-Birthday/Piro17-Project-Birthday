@@ -2,7 +2,6 @@
 .content{
     padding: 3rem 0;
     background: var(--div-main-color);
-    padding-bottom: 5rem;
 }
 .footer__style {
   background-color: var(--div-light-font-color);
@@ -167,6 +166,7 @@
 .messages__content{
     padding:3rem 2rem;
     padding-top: 1.5rem;
+    padding-bottom: 10rem;
 }
 
 .strawberry{
