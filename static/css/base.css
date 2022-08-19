@@ -7,8 +7,8 @@
   --div-dark-opacity-font-color: rgba(45, 49, 66, 0.5);
   --div-light-font-color: #ffffff;
   --div-input-shadow-color: rgba(0, 0, 0, 0.1);
-  --div-strawberry-color:#FF7BA2;
-  --div-choco-color:#A57358;
+  --div-strawberry-color: #ff7ba2;
+  --div-choco-color: #a57358;
 }
 
 @font-face {
@@ -55,8 +55,8 @@ body {
   overscroll-behavior-y: none;
 }
 
-.content{
-  padding:3rem 2rem;
+.content {
+  padding: 3rem 2rem;
   padding-bottom: 10rem;
 }
 
@@ -204,9 +204,9 @@ nav {
 .floating-btn__text {
   width: max-content;
 }
-@media screen and (min-width:414px) {
+@media screen and (min-width: 414px) {
   .floating-btn {
-    width:23.5rem;
+    width: 23.5rem;
   }
 }
 
@@ -227,4 +227,3 @@ nav {
   cursor: pointer;
   box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
 }
-
