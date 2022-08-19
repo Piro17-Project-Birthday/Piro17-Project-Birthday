@@ -4,7 +4,9 @@
 {% endblock %}
 {% block content %}
   {% load static%}
-
+  <head>
+    <link rel="stylesheet" href="{% static 'css/detail_tmi_page.css' %}"/>
+  </head>
   <body>
     {% if tmi_page.state == "deactivate" %}
       <div>
@@ -71,7 +73,7 @@
         <a class="footer__birthdaypage" href="{% url 'posts:detail_birthday_page' target_birth.year target_birth.pk %}">축하메세지</a>
         <a class="footer__photo" href="{% url 'photos:photo_home' target_photo.year target_photo.photo_origin.pk %}">포토방명록</a>
         <a class="footer__tmi" href="{% url 'tmies:detail_tmi_page' target_tmi.year target_tmi.tmi_origin.pk%}">내 친구의 TMI</a>
-      </div>
+        </div>
     </footer>
     {% endif %}
 
