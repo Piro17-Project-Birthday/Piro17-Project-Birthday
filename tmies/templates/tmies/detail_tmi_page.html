@@ -21,22 +21,23 @@
         <div>
           <span class="detail_tmi--name">{{ name }}</span>
           <span class="detail_tmi--name--sub">님의
-          {{ year }}년 TMI 쌓기 페이지입니다</span>
+          {{ year }}년 내 친구의 TMI 페이지입니다</span>
         </div>
       {% else %}
         
-        <div class="detail_tmi--title">
-          <span class="detail_tmi--name">{{ name }}</span>
-          <span class="detail_tmi--name--sub">님에 대한 <div></div>
-            TMI는 무엇이 있나요?</span>
-        </div>
+      <div class="text">
+        <h1 class="text__title">내 친구의 TMI</h1>
+        <p class="text__description">
+          {{name}}님에 대한 TMI는 무엇이 있나요?
+        </p>
+      </div>
       {% endif %}
 
       {% if not is_owner %}
         {% if not tmi_page.state == "archive"%}
           <div>
               <a class= "floating-btn" id="login-btn">
-                <div class="floating-btn__text">TMI 남기러가기</div>
+                <div class="floating-btn__text">내 친구의 TMI 남기기</div>
               </a>
           </div>
         {% endif %}

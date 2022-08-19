@@ -42,23 +42,19 @@ footer {
     padding: 3rem 2rem;
   }
 
-.detail_tmi--title{
-    margin: 0px 0px 0.5rem 0;
+.text__title {
+    font-size:1.5rem;
+    font-weight:700;
 }
 
-.detail_tmi--name{
-    font-weight: bold;
-    font-size: 20px;
-    letter-spacing: 1px;
-    color: var(--div-point-color);
-}  
-
-.detail_tmi--name--sub{
-    font-weight: bold;
-    font-size: 20px;
-    letter-spacing: 1px;
-    color: var(--div-dark-font-color);
+.text > * {
+    padding-bottom: 1rem;
 }
+
+.text__description {
+    padding-top: 0.5rem;
+}
+
 .detail_tmi--submit{
     display: flex;
     justify-content: center;
