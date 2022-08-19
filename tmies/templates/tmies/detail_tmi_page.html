@@ -35,10 +35,9 @@
       {% if not is_owner %}
         {% if not tmi_page.state == "archive"%}
           <div>
-            
-              <a class= "floating-btn" href="{% url 'tmies:create_tmi_message' year pk %}">
-                <div class="floating-btn__text">TMI 남기러가기</div></a>
-            
+              <a class= "floating-btn" id="login-btn">
+                <div class="floating-btn__text">TMI 남기러가기</div>
+              </a>
           </div>
         {% endif %}
       {% endif %}
@@ -82,6 +81,34 @@
     </footer>
     {% endif %}
 
+<!-- 로그인 모달-->
+<div class="modal__login hidden">
+  <div class="modal__login__overlay"></div>
+  <div class="modal__login__content">
+    <span class="modal__login__content__title">로그인 하지 않고<br/>메시지를 남기시겠어요?</span>
+    <div class="modal__login__content__description">
+      <h6>로그인을 하지 않으면&nbsp</h6> 
+      <div class="description__line">
+        <h6>내가 남긴&nbsp</h6>
+        <h6>TMI를 &nbsp</h6>
+      </div>
+      <h6 class="bold">삭제할 수 없어요.</h6>
+    </div>
+    <div class="modal__login__content__btns">
+      <div class="login__social_login">
+        <div class="login__yes">
+          <a href="/login/?next={{ request.path }}" class="login__yes__text">소셜 로그인 하러가기</a>
+        </div>
+        <div class="login__no" id="login__no">
+          <a href="{% url 'tmies:create_tmi_message' year pk %}" class="login__no__text">로그인 없이 남기기</a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+
     <script>
       const strip = (string) => {
         return string.replace(/^\s+|\s+$/g, '');
@@ -108,6 +135,27 @@
 
         element.innerHTML = `${count}`;
       }
+
+      //로그인 모달
+      const openButtonLogin = document.getElementById("login-btn");
+      const modalLogin = document.querySelector(".modal__login");
+      const closeButtonLogin = document.getElementById("login__no");
+
+      const openModalLogin = () => {
+        modalLogin.classList.remove("hidden");
+      }
+      const closeModalLogin = () => {
+        modalLogin.classList.add("hidden");
+      }
+      
+      openButtonLogin.addEventListener("click", openModalLogin);
+      closeButtonLogin.addEventListener("click", closeModalLogin);
+
+      const background_login = document.getElementsByClassName("modal__login__overlay")[0]
+      background_login.onclick = function () {
+        modalLogin.classList.add("hidden");
+      }
     </script>
+    
   </body>
 {% endblock %}
