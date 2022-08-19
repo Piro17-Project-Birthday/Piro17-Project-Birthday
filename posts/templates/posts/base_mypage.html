@@ -18,17 +18,24 @@
       <div class="screen">
         <nav>
           <div class="nav__left">
-            <a onclick="goBack();">&lt;</a>
+            <a onclick="goBack();">
+              <img src="{% static 'img\icon\chevron-left.svg' %}" alt="">
+            </a>
           </div>
           <div class="nav__middle">
-            <a href="{% url 'posts:main_mypage' %}">마이페이지</a>
+              <span>
+                {% if curr_page == "edit" %}
+                  정보 수정
+                {% else %}
+                  마이페이지
+                {% endif %}
+              </span>
           </div>
           <div class="nav__right"></div>
         </nav>
         {% block content %}{% endblock %}
       </div>
     </div>
-    <script src="https://kit.fontawesome.com/a8a24f1fa9.js" crossorigin="anonymous"></script>
     <script>
       function goBack() {
         window

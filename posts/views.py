@@ -292,11 +292,12 @@ def mainMypage(request):
         curr_user = request.user
         target_pages = BirthdayPage.objects.filter(owner=curr_user).order_by('-uuid')
         archived_pages = BirthdayPage.objects.filter(owner=request.user,state="archive")
-            
+        curr_page = "main"
         context = {
             "curr_user": curr_user,
             "target_pages": target_pages,
             "archived_pages": archived_pages,
+            "curr_page" : curr_page,
         }
         return render(request, 'posts/main_mypage.html', context=context)
     else:
@@ -318,8 +319,10 @@ def editMypage(request):
                 return redirect('/')
         else:
             form = EditMyPageForm(instance=request.user)
+            curr_page = "edit"
             context={
                 'form':form,
+                "curr_page" : curr_page,
             }
             return render(request, 'posts/edit_mypage.html', context=context)
     else :
