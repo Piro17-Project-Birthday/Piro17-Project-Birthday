@@ -288,8 +288,8 @@
         <div class="modal__login__content__description">
           <div class="description__line">
             <h6>로그인을 하면&nbsp</h6> 
-            <h6 class="bold">비밀 메시지를&nbsp</h6>
-            <h6>남길 수 있고,</h6>
+            <h6 class="bold">비밀 메시지</h6>
+            <h6>를 남길 수 있고,</h6>
           </div>
           <div class="description__line">
             <h6>내가 남긴 메시지를&nbsp</h6>
@@ -303,7 +303,7 @@
               <a href="{% url 'users:log_in'%}" class="login__yes__text">소셜 로그인 하러가기</a>
             </div>
             <div class="login__no" id="login__no">
-              <a href="{% url 'posts:create_message' year pk %}" class="login__no__text">로그인 하지 않을래요</a>
+              <a href="{% url 'posts:create_message' year pk %}" class="login__no__text">로그인 없이 메시지 남기기</a>
             </div>
           </div>
           
@@ -394,6 +394,11 @@
       
       openButtonLogin.addEventListener("click", openModalLogin);
       closeButtonLogin.addEventListener("click", closeModalLogin);
+
+      const background = document.getElementsByClassName("modal__login__overlay")[0]
+      background.onclick = function () {
+        modalLogin.classList.add("hidden");
+      }
 
     </script>
 
