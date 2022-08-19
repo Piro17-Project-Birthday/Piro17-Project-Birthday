@@ -13,11 +13,10 @@
 }
 
 .create__name__text {
-  margin: 0 0 0.5rem 0;
   font-weight: bold;
 }
 .create__birthday__text {
-  margin: 1rem 0 0.5rem 0;
+  margin: 1rem 0 0 0 0;
   font-weight: bold;
 }
 .create__cake__text {
@@ -69,4 +68,28 @@
   box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
   border-radius: 1rem;
   font-family: "Spoqa Han Sans Neo";
+  color: var(--div-dark-opacity-font-color);
+  margin-top: 0.5rem;
+}
+
+.create__birthday__sub-text{ 
+  color: var(--div-point-color);
+  font-size: 12px;
+  margin-bottom:1rem;
+}
+
+.archive__text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Spoqa Han Sans Neo';
+  font-weight: 700;
+  color: var(--div-dark-opacity-font-color);
+  border-radius: 10px;
+  border: 0px;
+  text-align: center;
+  width: 100%;
+  font-size: 0.8rem;
+  cursor: pointer;
+  margin-bottom:2rem;
 }

@@ -9,6 +9,16 @@
 </head>
 <body>
   <div class="content">
+    
+    <div class="archive">
+      <div class="archive__text">
+        <p>
+          생일을 제외한 정보는 마이페이지에서 수정할 수 있어요.
+        </p>
+      </div>
+    </div>
+    
+
     <form action="/create" method="POST" class="create_birthday_page__form">
       {% csrf_token %}
       <div class="create__name">
@@ -18,7 +28,8 @@
 
       </div>
       <div class="create__birthday">
-        <div class="create__birthday__text">생일을 알려주세요.</div>
+        <span class="create__birthday__text">생일을 알려주세요.</span>
+        <span class="create__birthday__sub-text">수정이 불가해요</span>
         <input type="date" name="birthday" required="" id="id_birthday">
     </div>
       <div class="create__cake">

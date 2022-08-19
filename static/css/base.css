@@ -30,6 +30,10 @@ body {
   line-height: 1.5rem;
 }
 
+input::placeholder{
+  color: var(--div-dark-opacity-font-color);
+}
+
 ::-webkit-scrollbar {
   display: none;
 }
