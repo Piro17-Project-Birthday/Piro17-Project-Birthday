@@ -1,0 +1,53 @@
+:root {
+    --div-main-color: #fdf8ef; /*아이보리*/
+    --div-sub-color: #8ebd5e; /*연두*/
+    --div-point-color: #ff574c; /*다홍*/
+    --div-dark-font-color: #2d3142;
+    --div-dark-opacity-font-color: rgba(45, 49, 66, 0.5);
+    --div-light-font-color: #ffffff;
+    --div-input-shadow-color: rgba(0, 0, 0, 0.1);
+  }
+
+
+.content {
+    padding: 3rem 2rem;
+  }
+
+#id_content{
+  resize: none;
+  border-radius: 1rem;
+  border: 0px;
+  width: 100%;
+  margin: 0.5rem 0px 0 0px;
+  padding: 1rem 1rem 1rem 1rem;
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+  font-family: inherit;
+}
+
+.create_tmi--text{
+    font-size:1rem;
+    font-weight: bold;
+}
+
+.create_tmi--submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Spoqa Han Sans Neo";
+    font-weight: 700;
+    background-color: var(--div-point-color);
+    color: var(--div-light-font-color);
+    border-radius: 1rem;
+    border: 0px;
+    height: 3rem;
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+    margin: 16px 0 0 0;
+  }
+.create_tmi--example{
+    color: var(--div-dark-opacity-font-color);
+    font-size: 14px;
+  }

@@ -47,8 +47,8 @@
 .mypage__edit_mypage {
   color: var(--div-point-color);
   font-size: 1rem;
-  margin: 0px 0px 0px -5px;
   font-weight: bold;
+  float: right;
 }
 .mypage__go-to-my-birthday-page, .mypage__go-to-past-birthday-page{
   font-family: "Spoqa Han Sans Neo";

@@ -25,13 +25,14 @@
   font-weight: bold;
 }
 #id_nickname {
+  font-family: "Spoqa Han Sans Neo";
   width: 100%;
   height: auto;
   line-height: normal;
-  padding: 0.8em 0.5em;
+  padding: 0.8rem 1rem 0.8rem 1rem;
   box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
   border: 0px;
-  border-radius: 5px;
+  border-radius: 1rem;
   outline-style: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -40,11 +41,12 @@
 }
 .create__birthday select {
   width: 30%;
-  padding: 0.8em 0.5em;
+  padding: 0.8rem 1rem 0.8rem 1rem;
   border: 0px;
   font-size: 12px;
   box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
-  border-radius: 5px;
+  border-radius: 1rem;
+  font-family: "Spoqa Han Sans Neo";
 }
 
 #id_birthday_year {
@@ -61,10 +63,10 @@
 }
 #id_birthday {
   width: 100%;
-  padding: 0.8em 0.5em;
+  padding: 0.8rem 1rem 0.8rem 1rem;
   border: 0px;
   font-size: 12px;
   box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
-  border-radius: 5px;
-  font-family: inherit;
+  border-radius: 1rem;
+  font-family: "Spoqa Han Sans Neo";
 }

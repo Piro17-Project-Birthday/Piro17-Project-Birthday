@@ -12,16 +12,18 @@
   width: 100%;
   height: auto;
   line-height: normal;
-  padding: 0.8em 0.5em;
-  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+  font-family: "Spoqa Han Sans Neo";
+
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
   border: 0px;
-  border-radius: 5px;
+  border-radius: 1rem;
   outline-style: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   font-size: 12px;
   margin: 8px 0 8% 0px;
+  font-family: "Spoqa Han Sans Neo";
 }
 .content {
   padding: 3rem 2rem;
@@ -39,13 +41,20 @@
   font-weight: bold;
 }
 .editmypage--submit {
-  text-align: center;
-  border: 0px;
-  border-radius: 5px;
-  width: 100%;
-  color: var(--div-light-font-color);
-  background-color: var(--div-point-color);
-  font-weight: bold;
-  padding: 4px 0 4px 0px;
-  margin: 10% 0 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Spoqa Han Sans Neo";
+    font-weight: 700;
+    background-color: var(--div-point-color);
+    color: var(--div-light-font-color);
+    border-radius: 1rem;
+    border: 0px;
+    height: 2.5rem;
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+    margin: 0.5rem 0 0 0;
 }
