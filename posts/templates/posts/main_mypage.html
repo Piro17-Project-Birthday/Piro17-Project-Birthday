@@ -1,30 +1,27 @@
 {% extends 'posts/base_mypage.html' %}
-{% block title %}
-  마이페이지
-{% endblock %}
 {%block content %}
-  <script src="https://kit.fontawesome.com/f578b19b63.js" crossorigin="anonymous"></script>
-
+  {% load static%}
   <body>
     <div class="content">
       <div class="mypage__profile--image">
-        (사진)
+        <img src="{% static 'img\icon\user-dark.svg' %}" alt=""/>
       </div>
 
       <div class="mypage__profile--name">
         {% if curr_user.nickname %}
           <div>
-            {{curr_user.nickname}}님
+            {{curr_user.nickname}} 님
           </div>
         {% else %}
           <div>
-            {{curr_user.username}}님
+            {{curr_user.username}} 님
           </div>
         {% endif %}
       </div>
       <hr class="mypage__line">
       <div class="mypage__content">
-        <span class="mypage__birthdaypage__text">
+        <div class="mypage__birthdaypage__text">
+        <span>
           내 생일 페이지
         </span>
         {% if target_pages %}
@@ -33,6 +30,7 @@
               <a href="{% url 'posts:edit_mypage' %}" class="mypage__edit_mypage">
                 정보 수정
               </a>
+            </div>
               <div>
                 <form action="{% url 'posts:detail_birthday_page' target_page.year target_page.pk %}" method="post">
                   {% csrf_token %}
@@ -65,7 +63,7 @@
             </a>
           </div>
         {% endif %}
-        <p class="mypage__birthdaypage__text">
+        <p class="mypage__birthdaypage__text second">
           지난 생일 페이지
         </p>
         {% if archived_pages %}
@@ -90,5 +88,4 @@
       </div>
     </div>
   </body>
-  <script src="https://kit.fontawesome.com/a8a24f1fa9.js" crossorigin="anonymous"></script>
 {% endblock %}
