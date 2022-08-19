@@ -44,20 +44,26 @@
 .mypage__edit_mypage {
   color: var(--div-point-color);
   font-size: 1rem;
-  margin: 0px 0px 0px -5px;
   font-weight: bold;
+  float: right;
 }
 .mypage__go-to-my-birthday-page {
-  border: 0px var(--div-point-color);
-  color: var(--div-light-font-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Spoqa Han Sans Neo";
+  font-weight: 700;
   background-color: var(--div-point-color);
-  border-radius: 5px;
+  color: var(--div-light-font-color);
+  border-radius: 1rem;
+  border: 0px;
+  height: 2rem;
+  text-align: center;
   width: 100%;
-  margin: 5px 0px 5px 0px;
-  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
-  padding: 5px 175px 5px 0px;
   font-size: 1rem;
-  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+  margin: 0.5rem 0 0 0;
 }
 .mypage__info-text {
   color: var(--div-dark-opacity-font-color);
@@ -67,17 +73,24 @@
 }
 
 .mypage__go-to-past-birthday-page {
-  border: 0px var(--div-point-color);
-  color: var(--div-light-font-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Spoqa Han Sans Neo";
+  font-weight: 700;
   background-color: var(--div-sub-color);
-  border-radius: 5px;
+  color: var(--div-light-font-color);
+  border-radius: 1rem;
+  border: 0px;
+  height: 2rem;
+  text-align: center;
   width: 100%;
-  margin: 5px 0px 5px 0px;
-  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
-  padding: 5px 175px 5px 0px;
   font-size: 1rem;
-  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+  margin: 0.5rem 0 0 0;
 }
+
 .mypage__info__sub-text {
   color: var(--div-sub-color);
   font-size: 12px;

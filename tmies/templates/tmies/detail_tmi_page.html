@@ -35,10 +35,10 @@
       {% if not is_owner %}
         {% if not tmi_page.state == "archive"%}
           <div>
-            <button>
-              <a class= "detail_tmi--submit" href="{% url 'tmies:create_tmi_message' year pk %}">
-                Tmi 남기러 가기</a>
-            </button>
+            
+              <a class= "floating-btn" href="{% url 'tmies:create_tmi_message' year pk %}">
+                <div class="floating-btn__text">TMI 남기러가기</div></a>
+            
           </div>
         {% endif %}
       {% endif %}
@@ -67,7 +67,7 @@
         {% endfor %}
       {% else %}
         <div class="tmi-empty">
-          아직 작성 된 Tmi가 없어요 😢
+          아직 작성 된 TMI가 없어요 😢
         </div>
       {% endif %}
     {% endif %}

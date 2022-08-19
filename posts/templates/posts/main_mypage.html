@@ -37,6 +37,7 @@
                 <form action="{% url 'posts:detail_birthday_page' target_page.year target_page.pk %}" method="post">
                   {% csrf_token %}
                   <button class="mypage__go-to-my-birthday-page">
+                  
                     {{ target_page.year }}년
                     {{ target_page.owner.birthday.month }}월
                     {{ target_page.owner.birthday.day }}일
@@ -74,9 +75,11 @@
               <form action="{% url 'posts:detail_birthday_page' archived_page.year archived_page.pk %}" method="post">
                 {% csrf_token %}
                 <button class="mypage__go-to-past-birthday-page">
+                
                   {{ archived_page.year }}년
                   {{ archived_page.owner.birthday.month }}월
                   {{ archived_page.owner.birthday.day }}일
+                
                 </button>
               </div>
             {% endfor %}
