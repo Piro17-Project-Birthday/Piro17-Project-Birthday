@@ -11,10 +11,9 @@
     {% if photo_page.state == "deactivate" %}
         <script type="text/javascript">
           alert('아직 생일 페이지가 활성화되지 않았어요!')
-          window.location.href = '{% url '
-          posts: main ' %}';
+          window.location.href = '{% url 'posts:main' %}';
         </script>
-      {% elif photo_page.state == "activate" or photo_page.state == "archive" %}
+    {% elif photo_page.state == "activate" or photo_page.state == "archive" %}
         {% if photo_page.state == "archive" %}
           <div class="archive">
             <p>
@@ -77,7 +76,7 @@
         <div><a href="{% url 'photos:photo_home' target_photo.year target_photo.photo_origin.pk %}">포토방명록</a></div>
         <div><a href="{% url 'tmies:detail_tmi_page' target_tmi.year target_tmi.tmi_origin.pk%}">내 친구의 TMI</a></div>
       </footer>
-      {%endif %}
+  {%endif %}
   </body>
 <!-- 이미지 크게 보기 모달 -->
 <div id="modal__images">
