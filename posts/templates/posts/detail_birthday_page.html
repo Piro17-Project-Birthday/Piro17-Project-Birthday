@@ -66,7 +66,7 @@
               {% if birthday_page.state != "waiting" and is_owner %}
                 <div>
                   <button onclick="screenshot()" type="button" id="save">
-                    <img src="{% static 'img\icon\capture.svg' %}" alt="">
+                    <img data-html2canvas-ignore src="{% static 'img\icon\capture.svg' %}" alt="">
                     <h6 data-html2canvas-ignore="true">전체 캡쳐</h6>
                   </button>
                 </div>
