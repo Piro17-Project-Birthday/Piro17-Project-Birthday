@@ -258,7 +258,7 @@ def createMessage(request,year,pk):
                 if request.user.is_authenticated :
                     post.sender = request.user
                 post.save()
-                return redirect(f"/{birthday_page.year}/{birthday_page.id}")
+                return redirect(f"/{birthday_page.year}/{birthday_page.uuid}")
         context = {
             'birthday_page' : birthday_page,
             'form' : form,
