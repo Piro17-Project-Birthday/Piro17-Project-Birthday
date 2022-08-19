@@ -76,15 +76,15 @@ nav {
   color:var(--div-point-color);
 }
 .dropdown__btn {
-  padding: 1.5rem 2rem;
+  padding: 1.2rem 2rem;
 }
 .dropdown__btn--x {
   font-size: 20px;
   background-color: var(--div-sub-color);
   color: var(--div-light-font-color);
   border: none;
-  margin-left: 11rem;
-  margin-top: 1.5rem;
+  margin-left: 11.5rem;
+  margin-top: 1.2rem;
 }
 
 #dropdown_content {
