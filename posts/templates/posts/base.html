@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- css 참조 안쓰고 그냥 style로 함. -->
-    <title>축마땅</title>
+    <title>추카포카</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/settings.css' %}"/>
@@ -22,11 +22,11 @@
         {% if user.is_authenticated %}
           <nav>
             <div class="nav__left">
-              <a href="/">축마땅</a>
+              <a href="/">추카포카</a>
             </div>
             <div class="navbar_dropdown">
               <button onclick="dropdown_menu()" class="dropdown__btn">
-                <i class="fa-solid fa-bars"></i>
+                <img src="{% static 'img/icon/nav.svg' %}">
               </button>
               <div style="display:none" id="dropdown_content">
                 <div class="dropdown__opacity"></div>
@@ -42,11 +42,13 @@
                       {{user.username}} 님</a>
                   {% endif %}
                   <!-- 내페이지 링크 연결 -->
-                  <img class="dropdown__wave-pattern" src="{% static 'img\wave-pattern-nav-bar.svg' %}">
-                  <div id="dropdown__background">
-                    <a href="{% url 'posts:main_mypage'%} " id="dropdown__mypage">마이페이지</a>
-                    <a href="#" id="dropdown__btn--service">1:1 문의하기</a>
-                    <a href="{% url 'users:log_out'%}" id="dropdown__btn--logout">로그아웃</a>
+                  <div>
+                    <img class="dropdown__wave-pattern" src="{% static 'img\wave-pattern-nav-bar.svg' %}">
+                    <div id="dropdown__background">
+                      <a href="{% url 'posts:main_mypage'%} " id="dropdown__mypage">마이페이지</a>
+                      <a href="#" id="dropdown__btn--service">1:1 문의하기</a>
+                      <a href="{% url 'users:log_out'%}" id="dropdown__btn--logout">로그아웃</a>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -56,11 +58,11 @@
         {% else %}
           <nav>
             <div class="nav__left">
-              <a href="/">축마땅</a>
+              <a href="/">추카포카</a>
             </div>
             <div class="navbar_dropdown">
               <button onclick="dropdown_menu()" class="dropdown__btn">
-                <i class="fa-solid fa-bars"></i>
+                <img src="{% static 'img/icon/nav.svg' %}">
               </button>
               <div style="display: none" id="dropdown_content">
                 <div class="dropdown__opacity"></div>
@@ -71,10 +73,9 @@
                 <a href="{% url 'users:log_in'%}" class="dropdown__btn--login"><img src="{% static 'img/icon/user.svg' %}">
                   로그인 하기 ></a>
                   <img class="dropdown__wave-pattern" src="{% static 'img\wave-pattern-nav-bar.svg' %}">
-                <div id="dropdown__background">
-                  {% comment %} <a href="{% url 'posts:create_birthday_page'%}" id="dropdown__btn--birthdaypage">생일 페이지 만들기</a> {% endcomment %}
+                  <div id="dropdown__background">
                   <a href="#" id="dropdown__btn--service">1:1 문의하기</a>
-                </div>
+                  </div>
               </div>
             </div>
           </nav>
@@ -82,7 +83,6 @@
         {% block content %}{% endblock %}
       </div>
     </div>
-    <script src="https://kit.fontawesome.com/a8a24f1fa9.js" crossorigin="anonymous"></script>
     <script>
       function dropdown_menu() {
         let click = document.getElementById("dropdown_content");
