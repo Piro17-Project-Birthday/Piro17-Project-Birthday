@@ -236,7 +236,7 @@
     <!-- 페이지 링크 복사하기 버튼 -->
     {% if birthday_page.state != "archive" and birthday_page.state != "waiting" and is_owner %}
       <button class="floating-btn" onclick="clip();">
-        <p class="floating-btn__text">페이지 링크 복사하기</p>
+        <p class="floating-btn__text">생일 페이지 링크 복사하기</p>
       </button>
     {% endif %}
 
@@ -335,6 +335,7 @@
         html2canvas(document.getElementById("screenshot")).then(function (canvas) {
           saveAs(canvas.toDataURL('image/jpg'), 'screenshotTest.jpg');
         })
+        alert('생일 페이지를 캡쳐하여 저장을 완료했어요!')
       }
 
       function saveAs(uri, filename) {
@@ -356,6 +357,7 @@
 
       const clip = () => {
         navigator.clipboard.writeText(window.location.href);
+        alert('클립보드에 생일 페이지 링크가 복사되었어요!')
       }
 
       //삭제 모달
