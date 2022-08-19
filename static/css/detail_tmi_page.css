@@ -1,3 +1,13 @@
+:root {
+    --div-main-color: #fdf8ef; /*아이보리*/
+    --div-sub-color: #8ebd5e; /*연두*/
+    --div-point-color: #ff574c; /*다홍*/
+    --div-dark-font-color: #2d3142;
+    --div-dark-opacity-font-color: rgba(45, 49, 66, 0.5);
+    --div-light-font-color: #ffffff;
+    --div-input-shadow-color: rgba(0, 0, 0, 0.1);
+  }
+
 .footer__birthdaypage {
   width: 30%;
   padding: 0 5% 0 3%;
@@ -34,4 +44,46 @@ footer {
 
 .footer__style {
   display: none;
+}
+
+
+.content {
+    padding: 3rem 2rem;
+  }
+
+.detail_tmi--title{
+    margin: 0px 0px 0.5rem 0;
+}
+
+.detail_tmi--name{
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: var(--div-point-color);
+}  
+
+.detail_tmi--name--sub{
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: var(--div-dark-font-color);
+}
+.detail_tmi--submit{
+    text-align: center;
+    border: 0px;
+    border-radius: 5px;
+    width: 100%;
+    color: var(--div-light-font-color);
+    background-color: var(--div-point-color);
+    font-weight: bold;
+    padding: 8px 16px 8px 16px;
+}
+.tmi_message{
+    border:1px;
+    
+}
+.tmi-empty{
+    color: var(--div-dark-opacity-font-color);
+    font-weight: 700;
+    margin: 0.5rem 0 0px 0px;
 }
