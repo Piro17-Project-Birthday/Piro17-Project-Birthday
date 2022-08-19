@@ -70,7 +70,7 @@
                   <button onclick="dropdown_menu()" class="dropdown__btn--x">
                     <img src="{% static 'img/icon/close.svg' %}">
                   </button>
-                <a href="{% url 'users:log_in'%}" class="dropdown__btn--login"><img src="{% static 'img/icon/user.svg' %}">
+                <a href="/login/?next={{ request.path }}" class="dropdown__btn--login"><img src="{% static 'img/icon/user.svg' %}">
                   로그인 하기 ></a>
                   <img class="dropdown__wave-pattern" src="{% static 'img\wave-pattern-nav-bar.svg' %}">
                   <div id="dropdown__background">

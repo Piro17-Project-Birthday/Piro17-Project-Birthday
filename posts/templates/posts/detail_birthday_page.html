@@ -300,7 +300,7 @@
         <div class="modal__login__content__btns">
           <div class="login__social_login">
             <div class="login__yes">
-              <a href="{% url 'users:log_in'%}" class="login__yes__text">소셜 로그인 하러가기</a>
+              <a href="/login/?next={{ request.path }}" class="login__yes__text">소셜 로그인 하러가기</a>
             </div>
             <div class="login__no" id="login__no">
               <a href="{% url 'posts:create_message' year pk %}" class="login__no__text">로그인 없이 메시지 남기기</a>
