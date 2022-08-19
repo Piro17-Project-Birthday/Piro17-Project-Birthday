@@ -68,7 +68,7 @@ nav {
 }
 
 .nav__left{
-  padding: 1.5rem 2rem;
+  padding: 1.2rem 2rem;
 }
 
 .nav__right{
@@ -79,3 +79,8 @@ nav {
   cursor: pointer;
 }
 /* a 태그에 href="#" 쓰면 안좋다고 봐서 css로 일케 cursor만 pointer로 바꿔주세용가리 */
+
+.nav__middle span {
+  font-size:1.2rem;
+  font-weight:700;
+}

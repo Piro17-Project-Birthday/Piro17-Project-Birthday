@@ -17,9 +17,7 @@
   </head>
 
   <body>
-    <div class="wrap">
-      <div class="screen">
-        {% if user.is_authenticated %}
+    {% if user.is_authenticated %}
           <nav>
             <div class="nav__left">
               <a href="/">추카포카</a>
@@ -80,6 +78,10 @@
             </div>
           </nav>
         {% endif %}
+    <div class="wrap">
+      
+      <div class="screen">
+        
         {% block content %}{% endblock %}
       </div>
     </div>

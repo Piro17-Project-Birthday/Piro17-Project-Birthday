@@ -1,3 +1,4 @@
+@import url("./login.css");
 .text__title {
     font-size:1.5rem;
     font-weight:700;
@@ -8,8 +9,6 @@
 }
 
 .text__description {
-    font-size: 0.875rem;
-    padding: 1.8rem;
     padding-top: 0.5rem;
 }
 
@@ -215,3 +214,136 @@ font-style: normal;
     font-family:inherit;
 }
 
+.footer__birthdaypage {
+    width: 30%;
+    padding: 0 5% 0 3%;
+  
+    font-size: 14px;
+  }
+  
+  .footer__photo {
+    width: 30%;
+    padding: 0 5% 0 5%;
+    color: var(--div-point-color);
+    font-size: 14px;
+  }
+  .footer__tmi {
+    width: 30%;
+    padding: 0 3% 0 5%;
+    font-size: 14px;
+    
+  }
+  
+  footer {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .detail_page-footer {
+    width: 100%;
+    text-align: center;
+    background-color: var(--div-light-font-color);
+    margin: auto;
+  }
+  
+  .footer__style {
+    display: none;
+  }
+  
+  /* 로그인 모달 */
+.modal__login{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%; height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items : center;
+}
+.modal__login__overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    width: 100%; height: 100%;
+    position: absolute;
+}
+.modal__login__content {
+    position: relative;
+    background-color: white;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+    padding: 2.5rem 0;
+}
+
+.modal__login__content__title {
+    color : var(--div-point-color);
+    font-weight: 700;
+    font-size:1rem;
+}
+
+.modal__login__content__description {
+    font-size: 0.875rem;
+    padding: 1.8rem 3rem;
+    padding-top: 0.8rem;
+}
+
+.login__social_login{
+    margin:0
+}
+
+.login__no{
+    font-size:0.875rem;
+    border-radius: 1rem;
+    background-color: var(--div-input-shadow-color);
+    color: #3a1d1d;
+    margin: 1rem 2rem;
+    margin-top:0;
+    width:13rem;
+    height:2.5rem;
+    cursor: pointer;
+    box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login__yes{
+    font-size:0.875rem;
+    border-radius: 1rem;
+    background-color: var(--div-point-color);
+    margin: 1rem 2rem;
+    margin-top:0;
+    width:13rem;
+    height:2.5rem;
+    cursor: pointer;
+    box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login__no__text{
+    font-weight: 700;
+    color:var(--div-dark-font-color);
+    opacity: 50%;
+}
+
+.login__yes__text{
+    font-weight: 700;
+    color:var(--div-light-font-color);
+}
+
+
+.hidden{
+    display:none;
+}
+
+.description__line{
+    display:flex;
+    justify-content: center;
+}
+
+.bold{
+    font-weight:700;
+}
