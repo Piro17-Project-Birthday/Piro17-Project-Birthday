@@ -1,5 +1,22 @@
 {% extends 'posts/base.html' %}
 {% block content %}
+{% load static %}
+
+<!-- 폭죽효과 들어가는 부분 -->
+<link rel="stylesheet" href="{% static 'css/mainpage.css' %}"/>
+  <!-- partial:index.partial.html -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>  
+  <!-- Stats.js -->
+    <script src="https://dl.dropbox.com/s/m1qor6z15o64wkc/stats.min.js?dl=0"></script>
+    <!-- dat.gui.js -->
+    <script src="https://dl.dropbox.com/s/sk7fbhx9burholi/dat.gui.min.js?dl=0"></script>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400&display=swap" rel="stylesheet">
+  <div id="myCanvas">
+    <canvas></canvas>
+  </div>
+<!-- 끝 -->
+
+
   <script>
     $.ajaxSetup({
       headers: {
@@ -20,4 +37,8 @@
   <div>
     <a href="{% url 'posts:create_birthday_page'%}">생일 페이지 만들기</a>
   </div>
+
+  </div>
+  <script src="/static/js/main_confetti.js"></script>
+</script>
 {% endblock content %}

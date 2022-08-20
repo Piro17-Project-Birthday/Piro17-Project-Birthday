@@ -93,7 +93,7 @@ def createBirthdayPage(request):
                 #만들어진 페이지로 redirect
                 return redirect(f"{birthday_page.year}/{birthday_page.uuid}")
             else :
-                return redirect('/')
+                return redirect('/create')
         else :
             form = BirthdayPageForm(request.POST)
             context={
@@ -108,7 +108,6 @@ def detailBirthdayPage(request,year,pk):
     messages = birthday_page.message_set.all()
     name = birthday_page.owner.nickname
     
-    print(datetime.now())
     if request.user == birthday_page.owner :
         is_owner = 1 #현재 접속자가 이 생일 페이지의 주인인지 알려주는 플래그
     else :
@@ -321,7 +320,7 @@ def editMypage(request):
                 
                 return redirect ('/')
             else :
-                return redirect('/')
+                return redirect('/mypage/edit')
         else:
             form = EditMyPageForm(instance=request.user)
             curr_page = "edit"
