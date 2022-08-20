@@ -210,6 +210,8 @@ def detailBirthdayPage(request,year,pk):
                     curr_page.save()
         
     selected_cake = birthday_page.owner.selected_cake
+    print(selected_cake)
+    target = selected_cake
     
     if selected_cake == "초코 케이크":
         target = "초코"
