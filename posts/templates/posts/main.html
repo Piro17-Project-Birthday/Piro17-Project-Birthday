@@ -11,10 +11,28 @@
     <!-- dat.gui.js -->
     <script src="https://dl.dropbox.com/s/sk7fbhx9burholi/dat.gui.min.js?dl=0"></script>
     <link href="https://fonts.googleapis.com/css?family=Oswald:400&display=swap" rel="stylesheet">
-  <div id="myCanvas">
-    <canvas></canvas>
-  </div>
-<!-- 끝 -->
+
+    <div id="myCanvas"> 
+      <!-- 이 div가 맨 위에 위치해야, navbar 아래로 다 꽃가루가 내림 -->
+      <!-- 대신 이 영역이 다른 영역을 다 덮기 때문에, 클릭이 필요한 요소에 대해서는 z인덱스를 부여해줘야 함. -->
+      <canvas>
+      </canvas>
+    </div>
+    <!-- 폭죽효과 관련 부분 끝 -->
+
+    <div class="birthday_page_btn">
+      <a href="{% url 'posts:create_birthday_page'%}">생일 페이지 만들기</a>
+    </div>
+    <section class="container">
+      {% if user.is_authenticated %}
+        {% if user.nickname %}
+          <p class="main__login">{{user.nickname}}님이 로그인 중</p>
+        {% else %}
+          <p class="main__login">{{user.username}}님이 로그인 중</p>
+        {% endif %}
+      {% endif %}
+          <!--<a href="{% url 'account_signup' %}" class="nav-link">Signup</a> <a href="{% url 'account_login' %}" class="nav-link">Login</a>-->
+    </section>
 
 
   <script>
@@ -24,21 +42,10 @@
       }
     });
   </script>
-  <section class="container">
-    {% if user.is_authenticated %}
-      {% if user.nickname %}
-        <p class="main__login">{{user.nickname}}님이 로그인 중</p>
-      {% else %}
-        <p class="main__login">{{user.username}}님이 로그인 중</p>
-      {% endif %}
-    {% endif %}
-    <!--<a href="{% url 'account_signup' %}" class="nav-link">Signup</a> <a href="{% url 'account_login' %}" class="nav-link">Login</a>-->
-  </section>
-  <div>
-    <a href="{% url 'posts:create_birthday_page'%}">생일 페이지 만들기</a>
-  </div>
+  
 
   </div>
+  <!-- 꽃가루 날리는 ㅓs 호출 -->
   <script src="/static/js/main_confetti.js"></script>
 </script>
 {% endblock content %}

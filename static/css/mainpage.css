@@ -1,8 +1,16 @@
 *{
     margin: 0;
   }
+.birthday_page_btn {
+  position: relative; 
+  /* 포지션은 자유롭게 수정해도 상관 없음. fixed 써야하면 쓰면 됨. Z 인덱스를 사용하기 위해서 포지션은 임시로 넣음. */
+  z-index: 1;
+  /* 이 Z인덱스가 있어야, 꽃가루 내리는 영역인 myCanvas보다 위에  생일페이지 만들기 버튼이 위치해서 클릭 가능함. */
+}
+
 
 #myCanvas canvas{
+  /* Nav-bar 아래로 깔리는 영역으로, 해당 영역에 꽃가루가 뿌려지게 됨. */
     background: transparent;
     height: 100%;
     width: 100%;

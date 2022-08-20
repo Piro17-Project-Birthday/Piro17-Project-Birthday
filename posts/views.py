@@ -101,7 +101,7 @@ def createBirthdayPage(request):
             }
             return render(request, 'posts/create_birthday_page.html', context=context)
     else :
-        return redirect("/login")
+        return redirect("login/?next=/")
     
 def detailBirthdayPage(request,year,pk):
     birthday_page = get_object_or_404(BirthdayPage, year=year, pk=pk)
