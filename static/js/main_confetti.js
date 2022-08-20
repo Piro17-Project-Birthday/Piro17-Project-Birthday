@@ -12,7 +12,6 @@
 
   //stats.js
   var stats = new Stats();
-  document.body.appendChild( stats.dom );
 
   var particles = [];
   var pIndex = 0;
@@ -68,7 +67,7 @@
       'bg_color' : "#222",
       'vx' : 2,
       'vy' : 4,
-      'size' : 10
+      'size' : 10,
     };
 
     params_A = {
@@ -94,6 +93,7 @@
     fB.addColor( params_B, 'color');
   }
   setGUI();
+  dat.GUI.toggleHide();
 
   //アニメーション
   function loop(){
