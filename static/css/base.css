@@ -56,7 +56,7 @@ input::placeholder{
   background-color: var(--div-main-color);
   position: fixed;
   width: 100%;
-  height: 100%;
+  height: calc(var(--vh, 1vh) * 100);
   overflow: scroll;
   overscroll-behavior-y: none;
   padding-top: 2.5rem;
