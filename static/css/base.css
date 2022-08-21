@@ -91,8 +91,7 @@ nav {
 }
 .nav__left{
   padding-left: 2rem;
-  font-weight:700;
-  color:var(--div-point-color);
+  padding-top:0.2rem;
 }
 .dropdown__btn {
   padding: 1.2rem 2rem;
