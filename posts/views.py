@@ -18,10 +18,10 @@ next_year = today_year + 1
 def main(request):
     if request.user.is_authenticated: #로그인 한 사용자라면 
         #birthday page가 이미 만들어졌다면
-        if BirthdayPage.objects.filter(owner=request.user, year=next_year).exists() : #birthday page가 올해 page라면
+        if BirthdayPage.objects.filter(owner=request.user, year=next_year).exists() : #birthday page가 내년 page라면 (올해 생일이 이미 지났다면)
             current_birthday_page = BirthdayPage.objects.get(owner=request.user, year=next_year)
             return redirect(f"{current_birthday_page.year}/{current_birthday_page.uuid}") #해당 페이지로 이동한다
-        elif BirthdayPage.objects.filter(owner=request.user, year=today_year).exists():       #birthday page가 내년 page라면 (올해 생일이 이미 지났다면)
+        elif BirthdayPage.objects.filter(owner=request.user, year=today_year).exists():       #birthday page가 올해 page라면
             current_birthday_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
             return redirect(f"{current_birthday_page.year}/{current_birthday_page.uuid}")
     return render(request, "posts/main.html")
@@ -307,8 +307,11 @@ def editMypage(request):
         if request.method == 'POST':
             form = EditMyPageForm(request.POST)
             if form.is_valid():
-                birthday_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
-
+                if BirthdayPage.objects.filter(owner=request.user, year=next_year).exists() : #내년 생일 페이지가 있다면
+                    birthday_page = BirthdayPage.objects.get(owner=request.user, year=next_year)
+                else: #올해 생일 페이지만 있다면
+                    birthday_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
+                
                 birthday_page.owner.nickname = form.cleaned_data['nickname']
                 birthday_page.owner.selected_cake = form.cleaned_data['selected_cake']
                 birthday_page.owner.save()
@@ -326,39 +329,3 @@ def editMypage(request):
             return render(request, 'posts/edit_mypage.html', context=context)
     else :
         return redirect("/login")
-
-
-# 아래코드 필요없으면 나중에 지울예정 
-
-    
-class OriginalInformation():
-    
-    def remember(self, request, command):
-        if 'signup' in command:
-            self.email = request.POST['email']
-        elif 'password_forgotten' not in command:
-            self.current_password = request.POST['current_password']
-        self.new_password1 = request.POST['new_password1']
-        self.new_password2 = request.POST['new_password2']
-        if 'password_forgotten' not in command:
-            self.nickname = request.POST['nickname']
-            self.birth_y = request.POST['birth-y']
-            self.birth_m = request.POST['birth-m']
-            self.birth_d = request.POST['birth-d']
-            self.img = request.FILES.get('img')
-            self.img_setting = request.POST.get('img_setting')
-            self.introduction = request.POST['introduction']
-            self.job = request.POST.get('job')
-
-# Birth Format (YYYY-MM-DD)
-
-
-def birth_format(year, month, day):
-    today = date.today()
-    try:
-        if int(year) > today.year:
-            return ''
-        birth = datetime(int(year), int(month), int(day)).strftime("%Y-%m-%d")
-        return birth
-    except:  # 잘못된 날짜
-        return ''
