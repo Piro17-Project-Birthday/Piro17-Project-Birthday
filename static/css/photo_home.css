@@ -13,7 +13,7 @@
 }
 
 .images {
-    padding-top:1rem;
+    padding-top:2rem;
 }
 
 .images__container{
@@ -73,7 +73,7 @@ font-style: normal;
 .images__item__pin { 
     position: absolute;
     left: 46%;
-    bottom: 80%;
+    bottom: 77%;
     width: 8%;
 }
 
@@ -84,6 +84,10 @@ font-style: normal;
 .images--empty {
     color:var(--div-dark-opacity-font-color);
     font-weight: 700;
+    display: flex;
+    justify-content: center;
+    margin-top: 10rem;
+    opacity: 50%;
 }
 
 .archive {
@@ -214,44 +218,50 @@ font-style: normal;
     font-family:inherit;
 }
 
-.footer__birthdaypage {
+.nav-bottom__content__birthdaypage {
     width: 30%;
     padding: 0 5% 0 3%;
-  
     font-size: 14px;
+
   }
   
-  .footer__photo {
+  .nav-bottom__content__photo {
     width: 30%;
     padding: 0 5% 0 5%;
-    color: var(--div-point-color);
     font-size: 14px;
+    color: var(--div-point-color);
   }
-  .footer__tmi {
+  .nav-bottom__content__tmi {
     width: 30%;
     padding: 0 3% 0 5%;
     font-size: 14px;
-    
   }
   
-  footer {
+  .nav-bottom {
     width: 100%;
     position: fixed;
     bottom: 0;
-    left: 0;
+    left: 50%;
+    max-width: 480px;
+    transform: translate(-50%, 0);
   }
   
-  .detail_page-footer {
+  .nav-bottom__content {
     width: 100%;
     text-align: center;
     background-color: var(--div-light-font-color);
-    margin: auto;
+    height: 4rem;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+    padding-bottom: 1rem;
+    height: 5.5rem;
   }
-  
-  .footer__style {
-    display: none;
-  }
-  
+
+.nav-bottom__content img {
+    width: inherit;
+}
+
   /* 로그인 모달 */
 .modal__login{
     position: fixed;

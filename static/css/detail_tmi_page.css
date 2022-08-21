@@ -1,42 +1,46 @@
 @import url("./login.css");
-.footer__birthdaypage {
+.nav-bottom__content__birthdaypage {
   width: 30%;
   padding: 0 5% 0 3%;
-
   font-size: 14px;
 }
 
-.footer__photo {
+.nav-bottom__content__photo {
   width: 30%;
   padding: 0 5% 0 5%;
-  
   font-size: 14px;
 }
-.footer__tmi {
+.nav-bottom__content__tmi {
   width: 30%;
   padding: 0 3% 0 5%;
   font-size: 14px;
   color: var(--div-point-color);
 }
 
-footer {
+.nav-bottom {
   width: 100%;
   position: fixed;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  max-width: 480px;
+  transform: translate(-50%, 0);
 }
 
-.detail_page-footer {
+.nav-bottom__content {
   width: 100%;
   text-align: center;
   background-color: var(--div-light-font-color);
-  margin: auto;
+  height: 4rem;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  padding-bottom: 1rem;
+  height: 5.5rem;
 }
 
-.footer__style {
-  display: none;
+.nav-bottom__content img {
+  width: inherit;
 }
-
 
 .content {
     padding: 3rem 2rem;
@@ -82,6 +86,11 @@ footer {
     font-weight: 700;
     margin: 0.5rem 0 0px 0px;
 }
+
+.messages {
+  padding-top:2rem;
+}
+
 
  /* 로그인 모달 */
  .modal__login{
@@ -177,4 +186,52 @@ footer {
 
 .bold{
   font-weight:700;
+}
+
+
+/* 메세지 영역*/
+.message_area{
+  display:flex;
+  justify-content: center;
+}
+
+.message_content{
+  width: 15rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin-right: 0.5rem;
+  box-shadow: 0px 2px 10px -1px rgba(0, 0, 0, 0.1);
+}
+
+.message_content p {
+  font-size: 1rem;
+  overflow:hidden;
+  word-wrap:break-word;
+}
+
+.message_side {
+  display: flex;
+  flex-direction: column;
+  width: 3rem;
+}
+.like_area {
+  display: flex;
+  align-items: center;
+}
+
+.message_like{
+  font-size: 0.7rem;
+  overflow: auto;
+  text-overflow: clip;
+}
+
+.message_delete{
+  display: flex;
+  align-items: center;
+}
+
+.delete_text{
+  font-size: 0.7rem;
 }
