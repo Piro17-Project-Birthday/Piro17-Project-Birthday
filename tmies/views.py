@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 def detailTmiPage(request,year, pk):
     tmi_page = get_object_or_404(TmiPage, year=year, pk=pk)
-    tmi_messages = tmi_page.tmimessage_set.all()
+    tmi_messages = tmi_page.tmimessage_set.all().order_by('-id')
     
     birthday_page = get_object_or_404(BirthdayPage, pk=pk)
     name = birthday_page.owner.nickname
