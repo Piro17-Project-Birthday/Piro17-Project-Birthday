@@ -1,5 +1,58 @@
 {% extends 'posts/base.html' %}
 {% block content %}
+{% load static %}
+
+<!-- 폭죽효과 들어가는 부분 -->
+<link rel="stylesheet" href="{% static 'css/mainpage.css' %}"/>
+  <!-- partial:index.partial.html -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>  
+  <!-- Stats.js -->
+    <script src="https://dl.dropbox.com/s/m1qor6z15o64wkc/stats.min.js?dl=0"></script>
+    <!-- dat.gui.js -->
+    <script src="https://dl.dropbox.com/s/sk7fbhx9burholi/dat.gui.min.js?dl=0"></script>
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400&display=swap" rel="stylesheet">
+
+    <div id="myCanvas"> 
+      <!-- 이 div가 맨 위에 위치해야, navbar 아래로 다 꽃가루가 내림 -->
+      <!-- 대신 이 영역이 다른 영역을 다 덮기 때문에, 클릭이 필요한 요소에 대해서는 z인덱스를 부여해줘야 함. -->
+      <canvas>
+      </canvas>
+    </div>
+    <!-- 폭죽효과 관련 부분 끝 -->
+    
+  <body> 
+    
+    <div class="content">
+
+      <section class="container">
+        {% if user.is_authenticated %}
+          {% if user.nickname %}
+            <p class="main__login">{{user.nickname}}님이 로그인 중</p>
+          {% else %}
+            <p class="main__login">{{user.username}}님이 로그인 중</p>
+          {% endif %}
+        {% endif %}
+            <!--<a href="{% url 'account_signup' %}" class="nav-link">Signup</a> <a href="{% url 'account_login' %}" class="nav-link">Login</a>-->
+      </section>
+
+     
+      
+        <img class="main__logo" src="{% static 'img\page_logo\logo-main.png' %}" alt="">
+        <div class="main__title--text1">
+          모두의 생일을 축하해 주세요!
+        </div>
+      <div class="main__title--text2">
+        하루 뒤면 잊혀지는 생일 축하들은 이제 그만!<div></div> 다신 오지 않을 이번 생일과 축하들을 <div></div>추카포카와 함께 나만의 생일페이지에 기록하세요!
+      </div>
+  
+      
+    </div>  
+    
+    <div class="birthday_page_btn">
+      <a href="{% url 'posts:create_birthday_page'%}">나만의 생일 페이지 만들러 가기</a>
+    </div>
+  
+  </body>
   <script>
     $.ajaxSetup({
       headers: {
@@ -7,17 +60,10 @@
       }
     });
   </script>
-  <section class="container">
-    {% if user.is_authenticated %}
-      {% if user.nickname %}
-        <p class="main__login">{{user.nickname}}님이 로그인 중</p>
-      {% else %}
-        <p class="main__login">{{user.username}}님이 로그인 중</p>
-      {% endif %}
-    {% endif %}
-    <!--<a href="{% url 'account_signup' %}" class="nav-link">Signup</a> <a href="{% url 'account_login' %}" class="nav-link">Login</a>-->
-  </section>
-  <div>
-    <a href="{% url 'posts:create_birthday_page'%}">생일 페이지 만들기</a>
+  
+
   </div>
+  <!-- 꽃가루 날리는 ㅓs 호출 -->
+  <script src="/static/js/main_confetti.js"></script>
+</script>
 {% endblock content %}
