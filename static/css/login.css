@@ -1,3 +1,7 @@
+.content{
+  padding-bottom: 4rem;
+}
+
 #login__google img {
   width: 2rem;
   height: 2rem;
@@ -88,7 +92,7 @@
 .main__logo{
   width: 75%;
   display: block;
-  margin: 25% auto 0 auto;
+  margin: 2rem auto 0 auto;
 }
 
 
@@ -96,7 +100,7 @@
   .main__logo{
     width: 75%;
     display: block;
-    margin: 15% auto 0 auto;
+    margin: 1rem auto 0 auto;
   }
   .login__social_login {
     margin: 7rem 0 0 0;

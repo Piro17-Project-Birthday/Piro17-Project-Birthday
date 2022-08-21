@@ -3,7 +3,7 @@
 {% load static %}
 
 <!-- 폭죽효과 들어가는 부분 -->
-<link rel="stylesheet" href="{% static 'css/mainpage.css' %}"/>
+<link rel="stylesheet" href="{% static 'css/main.css' %}"/>
   <!-- partial:index.partial.html -->
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>  
   <!-- Stats.js -->
@@ -24,19 +24,6 @@
     
     <div class="content">
 
-      <section class="container">
-        {% if user.is_authenticated %}
-          {% if user.nickname %}
-            <p class="main__login">{{user.nickname}}님이 로그인 중</p>
-          {% else %}
-            <p class="main__login">{{user.username}}님이 로그인 중</p>
-          {% endif %}
-        {% endif %}
-            <!--<a href="{% url 'account_signup' %}" class="nav-link">Signup</a> <a href="{% url 'account_login' %}" class="nav-link">Login</a>-->
-      </section>
-
-     
-      
         <img class="main__logo" src="{% static 'img\page_logo\logo-main.png' %}" alt="">
         <div class="main__title--text1">
           모두의 생일을 축하해 주세요!
@@ -44,13 +31,13 @@
       <div class="main__title--text2">
         하루 뒤면 잊혀지는 생일 축하들은 이제 그만!<div></div> 다신 오지 않을 이번 생일과 축하들을 <div></div>추카포카와 함께 나만의 생일페이지에 기록하세요!
       </div>
-  
+      <div class="primary-btn">
+        <a href="{% url 'posts:create_birthday_page'%}">나만의 생일 페이지 만들러 가기</a>
+      </div>
       
     </div>  
     
-    <div class="birthday_page_btn">
-      <a href="{% url 'posts:create_birthday_page'%}">나만의 생일 페이지 만들러 가기</a>
-    </div>
+    
   
   </body>
   <script>
