@@ -116,13 +116,13 @@
 
         <div class="text-main--activate">
           {% if target == "strawberry" %}
-            <h1 class="strawberry-text">{{ name }}님, 생일 축하드려요!</h1>
+            <h1 id="target_bounce" style="animation: bounce-top 1s both" class="strawberry-text">{{ name }}님, 생일 축하드려요!</h1>
           {% elif target == "choco" %}
-            <h1 class="choco-text">{{ name }}님, 생일 축하드려요!</h1>
+            <h1 id="target_bounce" style="animation: bounce-top 1s both" class="choco-text">{{ name }}님, 생일 축하드려요!</h1>
           {% elif target == "carrot"%}
-            <h1 class="carrot-text">{{ name }}님, 생일 축하드려요!</h1>
+            <h1 id="target_bounce" style="animation: bounce-top 1s both" class="carrot-text">{{ name }}님, 생일 축하드려요!</h1>
           {% endif %}
-          <h6>소중한 생일을 맞이한
+          <h6 id="target_fade" style="animation: fadeIn 2s">소중한 생일을 맞이한
             {{name}}님에게<br/>따뜻한 축하의 메시지를 남겨주세요.</h6>
         </div>
 
@@ -321,11 +321,26 @@
 
     <script>
       //screenshot 기능
+      var targetBounce = document.querySelector('#target_bounce')
+      var targetFade = document.querySelector('#target_fade')
+
+      BounceCss = targetBounce.style.animation
+      FadeCss = targetFade.style.animation
+
+      console.log(BounceCss)
+      console.log(FadeCss)
+
       function screenshot() {
+        targetBounce.style.setProperty("animation","none")
+        targetFade.style.setProperty("animation","none")
+
         html2canvas(document.getElementById("screenshot")).then(function (canvas) {
           saveAs(canvas.toDataURL('image/png'), 'chookapoka');
         })
         alert('생일 페이지를 캡쳐하여 다운로드할게요!')
+
+        targetBounce.style.animation = BounceCss
+        targetFade.style.animation = FadeCss
       }
 
       function saveAs(uri, filename) {
