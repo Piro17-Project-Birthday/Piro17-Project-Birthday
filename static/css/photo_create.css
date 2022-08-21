@@ -108,3 +108,9 @@ input::file-selector-button {
     font-family: "Spoqa Han Sans Neo";
   }
 }
+
+.photo__create__sub-text{
+  color: var(--div-point-color);
+  font-size: 12px;
+  margin-bottom:1rem;
+}

@@ -51,3 +51,9 @@
     color: var(--div-dark-opacity-font-color);
     font-size: 14px;
   }
+
+.tmi__create__sub-text{
+  color: var(--div-point-color);
+  font-size: 12px;
+  margin-bottom:1rem;
+}
