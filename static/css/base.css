@@ -4,7 +4,7 @@
   --div-sub-color: #8ebd5e; /*연두*/
   --div-point-color: #ff574c; /*다홍*/
   --div-dark-font-color: #2d3142;
-  --div-dark-opacity-font-color: rgba(45, 49, 66, 0.5);
+  --div-dark-opacity-font-color: #9698a0;
   --div-light-font-color: #ffffff;
   --div-input-shadow-color: rgba(0, 0, 0, 0.1);
   --div-strawberry-color:#ff6b98;
@@ -212,7 +212,7 @@ nav {
   cursor: pointer;
   box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
   position: fixed;
-  top: 84vh;
+  top: 78vh;
   left: 50%;
   transform: translate(-50%, 0);
   width: 90%;
