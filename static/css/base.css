@@ -249,7 +249,26 @@ nav {
   box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
 }
 
-
 .nav__logo{
   width:20%;
+}
+
+input::placeholder {
+  color:var(--div-dark-opacity-font-color);
+  font-family: "Spoqa Han Sans Neo";
+}
+input::-webkit-input-placeholder {
+  color:var(--div-dark-opacity-font-color);
+}
+input:-ms-input-placeholder {
+  color:var(--div-dark-opacity-font-color);
+}
+textarea::placeholder {
+  color:var(--div-dark-opacity-font-color);
+}
+textarea::-webkit-input-placeholder {
+  color:var(--div-dark-opacity-font-color);
+}
+textarea:-ms-input-placeholder {
+  color:var(--div-dark-opacity-font-color);
 }
