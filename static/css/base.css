@@ -243,3 +243,7 @@ nav {
   box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
 }
 
+
+.nav__logo{
+  width:20%;
+}
