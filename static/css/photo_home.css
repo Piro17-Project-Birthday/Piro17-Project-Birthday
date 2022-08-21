@@ -82,13 +82,14 @@ font-style: normal;
 }
 
 .images--empty {
-    color:var(--div-dark-opacity-font-color);
+    color: var(--div-dark-opacity-font-color);
     font-weight: 700;
     display: flex;
     justify-content: center;
-    margin-top: 10rem;
+    align-items: center;
+    padding-bottom: 5rem;
     opacity: 50%;
-    height: 50vh;
+    height: calc(var(--vh, 1vh) * 50);
 }
 
 .archive {
