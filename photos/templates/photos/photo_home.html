@@ -34,7 +34,8 @@
             <div class="images__container">
               {% for photo in photos %}
                 <div class="images__item">
-                  <img class="images__item__pin rotate" src="{% static 'img/pin.png' %}" alt="">
+                  <div class="images__item__sticker rotate"></div>
+                  <!--<img class="images__item__pin rotate" src="{% static 'img/pin.png' %}" alt="">-->
                   {% if is_owner or request.user == photo.photo_uploader %}
                     {% if not photo_page.state == "archive" %}
                       <p class="images__item__delete-btn">
@@ -159,11 +160,17 @@
   ]
   const getRandom = (min, max) => Math.random() * (max - min) + min;
   var rand;
+  var colors = ['#A7DD71', '#EDADDA', '#FF8F87', '#FFDA96', '#93B8E1']
   var pin = document.getElementsByClassName("rotate")
   for (i = 0; i < pin.length; i++) {
+    //회전
     rand = randomList[Math.floor(Math.random() * randomList.length)];
     console.log(rand)
     pin[i].style.transform = 'rotate(' + rand + 'deg)';
+    //색변경
+    color = colors[i % 5]
+    pin[i].style.backgroundColor = color;
+
   }
 
   //사진 클릭 시 크게 보기

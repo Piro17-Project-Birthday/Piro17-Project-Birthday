@@ -25,31 +25,27 @@
           <div class="filebox">
           <span id="id_req_photo--text"
             >업로드할 사진을 골라주세요.<span>
-              
-              
+
           <div>
-          <input
-          type="file"
-          name="req_photo"
-          accept="image/*"
-          required=""
-          id="id_req_photo"
-          />
+          <input class="upload-name" placeholder="파일을 선택해 주세요">
           <label for="id_req_photo" id="id_req_photo--button">파일 업로드</label>
+          <input style="display:none;" type="file" name="req_photo" accept="image/*" required="" id="id_req_photo">
           </div>
           </div>
         </p>
         {% csrf_token %}
         <p>
-          <label for="id_title" id="id_title--text"
+          <label for="id_title" id="id_title--text" 
             >한줄 소개를 작성해 주세요.</label
           >
+          <span class="photo__create__sub-text">최대 30자</span>
           <input
             type="text"
             name="title"
             maxlength="50"
             required=""
             id="id_title"
+            placeholder="어떤 사진인가요?"
           />
         </p>
         
@@ -59,5 +55,12 @@
       </form>
     </div>
   </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script>
+    $("#id_req_photo").on('change',function(){
+      var fileName = $("#id_req_photo").val();
+      $(".upload-name").val(fileName);
+    });
+  </script>
 </html>
 {% endblock %}

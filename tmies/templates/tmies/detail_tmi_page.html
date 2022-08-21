@@ -68,19 +68,26 @@
                           <p class="delete_text">삭제</p>
                         </a>
                       </span>
+                    {% else %}
+                      <span class="messaage_delete">
+                          <p class="delete_text">&nbsp;</p>
+                      </span>
                     {% endif %}
                     <div class="like_area">
                       <button class="message_like_button" onclick="onClickLike({{ tmi_message.id }})">
-                        ❤️
+                        <img src="{% static 'img/icon/heart.svg' %}" alt="">
                       </button>
                       <p class="message_like">
                         {{ tmi_message.like }}
                       </p>
                     </div>
                   {% else %}
+                    <span class="messaage_delete">
+                      <p class="delete_text">&nbsp;</p>
+                    </span>
                     <div class="like_area">
-                      <button class="message_like_button">
-                        ❤️
+                      <button class="message_like_button" onclick="onClickLike({{ tmi_message.id }})">
+                        <img src="{% static 'img/icon/heart.svg' %}" alt="">
                       </button>
                       <p class="message_like">
                         {{ tmi_message.like }}

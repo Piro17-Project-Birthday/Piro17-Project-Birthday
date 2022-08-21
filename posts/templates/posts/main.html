@@ -22,11 +22,11 @@
   <body>
 
     <div class="content">
-
-      <img class="main__logo" src="{% static 'img\page_logo\logo-main.png' %}" alt="">
-      <div class="main__title--text1">
-        모두의 생일을 축하해 주세요!
-      </div>
+      <div class="main">
+        <img class="main__logo" src="{% static 'img\page_logo\logo-main.png' %}" alt="">
+        <div class="main__title--text1">
+          모두의 생일을 축하해 주세요!
+        </div>
       <div class="main__title--text2">
         하루 뒤면 잊혀지는 생일 축하들은 이제 그만!<div></div>
         다신 오지 않을 이번 생일과 축하들을
@@ -35,7 +35,6 @@
       <div class="primary-btn">
         <a href="{% url 'posts:create_birthday_page'%}">나만의 생일 페이지 만들러 가기</a>
       </div>
-
     </div>
     <footer>
       <div class="footer__area">
@@ -91,7 +90,8 @@
         </div>
       </div>
     </footer>
-
+      </div>
+    </div>  
   </body>
   <script>
     $.ajaxSetup({
@@ -102,7 +102,7 @@
   </script>
 
 </div>
-<!-- 꽃가루 날리는 ㅓs 호출 -->
+<!-- 꽃가루 날리는 js 호출 -->
 <script src="/static/js/main_confetti.js"></script>
 </script>
 {% endblock content %}

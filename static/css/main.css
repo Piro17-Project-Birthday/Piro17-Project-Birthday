@@ -4,12 +4,17 @@
 
 .content {
   position:relative;
-  padding-bottom: 10rem;
+  padding-bottom:0;
+}
+
+.main{
+  text-align: -webkit-center;
 }
 
 .primary-btn{
   z-index:1;
   margin-top:3rem;
+  max-width: 19rem;
 }
 
 #myCanvas canvas{
@@ -47,7 +52,7 @@
 .main__logo{
   width: 75%;
   display: block;
-  margin: 30% auto 0 auto;
+  padding:2rem 0;
 }
 
 
