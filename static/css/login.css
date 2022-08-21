@@ -59,7 +59,7 @@
   text-align: center;
 }
 .login__social_login {
-  margin: 20rem 0 0 0;
+  margin: 10rem 0 0 0;
 }
 .google__text {
   margin: 0 0 0 0;
@@ -84,4 +84,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.main__logo{
+  width: 75%;
+  display: block;
+  margin: 25% auto 0 auto;
+}
+
+
+@media (max-width:390px) {
+  .main__logo{
+    width: 75%;
+    display: block;
+    margin: 15% auto 0 auto;
+  }
+  .login__social_login {
+    margin: 7rem 0 0 0;
+  }
 }

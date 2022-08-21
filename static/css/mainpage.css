@@ -1,3 +1,17 @@
+@import url("./login.css");
+
+:root {
+  --div-main-color: #fdf8ef; /*아이보리*/
+  --div-sub-color: #8ebd5e; /*연두*/
+  --div-point-color: #ff574c; /*다홍*/
+  --div-dark-font-color: #2d3142;
+  --div-dark-opacity-font-color: rgba(45, 49, 66, 0.5);
+  --div-light-font-color: #ffffff;
+  --div-input-shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+
+
 *{
     margin: 0;
   }
@@ -6,6 +20,27 @@
   /* 포지션은 자유롭게 수정해도 상관 없음. fixed 써야하면 쓰면 됨. Z 인덱스를 사용하기 위해서 포지션은 임시로 넣음. */
   z-index: 1;
   /* 이 Z인덱스가 있어야, 꽃가루 내리는 영역인 myCanvas보다 위에  생일페이지 만들기 버튼이 위치해서 클릭 가능함. */
+
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Spoqa Han Sans Neo";
+  font-weight: 700;
+  background-color: var(--div-point-color);
+  color: var(--div-light-font-color);
+  border-radius: 1rem;
+  border: 0px;
+  height: 3rem;
+  text-align: center;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+  position: fixed;
+  top: 84vh;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 90%;
 }
 
 
@@ -16,3 +51,43 @@
     width: 100%;
     position: absolute;
   }
+
+  .main__title--text1{
+    
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 1rem 0 1rem 0px;
+    color: var(--div-point-color);
+    text-align: center;
+  }
+  
+  .main__title--text2{
+    
+    font-weight: 600;
+    text-align: center;
+    font-size: 14px;
+    margin: 1rem 0 0 0px;
+    color: var(--div-dark-opacity-font-color);
+  } 
+  @media screen and (min-width: 414px){
+  .birthday_page_btn {
+    width: 23.5rem;
+  }
+}
+
+
+.main__logo{
+  width: 75%;
+  display: block;
+  margin: 30% auto 0 auto;
+}
+
+
+@media (max-width:390px) {
+  .main__logo{
+    width: 75%;
+    display: block;
+    margin: 15% auto 0 auto;
+  }
+  
+}
