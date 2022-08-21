@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <!-- css 참조 안쓰고 그냥 style로 함. -->
+    <link rel="icon" href="/static/img/page_logo/favicon.png">
+
     <title>추카포카</title>
+    
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
     <link rel="stylesheet" href="{% static 'css/settings.css' %}"/>
@@ -20,7 +23,7 @@
     {% if user.is_authenticated %}
           <nav>
             <div class="nav__left">
-              <a href="/">추카포카</a>
+              <a href="/"><img class="nav__logo" src="{% static 'img\page_logo\logo-dark.png' %}" alt=""></a>
             </div>
             <div class="navbar_dropdown">
               <button onclick="dropdown_menu()" class="dropdown__btn">
@@ -56,7 +59,7 @@
         {% else %}
           <nav>
             <div class="nav__left">
-              <a href="/">추카포카</a>
+              <a href="/"><img class="nav__logo" src="{% static 'img\page_logo\logo-dark.png' %}" alt=""></a>
             </div>
             <div class="navbar_dropdown">
               <button onclick="dropdown_menu()" class="dropdown__btn">
