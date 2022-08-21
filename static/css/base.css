@@ -44,7 +44,7 @@ input::placeholder{
   -webkit-box-pack: center;
   justify-content: center;
   width: 100%;
-  min-height: 100vh;
+  min-height: calc(var(--vh, 1vh) * 100);
   margin-top:0.5rem;
 }
 
@@ -79,7 +79,12 @@ nav {
   top: 0;
   left: 50%;
   transform: translate(-50%, 0);
+  border-bottom: 1px solid #e5e5e5;
 }
+.nav-bottom{
+  border-top: 1px solid #e5e5e5;
+}
+
 .navbar_dropdown {
   position: relative;
   display: inline-block;
