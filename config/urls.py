@@ -26,4 +26,4 @@ urlpatterns = [
     path('account/', include('allauth.urls')),
     path('', include('photos.urls')),
     path('', include('tmies.urls')),
-] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)
+] + static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
