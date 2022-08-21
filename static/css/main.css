@@ -4,6 +4,7 @@
 
 .content {
   position:relative;
+  padding-bottom: 10rem;
 }
 
 .primary-btn{
@@ -57,4 +58,61 @@
     margin: 15% auto 0 auto;
   }
   
+}
+
+/*footer*/
+
+footer{
+  padding: 1rem 2rem;
+  font-size: 11px;
+  font-weight: 500;
+  color:white;
+  background-color: var(--div-dark-font-color);
+  bottom: 0;
+
+}
+
+.footer__area{
+  display:flex;
+  flex-direction: column;
+}
+
+.footer__logo img {
+  width: 20%
+}
+
+.info__contributors{
+  display: flex;
+}
+
+.info__team,
+.info__contributors{
+  padding-bottom: 0.01rem;
+}
+
+.info__contact {
+  margin-bottom: 0.5rem
+}
+.team__label, 
+.contri__label,
+.contact__label {
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.team__bar, 
+.contri__bar,
+.conatact__bar{
+  margin: 0 0.1rem;
+}
+
+.footer__copyright hr{
+  height: 1.5px;
+  border: 0;
+  background-color: white;
+}
+
+.footer__copyright  p{
+  font-size: 5px;
+  font-weight: 300;
 }
