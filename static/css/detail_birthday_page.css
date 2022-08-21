@@ -100,9 +100,9 @@
     padding-bottom : 4rem;
 }
 
-.text-main--activate h1 {
+/* .text-main--activate h1 {
     animation: bounce-top 1s both;
-}
+} */
 
 @keyframes bounce-top {
     0% {
@@ -149,7 +149,7 @@
     font-weight:500;
     padding:0 2rem;
     padding-top:1rem;
-    animation: fadeIn 2s;
+    /* animation: fadeIn 2s; */
 }
 
 @keyframes fadeIn {
