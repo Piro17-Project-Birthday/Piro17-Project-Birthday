@@ -44,7 +44,9 @@
                       </p>
                     {% endif %}
                   {% else %}
-                    <p class="images__item__delete-btn"></p>
+                    <p class="images__item__delete-btn">
+                      &nbsp;
+                    </p>
                   {% endif %}
                   <div class="images__item__polaroid">
                     <p><img class="images__item__image" src=" {{photo.req_photo.url}}" alt=""></p>
@@ -62,13 +64,20 @@
     {%endif %}
     </div>
       
-      {% if not is_owner%}
-        {% if not photo_page.state == "archive"%}
-          <div class="floating-btn" id="login-btn">
-            <div class="floating-btn__text">포토 방명록 남기기</div>
-          </div>
+      {% if not is_owner %}
+        {% if not photo_page.state == "archive" %}
+          {% if request.user.is_authenticated %}
+            <a href="{% url 'photos:photo_create' year pk %}" class="floating-btn">
+              <p class="floating-btn__text">포토 방명록 남기기</p>
+            </a>
+          {% else %}
+            <div class="floating-btn" id="login-btn">
+              <p class="floating-btn__text">포토 방명록 남기기</p>
+            </div>
+          {% endif %}
         {% endif %}
-      {% endif %} 
+      {% endif %}
+
       {% if photo_page.state == "activate" or photo_page.state == "archive"%}
       <!-- 하단 메뉴 표시되도록 하는 부분. -->
       <div class="nav-bottom">

@@ -170,7 +170,7 @@
 .messages__content{
     padding:3rem 2rem;
     padding-top: 1.5rem;
-    padding-bottom: 10rem;
+    padding-bottom: 7rem;
 }
 
 .strawberry{
@@ -261,7 +261,6 @@
     font-weight:400;
     font-family:inherit;
 }
-
 /* 삭제 모달 */
 .modal__delete{
     position: fixed;

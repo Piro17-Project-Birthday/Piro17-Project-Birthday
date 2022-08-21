@@ -13,7 +13,7 @@
 }
 
 .images {
-    padding-top:1rem;
+    padding-top:2rem;
 }
 
 .images__container{
@@ -73,7 +73,7 @@ font-style: normal;
 .images__item__pin { 
     position: absolute;
     left: 46%;
-    bottom: 80%;
+    bottom: 77%;
     width: 8%;
 }
 

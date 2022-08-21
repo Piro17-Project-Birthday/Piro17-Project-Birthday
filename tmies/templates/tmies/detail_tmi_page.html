@@ -37,15 +37,21 @@
         {% endif %}
 
         {% if not is_owner %}
-          {% if not tmi_page.state == "archive"%}
-            <div>
-              <a class="floating-btn" id="login-btn">
-                <div class="floating-btn__text">내 친구의 TMI 남기기</div>
+          {% if not tmi_page.state == "archive" %}
+            {% if request.user.is_authenticated %}
+              <a href="{% url 'tmies:create_tmi_message' year pk %}" class="floating-btn">
+                <p class="floating-btn__text">내 친구의 TMI 남기기</p>
               </a>
-            </div>
+            {% else %}
+              <div class="floating-btn" id="login-btn">
+                <p class="floating-btn__text">내 친구의 TMI 남기기</p>
+              </div>
+            {% endif %}
           {% endif %}
         {% endif %}
+
         {% if tmi_messages %}
+        <div class="messages">
           {% for tmi_message in tmi_messages%}
             <div class="message-id-{{ tmi_message.id }}">
               <div class="message_area">
@@ -85,6 +91,7 @@
               </div>
             </div>
           {% endfor %}
+        </div>
         {% else %}
           <div class="tmi-empty">
             아직 남겨진 TMI가 없어요.

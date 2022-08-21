@@ -87,6 +87,11 @@
     margin: 0.5rem 0 0px 0px;
 }
 
+.messages {
+  padding-top:2rem;
+}
+
+
  /* 로그인 모달 */
  .modal__login{
   position: fixed;
@@ -197,6 +202,7 @@
   align-items: center;
   padding: 1rem;
   margin-right: 0.5rem;
+  box-shadow: 0px 2px 10px -1px rgba(0, 0, 0, 0.1);
 }
 
 .message_content p {
