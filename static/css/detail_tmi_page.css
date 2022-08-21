@@ -183,10 +183,11 @@ footer {
 /* 메세지 영역*/
 .message_area{
   display:flex;
+  justify-content: center;
 }
 
 .message_content{
-  width: 17rem;
+  width: 15rem;
   border-radius: 1rem;
   display: flex;
   align-items: center;
@@ -196,11 +197,14 @@ footer {
 
 .message_content p {
   font-size: 1rem;
+  overflow:hidden;
+  word-wrap:break-word;
 }
 
 .message_side {
   display: flex;
   flex-direction: column;
+  width: 3rem;
 }
 .like_area {
   display: flex;
@@ -209,6 +213,8 @@ footer {
 
 .message_like{
   font-size: 0.7rem;
+  overflow: auto;
+  text-overflow: clip;
 }
 
 .message_delete{

@@ -1,23 +1,27 @@
 {% extends 'posts/base.html' %}
 {% block content %}
   {% load static %}
+
   <head>
     <link rel="stylesheet" href="{% static 'css/create_tmi_message.css' %}"/>
   </head>
+
   <body>
     <div class="content">
-    <form action="{% url 'tmies:create_tmi_message' tmi_page.year tmi_page.tmi_origin.pk %}" method="POST">
-      {% csrf_token %}
-      <form action="" method="POST">
-        <input type="hidden" name="csrfmiddlewaretoken" value="TvwoESACvOpLBiYLtw7Gsc6Wl5GNiS2IEE7cyjEPptMPPUr80hvVJhc7XaUh4reX">
+      <form action="{% url 'tmies:create_tmi_message' tmi_page.year tmi_page.tmi_origin.pk %}" method="POST">
         {% csrf_token %}
-        <p><label for="id_content" class="create_tmi--text">내 친구의 TMI를 입력해주세요.</label> 
-          <div class="create_tmi--example"> ex. 김친구는 오이를 싫어한다.</div>
-          <textarea name="content" cols="40" rows="5" required="" id="id_content"></textarea>
-        </p>
-        {% csrf_token %}
-        <input class="create_tmi--submit" type="submit" value="TMI 남기기">
-      </form>
-    </div>
-  </body>
-{% endblock content %}
+        <form action="" method="POST">
+          <input type="hidden" name="csrfmiddlewaretoken" value="TvwoESACvOpLBiYLtw7Gsc6Wl5GNiS2IEE7cyjEPptMPPUr80hvVJhc7XaUh4reX">
+          {% csrf_token %}
+          <p>
+            <label for="id_content" class="create_tmi--text">내 친구의 TMI를 입력해주세요.</label>
+            <div class="create_tmi--example">
+              ex. 김친구는 오이를 싫어한다.</div>
+            <textarea name="content" cols="40" rows="5" maxlength="70" required="" id="id_content"></textarea>
+          </p>
+          {% csrf_token %}
+          <input class="create_tmi--submit" type="submit" value="TMI 남기기">
+        </form>
+      </div>
+    </body>
+  {% endblock content %}
