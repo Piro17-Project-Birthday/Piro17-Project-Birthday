@@ -1,0 +1,60 @@
+*{
+    margin: 0;
+  }
+
+.content {
+  position:relative;
+}
+
+.primary-btn{
+  z-index:1;
+  margin-top:3rem;
+}
+
+#myCanvas canvas{
+  /* Nav-bar 아래로 깔리는 영역으로, 해당 영역에 꽃가루가 뿌려지게 됨. */
+    background: transparent;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+  }
+
+  .main__title--text1{
+    
+    font-weight: 600;
+    font-size: 1rem;
+    margin: 1rem 0 1rem 0px;
+    color: var(--div-point-color);
+    text-align: center;
+  }
+  
+  .main__title--text2{
+    
+    font-weight: 600;
+    text-align: center;
+    font-size: 14px;
+    margin: 1rem 0 0 0px;
+    color: var(--div-dark-opacity-font-color);
+  } 
+  @media screen and (min-width: 414px){
+  .birthday_page_btn {
+    width: 23.5rem;
+  }
+}
+
+
+.main__logo{
+  width: 75%;
+  display: block;
+  margin: 30% auto 0 auto;
+}
+
+
+@media (max-width:390px) {
+  .main__logo{
+    width: 75%;
+    display: block;
+    margin: 15% auto 0 auto;
+  }
+  
+}
