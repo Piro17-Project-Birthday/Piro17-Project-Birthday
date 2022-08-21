@@ -76,7 +76,7 @@
             <div class="image--activate">
               <!-- 케이크 -->
               {% if messages.count >= 0 %}
-                  {% if target == "초코" %}
+                  {% if target == "choco" %}
                     {% if messages.count <= 5 %}
                     <img src="{% static 'img\cake\cake-choco-01.png' %}">
                     {% elif messages.count <= 10 %}
@@ -86,7 +86,7 @@
                     {% elif messages.count <= 20 %}
                     <img src="{% static 'img\cake\cake-choco-04.png' %}">
                     {% endif %}
-                  {% elif target == "딸기"%}
+                  {% elif target == "strawberry"%}
                     {% if messages.count <= 5 %}
                     <img src="{% static 'img\cake\cake-strawberry-01.png' %}">
                     {% elif messages.count <= 10 %}
@@ -96,7 +96,7 @@
                     {% elif messages.count <= 20 %}
                     <img src="{% static 'img\cake\cake-strawberry-04.png' %}">
                     {% endif %}
-                  {% elif target == "치즈"%}
+                  {% elif target == "carrot"%}
                     {% if messages.count <= 5 %}
                     <img src="{% static 'img\cake\cake-carrot-01.png' %}">
                     {% elif messages.count <= 10 %}
@@ -111,22 +111,27 @@
             </div>
 
             <div class="text-main--activate">
-              {% if target == "딸기" %}
+              {% if target == "strawberry" %}
               <h1 class="strawberry-text">{{ name }}님, 생일 축하드려요!</h1>
-              {% elif target == "초코" %}
+              {% elif target == "choco" %}
               <h1 class="choco-text">{{ name }}님, 생일 축하드려요!</h1>
+              {% elif target == "carrot"%}
+              <h1 class="carrot-text">{{ name }}님, 생일 축하드려요!</h1>
               {% endif %}
               <h6>소중한 생일을 맞이한 {{name}}님에게<br/>따뜻한 축하의 메시지를 남겨주세요.</h6>
             </div>
 
             <!-- 메시지 -->
             <div class="messages">
-              {% if target == "딸기" %}
+              {% if target == "strawberry" %}
                 <img class="messages__wave-pattern" src="{% static 'img\wave-pattern-strawberry.svg' %}">
                 <div class="messages__content strawberry">
-              {% elif target == "초코"%}
+              {% elif target == "choco"%}
                 <img class="messages__wave-pattern" src="{% static 'img\wave-pattern-choco.svg' %}">
                 <div class="messages__content choco">
+              {% elif target == "carrot"%}
+                <img class="messages__wave-pattern" src="{% static 'img\wave-pattern-carrot.svg' %}">
+                <div class="messages__content carrot">
               {% endif %}
                 {% if messages %}
                 <!--
