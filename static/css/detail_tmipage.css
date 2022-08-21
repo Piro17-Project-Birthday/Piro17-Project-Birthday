@@ -1,0 +1,38 @@
+.message_area{
+    display:flex;
+}
+
+.message_content{
+    width: 17rem;
+    border-radius: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    margin-right: 0.5rem;
+}
+
+.message_content p {
+    font-size: 1rem;
+}
+
+.message_side {
+    display: flex;
+    flex-direction: column;
+}
+.like_area {
+    display: flex;
+    align-items: center;
+}
+
+.message_like{
+    font-size: 0.7rem;
+}
+
+.message_delete{
+    display: flex;
+    align-items: center;
+}
+
+.delete_text{
+    font-size: 0.7rem;
+}
