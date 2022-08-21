@@ -24,6 +24,7 @@
             <label for="id_nickname" class="create_message--name"
               >이름을 알려주세요.</label
             >
+            <span class="create__message__sub-text">최대 10자</span>
             <input
               type="text"
               name="nickname"
@@ -36,9 +37,8 @@
           {% csrf_token %}
           <p>
             <label for="id_message" class="create_message--send"
-              >메세지를 남겨주세요.</label
-            >
-
+              >메세지를 남겨주세요.</label>
+            
             <textarea
               name="message"
               cols="40"
@@ -49,9 +49,11 @@
             ></textarea>
           </p>
           {% if request.user.is_authenticated%}
+          <div class="check-private">
+            <input type="checkbox" name="is_private" id="id_is_private" />
           <label for="id_is_private" class="create_message--private"
             >비밀 메세지</label>
-          <input type="checkbox" name="is_private" id="id_is_private" />
+          </div>
           {% endif %}
         </form>
       </table>
@@ -64,46 +66,4 @@
     </form>
   </div>
 </body>
-{% endblock content %} {% comment %}
-<div clss="content">
-  <form action="/2022/1/write/" method="POST">
-    <input
-      type="hidden"
-      name="csrfmiddlewaretoken"
-      value="6LDmWB92aaj4XxVbpZ5nPtuJZP6SC8OOPkcsgtPIa8anzCJUZXXp8MwgI0NyFjvj"
-    />
-    <ul class="errorlist">
-      <li>필수 항목입니다.</li>
-    </ul>
-    <p>
-      <label for="id_nickname">Nickname:</label>
-      <input
-        type="text"
-        name="nickname"
-        maxlength="20"
-        required=""
-        id="id_nickname"
-      />
-    </p>
-    <ul class="errorlist">
-      <li>필수 항목입니다.</li>
-    </ul>
-    <p>
-      <label for="id_message">Message:</label>
-      <textarea
-        name="message"
-        cols="40"
-        rows="10"
-        required=""
-        id="id_message"
-      ></textarea>
-    </p>
-    <p>
-      <label for="id_is_private">Is private:</label>
-      <input type="checkbox" name="is_private" id="id_is_private" />
-    </p>
-    <table></table>
-    <input type="submit" class="create_message--submit" value="메시지 남기기" />
-  </form>
-</div>
-{% endcomment %}
+{% endblock content %} 
