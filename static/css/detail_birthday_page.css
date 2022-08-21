@@ -205,6 +205,8 @@
 .message__message{
     font-weight:300;
     margin-left: 4rem;
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 .message__nickname-delete-btn {
