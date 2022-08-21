@@ -214,42 +214,36 @@ font-style: normal;
     font-family:inherit;
 }
 
-.footer__birthdaypage {
+.nav-bottom__content__birthdaypage {
     width: 30%;
     padding: 0 5% 0 3%;
-  
     font-size: 14px;
   }
   
-  .footer__photo {
+  .nav-bottom__content__photo {
     width: 30%;
     padding: 0 5% 0 5%;
-    color: var(--div-point-color);
     font-size: 14px;
+    color: var(--div-point-color);
   }
-  .footer__tmi {
+  .nav-bottom__content__tmi {
     width: 30%;
     padding: 0 3% 0 5%;
     font-size: 14px;
-    
   }
   
-  footer {
+  .nav-bottom {
     width: 100%;
     position: fixed;
     bottom: 0;
     left: 0;
   }
   
-  .detail_page-footer {
+  .nav-bottom__content {
     width: 100%;
     text-align: center;
     background-color: var(--div-light-font-color);
     margin: auto;
-  }
-  
-  .footer__style {
-    display: none;
   }
   
   /* 로그인 모달 */
