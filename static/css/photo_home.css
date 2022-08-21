@@ -78,6 +78,14 @@ font-style: normal;
     width: 8%;
 }
 
+.images__item__sticker {
+    position: absolute;
+    left: 46%;
+    bottom: 78%;
+    width: 1rem;
+    height: 2.8rem;
+}
+
 .images__padding {
     height:2rem;
 }
