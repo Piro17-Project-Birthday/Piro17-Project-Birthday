@@ -24,19 +24,6 @@
     
     <div class="content">
 
-      <section class="container">
-        {% if user.is_authenticated %}
-          {% if user.nickname %}
-            <p class="main__login">{{user.nickname}}님이 로그인 중</p>
-          {% else %}
-            <p class="main__login">{{user.username}}님이 로그인 중</p>
-          {% endif %}
-        {% endif %}
-            <!--<a href="{% url 'account_signup' %}" class="nav-link">Signup</a> <a href="{% url 'account_login' %}" class="nav-link">Login</a>-->
-      </section>
-
-     
-      
         <img class="main__logo" src="{% static 'img\page_logo\logo-main.png' %}" alt="">
         <div class="main__title--text1">
           모두의 생일을 축하해 주세요!
