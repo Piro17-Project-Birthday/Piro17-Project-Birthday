@@ -7,6 +7,7 @@
   <head>
     <link rel="stylesheet" href="{% static 'css/detail_tmi_page.css' %}"/>
   </head>
+  
   <body>
     <div class="content">
     {% if tmi_page.state == "deactivate" %}
@@ -45,24 +46,32 @@
       {% if tmi_messages %}
         {% for tmi_message in tmi_messages%}
           <div class="message-id-{{ tmi_message.id }}">
-            {{ tmi_message.content }}
-            <button onclick="onClickLike({{ tmi_message.id }})">👍 추천
-            </button>
-            <span class="message__like">
-              {{ tmi_message.like }}
-            </span>
-            {% comment %} {% if is_owner or request.user == tmi_message.writer %}
-              <span>
-                <a href="{% url 'tmies:delete_tmi_message' tmi_message.id %}">삭제</a>
-              </span>
-            {% endif %} {% endcomment %}
-            {% if is_owner or request.user == tmi_message.writer %}
-              {% if not tmi_page.state == "archive"%}
-                <span>
-                  <a href="{% url 'tmies:delete_tmi_message' tmi_message.id %}">삭제</a>
-                </span>
-              {% endif %}
-            {% endif %}
+            <div class="message_area">
+              <div class="message_content">
+                <p>
+                  {{ tmi_message.content }}
+                </p>
+              </div>
+              <div class="message_side">
+                {% if is_owner or request.user == tmi_message.writer %}
+                  {% if not tmi_page.state == "archive"%}
+                    <span class="messaage_delete">
+                      <a href="{% url 'tmies:delete_tmi_message' tmi_message.id %}">
+                        <p class="delete_text">삭제</p>
+                      </a>
+                    </span>
+                    <div class="like_area">
+                      <button class="message_like_button" onclick="onClickLike({{ tmi_message.id }})">
+                        🤍
+                      </button>
+                      <p class="message_like">
+                        {{ tmi_message.like }}
+                      </p>
+                    </div>
+                  {% endif %}
+                {% endif %}
+              </div>
+            </div>
           </div>
         {% endfor %}
       {% else %}
@@ -111,6 +120,26 @@
 
 
     <script>
+      //tmi 메세지 리스트 정렬용
+      const colorTarget = document.getElementsByClassName("message_content")
+      const fullTarget = document.getElementsByClassName("message_area")
+      var colors = ['#A7DD71', '#EDADDA', '#FF8F87', '#FFDA96', '#93B8E1']
+
+      for (i = 0; i < colorTarget.length; i++) {
+        color = colors[i % 5]
+        colorTarget[i].style.backgroundColor = color;
+      }
+
+      for (j = 0; j < fullTarget.length; j++) {
+        if (j % 2 == 0) {
+          fullTarget[j].style.marginLeft = '3.5rem';
+        } else {
+          fullTarget[j].style.marginLeft = '1rem'
+          fullTarget[j].style.marginRight = '3.5rem'
+        }
+      }
+
+      // 좋아요 ajax
       const strip = (string) => {
         return string.replace(/^\s+|\s+$/g, '');
       };
@@ -130,7 +159,7 @@
       }
 
       const likeHandleResponse = (id) => {
-        const element = document.querySelector(`.message-id-${id} .message__like`);
+        const element = document.querySelector(`.message-id-${id} .message_like`);
         const num = element.innerHTML;
         const count = Number(num) + 1;
 
