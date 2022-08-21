@@ -213,13 +213,6 @@ def detailBirthdayPage(request,year,pk):
     print(selected_cake)
     target = selected_cake
     
-    if selected_cake == "초코 케이크":
-        target = "초코"
-    elif selected_cake == "딸기 케이크":
-        target = "딸기"
-    elif selected_cake == "치즈 케이크":
-        target = "치즈"
-    
     target_birth = get_object_or_404(BirthdayPage, year=year, pk=pk)
     target_photo = get_object_or_404(PhotoPage, year=year, pk=pk)
     target_tmi = get_object_or_404(TmiPage, year=year, pk=pk) #하단 메뉴용 타겟들
