@@ -24,7 +24,7 @@
     
     <div class="content">
 
-      <section class="container">
+      {% comment %} <section class="container">
         {% if user.is_authenticated %}
           {% if user.nickname %}
             <p class="main__login">{{user.nickname}}님이 로그인 중</p>
@@ -33,7 +33,7 @@
           {% endif %}
         {% endif %}
             <!--<a href="{% url 'account_signup' %}" class="nav-link">Signup</a> <a href="{% url 'account_login' %}" class="nav-link">Login</a>-->
-      </section>
+      </section> {% endcomment %}
 
      
       
