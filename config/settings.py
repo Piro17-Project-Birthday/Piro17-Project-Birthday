@@ -11,8 +11,8 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
-import os
-
+import os, json
+from django.core.exceptions import ImproperlyConfigured
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-4%8ds1r@4$r!zodn319$pe-!%n!1td&%s(sr6aeib3zdr=7rfm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = [ 'f8df-116-33-136-109.jp.ngrok.io', '127.0.0.1', '*']
+ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [ 'https://f8df-116-33-136-109.jp.ngrok.io' ]
 
 # Application definition
@@ -140,7 +140,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+
+STATIC_ROOT = os.path.join(BASE_DIR, '/static/')
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
