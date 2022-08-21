@@ -34,7 +34,7 @@ def get_secret(keyword, secrets=secrets):
 SECRET_KEY = get_secret("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 CSRF_TRUSTED_ORIGINS = [ 'https://f8df-116-33-136-109.jp.ngrok.io' ]
