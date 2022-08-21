@@ -97,7 +97,7 @@ input[type="checkbox"]:checked::after {
 }
 
 .create__message__sub-text{ 
-  color: var(--div-point-color);
+  color: var(--div-sub-color);
   font-size: 12px;
   margin-bottom:1rem;
 }

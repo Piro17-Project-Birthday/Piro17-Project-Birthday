@@ -52,8 +52,8 @@
     font-size: 14px;
   }
 
-.tmi__create__sub-text{
-  color: var(--div-point-color);
-  font-size: 12px;
-  margin-bottom:1rem;
-}
+  .tmi__create__sub-text{ 
+    color: var(--div-sub-color);
+    font-size: 12px;
+    margin-bottom:1rem;
+  }
