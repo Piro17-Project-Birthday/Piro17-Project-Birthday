@@ -22,7 +22,8 @@
     <form action="/create" method="POST" class="create_birthday_page__form">
       {% csrf_token %}
       <div class="create__name">
-        <div class="create__name__text">이름을 알려주세요.</div>
+        <span class="create__name__text">이름을 알려주세요.</span>
+        <span class="create__birthday__sub-text">최대 10자</span>
         <div>
           <input type="text" name="nickname" maxlength="10" required="" id="id_nickname" Placeholder="이름도, 닉네임도 좋아요. "> 
         </div>

@@ -15,8 +15,9 @@
           {% csrf_token %}
           <p>
             <label for="id_content" class="create_tmi--text">내 친구의 TMI를 입력해주세요.</label>
+            <span class="tmi__create__sub-text">최대 70자</span>
             <div class="create_tmi--example">
-              ex. 김친구는 오이를 싫어한다.</div>
+              ex. 김추카의 애완견 이름은 포카이다.</div>
             <textarea name="content" cols="40" rows="5" maxlength="70" required="" id="id_content"></textarea>
           </p>
           {% csrf_token %}

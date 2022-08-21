@@ -42,7 +42,7 @@
 
 .create_message--send {
   font-weight: bold;
-  margin: 0px 30% 0px 0px;
+  margin: 0px 0% 0px 0px;
 }
 
 #id_message {
@@ -94,4 +94,10 @@ input[type="checkbox"]:checked::after {
 }
 .create_message--private {
   font-weight: bold;
+}
+
+.create__message__sub-text{ 
+  color: var(--div-point-color);
+  font-size: 12px;
+  margin-bottom:1rem;
 }
