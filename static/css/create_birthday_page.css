@@ -84,12 +84,16 @@
   align-items: center;
   font-family: 'Spoqa Han Sans Neo';
   font-weight: 700;
+  background-color: white;
   color: var(--div-dark-opacity-font-color);
   border-radius: 10px;
   border: 0px;
   text-align: center;
   width: 100%;
-  font-size: 0.8rem;
+  font-size: 0.875rem;
   cursor: pointer;
   margin-bottom:2rem;
+}
+.archive p{
+  padding:1rem;
 }
