@@ -194,6 +194,7 @@ nav {
   display:block;
   width: 100%;
   overflow: hidden;
+  margin-bottom: -0.2rem;
 }
 
 .floating-btn {
