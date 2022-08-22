@@ -18,11 +18,12 @@
         </script>
       {% elif tmi_page.state == "activate" or tmi_page.state == "archive" %}
         {% if tmi_page.state == "archive" %}
-          <div>
-            <span class="detail_tmi--name">{{ name }}</span>
-            <span class="detail_tmi--name--sub">님의
-              {{ year }}년 내 친구의 TMI 페이지입니다</span>
-          </div>
+        <div class="archive">
+          <p>
+            {{name}}님의
+            {{year}}년 내 친구의 TMI 페이지입니다.
+          </p>
+        </div>
         {% else %}
           <div class="tmi_icon">
             <img src="{% static 'img\icon\talking-deactivate.png' %}" alt="">

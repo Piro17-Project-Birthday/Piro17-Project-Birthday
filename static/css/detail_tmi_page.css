@@ -1,4 +1,24 @@
-@import url("./login.css");
+.archive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Spoqa Han Sans Neo';
+  font-weight: 700;
+  background-color: white;
+  color: var(--div-dark-opacity-font-color);
+  border-radius: 10px;
+  border: 0px;
+  text-align: center;
+  width: 100%;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom:3rem;
+}
+
+.archive p{
+  padding:1rem;
+}
+
 .nav-bottom__content__birthdaypage {
   width: 27%;
   padding: 0 4% 0 1%;
