@@ -27,14 +27,11 @@
               {{ year }}년 내 친구의 TMI 페이지입니다</span>
           </div>
         {% else %}
-          <div class="tmi_icon">
-            <img src="{% static 'img\icon\talking-deactivate.png' %}" alt="">
-          </div>
+
           <div class="text">
             <h1 class="text__title">내 친구의 TMI</h1>
             <p class="text__description">
-              {{name}}님에 대한 소소한 TMI들을 공유해요!<br>
-              재밌는 내용에는 하트를 눌러 추천할 수 있어요.
+              {{name}}님에 대한 TMI는 무엇이 있나요?
             </p>
           </div>
         {% endif %}
@@ -54,23 +51,36 @@
         {% endif %}
 
         {% if tmi_messages %}
-        <div class="messages">
-          {% for tmi_message in tmi_messages%}
-            <div class="message-id-{{ tmi_message.id }}">
-              <div class="message_area">
-                <div class="message_content">
-                  <p>
-                    {{ tmi_message.content }}
-                  </p>
-                </div>
-                <div class="message_side">
-                  {% if not tmi_page.state == "archive"%}
-                    {% if is_owner or request.user == tmi_message.writer %}
-                      <span class="messaage_delete">
-                        <button id={% url 'tmies:delete_tmi_message' tmi_message.id %} class="delete-btn">
-                          삭제
+          <div class="messages">
+            {% for tmi_message in tmi_messages%}
+              <div class="message-id-{{ tmi_message.id }}">
+                <div class="message_area">
+                  <div class="message_content">
+                    <p>
+                      {{ tmi_message.content }}
+                    </p>
+                  </div>
+                  <div class="message_side">
+                    {% if not tmi_page.state == "archive"%}
+                      {% if is_owner or request.user == tmi_message.writer %}
+                        <span class="messaage_delete delete-btn">
+                          <button id={% url 'tmies:delete_tmi_message' tmi_message.id %} class="delete-btn">
+                            삭제
+                          </button>
+                        </span>
+                      {% else %}
+                        <span class="messaage_delete">
+                          <p class="delete_text">&nbsp;</p>
+                        </span>
+                      {% endif %}
+                      <div class="like_area">
+                        <button class="message_like_button" onclick="onClickLike({{ tmi_message.id }})">
+                          <img src="{% static 'img/icon/heart.svg' %}" alt="">
                         </button>
-                      </span>
+                        <p class="message_like">
+                          {{ tmi_message.like }}
+                        </p>
+                      </div>
                     {% else %}
                       <span class="messaage_delete">
                         <p class="delete_text">&nbsp;</p>
@@ -90,10 +100,9 @@
             {% endfor %}
           </div>
         {% else %}
-            <div class="tmi-empty">
-              <img src="{% static 'img\icon\empty-sad.png' %}" alt=""><br>
-              아직 남겨진 TMI가 없어요.
-            </div>
+          <div class="tmi-empty">
+            아직 남겨진 TMI가 없어요.
+          </div>
         {% endif %}
       {% endif %}
     </div>
@@ -116,6 +125,32 @@
       </div>
     {% endif %}
 
+    <!-- 로그인 모달-->
+    <div class="modal__login hidden">
+      <div class="modal__login__overlay"></div>
+      <div class="modal__login__content">
+        <span class="modal__login__content__title">로그인 하지 않고<br/>메시지를 남기시겠어요?</span>
+        <div class="modal__login__content__description">
+          <h6>로그인을 하지 않으면&nbsp</h6>
+          <div class="description__line">
+            <h6>내가 남긴&nbsp</h6>
+            <h6>TMI를 &nbsp</h6>
+          </div>
+          <h6 class="bold">삭제할 수 없어요.</h6>
+        </div>
+        <div class="modal__login__content__btns">
+          <div class="login__social_login">
+            <div class="login__yes">
+              <a href="/login/?next={{ request.path }}" class="login__yes__text">소셜 로그인 하러가기</a>
+            </div>
+            <div class="login__no" id="login__no">
+              <a href="{% url 'tmies:create_tmi_message' year pk %}" class="login__no__text">로그인 없이 남기기</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
     <!--삭제 모달-->
     <div class="modal__delete hidden">
       <div class="modal__delete__overlay"></div>
@@ -131,31 +166,6 @@
       </div>
     </div>
 
-    <!-- 로그인 모달-->
-    <div class="modal__login hidden">
-      <div class="modal__login__overlay"></div>
-      <div class="modal__login__content">
-        <span class="modal__login__content__title">로그인 하지 않고<br/>메시지를 남기시겠어요?</span>
-        <div class="modal__login__content__description">
-          <h6>로그인을 하지 않으면&nbsp</h6> 
-          <div class="description__line">
-            <h6>내가 남긴&nbsp</h6>
-            <h6>포토 방명록을&nbsp</h6>
-          </div>
-          <h6 class="bold">삭제할 수 없어요.</h6>
-        </div>
-        <div class="modal__login__content__btns">
-          <div class="login__social_login">
-            <a href="/login/?next={{ request.path }}" class="login__yes">
-              <div class="login__yes__text">소셜 로그인 하러가기</div>
-            </a>
-            <a href="{% url 'photos:photo_create' year pk %}" class="login__no" id="login__no">
-              <div class="login__no__text">로그인 없이 남기기</div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <script>
       //tmi 메세지 리스트 정렬용
