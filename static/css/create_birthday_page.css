@@ -97,3 +97,15 @@
 .archive p{
   padding:1rem;
 }
+
+#id_selected_cake{
+  display: flex;
+}
+
+#id_selected_cake img{
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+}
+
+#id_selected_cake input[type='radio']{
+  accent-color: var(--div-point-color);
+}
