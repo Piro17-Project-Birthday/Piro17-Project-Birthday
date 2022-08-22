@@ -1,4 +1,4 @@
-{% extends 'posts/base.html' %}
+div{% extends 'posts/base.html' %}
 {% block content %}
   {% load static%}
 
@@ -65,8 +65,9 @@
         {% else %}
           
           <div class="images--empty">
-            <img src="{% static 'img\icon\empty-sad.png' %}" alt=""><br>
-            아직 남겨진 포토 방명록이 없어요.
+            <h1>아직 남겨진 포토 방명록이 없어요.</h1>
+            <h6>이렇게 남겨보세요.</h6>
+            <img src="{% static 'img\main-image-photo-monochrome.png' %}" alt=""><br>
           </div>
         {% endif %}
     {%endif %}
