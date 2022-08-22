@@ -2,7 +2,8 @@
 
 
 .photo_icon img {
-    width: 30%;
+    width: 20%;
+    padding-bottom: 0.5rem;
 }
 
 .text__title {
@@ -98,7 +99,7 @@ font-style: normal;
 }
 
 .images--empty img {
-    width: 40%;
+    width: 30%;
     opacity: 90%;
 }
 
@@ -255,7 +256,7 @@ font-style: normal;
     color: var(--div-point-color);
   }
   .nav-bottom__content__tmi {
-    width: 28%;
+    width: 29.5%;
     padding: 0 1% 0 4%;
     font-size: 11px;
   }

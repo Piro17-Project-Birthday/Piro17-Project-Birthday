@@ -11,7 +11,7 @@
   font-size: 11px;
 }
 .nav-bottom__content__tmi {
-  width: 28%;
+  width: 29.5%;
   padding: 0 1% 0 4%;
   font-size: 11px;
   color: var(--div-point-color);
@@ -54,7 +54,8 @@
   }
 
 .tmi_icon img {
-    width: 30%;
+    width: 20%;
+    padding-bottom: 0.5rem;
 }
 
 .text__title {
@@ -95,7 +96,7 @@
 }
 
 .tmi-empty img {
-  width: 40%;
+  width: 30%;
   opacity: 90%;
 }
 
