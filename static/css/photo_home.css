@@ -398,3 +398,7 @@
 .bold{
     font-weight:700;
 }
+
+.content{
+    padding-top:2rem;
+}
