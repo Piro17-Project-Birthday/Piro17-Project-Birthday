@@ -1,6 +1,6 @@
 @import url("./login.css");
 .content{
-    padding: 3rem 0;
+    padding: 2.5rem 0;
     background: var(--div-main-color);
 }
 .footer__style {
@@ -65,7 +65,7 @@
     display: flex;
     justify-content: space-between;
     padding: 0 2rem;
-    padding-bottom: 4rem;
+    padding-bottom: 2rem;
 }
 
 .text--activate button {
@@ -97,7 +97,7 @@
     text-align:center;
     font-size:1.5rem;
     font-weight:700;
-    padding-bottom : 4rem;
+    padding-bottom : 3rem;
 }
 
 /* .text-main--activate h1 {
