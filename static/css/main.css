@@ -83,10 +83,12 @@ footer{
 .footer__area{
   display:flex;
   flex-direction: column;
+  font-weight:300;
 }
 
 .footer__logo img {
-  width: 20%
+  width: 20%;
+  margin-bottom: 0.5rem;
 }
 
 .info__contributors{
@@ -108,19 +110,14 @@ footer{
   font-weight: 600;
 }
 
-.team__bar, 
-.contri__bar,
-.conatact__bar{
-  margin: 0 0.1rem;
-}
-
 .footer__copyright hr{
-  height: 1.5px;
+  height: 0.005rem;
   border: 0;
   background-color: white;
 }
 
 .footer__copyright  p{
+  padding-top: 0.1rem;
   font-size: 5px;
   font-weight: 300;
 }
