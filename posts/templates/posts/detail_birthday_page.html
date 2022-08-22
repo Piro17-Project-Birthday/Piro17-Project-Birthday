@@ -56,15 +56,19 @@
         <!-- 디데이 -->
         <div class="text--activate">
           <span class="text--activate__date-diff">
-            <h6 class="highlight">{{birthday}}</h6>
-            {% if birthday_page.state == "today" %}
-              <h6 class="highlight">오늘 생일</h6>
-            {% else %}
-              <div class="text--activate__date-diff__line">
-                <h6>생일까지&nbsp</h6>
-                <h6 class="bold">D-{{ date_diff }}</h6>
-              </div>
-            {% endif %}
+            {% if birthday_page.state != "archive"%}
+              <h6 class="highlight">{{birthday}}</h6>
+              {% if birthday_page.state == "today" %}
+                <h6 class="highlight">오늘 생일</h6>
+              {% else %}
+                <div class="text--activate__date-diff__line">
+                  <h6>생일까지&nbsp</h6>
+                  <h6 class="bold">D-{{ date_diff }}</h6>
+                </div>
+              {% endif %}
+            {%else%}
+              <h6 class="highlight">{{year}}년 {{birthday.month}}월 {{birthday.day}}일</h6>
+            {%endif%}
           </span>
           <!-- 스크린샷 버튼 -->
           {% if birthday_page.state != "waiting" and is_owner %}

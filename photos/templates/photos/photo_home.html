@@ -20,9 +20,8 @@ div{% extends 'posts/base.html' %}
               {{name}}님의
               {{year}}년 포토 방명록 페이지입니다.
             </p>
-
           </div>
-          {%endif%}
+          {%else%}
           <div class="photo_icon">
             <img src="{% static 'img\icon\image-deactivate.png' %}" alt="">
           </div>
@@ -33,6 +32,7 @@ div{% extends 'posts/base.html' %}
               추억이 담겨있는 사진들과 함께 축하를 남겨주세요!
             </p>
           </div>
+          {%endif%}
         <div class="images">
           {% if photos %}
             <div class="images__container">
