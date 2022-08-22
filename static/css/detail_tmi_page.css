@@ -1,19 +1,19 @@
 @import url("./login.css");
 .nav-bottom__content__birthdaypage {
-  width: 30%;
-  padding: 0 5% 0 3%;
-  font-size: 14px;
+  width: 27%;
+  padding: 0 4% 0 1%;
+  font-size: 11px;
 }
 
 .nav-bottom__content__photo {
-  width: 30%;
-  padding: 0 5% 0 5%;
-  font-size: 14px;
+  width: 28%;
+  padding: 0 3% 0 3%;
+  font-size: 11px;
 }
 .nav-bottom__content__tmi {
-  width: 30%;
-  padding: 0 3% 0 5%;
-  font-size: 14px;
+  width: 29.5%;
+  padding: 0 1% 0 4%;
+  font-size: 11px;
   color: var(--div-point-color);
 }
 
@@ -35,7 +35,14 @@
   align-items: end;
   justify-content: center;
   padding-bottom: 1rem;
-  height: 5.5rem;
+  height: 4rem;
+}
+
+.nav-bottom__content h6 {
+  margin-block-start: -0.8em;
+  margin-block-end: -1.4em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
 }
 
 .nav-bottom__content img {
@@ -46,6 +53,11 @@
     padding: 3rem 2rem;
   }
 
+.tmi_icon img {
+    width: 20%;
+    padding-bottom: 0.5rem;
+}
+
 .text__title {
     font-size:1.5rem;
     font-weight:700;
@@ -53,6 +65,7 @@
 
 .text > * {
     padding-bottom: 1rem;
+    padding-top : 0.4rem;
 }
 
 .text__description {
@@ -81,10 +94,17 @@
     border:1px;
     
 }
+
+.tmi-empty img {
+  width: 30%;
+  opacity: 90%;
+}
+
 .tmi-empty{
   color: var(--div-dark-opacity-font-color);
   font-weight: 700;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding-bottom: 5rem;

@@ -23,10 +23,13 @@
 
           </div>
           {%endif%}
+          <div class="photo_icon">
+            <img src="{% static 'img\icon\image-deactivate.png' %}" alt="">
+          </div>
           <div class="text">
             <h1 class="text__title">포토방명록</h1>
             <p class="text__description">
-              보여주고 싶은 사진으로</br>축하를 남겨보세요!
+              추억이 담긴 사진으로</br>축하를 남겨주세요!
             </p>
           </div>
         <div class="images">
@@ -58,7 +61,9 @@
             </div>
           </div>
         {% else %}
+          
           <div class="images--empty">
+            <img src="{% static 'img\icon\empty-sad.png' %}" alt=""><br>
             아직 남겨진 포토 방명록이 없어요.
           </div>
         {% endif %}
