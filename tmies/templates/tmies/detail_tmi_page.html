@@ -32,9 +32,12 @@
           </div>
           <div class="text">
             <h1 class="text__title">내 친구의 TMI</h1>
-            <p class="text__description">
-              {{name}}님에 대한 소소한 TMI들을 공유해요!<br>
-              재밌는 내용에는 하트를 눌러 추천할 수 있어요.
+            <p class="text__description tmi-description">
+              {{name}}님에 대해 누가누가 더 잘 아나요?</br>
+              소소한 TMI들을 공유해 주세요.</br>
+              <p class="text__description__sub-text">
+              재밌는 내용에는 좋아요를 눌러보세요.
+              </p>
             </p>
           </div>
         {% endif %}
@@ -144,12 +147,12 @@
         </div>
         <div class="modal__login__content__btns">
           <div class="login__social_login">
-            <div class="login__yes">
-              <a href="/login/?next={{ request.path }}" class="login__yes__text">소셜 로그인 하러가기</a>
-            </div>
-            <div class="login__no" id="login__no">
-              <a href="{% url 'tmies:create_tmi_message' year pk %}" class="login__no__text">로그인 없이 남기기</a>
-            </div>
+            <a href="/login/?next={{ request.path }}" class="login__yes">
+              <div class="login__yes__text">소셜 로그인 하러가기</div>
+            </a>
+            <a href="{% url 'tmies:create_tmi_message' year pk %}" class="login__no" id="login__no">
+              <div class="login__no__text">로그인 없이 남기기</div>
+            </a>
           </div>
 
         </div>
