@@ -19,7 +19,24 @@
             <div class="edit_mypage--theme">
               <span class="edit_mypage--theme--text">변경할 생일페이지 테마를 선택해주세요.</span>
             </div>
-            {{form.selected_cake}}
+            <div>
+              <ul id="id_selected_cake">
+                <li>
+                  <img class="preview__choco" src="{% static 'img/theme-preview-choco.png' %}" alt="">
+                  <label for="id_selected_cake_0"><input type="radio" name="selected_cake" value="choco" required="" id="id_selected_cake_0">초코</label>
+                </li>
+    
+                <li>
+                  <img class="preview__strawberry" src="{% static 'img/theme-preview-strawberry.png' %}" alt="">
+                  <label for="id_selected_cake_1"><input type="radio" name="selected_cake" value="strawberry" required="" id="id_selected_cake_1">딸기</label>
+                </li>
+    
+                <li>
+                  <img class="preview__carrot" src="{% static 'img/theme-preview-carrot.png' %}" alt="">
+                  <label for="id_selected_cake_2"><input type="radio" name="selected_cake" value="carrot" required="" id="id_selected_cake_2">당근</label>
+                </li>
+              </ul>
+            </div>
           </div>
         </table>
         <input type="submit" class="editmypage--submit" value="수정하기"/>
