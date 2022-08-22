@@ -103,9 +103,11 @@
             {% endfor %}
           </div>
         {% else %}
-          <div class="tmi-empty">
-            아직 남겨진 TMI가 없어요.
-          </div>
+        <div class="tmies--empty">
+          <h1>아직 남겨진 TMI가 없어요.</h1>
+          <h6>이렇게 남겨보세요.</h6>
+          <img src="{% static 'img\main-image-tmi-monochrome.png' %}" alt=""><br>
+        </div>
         {% endif %}
       {% endif %}
     </div>

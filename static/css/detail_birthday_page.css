@@ -446,16 +446,27 @@
     display: flex;
     align-items: end;
     justify-content: center;
-    padding-bottom: 1.5rem;
+    padding-bottom: 1.1rem;
     height: 4.3rem;
   }
+  
   .nav-bottom__content h6 {
     margin-block-start: -0.8em;
     margin-block-end: -1.4em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
   }
-
-.nav-bottom__content img {
+  
+  .nav-bottom__content img {
     width: inherit;
-}
+  }
+  
+  .content {
+      padding:0;
+    }
+  
+  .tmi_icon img {
+    width: 16%;
+    padding-bottom: 0.5rem;
+    padding-left: 0.2rem;
+  }

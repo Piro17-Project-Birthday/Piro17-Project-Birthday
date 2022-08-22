@@ -33,7 +33,7 @@
   display: flex;
   align-items: end;
   justify-content: center;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1.1rem;
   height: 4.3rem;
 }
 
@@ -282,6 +282,35 @@
   font-size: 0.7rem;
   padding-left: 0.1rem;
 }
+
+.tmies--empty img {
+  width: 45%;
+}
+
+.tmies--empty {
+  color: var(--div-dark-opacity-font-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+  margin-bottom: 8rem;
+  opacity: 50%;
+  height: calc(var(--vh, 1vh) * 50);
+}
+
+.tmies--empty h1{
+  font-size:1rem;
+  font-weight:700;
+  padding-bottom:1rem;
+}
+
+.tmies--empty h6 {
+  font-size:0.875rem;
+  font-weight:300;
+  padding-bottom:2rem;
+}
+
 
 /* tmi message area 애니메이션 정의 */
 
