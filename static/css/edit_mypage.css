@@ -75,3 +75,8 @@ input[type='radio']{
 label{
   padding-left: 0.5rem;
 }
+
+#id_selected_cake div{
+  width: 10rem;
+  margin-bottom: 2.5rem;
+}
