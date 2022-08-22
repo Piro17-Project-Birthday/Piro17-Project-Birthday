@@ -27,11 +27,14 @@
               {{ year }}년 내 친구의 TMI 페이지입니다</span>
           </div>
         {% else %}
-
+          <div class="tmi_icon">
+            <img src="{% static 'img\icon\talking-deactivate.png' %}" alt="">
+          </div>
           <div class="text">
             <h1 class="text__title">내 친구의 TMI</h1>
             <p class="text__description">
-              {{name}}님에 대한 TMI는 무엇이 있나요?
+              {{name}}님에 대한 소소한 TMI들을 공유해요!<br>
+              재밌는 내용에는 하트를 눌러 추천할 수 있어요👍
             </p>
           </div>
         {% endif %}
@@ -100,9 +103,10 @@
           {% endfor %}
         </div>
         {% else %}
-          <div class="tmi-empty">
-            아직 남겨진 TMI가 없어요.
-          </div>
+            <div class="tmi-empty">
+              <img src="{% static 'img\icon\empty-sad.png' %}" alt=""><br>
+              아직 남겨진 TMI가 없어요.
+            </div>
         {% endif %}
       {% endif %}
     </div>
