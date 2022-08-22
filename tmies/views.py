@@ -10,7 +10,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 def detailTmiPage(request,year, pk):
     tmi_page = get_object_or_404(TmiPage, year=year, pk=pk)
-    tmi_messages = tmi_page.tmimessage_set.all()
+    tmi_messages = tmi_page.tmimessage_set.all().order_by('-id')
     
     birthday_page = get_object_or_404(BirthdayPage, pk=pk)
     name = birthday_page.owner.nickname
@@ -48,7 +48,7 @@ def createTmiMessage(request, year, pk):
             if request.user.is_authenticated :
                 tmi.writer = request.user
             tmi.save()
-            return redirect(f"/{tmi_page.year}/{tmi_page.tmi_origin.id}/tmi")
+            return redirect(f"/{tmi_page.year}/{tmi_page.tmi_origin.uuid}/tmi")
     context = {
         'tmi_page': tmi_page,
         'form':form,
@@ -59,7 +59,7 @@ def deleteTmiMessage(reqeust, pk):
     tmi_message = TmiMessage.objects.get(pk=pk)
     tmi_page = tmi_message.receiver
     tmi_message.delete()
-    return redirect(f"/{tmi_page.year}/{tmi_page.tmi_origin.id}/tmi")
+    return redirect(f"/{tmi_page.year}/{tmi_page.tmi_origin.uuid}/tmi")
 
 
 

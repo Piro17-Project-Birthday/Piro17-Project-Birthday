@@ -14,72 +14,103 @@
 
 .mypage__profile--image {
   text-align: center;
-  border-radius: 50%;
-  border: 1px solid;
-  margin: auto;
-  padding: 0 0 12% 0px;
-  width: 20%;
 }
+
+.mypage__profile--image img {
+  width:4rem;
+}
+
 .mypage__profile--name {
   text-align: center;
   font-weight: bold;
-  margin: 12px 0px 12px 0px;
+  margin: 0.8rem 0 1.5rem 0;
 }
 
 .mypage__line {
-  height: 2px;
-  background-color: var(--div-dark-font-color);
+  height: 0.01rem;
 }
 
-.mypage__birthdaypage__text {
+.text__top{
   font-weight: bold;
-  margin: 25% 45% 0px 5px;
   font-size: 1rem;
+  padding: 1rem 0;
+  padding-top:2rem;
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.mypage__content {
-  margin: 8% 0 0 0;
+.second {
+  padding-top:2rem;
 }
-
 .mypage__edit_mypage {
   color: var(--div-point-color);
   font-size: 1rem;
-  margin: 0px 0px 0px -5px;
   font-weight: bold;
+  float: right;
 }
-.mypage__go-to-my-birthday-page {
-  border: 0px var(--div-point-color);
-  color: var(--div-light-font-color);
+
+.mypage__go-to-my-birthday-page, .mypage__go-to-past-birthday-page{
+  font-family: "Spoqa Han Sans Neo";
+  font-weight: 700;
   background-color: var(--div-point-color);
-  border-radius: 5px;
+  color: var(--div-light-font-color);
+  border-radius: 0.8rem;
+  border: 0px;
+  height: 2.5rem;
   width: 100%;
-  margin: 5px 0px 5px 0px;
-  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
-  padding: 5px 175px 5px 0px;
   font-size: 1rem;
-  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+  text-align: left;
+  padding-left: 1rem;
+}
+
+.mypage__go-to-past-birthday-page{ 
+  background-color: var(--div-sub-color);
 }
 .mypage__info-text {
   color: var(--div-dark-opacity-font-color);
   font-weight: bold;
-  font-size: 1rem;
-  margin: 5px 0px 0px 5px;
+  font-size: 1rem;  
+  padding-left: 0.2rem;
 }
 
-.mypage__go-to-past-birthday-page {
-  border: 0px var(--div-point-color);
-  color: var(--div-light-font-color);
-  background-color: var(--div-sub-color);
-  border-radius: 5px;
-  width: 100%;
-  margin: 5px 0px 5px 0px;
-  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
-  padding: 5px 175px 5px 0px;
-  font-size: 1rem;
-  font-weight: bold;
-}
 .mypage__info__sub-text {
   color: var(--div-sub-color);
   font-size: 12px;
-  margin: 2px 0px 0px 5px;
+  padding: 0.5rem 0.2rem;
 }
+
+.mypage__info__sub-text-make {
+  color: var(--div-point-color);
+  font-size: 12px;
+  padding: 0.5rem 0.2rem;
+}
+
+.mypage__go-to-make-page{ 
+  font-family: "Spoqa Han Sans Neo";
+  font-weight: 700;
+  background-color: var(--div-point-color);
+  color: var(--div-light-font-color);
+  border-radius: 0.8rem;
+  border: 0px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+  text-align: center;
+  padding: 0.5rem 1.8rem;
+}
+
+.waiting {
+  background-color:var(--div-dark-opacity-font-color);
+}
+
+form {
+  padding-bottom:1rem;
+}
+
+label{
+  padding-left: 0.5rem;
+}
+

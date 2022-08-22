@@ -5,81 +5,158 @@
     <meta charset="UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <!-- css 참조 안쓰고 그냥 style로 함. -->
-    <title>축마땅</title>
+    <!-- meta -->
+    <meta property="og:url" content="https://chookapoka.com/">
+    <meta property="og:title" content="추카포카 - 생일은 추카포카에서, 우리 같이 축하해요!">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://github.com/Piro17-Project-Birthday/Piro17-Project-Birthday/blob/develop4/static/img/og-image.jpg?raw=true">
+    <meta property="og:description" content="친구의 생일페이지에 축하의 마음을 남겨주세요.">
+    <meta property="og:site_name" content="추카포카">
+    <meta property="og:locale" content="ko">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="추카포카 - 생일은 추카포카에서, 우리 같이 축하해요!"/>
+    <meta name="twitter:description" content="친구의 생일페이지에 축하의 마음을 남겨주세요."/>
+    <meta name="twitter:image" content="https://github.com/Piro17-Project-Birthday/Piro17-Project-Birthday/blob/develop4/static/img/og-image.jpg?raw=true" />
+    <meta property="site_title" content="추카포카 - 생일은 추카포카에서, 우리 같이 축하해요!">
+    <link rel="icon" href="/static/img/page_logo/favicon.png">
+
+    <title>추카포카</title>
+    
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/settings.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/create_birthday_page.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/main_mypage.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/edit_mypage.css' %}"/>
-    <link rel="stylesheet" href="{% static 'css/create_message.css' %}"/>
   </head>
 
   <body>
-    <div class="wrap">
-      <div class="screen">
-        {% if user.is_authenticated %}
+    {% if user.is_authenticated %}
           <nav>
             <div class="nav__left">
-              <a href="/">축마땅</a>
+              <a href="/"><img class="nav__logo" src="{% static 'img\page_logo\logo-dark.png' %}" alt=""></a>
             </div>
             <div class="navbar_dropdown">
               <button onclick="dropdown_menu()" class="dropdown__btn">
-                <i class="fa-solid fa-bars"></i>
+                <img src="{% static 'img/icon/nav.svg' %}">
               </button>
-              <div style="display: none" id="dropdown_content">
-                <div class="dropdown__opacity"></div>
-                <button onclick="dropdown_menu()" class="dropdown__btn--x">X</button>
-                {% if user.nickname %}
-                  <a href="{% url 'posts:main_mypage'%}"><img src="{% static 'img/profile-icon.jpg' %}">
-                    {{user.nickname}}</a>
-                {% else %}
-                  <a href="{% url 'posts:main_mypage'%}"><img src="{% static 'img/profile-icon.jpg' %}">
-                    {{user.username}}</a>
-                {% endif %}
-                <!-- 내페이지 링크 연결 -->
-                <div class="dropdown-circles">
-                  <span class="circle">●●●●●●●</span></div>
-                <div id="dropdown__background">
-                  <a href="{% url 'posts:main_mypage'%} " id="dropdown__mypage">마이페이지</a>
-                  <a href="#" id="dropdown__btn--service">1:1 문의하기</a>
-                  <a href="{% url 'users:log_out'%}" id="dropdown__btn--logout">로그아웃</a>
+              <div  id="dropdown_content">
+                
+                <div class="dropdown__box" style="transform: translateX(14rem); opacity: 0%;" id="dropdown_content_sidebar">
+                  <button onclick="dropdown_menu_x()" class="dropdown__btn--x">
+                    <img src="{% static 'img/icon/close.svg' %}">
+                  </button>
+                  {% if user.nickname %}
+                    <a href="{% url 'posts:main_mypage'%}"><img src="{% static 'img/icon/user.svg' %}">
+                      {{user.nickname}} 님</a>
+                  {% else %}
+                    <a href="{% url 'posts:main_mypage'%}"><img src="{% static 'img/icon/user.svg' %}">
+                      {{user.username}} 님</a>
+                  {% endif %}
+                  <!-- 내페이지 링크 연결 -->
+                  <div>
+                    <img class="dropdown__wave-pattern" src="{% static 'img\wave-pattern-nav-bar.svg' %}">
+                    <div id="dropdown__background">
+                      <a href="{% url 'posts:main_mypage'%} " id="dropdown__mypage">마이페이지</a>
+                      <a href="mailto:eastlaw80@naver.com" id="dropdown__btn--service">1:1 문의하기</a>
+                      <a href="{% url 'users:log_out'%}" id="dropdown__btn--logout">로그아웃</a>
+                    </div>
+                  </div>
+                  
                 </div>
+                <div style="display: none;" class="dropdown__opacity"></div>
               </div>
+              
             </div>
           </nav>
         {% else %}
           <nav>
             <div class="nav__left">
-              <a href="/">축마땅</a>
+              <a href="/"><img class="nav__logo" src="{% static 'img\page_logo\logo-dark.png' %}" alt=""></a>
             </div>
             <div class="navbar_dropdown">
               <button onclick="dropdown_menu()" class="dropdown__btn">
-                <i class="fa-solid fa-bars"></i>
+                <img src="{% static 'img/icon/nav.svg' %}">
               </button>
-              <div style="display: none" id="dropdown_content">
-                <div class="dropdown__opacity"></div>
-                <button onclick="dropdown_menu()" class="dropdown__btn--x">X</button>
-
-                <a href="{% url 'users:log_in'%}" class="dropdown__btn--login"><img src="{% static 'img/profile-icon.jpg' %}">
+              <div  id="dropdown_content">
+                
+                
+                <div class="dropdown__box" style="transform: translateX(14rem); opacity: 0%;" id="dropdown_content_sidebar">
+                  <button onclick="dropdown_menu_x()" class="dropdown__btn--x">
+                    <img src="{% static 'img/icon/close.svg' %}">
+                  </button>
+                <a href="/login/?next={{ request.path }}" class="dropdown__btn--login"><img src="{% static 'img/icon/user.svg' %}">
                   로그인 하기 ></a>
-                <div class="dropdown-circles">
-                  <span class="circle">●●●●●●●</span></div>
-                <div id="dropdown__background">
-                  <a href="{% url 'posts:create_birthday_page'%}" id="dropdown__btn--birthdaypage">생일 페이지 만들기</a>
-                  <a href="#" id="dropdown__btn--service">1:1 문의하기</a>
-                </div>
+                  <img class="dropdown__wave-pattern" src="{% static 'img\wave-pattern-nav-bar.svg' %}">
+                  <div id="dropdown__background">
+                  <a href="mailto:eastlaw80@naver.com" id="dropdown__btn--service">1:1 문의하기</a>
+                  </div>
               </div>
+              <div style="display: none;" class="dropdown__opacity"></div>
             </div>
           </nav>
         {% endif %}
+    <div class="wrap">
+      
+      <div class="screen">
+        
         {% block content %}{% endblock %}
       </div>
     </div>
-    <script src="https://kit.fontawesome.com/a8a24f1fa9.js" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="/static/js/dropdown_menu.js"></script>
-  </script>
+    <script>
+      function dropdown_menu() {
+        let click = document.getElementById("dropdown_content_sidebar");
+        const background = document.getElementsByClassName("dropdown__opacity")[0]
+        if (click.style.transform = "translateX(14rem)") {
+          //click.style.display= "block";
+          click.style.opacity= "100%";
+          click.style.transform = "translateX(0px)";//나옴
+          background.style.display="block";
+
+        } else {
+          //click.style.display= "none";
+          click.style.opacity= "0%";
+          click.style.transform = "translateX(14rem)";//들어감
+          background.style.display="none";
+        }
+        
+        background.onclick = function () {
+          click.style.opacity= "0%";
+          click.style.transform = "translateX(14rem)";
+          background.style.display="none";
+        }
+      }
+
+
+      function dropdown_menu_x() {
+        let click = document.getElementById("dropdown_content_sidebar");
+        const background = document.getElementsByClassName("dropdown__opacity")[0]
+        if (click.style.transform = "translateX(0px)") {
+          //click.style.display= "none";
+          click.style.opacity= "0%";
+          click.style.transform = "translateX(14rem)";
+          background.style.display="none";
+
+        } else {
+          //click.style.display= "block";
+          click.style.opacity= "100%";
+          click.style.transform = "translateX(0px)";
+          background.style.display="block";
+        }
+       
+        background.onclick = function () {
+          click.style.opacity= "0%";
+          click.style.transform = "translateX(14rem)";
+          background.style.display="none";
+        }
+      }
+
+      function setScreenSize() {
+        let vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+      }
+      setScreenSize();
+      
+      window.addEventListener('resize', () => setScreenSize());
+    </script>
 </body>
 
 </html>

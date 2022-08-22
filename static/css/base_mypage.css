@@ -1,0 +1,86 @@
+@import url("./reset.css");
+:root {
+  --div-main-color: #fdf8ef; /*아이보리*/
+  --div-sub-color: #8ebd5e; /*연두*/
+  --div-point-color: #ff574c; /*다홍*/
+  --div-dark-font-color: #2d3142;
+  --div-dark-opacity-font-color: rgba(45, 49, 66, 0.5);
+  --div-light-font-color: #ffffff;
+  --div-input-shadow-color: rgba(0, 0, 0, 0.1);
+  --div-strawberry-color:#FF7BA2;
+  --div-choco-color:#A57358;
+}
+
+@font-face {
+  font-family: "SpoqaHanSansNeo-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  -ms-overflow-style: none;
+  font-family: "Spoqa Han Sans Neo";
+  background-color: rgb(246, 246, 246);
+  line-height: 1.5rem;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.wrap {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.wrap > * {
+  max-width: 480px;
+}
+
+.screen {
+  background-color: var(--div-main-color);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overflow: scroll;
+  overscroll-behavior-y: none;
+}
+
+.content{
+  padding:3rem 2rem;
+  padding-bottom: 10rem;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: white;
+  align-items: center;
+}
+
+.nav__left{
+  padding: 1.2rem 2rem;
+}
+
+.nav__right{
+  padding-right:4rem;
+}
+
+.nav__left a {
+  cursor: pointer;
+}
+/* a 태그에 href="#" 쓰면 안좋다고 봐서 css로 일케 cursor만 pointer로 바꿔주세용가리 */
+
+.nav__middle span {
+  font-size:1.2rem;
+  font-weight:700;
+}

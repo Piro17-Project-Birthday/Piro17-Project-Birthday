@@ -1,38 +1,58 @@
 {% extends 'posts/base.html' %} {% block content %} {% load static %}
+<script>
+  $.ajaxSetup({
+    headers: { "X-CSRFToken": "{{csrf_token}}" },
+  });
+</script>
 <head>
   <link rel="stylesheet" href="{% static 'css/create_birthday_page.css' %}" />
 </head>
 <body>
   <div class="content">
+    
+    <div class="archive">
+      <div class="archive__text">
+        <p>
+          생일을 제외한 정보는 마이페이지에서 수정할 수 있어요.
+        </p>
+      </div>
+    </div>
+    
+
     <form action="/create" method="POST" class="create_birthday_page__form">
       {% csrf_token %}
       <div class="create__name">
-        <div class="create__name__text">이름을 알려주세요.</div>
+        <span class="create__name__text">이름을 알려주세요.</span>
+        <span class="create__birthday__sub-text">최대 10자</span>
         <div>
-          <input type="text" name="nickname" maxlength="10" required="" id="id_nickname" Placeholder="이름도, 닉네임도 좋아요.                                                  0/10"> 
-
-          {% comment %} {{form.full_name}} {% endcomment %}
+          <input type="text" name="nickname" maxlength="10" required="" id="id_nickname" Placeholder="이름도, 닉네임도 좋아요. "> 
+        </div>
       </div>
       <div class="create__birthday">
-        <div class="create__birthday__text">생일을 알려주세요.</div>
+        <span class="create__birthday__text">생일을 알려주세요.</span>
+        <span class="create__birthday__sub-text_b">수정이 불가해요</span>
         <input type="date" name="birthday" required="" id="id_birthday">
     </div>
       <div class="create__cake">
-        <div class="create__cake__text">페이지를 장식할 케이크 테마를 선택해주세요.</div>
-        <div><ul id="id_selected_cake">
-          <li><label for="id_selected_cake_0"><input type="radio" name="selected_cake" value="초코 케이크" required="" id="id_selected_cake_0">
-       초코</label>
-      
-      </li>
-          <li><label for="id_selected_cake_1"><input type="radio" name="selected_cake" value="딸기 케이크" required="" id="id_selected_cake_1">
-       딸기</label>
-      
-      </li>
-          <li><label for="id_selected_cake_2"><input type="radio" name="selected_cake" value="치즈 케이크" required="" id="id_selected_cake_2">
-       치즈</label>
-      
-      </li>
-      </ul></div>
+        <div class="create__cake__text">페이지를 장식할 테마를 선택해주세요.</div>
+        <div>
+          <ul id="id_selected_cake">
+            <li>
+              <img class="preview__choco" src="{% static 'img/theme-preview-choco.png' %}" alt="">
+              <label for="id_selected_cake_0"><input type="radio" name="selected_cake" value="choco" required="" id="id_selected_cake_0">초코</label>
+            </li>
+
+            <li>
+              <img class="preview__strawberry" src="{% static 'img/theme-preview-strawberry.png' %}" alt="">
+              <label for="id_selected_cake_1"><input type="radio" name="selected_cake" value="strawberry" required="" id="id_selected_cake_1">딸기</label>
+            </li>
+
+            <li>
+              <img class="preview__carrot" src="{% static 'img/theme-preview-carrot.png' %}" alt="">
+              <label for="id_selected_cake_2"><input type="radio" name="selected_cake" value="carrot" required="" id="id_selected_cake_2">당근</label>
+            </li>
+          </ul>
+        </div>
       </div>
       <input type="submit" value="제출하기" class="primary-btn" id="birthday_create_page--submit"/>
     </form>

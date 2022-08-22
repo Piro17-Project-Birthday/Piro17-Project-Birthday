@@ -2,13 +2,27 @@
 {% block content %}
   {% load static %}
 
+  <head>
+    <link rel="stylesheet" href="{% static 'css/create_tmi_message.css' %}"/>
+  </head>
+
   <body>
-    <form action="{% url 'tmies:create_tmi_message' tmi_page.year tmi_page.tmi_origin.id %}" method="POST">
-      {% csrf_token %}
-      <table>
-        {{form.as_p}}
-      </table>
-      <input type="submit" value="tmi 남기기"/>
-    </form>
-  </body>
-{% endblock content %}
+    <div class="content">
+      <form action="{% url 'tmies:create_tmi_message' tmi_page.year tmi_page.tmi_origin.pk %}" method="POST">
+        {% csrf_token %}
+        <form action="" method="POST">
+          <input type="hidden" name="csrfmiddlewaretoken" value="TvwoESACvOpLBiYLtw7Gsc6Wl5GNiS2IEE7cyjEPptMPPUr80hvVJhc7XaUh4reX">
+          {% csrf_token %}
+          <p>
+            <label for="id_content" class="create_tmi--text">내 친구의 TMI를 입력해주세요.</label>
+            <span class="tmi__create__sub-text">최대 70자</span>
+            <div class="create_tmi--example">
+              ex. 김추카의 애완견 이름은 포카이다.</div>
+            <textarea name="content" cols="40" rows="5" maxlength="70" required="" id="id_content"></textarea>
+          </p>
+          {% csrf_token %}
+          <input class="create_tmi--submit" type="submit" value="TMI 남기기">
+        </form>
+      </div>
+    </body>
+  {% endblock content %}

@@ -1,23 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+{% extends 'posts/base.html' %} {% block content %}
 
+<html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/photo_create.css' %}" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>포토 업로드</title>
   </head>
 
   <body>
-    <form action="{% url 'photos:photo_create' photo_page.year photo_page.photo_origin.id %}" method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      <table>
-        {{ form.as_p }}
-      </table>
-      <div>
-        <input type="submit" value="제출"/>
-      </div>
-    </form>
-  </body>
+    <div class="content">
+      <form action="" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <input
+          type="hidden"
+          name="csrfmiddlewaretoken"
+          value="fEvBAjDqYTbT0g2TO8Qa36V8uOODaegknvhClSlrEcFobmhnqrFseu2keYaVllMC"
+        />
+        {% csrf_token %}
+        <p>
+          <div class="filebox">
+          <span id="id_req_photo--text"
+            >업로드할 사진을 골라주세요.<span>
 
+          <div>
+          <input class="upload-name" placeholder="파일을 선택해 주세요">
+          <label for="id_req_photo" id="id_req_photo--button">파일 업로드</label>
+          <input style="display:none;" type="file" name="req_photo" accept="image/*" required="" id="id_req_photo">
+          </div>
+          </div>
+        </p>
+        {% csrf_token %}
+        <p>
+          <label for="id_title" id="id_title--text" 
+            >한줄 소개를 작성해 주세요.</label
+          >
+          <span class="photo__create__sub-text">최대 30자</span>
+          <input
+            type="text"
+            name="title"
+            maxlength="50"
+            required=""
+            id="id_title"
+            placeholder="어떤 사진인가요?"
+          />
+        </p>
+        
+        <div>
+          <input type="submit" class="photo_create--submit" value="포토 방명록 남기기" />
+        </div>
+      </form>
+    </div>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+  <script>
+    //첨부파일 이름 변경
+    $("#id_req_photo").on('change',function(){
+      var fileName = $("#id_req_photo").val();
+      var words = fileName.split('\\');
+      $(".upload-name").val(words[2]);
+    });
+  </script>
 </html>
+{% endblock %}

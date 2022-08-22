@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <!-- css 참조 안쓰고 그냥 style로 함. -->
+    <link rel="icon" href="/static/img/page_logo/favicon.png">
+    <title>추카포카</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/base_mypage.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/main_mypage.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/edit_mypage.css' %}"/>
+  </head>
+
+  <body>
+    <div class="wrap">
+      <div class="screen">
+        <nav>
+          <div class="nav__left">
+            <a onclick="goBack();">
+              <img src="{% static 'img\icon\chevron-left.svg' %}" alt="">
+            </a>
+          </div>
+          <div class="nav__middle">
+              <span>
+                {% if curr_page == "edit" %}
+                  정보 수정
+                {% else %}
+                  마이페이지
+                {% endif %}
+              </span>
+          </div>
+          <div class="nav__right"></div>
+        </nav>
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+    <script>
+      function goBack() {
+        window
+          .history
+          .back();
+      }
+    </script>
+  </body>
+
+</html>

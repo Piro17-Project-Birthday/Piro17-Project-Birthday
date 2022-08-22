@@ -1,0 +1,504 @@
+.archive {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Spoqa Han Sans Neo';
+  font-weight: 700;
+  background-color: white;
+  color: var(--div-dark-opacity-font-color);
+  border-radius: 10px;
+  border: 0px;
+  text-align: center;
+  width: 100%;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-bottom:3rem;
+}
+
+.archive p{
+  padding:1rem;
+}
+
+.nav-bottom__content__birthdaypage {
+  width: 27%;
+  padding: 0 4% 0 1%;
+  font-size: 11px;
+}
+
+.nav-bottom__content__photo {
+  width: 28%;
+  padding: 0 3% 0 3%;
+  font-size: 11px;
+}
+.nav-bottom__content__tmi {
+  width: 29.5%;
+  padding: 0 1% 0 4%;
+  font-size: 11px;
+  color: var(--div-point-color);
+}
+
+.nav-bottom {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  max-width: 480px;
+  transform: translate(-50%, 0);
+}
+
+.nav-bottom__content {
+  width: 100%;
+  text-align: center;
+  background-color: var(--div-light-font-color);
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  padding-bottom: 1.1rem;
+  height: 4.3rem;
+}
+
+.nav-bottom__content h6 {
+  margin-block-start: -0.8em;
+  margin-block-end: -1.4em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.nav-bottom__content img {
+  width: inherit;
+}
+
+.content {
+    padding: 3rem 2rem;
+  }
+
+.tmi_icon img {
+  width: 16%;
+  padding-bottom: 0.5rem;
+  padding-left: 0.2rem;
+}
+
+.text__title {
+    font-size:1.5rem;
+    font-weight:700;
+}
+
+.text > * {
+    padding-bottom: 1rem;
+    padding-top : 0.4rem;
+}
+
+.text__description {
+    padding-top: 0.5rem;
+}
+
+.detail_tmi--submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Spoqa Han Sans Neo";
+    font-weight: 700;
+    background-color: var(--div-point-color);
+    color: var(--div-light-font-color);
+    border-radius: 1rem;
+    border: 0px;
+    height: 2.5rem;
+    text-align: center;
+    width: 100%;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+    padding: 0px 16px 0 16px;
+}
+.tmi_message{
+    border:1px;
+    
+}
+
+.tmi-empty img {
+  width: 30%;
+  opacity: 90%;
+}
+
+.tmi-empty{
+  color: var(--div-dark-opacity-font-color);
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 5rem;
+  opacity: 50%;
+  height: calc(var(--vh, 1vh) * 50);
+}
+
+.messages {
+  padding-top:2rem;
+  padding-bottom: 10rem;
+}
+
+.text__description__sub-text{
+  font-size:0.875rem;
+  color:var(--div-sub-color);
+  padding:0;
+}
+
+.tmi-description{
+  padding-bottom:0;
+}
+
+ /* 로그인 모달 */
+ .modal__login{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items : center;
+  z-index: 3;
+}
+.modal__login__overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%; height: 100%;
+  position: absolute;
+}
+.modal__login__content {
+  position: relative;
+  background-color: white;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+  padding: 2.5rem 0;
+}
+
+.modal__login__content__title {
+  color : var(--div-point-color);
+  font-weight: 700;
+  font-size:1rem;
+}
+
+.modal__login__content__description {
+  font-size: 0.875rem;
+  padding: 1.8rem 3rem;
+  padding-top: 0.8rem;
+}
+
+.login__social_login{
+  margin:0
+}
+
+.login__no{
+  font-size:0.875rem;
+  border-radius: 1rem;
+  background-color: var(--div-input-shadow-color);
+  color: #3a1d1d;
+  margin: 1rem 2rem;
+  margin-top:0;
+  width:13rem;
+  height:2.5rem;
+  cursor: pointer;
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__yes{
+  font-size:0.875rem;
+  border-radius: 1rem;
+  background-color: var(--div-point-color);
+  margin: 1rem 2rem;
+  margin-top:0;
+  width:13rem;
+  height:2.5rem;
+  cursor: pointer;
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__no__text{
+  font-weight: 700;
+  color:var(--div-dark-font-color);
+  opacity: 50%;
+}
+
+.login__yes__text{
+  font-weight: 700;
+  color:var(--div-light-font-color);
+}
+
+
+.hidden{
+  display:none;
+}
+
+.description__line{
+  display:flex;
+  justify-content: center;
+}
+
+.bold{
+  font-weight:700;
+}
+
+
+/* 메세지 영역*/
+.message_area{
+  display:flex;
+  justify-content: center;
+
+  visibility: hidden;
+}
+
+.message_content{
+  width: 15rem;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin-right: 0.5rem;
+  box-shadow: 0px 2px 10px -1px rgba(0, 0, 0, 0.1);
+}
+
+.message_content p {
+  font-size: 1rem;
+  overflow:hidden;
+  word-wrap:break-word;
+}
+
+.message_side {
+  display: flex;
+  flex-direction: column;
+  width: 3rem;
+  justify-content: space-between;
+  padding-top: 0.1rem;
+}
+.like_area {
+  display: flex;
+  align-items: end;
+}
+
+.message_like{
+  font-size: 0.7rem;
+  overflow: auto;
+  text-overflow: clip;
+}
+
+.message_like_button img{
+  width:1rem;
+  margin-right: 0.15rem;
+  margin-top: 0.3rem;
+}
+
+.message_delete{
+  display: flex;
+  align-items: center;
+}
+
+.delete_text{
+  font-size: 0.7rem;
+  padding-left: 0.1rem;
+}
+
+.tmies--empty img {
+  width: 45%;
+}
+
+.tmies--empty {
+  color: var(--div-dark-opacity-font-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 2rem;
+  margin-bottom: 8rem;
+  opacity: 50%;
+  height: calc(var(--vh, 1vh) * 50);
+}
+
+.tmies--empty h1{
+  font-size:1rem;
+  font-weight:700;
+  padding-bottom:1rem;
+}
+
+.tmies--empty h6 {
+  font-size:0.875rem;
+  font-weight:300;
+  padding-bottom:2rem;
+}
+
+
+/* tmi message area 애니메이션 정의 */
+
+.slideRight{
+	animation-name: slideRight;
+	-webkit-animation-name: slideRight;	
+
+	animation-duration: 1s;	
+	-webkit-animation-duration: 1s;
+
+	animation-timing-function: ease-in-out;	
+	-webkit-animation-timing-function: ease-in-out;		
+
+	visibility: visible !important;	
+}
+
+@keyframes slideRight {
+	0% {
+		transform: translateX(-150%);
+	}
+	50%{
+		transform: translateX(8%);
+	}
+	65%{
+		transform: translateX(-4%);
+	}
+	80%{
+		transform: translateX(4%);
+	}
+	95%{
+		transform: translateX(-2%);
+	}			
+	100% {
+		transform: translateX(0%);
+	}	
+}
+
+@-webkit-keyframes slideRight {
+	0% {
+		-webkit-transform: translateX(-150%);
+	}
+	50%{
+		-webkit-transform: translateX(8%);
+	}
+	65%{
+		-webkit-transform: translateX(-4%);
+	}
+	80%{
+		-webkit-transform: translateX(4%);
+	}
+	95%{
+		-webkit-transform: translateX(-2%);
+	}			
+	100% {
+		-webkit-transform: translateX(0%);
+	}
+}
+
+
+.slideLeft{
+	animation-name: slideLeft;
+	-webkit-animation-name: slideLeft;	
+
+	animation-duration: 1s;	
+	-webkit-animation-duration: 1s;
+
+	animation-timing-function: ease-in-out;	
+	-webkit-animation-timing-function: ease-in-out;		
+
+	visibility: visible !important;	
+}
+
+@keyframes slideLeft {
+	0% {
+		transform: translateX(150%);
+	}
+	50%{
+		transform: translateX(-8%);
+	}
+	65%{
+		transform: translateX(4%);
+	}
+	80%{
+		transform: translateX(-4%);
+	}
+	95%{
+		transform: translateX(2%);
+	}			
+	100% {
+		transform: translateX(0%);
+	}
+}
+
+@-webkit-keyframes slideLeft {
+	0% {
+		-webkit-transform: translateX(150%);
+	}
+	50%{
+		-webkit-transform: translateX(-8%);
+	}
+	65%{
+		-webkit-transform: translateX(4%);
+	}
+	80%{
+		-webkit-transform: translateX(-4%);
+	}
+	95%{
+		-webkit-transform: translateX(2%);
+	}			
+	100% {
+		-webkit-transform: translateX(0%);
+	}
+}
+
+/* 애니메이션 충돌 방지용 */
+.floating-btn {
+  z-index: 2;
+}
+
+.modal__delete{
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items : center;
+}
+.modal__delete__overlay {
+  background-color: rgba(0, 0, 0, 0.6);
+  width: 100%; height: 100%;
+  position: absolute;
+}
+.modal__delete__content {
+  position: relative;
+  background-color: white;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+  padding-bottom: 0;
+  padding-top: 2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal__delete__content__title {
+  color : var(--div-point-color);
+  font-weight: 700;
+  font-size:1rem;
+}
+
+.modal__delete__content__description {
+  font-size:0.875rem;
+  padding: 2rem;
+  padding-top: 1.2rem;
+}
+
+.modal__delete__content__btns {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  padding: 1.2rem;
+  border-top: 1px solid var(--div-input-shadow-color);
+}
+.modal__delete__content__btns > *{
+  font-size:1rem;
+  font-weight:700;
+  font-family:inherit;
+}

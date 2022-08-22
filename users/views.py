@@ -2,7 +2,7 @@
 from django.shortcuts import redirect, render
 from django.views import View
 from . import forms
-# from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from posts.views import BirthdayPage
@@ -14,14 +14,15 @@ today = datetime.now().date() #현재 날짜
 today_year = today.year #현재 년도
 next_year = today_year + 1
 
-
 class LoginView(View):
     forms 
     def get(self, request):
         form = forms.LoginForm()
         ctx = {"form": form}
+        global redirect_to 
+        redirect_to = request.GET.get('next', '')
         return render(request, "./users/login.html", ctx)
-
+    
     def post(self, request):
         form = forms.LoginForm(request.POST)
         if form.is_valid():
@@ -30,13 +31,7 @@ class LoginView(View):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                if BirthdayPage.objects.filter(owner=request.user, year=next_year).exists() : #birthday page가 이미 만들어졌다면
-                    current_birthday_page = BirthdayPage.objects.get(owner=request.user, year=next_year)
-                    return redirect(f"/{current_birthday_page.year}/{current_birthday_page.id}") #해당 페이지로 이동한다
-                elif BirthdayPage.objects.filter(owner=request.user, year=today_year).exists():
-                    current_birthday_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
-                    return redirect(f"/{current_birthday_page.year}/{current_birthday_page.id}")
-            return render(request, "./posts/main.html")
+            return HttpResponseRedirect(redirect_to)
 
         return render(request, "./users/login.html", {"form": form})
 

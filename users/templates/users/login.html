@@ -10,10 +10,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- css 참조 안쓰고 그냥 style로 함. -->
-    <title>축마땅</title>
+    <link rel="icon" href="/static/img/page_logo/favicon.png">
+    <title>추카포카</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/base.css' %}" />
-    <link rel="stylesheet" href="{% static 'css/settings.css' %}" />
     <link rel="stylesheet" href="{% static 'css/login.css' %}" />
   </head>
 
@@ -24,7 +24,7 @@
         
         <div class="background">
           <div class="login--main">
-            <span class="title">LOGIN</span>
+            {% comment %} <span class="title">LOGIN</span>
       
             <form method="POST" action="" class="form--content">
               {% csrf_token %}
@@ -34,12 +34,17 @@
               <div class="btn">
                 <input type="submit" value="login" class="submit--button" />
               </div>
-            </form>
+            </form>  {% endcomment %}
+            <div class="content">
+            <img class="main__logo" src="{% static 'img\page_logo\logo-main.png' %}" alt="">
 
             <div class="login__social_login">
               <form action="{% provider_login_url 'kakao' %}" method="post">
                 {% csrf_token %}
-                <button type="submit"id="login__kakao"><img src="{% static 'img/kakao-logo.png' %}"><span class="kakao__text"> 카카오로 로그인</span></button>
+                  <button type="submit" id="login__kakao">
+                    <img src="{% static 'img/kakao-logo.png' %}">
+                    <span class="kakao__text"> 카카오로 로그인</span>
+                  </button>
               </form>
             <form action="{% provider_login_url 'naver' %}" method="post">
               {% csrf_token %}
@@ -52,9 +57,8 @@
             </form>
           </div>
           </div>
+          </div>
         </div>
-
-
       </div>
     </div>
     

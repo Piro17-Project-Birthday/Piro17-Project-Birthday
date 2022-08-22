@@ -1,94 +1,111 @@
-{% extends 'posts/base.html' %}
-{% block title %}
-  마이페이지
-{% endblock %}
+{% extends 'posts/base_mypage.html' %}
 {%block content %}
+  {% load static%}
   <script src="https://kit.fontawesome.com/f578b19b63.js" crossorigin="anonymous"></script>
-
   <body>
     <div class="content">
       <div class="mypage__profile--image">
-        (사진)
+        <img src="{% static 'img\icon\user-dark.svg' %}" alt=""/>
       </div>
-
       <div class="mypage__profile--name">
         {% if curr_user.nickname %}
           <div>
-            {{curr_user.nickname}}님
+            {{curr_user.nickname}} 님
           </div>
         {% else %}
           <div>
-            {{curr_user.username}}님
+            {{curr_user.username}} 님
           </div>
         {% endif %}
       </div>
       <hr class="mypage__line">
       <div class="mypage__content">
-        <span class="mypage__birthdaypage__text">
-          내 생일 페이지
-        </span>
-        {% if target_pages %}
-          {% for target_page in target_pages %}
-            {% if target_page.state == "today" or target_page.state == "upcoming" %}
-              <a href="{% url 'posts:edit_mypage' %}" class="mypage__edit_mypage">
-                정보 수정
-              </a>
-              <div>
-                <form action="{% url 'posts:detail_birthday_page' target_page.year target_page.id %}" method="post">
-                  {% csrf_token %}
-                  <button class="mypage__go-to-my-birthday-page">
-                    {{ target_page.year }}년
-                    {{ target_page.owner.birthday.month }}월
-                    {{ target_page.owner.birthday.day }}일
-                  </button>
-                </form>
-              </div>
-            {% elif target_page.state == "waiting" %}
+        <!-- 올해 페이지가 존재하는데 waiting일 경우 -->
+        <div class="mypage__content__thisyear">
+          <div class="text__top">
+            <span>
+              내 생일 페이지
+            </span>
+            {% if thisyear_page %}
+              {% if thisyear_page.state == "today" or thisyear_page.state == "upcoming" or thisyear_page.state == "waiting" %}
+                <a href="{% url 'posts:edit_mypage' %}" class="mypage__edit_mypage">
+                  정보 수정
+                </a>
+              {% endif %}
+            {% endif %}
+          </div>
+          {% if thisyear_page %}
+            {% if thisyear_page.state == "waiting" %}
+              <form action="{% url 'posts:detail_birthday_page' thisyear_page.year thisyear_page.pk %}" method="post">
+                {% csrf_token %}
+                <button class="mypage__go-to-my-birthday-page waiting">
+                  {{ thisyear_page.year }}년
+                  {{ thisyear_page.owner.birthday.month }}월
+                  {{ thisyear_page.owner.birthday.day }}일
+                </button>
+              </form>
               <div class="mypage__info-text">
                 아직 생일 페이지가 활성화되지 않았어요!
               </div>
               <div class="mypage__info__sub-text">
-                <i class="fa-solid fa-circle-exclamation"></i>
                 <span>생일페이지는 생일 7일전 부터 생일 다음날까지 활성화 돼요.</span></div>
+              </div>
+            <!-- 올해 페이지가 존재하는데 활성화되었을 경우 -->
+            {% else %}
+              {% if thisyear_page.state == "today" or thisyear_page.state == "upcoming" %}
+                <form action="{% url 'posts:detail_birthday_page' thisyear_page.year thisyear_page.pk %}" method="post">
+                  {% csrf_token %}
+                  <button class="mypage__go-to-my-birthday-page">
+                    {{ thisyear_page.year }}년
+                    {{ thisyear_page.owner.birthday.month }}월
+                    {{ thisyear_page.owner.birthday.day }}일
+                  </button>
+                </form>
+              {% endif %}
             {% endif %}
+          <!-- 올해 페이지가 존재하지 않는 경우 -->
+          {% else %}
+            <div class="mypage__info-text">
+              아직 생일 페이지가 만들어지지 않았어요!
+            </div>
+            <div class="mypage__info__sub-text-make">
+              <span>나만의 생일 페이지를 만들어볼까요?</span>
+            </div>
+            <div>
+              <button class="mypage__go-to-make-page">
+              <a href="{% url 'posts:create_birthday_page'%}">
+                생일 페이지 만들기
+              </a>
+              </button>
+            </div>
+          {% endif %}
+        </div>
+        <div class="mypage__content__archive">
+          <div class="text__top">
+            <span>
+              지난 생일 페이지
+            </span>
+          </div>
+          {% if archived_pages %}
+          {% for archived_page in archived_pages %}
+            <form action="{% url 'posts:detail_birthday_page' archived_page.year archived_page.pk %}" method="post">
+              {% csrf_token %}
+              <button class="mypage__go-to-past-birthday-page">
+                {{ archived_page.year }}년
+                {{ archived_page.owner.birthday.month }}월
+                {{ archived_page.owner.birthday.day }}일
+              </button>
+            </form>
           {% endfor %}
         {% else %}
           <div class="mypage__info-text">
-            아직 생일 페이지가 만들어지지 않았어요!
-          </div>
-          <div class="mypage__info__sub-text">
-            <i class="fa-solid fa-circle-exclamation"></i>
-            <span>생일페이지를 만들 수 있어요. 생일 페이지를 만들어주세요.</span></div>
-          <div>
-            <a href="{% url 'posts:create_birthday_page'%}">
-              생일 페이지 만들러 가기
-            </a>
+            아직 저장된 지난 생일 페이지가 없어요!
           </div>
         {% endif %}
-        <p class="mypage__birthdaypage__text">
-          지난 생일 페이지
-        </p>
-        {% if archived_pages %}
-          {% for archived_page in archived_pages %}
-            <div>
-              <form action="{% url 'posts:detail_birthday_page' archived_page.year archived_page.id %}" method="post">
-                {% csrf_token %}
-                <button class="mypage__go-to-past-birthday-page">
-                  {{ archived_page.year }}년
-                  {{ archived_page.owner.birthday.month }}월
-                  {{ archived_page.owner.birthday.day }}일
-                </button>
-              </div>
-            {% endfor %}
-          {% else %}
-            <div class="mypage__info-text">
-              아직 저장된 지난 생일 페이지가 없어요!
-            </div>
-          {% endif %}
 
         </div>
+
       </div>
     </div>
   </body>
-  <script src="https://kit.fontawesome.com/a8a24f1fa9.js" crossorigin="anonymous"></script>
 {% endblock %}

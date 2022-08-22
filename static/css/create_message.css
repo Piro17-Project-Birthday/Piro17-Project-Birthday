@@ -1,39 +1,40 @@
-:root {
-  --div-main-color: #fdf8ef; /*아이보리*/
-  --div-sub-color: #8ebd5e; /*연두*/
-  --div-point-color: #ff574c; /*다홍*/
-  --div-dark-font-color: #2d3142;
-  --div-dark-opacity-font-color: rgba(45, 49, 66, 0.5);
-  --div-light-font-color: #ffffff;
-  --div-input-shadow-color: rgba(0, 0, 0, 0.1);
-}
-
 .content {
   padding: 3rem 2rem;
 }
 .create_message--submit {
-  text-align: center;
-  border: 0px;
-  border-radius: 5px;
-  width: 100%;
-  color: var(--div-light-font-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Spoqa Han Sans Neo";
+  font-weight: 700;
   background-color: var(--div-point-color);
-  font-weight: bold;
-  padding: 4px 0 4px 0px;
-  margin: 10% 0 0 0;
+  color: var(--div-light-font-color);
+  border-radius: 1rem;
+  border: 0px;
+  height: 3rem;
+  text-align: center;
+  width: 100%;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+  margin: 0.5rem 0px 0px 0px;
 }
+
+
+
 
 .errorlist {
   color: var(--div-main-color);
 }
 
 #id_nickname {
-  border-radius: 5px;
+  border-radius: 0.7rem;
   border: 0px;
   width: 100%;
   margin: 0.5rem 0px 1rem 0px;
-  padding: 8px 0px 8px 5px;
-  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+  padding: 0.8rem 1rem 0.8rem 1rem;
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
+  font-family: "Spoqa Han Sans Neo";
 }
 .create_message--name {
   font-weight: bold;
@@ -41,17 +42,17 @@
 
 .create_message--send {
   font-weight: bold;
-  margin: 0px 30% 0px 0px;
+  margin: 0px 0% 0px 0px;
 }
 
 #id_message {
   resize: none;
-  border-radius: 5px;
+  border-radius: 1rem;
   border: 0px;
   width: 100%;
   margin: 0.5rem 0px 1rem 0px;
-  padding: 8px 0px 8px 5px;
-  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+  padding: 16px 16px 16px 16px;
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
   font-family: inherit;
 }
 input[type="checkbox"] {
@@ -61,11 +62,11 @@ input[type="checkbox"] {
   background: #fff;
   border-radius: 4px;
   cursor: pointer;
-  height: 16px;
   outline: 0;
-  width: 16px;
-  margin: 0px 0px -2px 5px;
-  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right:0.5rem;
+  box-shadow: 0px 2px 6px 1px rgb(0 0 0 / 14%)
 }
 input[type="checkbox"]::after {
   border: solid #fff;
@@ -78,7 +79,7 @@ input[type="checkbox"]::after {
   top: 20%;
   transform: rotate(45deg);
   width: 15%;
-  box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
+  box-shadow: 0px 2px 10px -1px var(--div-input-shadow-color);
 }
 input[type="checkbox"]:checked {
   background: var(--div-point-color);
@@ -86,7 +87,17 @@ input[type="checkbox"]:checked {
 input[type="checkbox"]:checked::after {
   display: block;
 }
-
+.check-private{
+  display:flex;
+  align-items:center;
+  padding-bottom:1rem;
+}
 .create_message--private {
   font-weight: bold;
+}
+
+.create__message__sub-text{ 
+  color: var(--div-sub-color);
+  font-size: 12px;
+  margin-bottom:1rem;
 }

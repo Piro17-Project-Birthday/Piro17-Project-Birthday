@@ -1,24 +1,43 @@
-{% extends 'posts/base.html' %}
+{% extends 'posts/base_mypage.html' %} 
 {% block title %}
   마이페이지
 {% endblock %}
 {%block content %}
+{% load static %}
   <script src="https://kit.fontawesome.com/f578b19b63.js" crossorigin="anonymous"></script>
-
+  <link rel="stylesheet" href="{% static 'css/edit_mypage.css' %}" />
   <body>
     <form action="/mypage/edit" method="POST">
       {% csrf_token %}
       <div class="content">
         <table>
           <div class="editmypage_name">
-            <span class="edit_mypage--name">이름을 알려주세요.</span>
+            <div class="edit_mypage--name">
+              <span class="edit_mypage--name--text">이름을 알려주세요.
+              </span>
+              </div>
             {{form.nickname}}
           </div>
           <div>
             <div class="edit_mypage--theme">
               <span class="edit_mypage--theme--text">변경할 생일페이지 테마를 선택해주세요.</span>
             </div>
-            {{form.selected_cake}}
+            <div>
+              <ul id="theme-list">
+                <li>
+                  <img class="preview__choco" src="{% static 'img/theme-preview-choco.png' %}" alt="">
+                </li>
+    
+                <li>
+                  <img class="preview__strawberry" src="{% static 'img/theme-preview-strawberry.png' %}" alt="">
+                </li>
+    
+                <li>
+                  <img class="preview__carrot" src="{% static 'img/theme-preview-carrot.png' %}" alt="">
+                </li>
+              </ul>
+              {{form.selected_cake}}
+            </div>
           </div>
         </table>
         <input type="submit" class="editmypage--submit" value="수정하기"/>
