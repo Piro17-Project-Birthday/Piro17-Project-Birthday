@@ -54,36 +54,23 @@
         {% endif %}
 
         {% if tmi_messages %}
-          <div class="messages">
-            {% for tmi_message in tmi_messages%}
-              <div class="message-id-{{ tmi_message.id }}">
-                <div class="message_area">
-                  <div class="message_content">
-                    <p>
-                      {{ tmi_message.content }}
-                    </p>
-                  </div>
-                  <div class="message_side">
-                    {% if not tmi_page.state == "archive"%}
-                      {% if is_owner or request.user == tmi_message.writer %}
-                        <span class="messaage_delete">
-                          <a href="{% url 'tmies:delete_tmi_message' tmi_message.id %}">
-                            <p class="delete_text">삭제</p>
-                          </a>
-                        </span>
-                      {% else %}
-                        <span class="messaage_delete">
-                          <p class="delete_text">&nbsp;</p>
-                        </span>
-                      {% endif %}
-                      <div class="like_area">
-                        <button class="message_like_button" onclick="onClickLike({{ tmi_message.id }})">
-                          <img src="{% static 'img/icon/heart.svg' %}" alt="">
+        <div class="messages">
+          {% for tmi_message in tmi_messages%}
+            <div class="message-id-{{ tmi_message.id }}">
+              <div class="message_area">
+                <div class="message_content">
+                  <p>
+                    {{ tmi_message.content }}
+                  </p>
+                </div>
+                <div class="message_side">
+                  {% if not tmi_page.state == "archive"%}
+                    {% if is_owner or request.user == tmi_message.writer %}
+                      <span class="messaage_delete">
+                        <button id={% url 'tmies:delete_tmi_message' tmi_message.id %} class="delete-btn">
+                          삭제
                         </button>
-                        <p class="message_like">
-                          {{ tmi_message.like }}
-                        </p>
-                      </div>
+                      </span>
                     {% else %}
                       <span class="messaage_delete">
                         <p class="delete_text">&nbsp;</p>
@@ -129,29 +116,43 @@
       </div>
     {% endif %}
 
+    <!--삭제 모달-->
+    <div class="modal__delete hidden">
+      <div class="modal__delete__overlay"></div>
+      <div class="modal__delete__content">
+        <span class="modal__delete__content__title">정말 삭제하시겠어요?</span>
+        <div class="modal__delete__content__description">
+          삭제한 포토 방명록은 되돌릴 수 없어요.
+        </div>
+        <div class="modal__delete__content__btns">
+          <button class="modal__delete__cancel">취소</button>
+          <a href="" class="modal__delete__confirm">삭제</a>
+        </div>
+      </div>
+    </div>
+
     <!-- 로그인 모달-->
     <div class="modal__login hidden">
       <div class="modal__login__overlay"></div>
       <div class="modal__login__content">
         <span class="modal__login__content__title">로그인 하지 않고<br/>메시지를 남기시겠어요?</span>
         <div class="modal__login__content__description">
-          <h6>로그인을 하지 않으면&nbsp</h6>
+          <h6>로그인을 하지 않으면&nbsp</h6> 
           <div class="description__line">
             <h6>내가 남긴&nbsp</h6>
-            <h6>TMI를 &nbsp</h6>
+            <h6>포토 방명록을&nbsp</h6>
           </div>
           <h6 class="bold">삭제할 수 없어요.</h6>
         </div>
         <div class="modal__login__content__btns">
           <div class="login__social_login">
-            <div class="login__yes">
-              <a href="/login/?next={{ request.path }}" class="login__yes__text">소셜 로그인 하러가기</a>
-            </div>
-            <div class="login__no" id="login__no">
-              <a href="{% url 'tmies:create_tmi_message' year pk %}" class="login__no__text">로그인 없이 남기기</a>
-            </div>
+            <a href="/login/?next={{ request.path }}" class="login__yes">
+              <div class="login__yes__text">소셜 로그인 하러가기</div>
+            </a>
+            <a href="{% url 'photos:photo_create' year pk %}" class="login__no" id="login__no">
+              <div class="login__no__text">로그인 없이 남기기</div>
+            </a>
           </div>
-
         </div>
       </div>
     </div>
@@ -181,6 +182,29 @@
             .add("slideLeft")
         }
       }
+
+      //삭제 모달
+      const openButton = document.getElementsByClassName("delete-btn");
+      const modalDelete = document.querySelector(".modal__delete");
+      const cancelButton = modalDelete.querySelector(".modal__delete__cancel");
+      const deleteButton = modalDelete.querySelector(".modal__delete__confirm");
+
+      const openModalDelete = (e) => {
+        deleteButton.href = e.target.id;
+        modalDelete
+          .classList
+          .remove("hidden");
+      }
+      const cancelModalDelete = () => {
+        modalDelete
+          .classList
+          .add("hidden");
+      }
+
+      for (i = 0; i < openButton.length; i++) {
+        openButton[i].addEventListener("click", openModalDelete);
+      }
+      cancelButton.addEventListener("click", cancelModalDelete);
 
       // 좋아요 ajax
       const strip = (string) => {

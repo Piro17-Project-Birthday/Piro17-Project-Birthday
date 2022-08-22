@@ -2,6 +2,7 @@
 
 .content{
     padding: 2.5rem 0;
+    padding-bottom:0;
     background: var(--div-main-color);
 }
 .footer__style {
@@ -66,7 +67,6 @@
     display: flex;
     justify-content: space-between;
     padding: 0 2rem;
-    padding-bottom: 2rem;
 }
 
 .text--activate button {
@@ -87,11 +87,10 @@
 
 .image--activate{
     text-align: center;
-    padding-bottom : 2rem;
 }
 
 .image--activate img {
-    width:38vw;
+    width:16rem;
 }
 
 .text-main--activate {
@@ -172,7 +171,7 @@
 .messages__content{
     padding:3rem 2rem;
     padding-top: 1.5rem;
-    padding-bottom: 7rem;
+    padding-bottom: 10rem;
 }
 
 .strawberry{
@@ -258,6 +257,7 @@
     font-size:1rem;
     font-weight:700;
     color:rgba(255, 255, 255, 0.5);
+    padding-bottom: 3rem;
 }
 
 .messages__delete-btn button{
