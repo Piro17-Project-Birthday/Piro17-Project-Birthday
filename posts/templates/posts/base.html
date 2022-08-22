@@ -33,9 +33,9 @@
               <button onclick="dropdown_menu()" class="dropdown__btn">
                 <img src="{% static 'img/icon/nav.svg' %}">
               </button>
-              <div style="transform: translateX(14rem); opacity: 0%;" id="dropdown_content">
-                <div class="dropdown__opacity"></div>
-                <div class="dropdown__box">
+              <div  id="dropdown_content">
+                
+                <div class="dropdown__box" style="transform: translateX(14rem); opacity: 0%;" id="dropdown_content_sidebar">
                   <button onclick="dropdown_menu_x()" class="dropdown__btn--x">
                     <img src="{% static 'img/icon/close.svg' %}">
                   </button>
@@ -55,7 +55,9 @@
                       <a href="{% url 'users:log_out'%}" id="dropdown__btn--logout">로그아웃</a>
                     </div>
                   </div>
+                  
                 </div>
+                <div style="display: none;" class="dropdown__opacity"></div>
               </div>
               
             </div>
