@@ -23,10 +23,15 @@
 
           </div>
           {%endif%}
+          <div class="photo_icon">
+            <img src="{% static 'img\icon\image-deactivate.png' %}" alt="">
+          </div>
           <div class="text">
             <h1 class="text__title">포토방명록</h1>
             <p class="text__description">
-              보여주고 싶은 사진으로</br>축하를 남겨보세요!
+              {{ name }}님과의 추억이 담긴 사진,</br>
+              또는 보여주고 싶은 사진으로</br>
+              축하를 남겨주세요!
             </p>
           </div>
         <div class="images">
@@ -58,7 +63,9 @@
             </div>
           </div>
         {% else %}
+          
           <div class="images--empty">
+            <img src="{% static 'img\icon\empty-sad.png' %}" alt=""><br>
             아직 남겨진 포토 방명록이 없어요.
           </div>
         {% endif %}
@@ -137,14 +144,13 @@
     </div>
     <div class="modal__login__content__btns">
       <div class="login__social_login">
-        <div class="login__yes">
-          <a href="/login/?next={{ request.path }}" class="login__yes__text">소셜 로그인 하러가기</a>
-        </div>
-        <div class="login__no" id="login__no">
-          <a href="{% url 'photos:photo_create' year pk %}" class="login__no__text">로그인 없이 남기기</a>
-        </div>
+        <a href="/login/?next={{ request.path }}" class="login__yes">
+          <div class="login__yes__text">소셜 로그인 하러가기</div>
+        </a>
+        <a href="{% url 'photos:photo_create' year pk %}" class="login__no" id="login__no">
+          <div class="login__no__text">로그인 없이 남기기</div>
+        </a>
       </div>
-      
     </div>
   </div>
 </div>
@@ -179,20 +185,24 @@
   // Get the image and insert it inside the modal - use its "alt" text as a caption
   var img = document.getElementsByClassName("images__item__image");
   var imgOriginal = document.getElementById("image-original");
+  var nav = document.getElementsByTagName("nav")[0];
   for (i = 0; i < img.length; i++) {
     img[i].onclick = function () {
       modalImages.style.display = "block";
       imgOriginal.src = this.src;
+      nav.style.display = "none"
     }
   }
 
   var span = document.getElementsByClassName("modal__images--close")[0];
   span.onclick = function () {
     modalImages.style.display = "none";
+    nav.style.display = "flex"
   }
   var background = document.getElementById("modal__images");
   background.onclick = function () {
     modalImages.style.display = "none";
+    nav.style.display = "flex"
   }
 
   //삭제 모달

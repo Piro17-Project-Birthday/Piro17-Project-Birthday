@@ -1,4 +1,12 @@
 @import url("./login.css");
+
+
+.photo_icon img {
+    width: 16%;
+    padding-bottom: 0.5rem;
+    padding-left: 0.2rem;
+}
+
 .text__title {
     font-size:1.5rem;
     font-weight:700;
@@ -6,6 +14,7 @@
 
 .text > * {
     padding-bottom: 1rem;
+    padding-top : 0.3rem;
 }
 
 .text__description {
@@ -55,14 +64,14 @@
 }
 
 @font-face {
-font-family: 'UhBeeyoongdi';
-src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeyoongdi.woff') format('woff');
-font-weight: normal;
-font-style: normal;
+    font-family: 'SANGJUDajungdagam';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/SANGJUDajungdagam.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 .images__item__polaroid h3 {
-    font-family: 'UhBeeyoongdi';
+    font-family: 'SANGJUDajungdagam';
     padding: 1rem 0.2rem;
     padding-bottom: 0;
 }
@@ -90,10 +99,16 @@ font-style: normal;
     height:2rem;
 }
 
+.images--empty img {
+    width: 30%;
+    opacity: 90%;
+}
+
 .images--empty {
     color: var(--div-dark-opacity-font-color);
     font-weight: 700;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-bottom: 5rem;
@@ -230,22 +245,21 @@ font-style: normal;
 }
 
 .nav-bottom__content__birthdaypage {
-    width: 30%;
-    padding: 0 5% 0 3%;
-    font-size: 14px;
-
+    width: 27%;
+    padding: 0 4% 0 1%;
+    font-size: 11px;
   }
   
   .nav-bottom__content__photo {
-    width: 30%;
-    padding: 0 5% 0 5%;
-    font-size: 14px;
+    width: 28%;
+    padding: 0 3% 0 3%;
+    font-size: 11px;
     color: var(--div-point-color);
   }
   .nav-bottom__content__tmi {
-    width: 30%;
-    padding: 0 3% 0 5%;
-    font-size: 14px;
+    width: 29.5%;
+    padding: 0 1% 0 4%;
+    font-size: 11px;
   }
   
   .nav-bottom {
@@ -261,12 +275,18 @@ font-style: normal;
     width: 100%;
     text-align: center;
     background-color: var(--div-light-font-color);
-    height: 4rem;
     display: flex;
     align-items: end;
     justify-content: center;
-    padding-bottom: 1rem;
-    height: 5.5rem;
+    padding-bottom: 1.5rem;
+    height: 4.3rem;
+  }
+
+  .nav-bottom__content h6 {
+    margin-block-start: -0.8em;
+    margin-block-end: -1.4em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
   }
 
 .nav-bottom__content img {
