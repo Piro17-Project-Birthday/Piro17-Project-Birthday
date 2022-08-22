@@ -191,7 +191,6 @@ def detailBirthdayPage(request,year,pk):
                     
                     tmi_page.save()
                     photo_page.save()
-                    
             else:
                 birthday = datetime.strptime(str(today_year+1)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #생일을 내년 생일로 한다
                 date_diff = abs((today-birthday).days)
@@ -203,6 +202,22 @@ def detailBirthdayPage(request,year,pk):
                 else:
                     curr_page.state = "waiting"
                     curr_page.save()
+        else: #생일 페이지 주인이 아닌 다른 접속자가 접속했을 경우 archive 처리
+            curr_page = birthday_page
+            
+            curr_page.state = "archive"
+                
+            tmi_page = TmiPage.objects.get(tmi_origin=curr_page)
+            photo_page = PhotoPage.objects.get(photo_origin=curr_page)
+                    
+            tmi_page.state = "archive"
+            photo_page.state = "archive"
+            
+            curr_page.save()        
+            tmi_page.save()
+            photo_page.save()
+            
+            
         
     selected_cake = birthday_page.owner.selected_cake
     target = selected_cake
