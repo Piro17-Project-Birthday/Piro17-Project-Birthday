@@ -5,7 +5,6 @@
 .content {
   position:relative;
   padding-bottom:0;
-  height: calc(var(--vh, 1vh) * 130);
 }
 
 .main{
@@ -78,6 +77,7 @@ footer{
   bottom: 0;
   left: 0;
   top:42rem;
+  height: 12.5rem;
 }
 
 .footer__area{
