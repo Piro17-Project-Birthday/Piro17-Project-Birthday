@@ -65,7 +65,6 @@
     display: flex;
     justify-content: space-between;
     padding: 0 2rem;
-    padding-bottom: 2rem;
 }
 
 .text--activate button {
@@ -86,11 +85,10 @@
 
 .image--activate{
     text-align: center;
-    padding-bottom : 2rem;
 }
 
 .image--activate img {
-    width:38vw;
+    width:16rem;
 }
 
 .text-main--activate {
