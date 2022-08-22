@@ -179,20 +179,24 @@
   // Get the image and insert it inside the modal - use its "alt" text as a caption
   var img = document.getElementsByClassName("images__item__image");
   var imgOriginal = document.getElementById("image-original");
+  var nav = document.getElementsByTagName("nav")[0];
   for (i = 0; i < img.length; i++) {
     img[i].onclick = function () {
       modalImages.style.display = "block";
       imgOriginal.src = this.src;
+      nav.style.display = "none"
     }
   }
 
   var span = document.getElementsByClassName("modal__images--close")[0];
   span.onclick = function () {
     modalImages.style.display = "none";
+    nav.style.display = "flex"
   }
   var background = document.getElementById("modal__images");
   background.onclick = function () {
     modalImages.style.display = "none";
+    nav.style.display = "flex"
   }
 
   //삭제 모달
