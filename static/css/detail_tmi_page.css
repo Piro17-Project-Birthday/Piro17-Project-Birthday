@@ -30,12 +30,11 @@
   width: 100%;
   text-align: center;
   background-color: var(--div-light-font-color);
-  height: 4rem;
   display: flex;
   align-items: end;
   justify-content: center;
-  padding-bottom: 1rem;
-  height: 4rem;
+  padding-bottom: 1.5rem;
+  height: 4.3rem;
 }
 
 .nav-bottom__content h6 {
@@ -54,8 +53,9 @@
   }
 
 .tmi_icon img {
-    width: 20%;
-    padding-bottom: 0.5rem;
+  width: 16%;
+  padding-bottom: 0.5rem;
+  padding-left: 0.2rem;
 }
 
 .text__title {
@@ -117,6 +117,15 @@
   padding-bottom: 10rem;
 }
 
+.text__description__sub-text{
+  font-size:0.875rem;
+  color:var(--div-sub-color);
+  padding:0;
+}
+
+.tmi-description{
+  padding-bottom:0;
+}
 
  /* 로그인 모달 */
  .modal__login{
@@ -127,6 +136,7 @@
   display: flex;
   justify-content: center;
   align-items : center;
+  z-index: 3;
 }
 .modal__login__overlay {
   background-color: rgba(0, 0, 0, 0.6);

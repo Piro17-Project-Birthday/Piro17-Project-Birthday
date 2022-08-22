@@ -36,14 +36,14 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
-  font-size: 12px;
+  font-size: 0.875rem;
   margin-top: 0.5rem;
 }
 .create__birthday select {
   width: 30%;
   padding: 0.8rem 1rem 0.8rem 1rem;
   border: 0px;
-  font-size: 12px;
+  font-size: 0.875rem;
   box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
   border-radius: 1rem;
   font-family: "Spoqa Han Sans Neo";
@@ -65,7 +65,7 @@
   width: 100%;
   padding: 0.8rem 1rem 0.8rem 1rem;
   border: 0px;
-  font-size: 12px;
+  font-size: 0.875rem;
   box-shadow: 4px 3px 6px -3px var(--div-input-shadow-color);
   border-radius: 1rem;
   font-family: "Spoqa Han Sans Neo";
@@ -125,4 +125,7 @@
 
 #id_selected_cake input[type='radio']{
   accent-color: var(--div-point-color);
+}
+label{
+  padding-left: 0.5rem;
 }

@@ -4,6 +4,8 @@
 
   <!-- 폭죽효과 들어가는 부분 -->
   <link rel="stylesheet" href="{% static 'css/main.css' %}"/>
+  
+  <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
   <!-- partial:index.partial.html -->
   <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
   <!-- Stats.js -->
@@ -23,7 +25,7 @@
 
     <div class="content">
       <div class="main">
-        <img class="main__logo" src="{% static 'img\page_logo\logo-main.png' %}" alt="">
+        <img id="main__logo" class="floating" src="{% static 'img\page_logo\logo-main.png' %}" style="width: 75%; padding:2rem 0;" alt="">
         <div class="main__title--text1">
           모두의 생일을 축하해 주세요!
         </div>
@@ -150,7 +152,12 @@
       </div>
     </footer>
       </div>
-    </div>  
+    </div> 
+    <script>
+      $('#animatedElement').click(function() {
+        $(this).addClass("slideUp");
+      });
+    </script> 
   </body>
   <script>
     $.ajaxSetup({
