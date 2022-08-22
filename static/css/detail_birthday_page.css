@@ -1,6 +1,7 @@
 @import url("./login.css");
 .content{
     padding: 2.5rem 0;
+    padding-bottom:0;
     background: var(--div-main-color);
 }
 .footer__style {
@@ -169,7 +170,7 @@
 .messages__content{
     padding:3rem 2rem;
     padding-top: 1.5rem;
-    padding-bottom: 7rem;
+    padding-bottom: 9rem;
 }
 
 .strawberry{
@@ -255,6 +256,7 @@
     font-size:1rem;
     font-weight:700;
     color:rgba(255, 255, 255, 0.5);
+    padding-bottom: 3rem;
 }
 
 .messages__delete-btn button{
