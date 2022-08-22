@@ -12,14 +12,32 @@
       <div class="content">
         <table>
           <div class="editmypage_name">
-            <span class="edit_mypage--name">이름을 알려주세요.</span>
+            <div class="edit_mypage--name">
+              <span class="edit_mypage--name--text">이름을 알려주세요.
+              </span>
+              </div>
             {{form.nickname}}
           </div>
           <div>
             <div class="edit_mypage--theme">
               <span class="edit_mypage--theme--text">변경할 생일페이지 테마를 선택해주세요.</span>
             </div>
-            {{form.selected_cake}}
+            <div>
+              <ul id="theme-list">
+                <li>
+                  <img class="preview__choco" src="{% static 'img/theme-preview-choco.png' %}" alt="">
+                </li>
+    
+                <li>
+                  <img class="preview__strawberry" src="{% static 'img/theme-preview-strawberry.png' %}" alt="">
+                </li>
+    
+                <li>
+                  <img class="preview__carrot" src="{% static 'img/theme-preview-carrot.png' %}" alt="">
+                </li>
+              </ul>
+              {{form.selected_cake}}
+            </div>
           </div>
         </table>
         <input type="submit" class="editmypage--submit" value="수정하기"/>

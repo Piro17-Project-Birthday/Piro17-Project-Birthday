@@ -165,16 +165,10 @@ def detailBirthdayPage(request,year,pk):
                         next_page.state = "upcoming"
                         tmi_page.state = "activate"
                         photo_page.state = "activate"
-                        print(next_page.state,1)
-                        print(tmi_page.state,1)
-                        print(photo_page.state,1)
                     else:
                         next_page.state = "waiting"
                         tmi_page.state = "deactivate"
                         photo_page.state = "deactivate"
-                        print(next_page.state,2)
-                        print(tmi_page.state,2)
-                        print(photo_page.state,2)
                         
                     next_page.save()
                     tmi_page.save()
@@ -183,6 +177,7 @@ def detailBirthdayPage(request,year,pk):
                     
                     curr_page.state = "archive"
                     curr_page.save()
+                    return redirect(f"/{next_page.year}/{next_page.uuid}")
                 else:
                     curr_page = BirthdayPage.objects.get(owner=request.user, year=today_year)
                     curr_page.state = "archive"
@@ -210,7 +205,6 @@ def detailBirthdayPage(request,year,pk):
                     curr_page.save()
         
     selected_cake = birthday_page.owner.selected_cake
-    print(selected_cake)
     target = selected_cake
     
     target_birth = get_object_or_404(BirthdayPage, year=year, pk=pk)
@@ -289,7 +283,6 @@ def mainMypage(request):
         if thisyear_page :
             thisyear_page = target_pages.exclude(state="archive")[0]
         archived_pages = BirthdayPage.objects.filter(owner=request.user,state="archive")
-        print(thisyear_page)
         curr_page = "main"
         context = {
             "curr_user": curr_user,

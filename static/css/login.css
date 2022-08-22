@@ -2,6 +2,10 @@
   padding-bottom: 4rem;
 }
 
+.wrap{
+  margin-top:0;
+}
+
 #login__google img {
   width: 2rem;
   height: 2rem;
@@ -90,7 +94,7 @@
   align-items: center;
 }
 .main__logo{
-  width: 75%;
+  width: 70%;
   display: block;
   margin: 2rem auto 0 auto;
 }
@@ -98,7 +102,7 @@
 
 @media (max-width:390px) {
   .main__logo{
-    width: 75%;
+    width: 70%;
     display: block;
     margin: 1rem auto 0 auto;
   }

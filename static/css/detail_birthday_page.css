@@ -1,6 +1,8 @@
 @import url("./login.css");
+
 .content{
-    padding: 3rem 0;
+    padding: 2.5rem 0;
+    padding-bottom:0;
     background: var(--div-main-color);
 }
 .footer__style {
@@ -65,7 +67,6 @@
     display: flex;
     justify-content: space-between;
     padding: 0 2rem;
-    padding-bottom: 4rem;
 }
 
 .text--activate button {
@@ -86,18 +87,17 @@
 
 .image--activate{
     text-align: center;
-    padding-bottom : 2rem;
 }
 
 .image--activate img {
-    width:38vw;
+    width:16rem;
 }
 
 .text-main--activate {
     text-align:center;
     font-size:1.5rem;
     font-weight:700;
-    padding-bottom : 4rem;
+    padding-bottom : 3rem;
 }
 
 /* .text-main--activate h1 {
@@ -171,7 +171,7 @@
 .messages__content{
     padding:3rem 2rem;
     padding-top: 1.5rem;
-    padding-bottom: 7rem;
+    padding-bottom: 10rem;
 }
 
 .strawberry{
@@ -257,6 +257,7 @@
     font-size:1rem;
     font-weight:700;
     color:rgba(255, 255, 255, 0.5);
+    padding-bottom: 3rem;
 }
 
 .messages__delete-btn button{
@@ -412,21 +413,21 @@
     justify-content: center;
 }
 .nav-bottom__content__birthdaypage {
-    width: 30%;
-    padding: 0 5% 0 3%;
-    font-size: 14px;
+    width: 27%;
+    padding: 0 4% 0 1%;
+    font-size: 11px;
     color: var(--div-point-color);
   }
   
   .nav-bottom__content__photo {
-    width: 30%;
-    padding: 0 5% 0 5%;
-    font-size: 14px;
+    width: 28%;
+    padding: 0 3% 0 3%;
+    font-size: 11px;
   }
   .nav-bottom__content__tmi {
-    width: 30%;
-    padding: 0 3% 0 5%;
-    font-size: 14px;
+    width: 29.5%;
+    padding: 0 1% 0 4%;
+    font-size: 11px;
   }
   
   .nav-bottom {
@@ -442,14 +443,30 @@
     width: 100%;
     text-align: center;
     background-color: var(--div-light-font-color);
-    height: 4rem;
     display: flex;
     align-items: end;
     justify-content: center;
-    padding-bottom: 1rem;
-    height: 5.5rem;
+    padding-bottom: 1.1rem;
+    height: 4.3rem;
   }
-
-.nav-bottom__content img {
+  
+  .nav-bottom__content h6 {
+    margin-block-start: -0.8em;
+    margin-block-end: -1.4em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+  
+  .nav-bottom__content img {
     width: inherit;
-}
+  }
+  
+  .content {
+      padding:0;
+    }
+  
+  .tmi_icon img {
+    width: 16%;
+    padding-bottom: 0.5rem;
+    padding-left: 0.2rem;
+  }

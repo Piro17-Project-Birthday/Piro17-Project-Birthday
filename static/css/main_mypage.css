@@ -27,8 +27,7 @@
 }
 
 .mypage__line {
-  height: 2px;
-  background-color: var(--div-dark-font-color);
+  height: 0.01rem;
 }
 
 .text__top{
@@ -50,6 +49,7 @@
   font-weight: bold;
   float: right;
 }
+
 .mypage__go-to-my-birthday-page, .mypage__go-to-past-birthday-page{
   font-family: "Spoqa Han Sans Neo";
   font-weight: 700;
@@ -110,5 +110,7 @@ form {
   padding-bottom:1rem;
 }
 
-
+label{
+  padding-left: 0.5rem;
+}
 
