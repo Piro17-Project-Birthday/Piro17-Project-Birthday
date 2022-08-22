@@ -137,14 +137,13 @@
     </div>
     <div class="modal__login__content__btns">
       <div class="login__social_login">
-        <div class="login__yes">
-          <a href="/login/?next={{ request.path }}" class="login__yes__text">소셜 로그인 하러가기</a>
-        </div>
-        <div class="login__no" id="login__no">
-          <a href="{% url 'photos:photo_create' year pk %}" class="login__no__text">로그인 없이 남기기</a>
-        </div>
+        <a href="/login/?next={{ request.path }}" class="login__yes">
+          <div class="login__yes__text">소셜 로그인 하러가기</div>
+        </a>
+        <a href="{% url 'photos:photo_create' year pk %}" class="login__no" id="login__no">
+          <div class="login__no__text">로그인 없이 남기기</div>
+        </a>
       </div>
-      
     </div>
   </div>
 </div>
