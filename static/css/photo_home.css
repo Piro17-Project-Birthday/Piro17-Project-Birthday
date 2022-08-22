@@ -63,14 +63,14 @@
 }
 
 @font-face {
-font-family: 'UhBeeyoongdi';
-src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_five@.2.0/UhBeeyoongdi.woff') format('woff');
-font-weight: normal;
-font-style: normal;
+    font-family: 'SANGJUDajungdagam';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2112@1.0/SANGJUDajungdagam.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 }
 
 .images__item__polaroid h3 {
-    font-family: 'UhBeeyoongdi';
+    font-family: 'SANGJUDajungdagam';
     padding: 1rem 0.2rem;
     padding-bottom: 0;
 }
