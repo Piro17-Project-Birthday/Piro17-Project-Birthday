@@ -1,4 +1,4 @@
-div{% extends 'posts/base.html' %}
+{% extends 'posts/base.html' %}
 {% block content %}
   {% load static%}
 
@@ -32,7 +32,7 @@ div{% extends 'posts/base.html' %}
               추억이 담겨있는 사진들과 함께 축하를 남겨주세요!
             </p>
           </div>
-          {%endif%}
+        {%endif%}
         <div class="images">
           {% if photos %}
             <div class="images__container">
@@ -60,7 +60,7 @@ div{% extends 'posts/base.html' %}
                 </div>
               {% endfor %}
             </div>
-          </div>
+        </div>
         {% else %}
           
           <div class="images--empty">
@@ -86,7 +86,7 @@ div{% extends 'posts/base.html' %}
         {% endif %}
       {% endif %}
 
-      {% if photo_page.state == "activate" or photo_page.state == "archive"%}
+    {% if photo_page.state == "activate" or photo_page.state == "archive"%}
       <!-- 하단 메뉴 표시되도록 하는 부분. -->
       <div class="nav-bottom">
         <div class="nav-bottom__content">
@@ -104,7 +104,7 @@ div{% extends 'posts/base.html' %}
           </a>
         </div>
       </div>
-  {%endif %}
+    {%endif %}
   
   
 </body>
