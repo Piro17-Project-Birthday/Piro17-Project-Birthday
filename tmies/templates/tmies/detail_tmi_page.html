@@ -11,15 +11,12 @@
 
   <body>
     <div class="content">
-      {% if tmi_page.state == "deactivate" %}
-        <div>
-          <span class="detail_tmi--name--sub">
-            아직
-            {{name}}
-            님의
-            {{year}}년 생일 페이지가 활성화되지 않았어요!</span>
-        </div>
-      {% elif tmi_page.state == "activate" or tmi_page.state == "archive" %}
+      {% if photo_page.state == "deactivate" %}
+        <script type="text/javascript">
+          alert('아직 생일 페이지가 활성화되지 않았어요!')
+          window.location.href = '{% url 'posts:main' %}';
+        </script>
+      {% elif photo_page.state == "activate" or photo_page.state == "archive" %}
         {% if tmi_page.state == "archive" %}
           <div>
             <span class="detail_tmi--name">{{ name }}</span>
