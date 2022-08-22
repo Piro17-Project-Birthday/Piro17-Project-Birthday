@@ -33,10 +33,10 @@
               <button onclick="dropdown_menu()" class="dropdown__btn">
                 <img src="{% static 'img/icon/nav.svg' %}">
               </button>
-              <div style="display:none" id="dropdown_content">
+              <div style="transform: translateX(14rem); opacity: 0%;" id="dropdown_content">
                 <div class="dropdown__opacity"></div>
                 <div class="dropdown__box">
-                  <button onclick="dropdown_menu()" class="dropdown__btn--x">
+                  <button onclick="dropdown_menu_x()" class="dropdown__btn--x">
                     <img src="{% static 'img/icon/close.svg' %}">
                   </button>
                   {% if user.nickname %}
@@ -69,10 +69,11 @@
               <button onclick="dropdown_menu()" class="dropdown__btn">
                 <img src="{% static 'img/icon/nav.svg' %}">
               </button>
-              <div style="display: none" id="dropdown_content">
-                <div class="dropdown__opacity"></div>
-                <div class="dropdown__box">
-                  <button onclick="dropdown_menu()" class="dropdown__btn--x">
+              <div  id="dropdown_content">
+                
+                
+                <div class="dropdown__box" style="transform: translateX(14rem); opacity: 0%;" id="dropdown_content_sidebar">
+                  <button onclick="dropdown_menu_x()" class="dropdown__btn--x">
                     <img src="{% static 'img/icon/close.svg' %}">
                   </button>
                 <a href="/login/?next={{ request.path }}" class="dropdown__btn--login"><img src="{% static 'img/icon/user.svg' %}">
@@ -82,6 +83,7 @@
                   <a href="mailto:eastlaw80@naver.com" id="dropdown__btn--service">1:1 문의하기</a>
                   </div>
               </div>
+              <div style="display: none;" class="dropdown__opacity"></div>
             </div>
           </nav>
         {% endif %}
@@ -94,13 +96,43 @@
     </div>
     <script>
       function dropdown_menu() {
-        let click = document.getElementById("dropdown_content");
-        if (click.style.display === "none") {
-          click.style.display = "block";
+        let click = document.getElementById("dropdown_content_sidebar");
+        const background = document.getElementsByClassName("dropdown__opacity")[0]
+        if (click.style.transform = "translateX(14rem)") {
+          //click.style.display= "block";
+          click.style.opacity= "100%";
+          click.style.transform = "translateX(0px)";//나옴
+          background.style.display="block";
+
         } else {
+          //click.style.display= "none";
+          click.style.opacity= "0%";
+          click.style.transform = "translateX(14rem)";//들어감
+          background.style.display="none";
+        }
+        
+        background.onclick = function () {
           click.style.display = "none";
         }
+      }
+
+
+      function dropdown_menu_x() {
+        let click = document.getElementById("dropdown_content_sidebar");
         const background = document.getElementsByClassName("dropdown__opacity")[0]
+        if (click.style.transform = "translateX(0px)") {
+          //click.style.display= "none";
+          click.style.opacity= "0%";
+          click.style.transform = "translateX(14rem)";
+          background.style.display="none";
+
+        } else {
+          //click.style.display= "block";
+          click.style.opacity= "100%";
+          click.style.transform = "translateX(0px)";
+          background.style.display="block";
+        }
+       
         background.onclick = function () {
           click.style.display = "none";
         }
