@@ -20,7 +20,7 @@
 #myCanvas canvas{
   /* Nav-bar 아래로 깔리는 영역으로, 해당 영역에 꽃가루가 뿌려지게 됨. */
     background: transparent;
-    height: 100%;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100%;
     position: absolute;
   }
@@ -74,10 +74,8 @@ footer{
   color:white;
   background-color: var(--div-dark-font-color);
   position: absolute;
-  bottom: 0;
   left: 0;
-  top:42rem;
-  height: 12.5rem;
+  top: calc(var(--vh, 1vh) * 100 - 4rem);
 }
 
 .footer__area{
