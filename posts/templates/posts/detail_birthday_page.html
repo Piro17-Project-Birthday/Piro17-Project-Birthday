@@ -91,7 +91,7 @@
                 <img src="{% static 'img\cake\cake-choco-02.png' %}">
               {% elif messages.count <= 15 %}
                 <img src="{% static 'img\cake\cake-choco-03.png' %}">
-              {% elif messages.count <= 20 %}
+              {% else %}
                 <img src="{% static 'img\cake\cake-choco-04.png' %}">
               {% endif %}
             {% elif target == "strawberry"%}
@@ -101,7 +101,7 @@
                 <img src="{% static 'img\cake\cake-strawberry-02.png' %}">
               {% elif messages.count <= 15 %}
                 <img src="{% static 'img\cake\cake-strawberry-03.png' %}">
-              {% elif messages.count <= 20 %}
+              {% else %}
                 <img src="{% static 'img\cake\cake-strawberry-04.png' %}">
               {% endif %}
             {% elif target == "carrot"%}
@@ -111,7 +111,7 @@
                 <img src="{% static 'img\cake\cake-carrot-02.png' %}">
               {% elif messages.count <= 15 %}
                 <img src="{% static 'img\cake\cake-carrot-03.png' %}">
-              {% elif messages.count <= 20 %}
+              {% else %}
                 <img src="{% static 'img\cake\cake-carrot-04.png' %}">
               {% endif %}
             {% endif %}
