@@ -258,6 +258,7 @@
     width: 27%;
     padding: 0 4% 0 1%;
     font-size: 11px;
+    
   }
   
   .nav-bottom__content__photo {
@@ -286,23 +287,21 @@
     text-align: center;
     background-color: var(--div-light-font-color);
     display: flex;
-    align-items: end;
+    align-items: center;
     justify-content: center;
-    padding-bottom: 1.1rem;
-    height: 4.3rem;
+    height: 4.5rem;
   }
-
+  
   .nav-bottom__content h6 {
-    margin-block-start: 0em;
+    margin-block-start: -0.8em;
     margin-block-end: -1.4em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
   }
-
-.nav-bottom__content img {
+  
+  .nav-bottom__content img {
     width: inherit;
-}
-
+  }
   /* 로그인 모달 */
 .modal__login{
     position: fixed;
