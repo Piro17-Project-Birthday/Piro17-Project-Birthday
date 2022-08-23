@@ -247,7 +247,7 @@
 
       <!-- 축하 메시지 남기기 버튼-->
       {% if not is_owner %}
-        {% if not birthday_page.state == "archive" %}
+        {% if not birthday_page.state == "archive" and not birthday_page.state == "waiting"%}
           {% if request.user.is_authenticated %}
             <a href="{% url 'posts:create_message' year pk %}" class="floating-btn">
               <p class="floating-btn__text">축하 메시지 남기기</p>
