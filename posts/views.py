@@ -204,19 +204,49 @@ def detailBirthdayPage(request,year,pk):
                     curr_page.save()
         else: #생일 페이지 주인이 아닌 다른 접속자가 접속했을 경우 archive 처리
             curr_page = birthday_page
-            
-            curr_page.state = "archive"
-                
             tmi_page = TmiPage.objects.get(tmi_origin=curr_page)
             photo_page = PhotoPage.objects.get(photo_origin=curr_page)
+            
+            if BirthdayPage.objects.filter(owner=curr_page.owner, year=next_year).exists():
+                birthday = datetime.strptime(str(today_year+1)+str(birthday_month)+str(birthday_day), "%Y%m%d").date() #생일을 내년 생일로 한다
+                date_diff = abs((today-birthday).days)
+                
+                next_page = BirthdayPage.objects.get(owner=curr_page.owner, year=next_year)
+                next_tmi = TmiPage.objects.get(tmi_origin=next_page)
+                next_photo = PhotoPage.objects.get(photo_origin=next_page)
+                
+                if date_diff == 0:
+                    curr_page.state = 'today'
+                    next_tmi.state = 'activate'
+                    next_photo.state = 'activate'
                     
-            tmi_page.state = "archive"
-            photo_page.state = "archive"
+                    next_tmi.save()
+                    next_photo.save()
+                elif date_diff <=7:
+                    curr_page.state = 'upcoming'
+                    next_tmi.state = 'activate'
+                    next_photo.state = 'activate'
+                    
+                    next_tmi.save()
+                    next_photo.save()
+                else:
+                    curr_page.state = 'waiting'
+                    next_tmi.state = 'deactivate'
+                    next_photo.state = 'deactivate'
+                    
+                    next_tmi.save()
+                    next_photo.save()
+            else:
+                curr_page.state = 'archive'
+                tmi_page.state = 'archive'
+                photo_page.state = 'archive'
+                
+                tmi_page.save()
+                photo_page.save()
             
-            curr_page.save()        
-            tmi_page.save()
-            photo_page.save()
-            
+            curr_page.save()
+                    
+
             
         
     selected_cake = birthday_page.owner.selected_cake
