@@ -104,6 +104,11 @@ def createBirthdayPage(request):
         return redirect("login/?next=/")
     
 def detailBirthdayPage(request,year,pk):
+    #도메인 년도 비교용 전역변수
+    today = datetime.now().date() #현재 날짜
+    today_year = today.year #현재 년도
+    next_year = today_year + 1
+
     birthday_page = get_object_or_404(BirthdayPage, year=year, pk=pk)
     messages = birthday_page.message_set.all()
     name = birthday_page.owner.nickname
@@ -255,6 +260,8 @@ def detailBirthdayPage(request,year,pk):
     target_birth = get_object_or_404(BirthdayPage, year=year, pk=pk)
     target_photo = get_object_or_404(PhotoPage, year=year, pk=pk)
     target_tmi = get_object_or_404(TmiPage, year=year, pk=pk) #하단 메뉴용 타겟들
+    
+    print(date_diff)
     
     context = {
         "messages" : messages,
