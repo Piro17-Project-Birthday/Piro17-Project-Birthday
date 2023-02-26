@@ -27,6 +27,11 @@ def main(request):
     return render(request, "posts/main.html")
 
 def createBirthdayPage(request):
+    #도메인 년도 비교용 전역변수
+    today = datetime.now().date() #현재 날짜
+    today_year = today.year #현재 년도
+    next_year = today_year + 1
+    
     if request.user.is_authenticated:
         if request.method == 'POST':
             form = BirthdayPageForm(request.POST)
