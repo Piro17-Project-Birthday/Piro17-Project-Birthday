@@ -57,7 +57,9 @@ $ python manage.py runserver
 <img width="1240" src="https://user-images.githubusercontent.com/55528304/221425591-af2af65f-43ab-49e0-a138-f8ed301225c4.png"/></br>
 <img width="1240" src="https://user-images.githubusercontent.com/55528304/221425889-6fac7fac-4977-4c93-875f-2dd214ee9e32.png"/></br>
 
-생일 페이지가 개설되었다면, **생일 페이지 링크 복사하기**를 눌러 내 페이지를 공유하고 친구들의 따뜻한 한마디를 기다리세요. 메시지가 쌓이면 **전체 캡쳐**를 눌러 내가 받은 메시지들을 예쁘게 보관하고 자랑해보세요.
+생일 페이지가 개설되었다면, **생일 페이지 링크 복사하기**를 눌러 내 페이지를 공유하고 친구들의 따뜻한 한마디를 기다리세요. 메시지가 쌓이면 **전체 캡쳐**를 눌러 내가 받은 메시지들을 예쁘게 보관하고 자랑해보세요.</br>
+💡 메시지를 비밀로 작성할 수 있어요.</br>
+💡 메시지 수가 늘어나면 케이크가 달라져요.</br>
 
 ### STEP4. 포토방명록과 내 친구의 TMI 구경하기
 <img width="1240" src="https://user-images.githubusercontent.com/55528304/221426256-2c01a8fc-de26-4ca1-9477-693710c7b256.png"/>
