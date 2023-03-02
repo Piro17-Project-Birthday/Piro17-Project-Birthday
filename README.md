@@ -42,7 +42,7 @@ $ python manage.py runserver
 ### Communication
 ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white)
   
-## 서비스 소개 [기능명세서](https://sparkly-thought-ba5.notion.site/c18b07e0cccf4c499fc5d54787c5d27b)</br>
+## 서비스 소개 | [기능명세서 바로가기➡️](https://sparkly-thought-ba5.notion.site/c18b07e0cccf4c499fc5d54787c5d27b)</br>
 <img width="1240" src="https://user-images.githubusercontent.com/55528304/221424396-92e89576-1bfb-4c29-afc4-b51d7d1dec10.png"/> 
 
 ### STEP1. 생일 페이지 생성하기
