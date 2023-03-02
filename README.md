@@ -1,8 +1,6 @@
-# 추카포카
+# 추카포카 | [배포 링크 바로가기➡️](https://www.chookapoka.com/)
 
 <img width="500" alt="main-logo-image" src="https://raw.githubusercontent.com/Piro17-Project-Birthday/Piro17-Project-Birthday/main/static/img/og-image.jpg">
-<p><a href="https://www.chookapoka.com/">[배포 링크 바로가기]</p>
-<br/>
 
 
 > **피로그래밍 17기 프로젝트** <br/> 개발기간 :  2022.08.01 ~ 2022.08.23<br/>팀 축마땅🥳 : [@심은서](https://github.com/simeunseo) [@강수경](https://github.com/sookyungg) [@이동헌](https://github.com/eastlaw80) [@조연서](https://github.com/Yeonseo-Jo)
@@ -44,7 +42,7 @@ $ python manage.py runserver
 ### Communication
 ![Notion](https://img.shields.io/badge/Notion-000000?style=for-the-badge&logo=Notion&logoColor=white)
   
-## 서비스 소개 
+## 서비스 소개 [기능명세서](https://sparkly-thought-ba5.notion.site/c18b07e0cccf4c499fc5d54787c5d27b)</br>
 <img width="1240" src="https://user-images.githubusercontent.com/55528304/221424396-92e89576-1bfb-4c29-afc4-b51d7d1dec10.png"/> 
 
 ### STEP1. 생일 페이지 생성하기
